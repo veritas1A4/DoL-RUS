@@ -90,6 +90,10 @@
 			<<if $_outfit.type.includes("sleep")>>
 				<<if _passage is "Bed">>
 					<<furnitureicon _bed.iconFile>>
+				<<elseif _passage is "Prison Bed">>
+					<<prisonicon "bed">>
+				<<elseif _passage is "Asylum Bed">>
+					<<bedicon "hospital">>
 				<<else>>
 					<<bedicon>>
 				<</if>>
@@ -104,6 +108,10 @@
 		<<icon "cross.png" "infront">>
 		<<if _passage is "Bed">>
 			<<furnitureicon _bed.iconFile>>
+		<<elseif _passage is "Prison Bed">>
+			<<prisonicon "bed">>
+		<<elseif _passage is "Asylum Bed">>
+			<<bedicon "hospital">>
 		<<else>>
 			<<bedicon>>
 		<</if>>
@@ -509,7 +517,7 @@
 							<<if !_notEquipped[$_slot]>>
 								<<set _notEquipped[$_slot] to {"name": $_incomingItemName, "reason": "not found"}>>
 							<</if>>
-							<<if $wardrobe_location isnot "wardrobe" and $worn[$_slot].name isnot "ничего">>
+							<<if $wardrobe_location isnot "wardrobe" and $worn[$_slot].name isnot "naked">>
 								<<set _makeTempClothing to 1>>
 								<<storeItem $wardrobe_location $_slot>>
 							<</if>>

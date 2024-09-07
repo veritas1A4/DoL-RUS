@@ -71,12 +71,12 @@
 
 	Parasite Prevention:
 	<br>
-	<<procedureicon "parasite">><<link [[Tube of anti-parasite cream|Pharmacy Sale]]>><<set $pharmacyItem to setup.pharmacyItems["Anti-Parasite Cream"]>><</link>>
+	<<procedureicon "parasite">><<link [[Tube of anti-parasite cream|Pharmacy Sale]]>><<wearProp "parasite cream">><<set $pharmacyItem to setup.pharmacyItems["Anti-Parasite Cream"]>><</link>>
 	<br><br>
 
 	Family Planning:
 	<br>
-	<<sextoysicon "pump">><<link [[Breast pump|Pharmacy Sale]]>><<set $pharmacyItem to setup.pharmacyItems["breast_pump"]>><</link>>
+	<<sextoysicon "pump">><<link [[Breast pump|Pharmacy Sale]]>><<wearProp "breast pump">><<set $pharmacyItem to setup.pharmacyItems["breast_pump"]>><</link>>
 	<br>
 	<<pregnancytesticon>><<link [[Pack of 2 pregnancy tests|Pharmacy Sale]]>><<set $pharmacyItem to setup.pharmacyItems["pregnancy_test"]>><</link>>
 	<br>
@@ -90,7 +90,7 @@
 		<br>
 	<</if>>
 	<<if $condomLvl gte 1>>
-		<<condomicon>><<link [[Pack of 3 condoms|Pharmacy Sale]]>><<set $pharmacyItem to setup.pharmacyItems["condoms"]>><</link>>
+		<<condomicon>><<link [[Pack of 3 condoms|Pharmacy Sale]]>><<wearProp "condom">><<set $pharmacyItem to setup.pharmacyItems["condoms"]>><</link>>
 		<br>
 	<</if>>
 	<<pillicon "contraceptive">><<link [[Pack of 14 contraceptive pills|Pharmacy Sale]]>><<set $pharmacyItem to setup.pharmacyItems["contraceptive_pills"]>><</link>>
@@ -166,7 +166,7 @@ An assortment of colourful contact lenses is displayed behind the glass. You can
 :: Pharmacy Ask Custom Lenses
 <<if $daily.pharm.impatient gt 2>>
 	"Who do we have here," says the nurse, a rictus on <<his>> face. "Get out, you wasted enough of my time already. Try again tomorrow if you're done with your little game."
-	<br><br><<getouticon>><<link [[Покинуть|Pharmacy Lenses]]>><</link>>
+	<br><br><<getouticon>><<link [[Leave|Pharmacy Lenses]]>><</link>>
 <<else>>
 	<<if $custom_lenses_already_ordered is 1>>
 		"I hope the ones you ordered last time please you," the nurse asks, "You know the prices, <<printmoney 45000>> for the product, plus <<printmoney 5000>> for the delivery. <<printmoney 95000>> total if you pick two different colours for each eye."
@@ -214,7 +214,7 @@ An assortment of colourful contact lenses is displayed behind the glass. You can
 :: Pharmacy Order Custom Lenses
 "Here is your receipt," the nurse adds, handing you the ticket. "It's likely to arrive by tomorrow, you come back anytime with your receipt and whoever is on duty that day will hand it over to you."
 <br><br>
-<<link [[Далее|Pharmacy]]>><</link>>
+<<link [[Next|Pharmacy]]>><</link>>
 
 :: Pharmacy Ask If Lenses Delivered
 <<if $daily.pharm.impatient is 1>>
@@ -231,7 +231,7 @@ An assortment of colourful contact lenses is displayed behind the glass. You can
 	<<loitericon>><<link [[Wait (0:15)|Pharmacy Ask If Lenses Delivered 2]]>><<set $daily.pharm.impatient to 0>><<pass 15>><</link>>
 	<br>
 <</if>>
-<<getouticon>><<link [[Покинуть|Pharmacy]]>><<set $daily.pharm.impatient to ($daily.pharm.impatient + 1) || 1>><</link>>
+<<getouticon>><<link [[Leave|Pharmacy]]>><<set $daily.pharm.impatient to ($daily.pharm.impatient + 1) || 1>><</link>>
 
 :: Pharmacy Ask If Lenses Delivered 2
 <<set _received to 0>>
@@ -273,12 +273,12 @@ An assortment of colourful contact lenses is displayed behind the glass. You can
 	A few moments later <<he>> returns, "It hasn't arrived yet, sorry honey. Try again tomorrow I'm sure it'll have arrived by then"
 <</if>>
 <br><br>
-<<getouticon>><<link [[Покинуть|Pharmacy]]>><</link>>
+<<getouticon>><<link [[Leave|Pharmacy]]>><</link>>
 
 
 :: Pharmacy Sale
 <<set $outside to 0>><<set $location to "hospital">><<effects>>
-The <<person>> looks at the <<print $pharmacyItem.name>> you're holding,
+The <<person>> looks at the <<print $pharmacyItem.name>> you're holding.
 <<formatmoney $pharmacyItem.price>>
 <<switch $pharmacyItem.type>>
 	<<case "penis reduction">>
@@ -306,7 +306,7 @@ The <<person>> looks at the <<print $pharmacyItem.name>> you're holding,
 	<<case "condoms">>
 		"_printmoney please." <<He>> looks you over.
 		<<if $player.gender_appearance is "m">>
-			"Glad to see people playing it safe, your girl is lucky."
+			"Glad to see people playing it safe. Your girl is lucky."
 		<</if>>
 	<<case "pregnancy test">>
 		"_printmoney please." <<He>> looks you over.
@@ -329,9 +329,9 @@ The <<person>> looks at the <<print $pharmacyItem.name>> you're holding,
 	<<case "contraceptive">>
 		"_printmoney please.
 		<<if $player.gender_appearance is "m">>
-			Glad to see people playing it safe, your girl is lucky.
+			Glad to see people playing it safe. Your girl is lucky.
 		<</if>>
-		Take one per day, try to normalise the time. You still need to be careful, the only sure way to be safe is still to be abstinent."
+		Take one per day, and try to normalise the time. You still need to be careful, though. The only sure way to be safe is to be abstinent."
 	<<default>>
 		<<run throw new Error(`Missing pharmacyItem type! ${V.pharmacyItem.type}`)>>
 <</switch>>
@@ -340,21 +340,21 @@ The <<person>> looks at the <<print $pharmacyItem.name>> you're holding,
 <<if $money gte $pharmacyItem.price>>
 	<<switch $pharmacyItem.type>>
 		<<case "Breast Pump">>
-			<<link [[Hand over the money|Pharmacy]]>><<run sexShopOnBuyClick(11, false)>><</link>>
+			<<link [[Hand over the money|Pharmacy]]>><<run sexShopOnBuyClick(11, false, V.worn.handheld.colour.replace(" ","-"), false)>><<handheldon>><</link>>
 		<<case "condoms">>
-			<<link [[Hand over the money|Pharmacy]]>><<set $money -= $pharmacyItem.price>><<gcondoms 3>><</link>>
+			<<link [[Hand over the money|Pharmacy]]>><<handheldon>><<set $money -= $pharmacyItem.price>><<gcondoms 3>><</link>>
 		<<case "pregnancy test">>
-			<<link [[Hand over the money|Pharmacy]]>><<set $money -= $pharmacyItem.price>><<set $pregnancyTest += 2>><</link>>
+			<<link [[Hand over the money|Pharmacy]]>><<handheldon>><<set $money -= $pharmacyItem.price>><<set $pregnancyTest += 2>><</link>>
 		<<case "Anti-Parasite Cream">>
-			<<link [[Hand over the money|Pharmacy]]>><<set $money -= $pharmacyItem.price>><<set $sexStats.pills.pills[$pharmacyItem.type].owned += 1>><<boughtOnce>><</link>>
+			<<link [[Hand over the money|Pharmacy]]>><<handheldon>><<set $money -= $pharmacyItem.price>><<set $sexStats.pills.pills[$pharmacyItem.type].owned += 1>><<boughtOnce>><</link>>
 		<<default>>
-			<<link [[Hand over the money|Pharmacy]]>><<set $money -= $pharmacyItem.price>><<set $sexStats.pills.pills[$pharmacyItem.type].owned += 14>><<boughtOnce>><</link>>
+			<<link [[Hand over the money|Pharmacy]]>><<handheldon>><<set $money -= $pharmacyItem.price>><<set $sexStats.pills.pills[$pharmacyItem.type].owned += 14>><<boughtOnce>><</link>>
 	<</switch>>
 <<else>>
 	<span class="purple">You cannot afford them.</span>
 <</if>>
 <br>
-<<if $pharmacyItem.type.includes("penis") and $promiscuity gte 15 and !$daily.pharm.seductionResult>>
+<<if $pharmacyItem.type.includes("penis") and hasSexStat("promiscuity", 2) and !$daily.pharm.seductionResult>>
 	<<link [[Seduce|Pharmacy Seduction]]>><</link>><<seductiondifficulty>><<promiscuous2>>
 	<br>
 <</if>>
@@ -382,7 +382,7 @@ The <<person>> looks at the <<print $pharmacyItem.name>> you're holding,
 	<br><br>
 
 	<<set $sexstart to 1>>
-	<<link [[Далее|Pharmacy Encounter Sex]]>><</link>>
+	<<link [[Next|Pharmacy Encounter Sex]]>><</link>>
 <<else>>
 	<<set $daily.pharm.seductionResult to "fail">>
 	After a brief pause, <<he>> bursts into a ringing laugh.<<ggstress>><<stress 23>>
@@ -413,13 +413,13 @@ The <<person>> looks at the <<print $pharmacyItem.name>> you're holding,
 		"Hey," <<he>> says. "I didn't mean to upset you."
 		<br><br>
 
-		<<link [[Далее|Hospital Foyer]]>><<endevent>><</link>>
+		<<link [[Next|Hospital Foyer]]>><<endevent>><</link>>
 	<<case "pay">>
 		You hand over the money in awkward silence, take your box of pills, and leave.
 		<br><br>
 
 		<<set $money -= $pharmacyItem.price>><<set $sexStats.pills.pills[$pharmacyItem.type].owned += 14>><<boughtOnce>>
-		<<link [[Далее|Hospital Foyer]]>><<endevent>><</link>>
+		<<link [[Next|Hospital Foyer]]>><<endevent>><</link>>
 <</switch>>
 <<unset $pharmacyItem>>
 
@@ -431,10 +431,10 @@ The <<person>> looks at the <<print $pharmacyItem.name>> you're holding,
 	<<neutral 1>>
 	<<maninit>>
 
-	<<if $worn.lower.name isnot "ничего">>
+	<<if $worn.lower.name isnot "naked">>
 		<<set $NPCList[0].lefthand to "lowerclothes">>
 		<<set $NPCList[0].righthand to "lowerclothes">>
-	<<elseif $worn.under_lower.name isnot "ничего">>
+	<<elseif $worn.under_lower.name isnot "naked">>
 		<<set $NPCList[0].lefthand to "underlowerclothes">>
 		<<set $NPCList[0].righthand to "underlowerclothes">>
 	<</if>>
@@ -512,9 +512,9 @@ The <<person>> looks at the <<print $pharmacyItem.name>> you're holding,
 <</if>>
 
 <<if _combatend or $finish is 1>>
-	<span id="next"><<link [[Далее|Pharmacy Encounter Sex Finish]]>><</link>></span><<nexttext>>
+	<span id="next"><<link [[Next|Pharmacy Encounter Sex Finish]]>><</link>></span><<nexttext>>
 <<else>>
-	<span id="next"><<link [[Далее|Pharmacy Encounter Sex]]>><</link>></span><<nexttext>>
+	<span id="next"><<link [[Next|Pharmacy Encounter Sex]]>><</link>></span><<nexttext>>
 <</if>>
 
 :: Pharmacy Encounter Sex Finish
@@ -625,10 +625,10 @@ The <<person>> looks at the <<print $pharmacyItem.name>> you're holding,
 			<<clotheson>><<endcombat>>
 	<</switch>>
 
-	<<getouticon>><<link [[Покинуть|Hospital Foyer]]>><<set $eventskip to 1>><</link>>
+	<<getouticon>><<link [[Leave|Hospital Foyer]]>><<set $eventskip to 1>><</link>>
 <<else>>
 	<br><br>
-	<<link [[Далее|Hospital Foyer]]>><<endevent>><<set $eventskip to 1>><</link>>
+	<<link [[Next|Hospital Foyer]]>><<endevent>><<set $eventskip to 1>><</link>>
 <</if>>
 <</capture>>
 
@@ -728,7 +728,7 @@ Before you can answer, you feel another intense and painful cramp in your belly.
 <<trauma 50>>
 <<pain 200>>
 <<arousal -5000>>
-<<link [[Далее|Passout hospital]]>><<endevent>><<pass 60>><</link>>
+<<link [[Next|Passout hospital]]>><<endevent>><<pass 60>><</link>>
 
 :: Pharmacy Buy Condoms in Bulk
 <<set $outside to 0>><<set $location to "hospital">><<effects>>
@@ -850,4 +850,4 @@ You count the money and give it to <<him>>.
 <<set $weekly.brothelVMCondoms to true>>
 <<unset $condomsBought>>
 <<earnFeat "Brothel Provider">>
-<<link [[Далее|Pharmacy]]>><</link>>
+<<link [[Next|Pharmacy]]>><</link>>

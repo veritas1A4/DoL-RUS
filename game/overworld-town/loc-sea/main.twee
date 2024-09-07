@@ -64,10 +64,10 @@ You are swimming in the sea along the beach.
 		<<if $exposed lte 0 or Time.dayState is "night">>
 			<<beachicon>><<link [[Leave the water (0:02)|Beach]]>><<pass 2>><</link>>
 			<br>
-		<<elseif $exposed is 1 and $exhibitionism gte 15>>
+		<<elseif $exposed is 1 and hasSexStat("exhibitionism", 2)>>
 			<<beachicon>><<link [[Leave the water (0:02)|Beach Exposed]]>><<pass 2>><<set $phase to 1>><</link>><<exhibitionist2>>
 			<br>
-		<<elseif $exposed gte 2 and $exhibitionism gte 75>>
+		<<elseif $exposed gte 2 and hasSexStat("exhibitionism", 5)>>
 			<<beachicon>><<link [[Leave the water (0:02)|Beach Exposed]]>><<pass 2>><<set $phase to 0>><</link>><<exhibitionist5>>
 			<br>
 		<</if>>
@@ -216,7 +216,7 @@ You <<= $passagePrev.includes("Up") ? "break the pool's surface" : "slip into th
 <<else>>
 <</if>>
 
-<<if $swarmdisable is "f" and $deviancy gte 75 and $daily.rocksPoolInvite isnot 1>>
+<<if $swarmdisable is "f" and hasSexStat("deviancy", 5) and $daily.rocksPoolInvite isnot 1>>
 	<<ind>><<link [[Invite the fish (0:05)|Rocks Swarm Invite]]>><<set $daily.rocksPoolInvite to 1>><<pass 5>><</link>><<deviant5>>
 	<br>
 <</if>>
@@ -240,7 +240,7 @@ You <<= $passagePrev.includes("Up") ? "break the pool's surface" : "slip into th
 <</if>>
 <br><br>
 
-<<link [[Далее|Rocks Pool]]>><</link>>
+<<link [[Next|Rocks Pool]]>><</link>>
 <br>
 
 :: Rocks Dive
@@ -296,11 +296,11 @@ You <<= $passagePrev.includes("Up") ? "break the pool's surface" : "slip into th
 			<<if $museumAntiques.antiques.antiquediamond isnot "found" and $museumAntiques.antiques.antiquediamond isnot "talk" and $museumAntiques.antiques.antiquediamond isnot "museum">>
 				You reach for the light but the sand shifts under it. You swim upwards but feel something clamps down on your leg. You twist around to find a giant oyster intent on devouring you!
 				<br><br>
-				<<link [[Далее|Sea Vore]]>><<set $molestationstart to 1>><<set $vorecreature to "oyster">><</link>>
+				<<link [[Next|Sea Vore]]>><<set $molestationstart to 1>><<set $vorecreature to "oyster">><</link>>
 			<<else>>
 				As you move through the water, something clamps down on your leg. You twist around to find a giant oyster intent on devouring you!
 				<br><br>
-				<<link [[Далее|Sea Vore]]>><<set $molestationstart to 1>><<set $vorecreature to "oyster">><</link>>
+				<<link [[Next|Sea Vore]]>><<set $molestationstart to 1>><<set $vorecreature to "oyster">><</link>>
 			<</if>>
 		<<else>>
 			<<swimicon "up">><<link [[Swim up|Rocks Up]]>><<set $phase to 0>><</link>>
@@ -317,7 +317,7 @@ You <<= $passagePrev.includes("Up") ? "break the pool's surface" : "slip into th
 		<<swimicon "up">><<link [[Swim up|Rocks Up]]>><<set $phase to 0>><</link>>
 		<br>
 		<<if $museumAntiques.antiques.antiquediamond isnot "found" and $museumAntiques.antiques.antiquediamond isnot "talk" and $museumAntiques.antiques.antiquediamond isnot "museum">>
-			<<ind>><<link [[Grasp it|Rocks Diamond]]>><<wateraction>><</link>><<loxygen>>
+			<<antiqueicon "diamond">><<link [[Grasp it|Rocks Diamond]]>><<wateraction>><</link>><<loxygen>>
 			<br>
 		<<else>>
 			<<swimicon "back">><<link [[Swim inside|Beach Cave Entrance]]>><</link>>
@@ -332,7 +332,7 @@ You <<= $passagePrev.includes("Up") ? "break the pool's surface" : "slip into th
 <</if>>
 
 :: Rocks Diamond
-<<underwater>><<effects>>
+<<underwater>><<effects>><<wearProp "diamond">>
 
 <<set $antiquemoney += 2000>><<museumAntiqueStatus "antiquediamond" "found">>
 You grasp the light, along with a handful of sand, and examine it. It's a white jewel, no bigger than a fingernail, but it might be worth something to a collector.
@@ -341,9 +341,9 @@ You grasp the light, along with a handful of sand, and examine it. It's a white 
 You plant your feet against the sand, and notice a cave leading away from the pool, lit by a dim blue light.
 <br><br>
 
-<<link [[Swim up|Rocks Up]]>><<set $phase to 0>><</link>>
+<<link [[Swim up|Rocks Up]]>><<handheldon>><<set $phase to 0>><</link>>
 <br>
-<<link [[Swim into the cave|Beach Cave Entrance]]>><</link>>
+<<link [[Swim into the cave|Beach Cave Entrance]]>><<handheldon>><</link>>
 <br>
 
 :: Rocks Swarm Invite
@@ -352,7 +352,7 @@ You plant your feet against the sand, and notice a cave leading away from the po
 You float into the middle of the pool, and open your legs. The fish are cautious, swimming close, then darting back into the murk. Then you feel one brush against your <<bottom>>. Then against your <<breasts>>. More join them, and they're soon sliding against every inch of your skin.
 <<deviancy5>>
 
-<<link [[Далее|Rocks Swarm]]>><<set $sexstart to 1>><</link>>
+<<link [[Next|Rocks Swarm]]>><<set $sexstart to 1>><</link>>
 <br>
 
 :: Rocks Swarm
@@ -373,11 +373,11 @@ You float into the middle of the pool, and open your legs. The fish are cautious
 <<swarm>>
 <<swarmactions>>
 <<if $orgasmdown gte 1>>
-	<span id="next"><<link [[Далее|Rocks Swarm Finish]]>><</link>></span><<nexttext>>
+	<span id="next"><<link [[Next|Rocks Swarm Finish]]>><</link>></span><<nexttext>>
 <<elseif $timer lte 0>>
-	<span id="next"><<link [[Далее|Rocks Swarm Finish]]>><</link>></span><<nexttext>>
+	<span id="next"><<link [[Next|Rocks Swarm Finish]]>><</link>></span><<nexttext>>
 <<else>>
-	<span id="next"><<link [[Далее|Rocks Swarm]]>><</link>></span><<nexttext>>
+	<span id="next"><<link [[Next|Rocks Swarm]]>><</link>></span><<nexttext>>
 <</if>>
 
 :: Rocks Swarm Finish
@@ -392,7 +392,7 @@ You float into the middle of the pool, and open your legs. The fish are cautious
 <</if>>
 <<clotheson>>
 <<endcombat>>
-<<link [[Далее|Rocks Pool]]>><</link>>
+<<link [[Next|Rocks Pool]]>><</link>>
 
 
 :: Sea Docks
@@ -435,7 +435,7 @@ You are swimming in the sea near the docks, east of the beach.
 	<<if $danger gte (9900 - $allure) and $eventskip is 0>>
 		<<eventssea>>
 	<<else>>
-		<<if $earSlime.forcedCommando isnot undefined and $worn.under_lower.name isnot "ничего">>
+		<<if $earSlime.forcedCommando isnot undefined and $worn.under_lower.name isnot "naked">>
 			<span class="red">The slime in your ear refuses to allow you to climb onto the docks with swimwear on.</span>
 		<<else>>
 			<<docksicon>><<link [[Climb onto the docks (0:02)|Mer Street]]>><<pass 2>><</link>>
@@ -506,7 +506,7 @@ You are swimming in the sea at the base of some cliffs, east of the docks. A lar
 		<<else>>
 			You try to swim against the tide, but <span class="red">it's too strong for you.</span> You are swept out to sea.
 			<br><br>
-			<<link [[Далее|Sea]]>><<set $sea to 0>><</link>>
+			<<link [[Next|Sea]]>><<set $sea to 0>><</link>>
 			<br>
 		<</if>>
 	<</if>>
@@ -547,7 +547,7 @@ You are swimming in the sea at the base of some cliffs, east of the docks. A lar
 			<<else>>
 				You try to swim against the tide, <span class="red">but it's too strong for you.</span> You are swept further out to sea.
 				<br><br><br>
-				<<link [[Далее|Sea]]>><<set $sea += 10>><</link>>
+				<<link [[Next|Sea]]>><<set $sea += 10>><</link>>
 				<br>
 			<</if>>
 		<</if>>
@@ -584,7 +584,7 @@ You are swimming in the sea at the base of some cliffs, east of the docks. A lar
 			<<else>>
 				You try to swim against the tide, <span class="red">but it's too strong for you.</span> You are swept further out to sea.
 				<br><br>
-				<<link [[Далее|Sea]]>><<set $sea += 10>><</link>>
+				<<link [[Next|Sea]]>><<set $sea += 10>><</link>>
 				<br>
 			<</if>>
 		<</if>>
@@ -625,7 +625,7 @@ You are swimming in the sea at the base of some cliffs, east of the docks. A lar
 			<<else>>
 				You try to swim against the tide, <span class="red">but it's too strong for you.</span> You are swept further out to sea.
 				<br><br><br>
-				<<link [[Далее|Sea]]>><<set $sea += 10>><</link>>
+				<<link [[Next|Sea]]>><<set $sea += 10>><</link>>
 				<br>
 			<</if>>
 		<</if>>
@@ -671,7 +671,7 @@ You are swimming in the sea at the base of some cliffs, east of the docks. A lar
 			<<else>>
 				You try to swim against the tide, <span class="red">but it's too strong for you.</span> You are swept further out to sea.
 				<br><br>
-				<<link [[Далее|Sea]]>><<set $sea += 10>><</link>>
+				<<link [[Next|Sea]]>><<set $sea += 10>><</link>>
 				<br>
 			<</if>>
 		<</if>>
@@ -703,7 +703,7 @@ You are swimming in the sea at the base of some cliffs, east of the docks. A lar
 			<<else>>
 				You try to swim against the tide, <span class="red">but it's too strong for you.</span> You are swept further out to sea.
 				<br><br>
-				<<link [[Далее|Sea]]>><<set $sea += 10>><</link>>
+				<<link [[Next|Sea]]>><<set $sea += 10>><</link>>
 				<br>
 			<</if>>
 		<</if>>

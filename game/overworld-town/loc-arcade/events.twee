@@ -57,10 +57,10 @@
 	<<elseif _chance gte 25>>
 		Вы начинаете играть против <<person>>, но быстро обнаруживаете, что проигрываете. Вы задаетесь вопросом, есть ли способ изменить ситуацию в свою пользу.
 		<br><br>
-		<<if ($worn.under_upper.name isnot "naked" or !$worn.under_upper.type.includes("naked")) and $exhibitionism gte 15>>
+		<<if ($worn.under_upper.name isnot "naked" or !$worn.under_upper.type.includes("naked")) and hasSexStat("exhibitionism", 2)>>
 			<<link [[Дразнить|Arcade fighting cabinet Rigging]]>><<set $phase to 1>><</link>><<exhibitionist2>>
 			<br>
-		<<elseif $exhibitionism gte 55>>
+		<<elseif hasSexStat("exhibitionism", 4)>>
 			<<link [[Дразнить|Arcade fighting cabinet Rigging]]>><<set $phase to 2>><</link>><<exhibitionist4>>
 			<br>
 		<</if>>
@@ -85,7 +85,7 @@
 <<if $phase is 1>>
 	<<if ($rng gte 50 and !$worn.under_upper.type.includes("naked")) or $worn.under_lower.name is "naked">>
 		Вы  стягиваете свой <<allTops>> вниз, оголяя больше своего тела $worn.under_upper.name для <<person>>. <<He>> время от времени бросает на вас взгляды во время матча, что позволяет вам легко обыграть <<him>>.
-	<<elseif $worn.under_lower.name isnot "ничего">>
+	<<elseif $worn.under_lower.name isnot "naked">>
 		Вы  стягиваете свой <<allBottoms>> вниз, оголяя  больше своего тела $worn.under_lower.name для <<person>>. <<He>> часто подсматривает тайком, что дает вам легкую победу.
 	<</if>>
 	<<exhibitionism2>>

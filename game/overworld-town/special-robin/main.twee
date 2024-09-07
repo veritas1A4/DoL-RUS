@@ -22,15 +22,15 @@
 	"I'm not sure," the <<person2>><<person>> says. "But I think Bailey said something about the <span class="gold">docks.</span> I hope Robin's okay." You release <<person2>><<his>> arm.
 	<br><br>
 	<<endevent>>
-	<<getouticon>><<link [[Покинуть|Orphanage]]>><</link>>
+	<<getouticon>><<link [[Leave|Orphanage]]>><</link>>
 	<br>
 <<elseif $robinmissing isnot 0>>
 	You go to Robin's room. You knock, but there's no response, nor is there a note on the door. You peek inside. There's no one there.
 	<br><br>
-	<<if $robinmissing is "pillory" and !$robinPillory.known and Time.hour gte 7 and Time.hour lte 15>>
-		<<getouticon>><<link [[Покинуть|Robin Pillory Intro]]>><</link>>
+	<<if $robinmissing is "pillory" and !$robinPillory.known and Time.hour gte 7 and Time.hour lte 15 and $robinPillory.active>>
+		<<getouticon>><<link [[Leave|Robin Pillory Intro]]>><</link>>
 	<<else>>
-		<<getouticon>><<link [[Покинуть|Orphanage]]>><</link>>
+		<<getouticon>><<link [[Leave|Orphanage]]>><</link>>
 	<</if>>
 	<br>
 <<elseif $christmas_robin_lewd is 1>>
@@ -53,7 +53,7 @@
 <<elseif _robin_location is "school">>
 	You go to Robin's room. There's a note on the door. "Gone to school!"
 	<br><br>
-	<<getouticon>><<link [[Покинуть|Orphanage]]>><</link>>
+	<<getouticon>><<link [[Leave|Orphanage]]>><</link>>
 	<br>
 <<elseif _robin_location is "sleep">>
 	You go to Robin's room. There's a note on the door. "Sleeping!"
@@ -62,7 +62,7 @@
 		You can hear a shuffle of papers inside.
 		<br><br>
 
-		<<getouticon>><<link [[Покинуть|Orphanage]]>><</link>>
+		<<getouticon>><<link [[Leave|Orphanage]]>><</link>>
 	<<elseif C.npc.Robin.lust gte 80 and $robinromance is 1 and between(Time.hour, 21, 23) and !$daily.robin.sleepMasturbate>>
 		<<set $daily.robin.sleepMasturbate to true>>
 		<span class="lewd">You notice the door is slightly open.</span>
@@ -74,7 +74,7 @@
 	<<else>>
 		<br><br>
 
-		<<getouticon>><<link [[Покинуть|Orphanage]]>><</link>>
+		<<getouticon>><<link [[Leave|Orphanage]]>><</link>>
 	<</if>>
 	<br>
 	<<if $debug is 1>>
@@ -87,31 +87,31 @@
 	<br><br>
 	<<link [[Go to the bathroom (0:01)|Robin Bath]]>><</link>>
 	<br>
-	<<getouticon>><<link [[Покинуть|Orphanage]]>><</link>>
+	<<getouticon>><<link [[Leave|Orphanage]]>><</link>>
 <<elseif _robin_location is "beach">>
 	You go to Robin's room. There's a note on the door. "Out selling lemonade!"
 	<br><br>
-	<<getouticon>><<link [[Покинуть|Orphanage]]>><</link>>
+	<<getouticon>><<link [[Leave|Orphanage]]>><</link>>
 	<br>
 <<elseif _robin_location is "park">>
 	You go to Robin's room. There's a note on the door. "Out selling hot chocolate!"
 	<br><br>
-	<<getouticon>><<link [[Покинуть|Orphanage]]>><</link>>
+	<<getouticon>><<link [[Leave|Orphanage]]>><</link>>
 	<br>
 <<elseif _robin_location is "halloween">>
 	You go to Robin's room. There's a note on the door. "Out trick-or-treating!"
 	<br><br>
-	<<getouticon>><<link [[Покинуть|Orphanage]]>><</link>>
+	<<getouticon>><<link [[Leave|Orphanage]]>><</link>>
 	<br>
 <<elseif _robin_location is "englishPlay">>
 	You go to Robin's room. There's a note on the door. "Attending the school plays!"
 	<br><br>
-	<<getouticon>><<link [[Покинуть|Orphanage]]>><</link>>
+	<<getouticon>><<link [[Leave|Orphanage]]>><</link>>
 	<br>
 <<elseif false /*$robin_kicked_out is true*/>>
 	You to go Robin's room. Robin doesn't want to see you right now.
 	<br><br>
-	<<getouticon>><<link [[Покинуть|Orphanage]]>><</link>>
+	<<getouticon>><<link [[Leave|Orphanage]]>><</link>>
 	<br>
 <<elseif Time.hour is 17 and _robin.trauma lte 60 and $daily.robin.studycompany isnot 1>>
 	<<npc Robin>><<person1>>
@@ -124,7 +124,7 @@
 			<br><br>
 			<<link[[Stay|Robin Study]]>><</link>><<ghistory>><br>
 			<<link[[Ask for company|Robin Study Ask]]>><</link>><br>
-			<<link[[Покинуть|Orphanage]]>><<endevent>><</link>>
+			<<link[[Leave|Orphanage]]>><<endevent>><</link>>
 		<<elseif C.npc.Robin.trauma gte 40>>
 			After a silence, you frown. You contemplate knocking again, but you hear a slight sound. Robin shuffles and opens the door.
 			<br><br>
@@ -135,14 +135,14 @@
 			<<link[[Say you'd like to help|Robin Study]]>><<stress 3>><<npcincr Robin love 1>><<npcincr Robin trauma -3>><<npcincr Robin dom -1>><</link>><<gstress>><<glove>><<lrtrauma>><<ldom>>
 			<br>
 			<<link[[Ask for company|Robin Study Ask]]>><</link>><br>
-			<<link[[Покинуть|Orphanage]]>><<endevent>><</link>>
+			<<link[[Leave|Orphanage]]>><<endevent>><</link>>
 		<<elseif C.npc.Robin.trauma gte 20>>
 			There's an exclamation followed by a clatter. Something hits the floor. Robin cracks open the door, poking <<his>> face out. <<He>> relaxes upon seeing you. "It's you," <<he>> says, attempting to hide the mess behind <<him>>. "Sorry, but I might need to do some homework…" <<He>> looks more depressed than usual.
 			<br><br>
 			<<link[[Say you'd like to help|Robin Study]]>><<stress 3>><<npcincr Robin love 1>><<npcincr Robin trauma -3>><<npcincr Robin dom -1>><</link>><<gstress>><<glove>><<lrtrauma>><<ldom>>
 			<br>
 			<<link[[Ask for company|Robin Study Ask]]>><</link>><br>
-			<<link[[Покинуть|Orphanage]]>><<endevent>><</link>>
+			<<link[[Leave|Orphanage]]>><<endevent>><</link>>
 		<<else>>
 			<<if C.npc.Robin.trauma gte 10>>
 				"Just a moment, please," Robin says inside. <<He>> opens the door and hugs you. "I'm so glad to see you." <<He>> sounds a little depressed.
@@ -159,7 +159,7 @@
 			<br><br>
 			<<link[[Agree|Robin Study]]>><<npcincr Robin love 1>><</link>><<glove>><br>
 			<<link[[Ask for company|Robin Study Ask]]>><</link>><br>
-			<<link[[Покинуть|Orphanage]]>><<endevent>><</link>>
+			<<link[[Leave|Orphanage]]>><<endevent>><</link>>
 		<</if>>
 	<<else>>
 		You knock on the door.
@@ -174,7 +174,7 @@
 			<<link[[Agree|Robin Study]]>><<npcincr Robin love 1>><</link>><<glove>><br>
 		<</if>>
 		<<link[[Ask for company|Robin Study Ask]]>><</link>><br>
-		<<link[[Покинуть|Orphanage]]>><<endevent>><</link>><br>
+		<<link[[Leave|Orphanage]]>><<endevent>><</link>><br>
 	<</if>>
 <<else>>
 	<<set _uniqueoptions to false>>
@@ -191,7 +191,7 @@ You tell Robin you want to hang out with <<him>>.
 	<<if $trauma gte ($traumamax / 2)>>
 		<<link[[Break down|Robin Study Ask Break]]>><</link>><br>
 	<</if>>
-	<<link[[Покинуть|Orphanage]]>><<endevent>><</link>>
+	<<link[[Leave|Orphanage]]>><<endevent>><</link>>
 <<elseif C.npc.Robin.trauma gte 40>>
 	<<set $daily.robin.studycompany to 1>>
 	Robin's face is blank for a while. "Um." <<He>> nods. <<He>> looks tired, like <<he>> doesn't want to think too hard.
@@ -212,7 +212,7 @@ You tell Robin you want to hang out with <<him>>.
 		<<else>>
 			"I'm sorry." Robin shakes <<his>> head. "I have to finish this. Let's hang out later, okay?" <<He>> seems insistent. You wave goodbye, and <<he>> closes the door.
 			<br><br>
-			<<link[[Покинуть|Orphanage]]>><<endevent>><</link>>
+			<<link[[Leave|Orphanage]]>><<endevent>><</link>>
 		<</if>>
 	<<else>>
 		<<set $daily.robin.studycompany to 1>><<set $robin.stayup to 1>>
@@ -232,13 +232,13 @@ The door opens again. Robin looks conflicted, <<his>> face guilty. "Oh, I... It'
 <<robinoptions>>
 
 :: Robin Study
-<<effects>>
+<<effects>><<wearProp "bookhistory">>
 <<if $robin.timer.hurt gte 1>>
 	You walk into the room<<if $study_inside is 1>> after bringing your homework<</if>>. Robin is already <<if $study_inside isnot 1>>back to<</if>> focusing on <<his>> schoolwork. <<He>> may not want you to disturb <<him>>. You decide to stay quietly beside <<him>>, working on your own homework.<<ghistory>><<historyskill 2>>
 	<br><br>
 	The awkwardness between you is tense. You feel like you're both trying to ignore it.
 	<br><br>
-	<<link[[Next (1:00)|Robin Study End]]>><<set $phase to 1>><<pass 60>><</link>>
+	<<link[[Next (1:00)|Robin Study End]]>><<handheldon>><<set $phase to 1>><<pass 60>><</link>>
 <<elseif C.npc.Robin.trauma gte 40>>
 	<<if $study_inside isnot 1>>
 		Robin smiles and nods. You bring your homework with you, and clean up the mess inside.
@@ -278,7 +278,7 @@ The door opens again. Robin looks conflicted, <<his>> face guilty. "Oh, I... It'
 <<else>>
 	You bring your homework with you. <<if $study_inside isnot 1>>"Great, come on in." <</if>>Robin piles things on the bed, then pushes you toward <<his>> desk. "You take the desk," <<he>> says with a giggle. "I don’t want you getting a sore back from studying." <<He>> sits on the ground, picks up a pencil, and begins to focus on the book.
 	<br><br>
-	<<link[[Далее|Robin Study 2]]>><</link>>
+	<<link[[Next|Robin Study 2]]>><</link>>
 <</if>>
 
 :: Robin Study 2
@@ -316,7 +316,7 @@ The door opens again. Robin looks conflicted, <<his>> face guilty. "Oh, I... It'
 	<br><br>
 	<<He>> hugs you tightly. "You're the best," <<he>> murmurs. "I could never have done it without you."
 	<br><br>
-	<<link[[Далее|Robin Study End]]>><<set $phase to 1>><</link>>
+	<<link[[Next|Robin Study End]]>><<handheldon>><<set $phase to 1>><</link>>
 <<elseif C.npc.Robin.trauma gte 20>>
 	<<if $historytrait gte 3>>
 		You organise Robin's notes, filling in the missing pieces. <<His>> eyes widen when you hand them to <<him>>. "Thank you," <<he>> says. "I'll work harder." <<He>> puts them carefully into the folder and sighs. "Sorry for having you help me like this." <<His>> head rubs your shoulders, hair tickling your neck. "I really need to feel some warmth," <<he>> says.
@@ -333,7 +333,7 @@ The door opens again. Robin looks conflicted, <<his>> face guilty. "Oh, I... It'
 		Robin's eyes light up. You study the text carefully, piecing together the missing notes bit by bit. Robin looks more at ease. <<He>> can even joke about <<his>> sloppy handwriting.<<stress -3>><<lstress>><<trauma -3>><<ltrauma>>
 	<</if>>
 	<br><br>
-	<<link[[Далее|Robin Study End]]>><<set $phase to 1>><</link>>
+	<<link[[Next|Robin Study End]]>><<handheldon>><<set $phase to 1>><</link>>
 <<else>>
 	You and Robin are studying in <<his>> room. What do you want to do?
 	<br><br>
@@ -348,13 +348,13 @@ The door opens again. Robin looks conflicted, <<his>> face guilty. "Oh, I... It'
 	Lost in the textbook, historical events and dates swirl in your mind, leaving you confused.<<stress 3>><<gstress>>
 	<br><br>
 	<<link[[Ask Robin|Robin Study Course]]>><</link>>
-	<<if $promiscuity gte 15>>
-		<br><<link[[Give up and ask for "other help"|Robin Study Course Kiss]]>><</link>><<promiscuous 2>>
+	<<if hasSexStat("promiscuity", 2)>>
+		<br><<link[[Give up and ask for "other help"|Robin Study Course Kiss]]>><<handheldon>><</link>><<promiscuous 2>>
 	<</if>>
 <<elseif $rng lt 70>>
 	<<print either("You finish your homework quietly.", "You casually chat as you finish up your homework.", "You share several biscuits. Fueled by sugar, the two of you quickly complete your homework.", "You collaborate on a report. Your division of tasks seems to work well together.")>> Robin looks pleased.<<stress -3>><<lstress>><<historyskill 6>>
 	<br><br>
-	<<link[[Далее|Robin Study End]]>><<set $phase to 1>><</link>>
+	<<link[[Next|Robin Study End]]>><<handheldon>><<set $phase to 1>><</link>>
 <<else>>
 	Your eyes are sore from reading. You can't help but rub your eyes. Robin notices you. "Tired?" <<He>> comes over and gives your brow a gentle pinch. You nod, and <<he>> helps you up. You both plop down in front of <<his>> books. "You can lean on me. I'll read it for you," <<he>> says.
 	<br><br>
@@ -370,7 +370,7 @@ The door opens again. Robin looks conflicted, <<his>> face guilty. "Oh, I... It'
 			"What's your favourite story then?" you ask.
 			<br><br>
 			<<if C.npc.Robin.dom gte 70 and $robinromance is 1>>
-				Robin answers sturdily. "Ours<<if $robinfirstrentfight is 1>>no matter what happens<</if>>."
+				Robin answers sturdily. "Ours<<if $robinfirstrentfight is 1>>, no matter what happens<</if>>."
 			<<else>>
 				<<if $robinromance is 1>><<He>> pauses before speaking.<</if>>
 				"Oh, definitely the..." <<He>> rattles off a story about a hero who saved the town.<<if $robinromance is 1>> You get the feeling that <<he>> wanted to say something else.<</if>>
@@ -393,7 +393,7 @@ The door opens again. Robin looks conflicted, <<his>> face guilty. "Oh, I... It'
 	<br><br>
 	Robin's reflections refresh your mind. After the short break, you resume your work.<<ghistory>><<historyskill 6>>
 	<br><br>
-	<<link[[Далее|Robin Study End]]>><<set $phase to 1>><</link>>
+	<<link[[Next|Robin Study End]]>><<handheldon>><<set $phase to 1>><</link>>
 <</if>>
 
 :: Robin Study Peek
@@ -442,16 +442,16 @@ You look down at your exercise questions. Just completing them here seems dull. 
 		"Likewise," you reply politely.
 	<</if>>
 	<br><br>
-	<<link[[Bask in your victory|Robin Study Winner End]]>><</link>><br>
-	<<if $promiscuity gte 15>>
-		<<link[[Ask for a prize|Robin Study Winner Prize]]>><<promiscuous1>><</link>>
+	<<link[[Bask in your victory|Robin Study Winner End]]>><<handheldon>><</link>><br>
+	<<if hasSexStat("promiscuity", 2)>>
+		<<link[[Ask for a prize|Robin Study Winner Prize]]>><<handheldon>><<promiscuous1>><</link>>
 	<</if>>
 <<elseif ($rng gte 40) or ($rng gte 10 and $historytrait is 4)>>
 	You finish answering the questions almost at the same time. You exchange the sheet to check each other's work. In the end, you both agree that your answers are equally excellent.<<ghistory>><<historyskill 6>>
 	<br><br>
 	Robin stands up and stretches. "I'll win next time!" <<he>> declares, piling the books into <<his>> schoolbag. <<He>> <<if $robinconsole is 0>>instinctively touches the spot where the game controller used to be, only to find emptiness. An awkward smile crosses <<his>> face.<<else>>picks up the video game controller.<</if>>
 	<br><br>
-	<<link[[Далее|Robin Study End]]>><<set $phase to 1>><</link>>
+	<<link[[Next|Robin Study End]]>><<handheldon>><<set $phase to 1>><</link>>
 <<else>>
 	The room is filled only with the rustle of papers. Winter's questions are remarkably in-depth, requiring more than textbook knowledge. You think you've done your best, but Robin's answers trump yours.
 	<br><br>
@@ -463,14 +463,14 @@ You look down at your exercise questions. Just completing them here seems dull. 
 	<br><br>
 	<<He>> shares some skills for answering questions. <<He>> seems to be very good at identifying key concepts in them. You feel that you've learned something. <<stress -3>><<lstress>><<ghistory>><<historyskill 6>><<npcincr Robin dom 1>><<gdom>>
 	<br><br>
-	<<link[[Далее|Robin Study End]]>><<set $phase to 1>><</link>>
+	<<link[[Next|Robin Study End]]>><<handheldon>><<set $phase to 1>><</link>>
 <</if>>
 
 :: Robin Study Winner End
 <<effects>>
 Robin stands up and stretches. "I'll win next time!" <<he>> declares, piling the books into <<his>> schoolbag. <<He>> <<if $robinconsole is 0>>instinctively touches the spot where the game controller used to be, only to find emptiness. An awkward smile crosses <<his>> face.<<else>>picks up the video game controller.<</if>>
 <br><br>
-<<link[[Далее|Robin Study End]]>><<set $phase to 1>><</link>>
+<<link[[Next|Robin Study End]]>><<handheldon>><<set $phase to 1>><</link>>
 
 :: Robin Study Winner Prize
 <<effects>>
@@ -514,12 +514,14 @@ When Robin turns around, you
 		<<else>>
 			"O…Oh! I-I see! " <<He>> fumbles open <<his>> desk drawer and shoves a candy bar into your hand. "Tha-that's what you mean, right? Sweets are the best after brain work." You can see embarrassment on <<his>> face.
 		<</if>>
+		<<wearProp "chocolate bar">>
 	<</if>>
 <<else>>
 	Robin laughs. "Sure, good for you," <<he>> says. <<He>> hands you a piece of candy. <<He>> doesn't seem to get what you mean, but the chocolate is very sweet. <<stress -3>><<lstress>>
+	<<wearProp "chocolate bar">>
 <</if>>
 <br><br>
-<<link[[Далее|Robin Study End]]>><<set $phase to 1>><</link>>
+<<link[[Next|Robin Study End]]>><<handheldon>><<set $phase to 1>><</link>>
 
 :: Robin Study Course
 <<effects>>
@@ -535,7 +537,7 @@ You tell Robin the problem you're facing. <<He>> sketches a timeline, which help
 	"Correct!" Robin exclaims, patting your shoulder encouragingly.<<stress -3>><<lstress>><<npcincr Robin dom 1>><<gdom>>
 <</if>>
 <br><br>
-<<link[[Next (1:00)|Robin Study End]]>><<set $phase to 1>><<pass 60>><</link>>
+<<link[[Next (1:00)|Robin Study End]]>><<handheldon>><<set $phase to 1>><<pass 60>><</link>>
 
 :: Robin Study Course Kiss
 <<effects>>
@@ -596,13 +598,13 @@ You tell Robin the problem you're facing. <<He>> sketches a timeline, which help
 		Robin looks at you, eyes filled with need, "I'd like you to teach me more, <<if $player.gender_appearance is "m">>sir<<else>>madam<</if>>."
 	<</if>>
 	<br><br>
-	<<link[[Next (1:00)|Robin Study End]]>><<set $phase to 2>><<pass 60>><</link>>
+	<<link[[Next (1:00)|Robin Study End]]>><<handheldon>><<set $phase to 2>><<pass 60>><</link>>
 <<else>>
 	Robin titters with a blush, "You must be joking." <<He>> seems unaffected by your words. <<npcincr Robin lust 1>><<glust>>
 	<br><br>
 	You go back to your work.<<ghistory>><<historyskill 2>>
 	<br><br>
-	<<link[[Next (1:00)|Robin Study End]]>><<set $phase to 1>><<pass 60>><</link>>
+	<<link[[Next (1:00)|Robin Study End]]>><<handheldon>><<set $phase to 1>><<pass 60>><</link>>
 <</if>>
 
 :: Robin Study Mess
@@ -619,11 +621,11 @@ You decide to mess with this over-earnest <<if C.npc.Robin.pronoun is "f">>girl<
 You notice Robin's neat and clean notebook pages. It might be fun to draw something on it.
 <br><br>
 <<link[[Draw a heart|Robin Study Doodle]]>><<set $phase to 1>><</link>>
-<<if $promiscuity gte 15>>
+<<if hasSexStat("promiscuity", 2)>>
 	<br><<link[[Draw something lewd|Robin Study Doodle]]>><<set $phase to 2>><</link>><<promiscuous2>>
 <</if>>
 
-<<if $robin.stopmastur is 1 and $promiscuity gte 55>>
+<<if $robin.stopmastur is 1 and hasSexStat("promiscuity", 4)>>
 	<br><br>
 	<<set $robin.stopmastur to 0>>
 	You remember that Robin stopped you from masturbating in history class earlier. <span class="lewd">A lewd idea strikes you.</span>
@@ -666,7 +668,7 @@ You notice Robin's neat and clean notebook pages. It might be fun to draw someth
 <br><br>
 You go back to your work.<<ghistory>><<historyskill 2>>
 <br><br>
-<<link[[Next (1:00)|Robin Study End]]>><<set $phase to 1>><<pass 60>><</link>>
+<<link[[Next (1:00)|Robin Study End]]>><<handheldon>><<set $phase to 1>><<pass 60>><</link>>
 
 :: Robin Study Note
 <<effects>>
@@ -675,7 +677,7 @@ You finished the exercise early and are confident in your work. You tell Robin y
 "Thank you," <<he>> says, reaching for it.
 <br><br>
 <<link[[Tickle|Robin Study Tickle]]>><</link>>
-<<if $robinromance is 1 and $promiscuity gte 55>>
+<<if $robinromance is 1 and hasSexStat("promiscuity", 4)>>
 	<br><<link[[Hide it in a lewd way|Robin Study Hide Notes]]>><</link>><<promiscuous4>>
 <</if>>
 
@@ -685,7 +687,7 @@ You hold the slip of paper out of <<his>> reach, tickling <<him>> while <<hes>> 
 <br><br>
 "You're welcome," you say, handing Robin the note and going back to your work.<<ghistory>><<historyskill 2>>
 <br><br>
-<<link[[Next (1:00)|Robin Study End]]>><<set $phase to 1>><<pass 60>><</link>>
+<<link[[Next (1:00)|Robin Study End]]>><<handheldon>><<set $phase to 1>><<pass 60>><</link>>
 
 :: Robin Study Hide Notes
 <<effects>>
@@ -731,7 +733,7 @@ You shove the note <<if !$worn.under_lower.type.includes("naked")>>into your $wo
 	<</if>>
 <</if>>
 <br><br>
-<<link[[Next (1:00)|Robin Study End]]>><<set $phase to 1>><<pass 60>><</link>>
+<<link[[Next (1:00)|Robin Study End]]>><<handheldon>><<set $phase to 1>><<pass 60>><</link>>
 
 :: Robin Study Mess Masturbation
 <<effects>>
@@ -784,7 +786,7 @@ You shove the note <<if !$worn.under_lower.type.includes("naked")>>into your $wo
 	<br>
 	Finally, <<he>> pulls you into <<his>> arms for a deep kiss. You two stumble onto the bed. Books are scattered all over the floor.
 	<br><br>
-	<<link[[Далее|Robin Study Mess Sex]]>><<set $sexstart to 1>><</link>>
+	<<link[[Next|Robin Study Mess Sex]]>><<set $sexstart to 1>><</link>>
 <<else>>
 	<br>
 	You feel your hands being clamped down by Robin. "Stop... stop!"
@@ -805,7 +807,7 @@ You shove the note <<if !$worn.under_lower.type.includes("naked")>>into your $wo
 	<br><br>
 	Finally, <<he>> returns to <<his>> books. You also shift your focus back to studying.
 	<br><br>
-	<<link[[Next (1:00)|Robin Study End]]>><<clotheson>><<set $phase to 1>><<pass 60>><</link>>
+	<<link[[Next (1:00)|Robin Study End]]>><<handheldon>><<clotheson>><<set $phase to 1>><<pass 60>><</link>>
 <</if>>
 
 :: Robin Study Mess Sex
@@ -837,9 +839,9 @@ You shove the note <<if !$worn.under_lower.type.includes("naked")>>into your $wo
 <<actionsman>>
 
 <<if _combatend>>
-	<span id="next"><<link[[Далее|Robin Study Mess Sex Finish]]>><</link>></span><<nexttext>>
+	<span id="next"><<link[[Next|Robin Study Mess Sex Finish]]>><</link>></span><<nexttext>>
 <<else>>
-	<span id="next"><<link[[Далее|Robin Study Mess Sex]]>><</link>></span><<nexttext>>
+	<span id="next"><<link[[Next|Robin Study Mess Sex]]>><</link>></span><<nexttext>>
 <</if>>
 
 :: Robin Study Mess Sex Finish
@@ -855,13 +857,13 @@ You shove the note <<if !$worn.under_lower.type.includes("naked")>>into your $wo
 <<clotheson>>
 <<endcombat>>
 <<npc Robin>><<person1>>
-<<link [[Next (1:00)|Robin Study End]]>><<set $phase to 3>><<pass 60>><</link>>
+<<link [[Next (1:00)|Robin Study End]]>><<handheldon>><<set $phase to 3>><<pass 60>><</link>>
 
 :: Robin Study Back
 <<effects>>
 <<His>> dedication motivates you. You decide to try harder.<<historyskill 6>>
 <br><br>
-<<link[[Next (1:00)|Robin Study End]]>><<set $phase to 1>><</link>>
+<<link[[Next (1:00)|Robin Study End]]>><<handheldon>><<set $phase to 1>><</link>>
 
 :: Robin Study End
 <<effects>><<unset $study_inside>>
@@ -901,11 +903,11 @@ Finally, you stand victorious outside of Robin's room,
 <br><br>
 
 <<if $robin_naked_room is 1 or ($robindebt gte $robindebtlimit and $robindebtintro isnot 1 and $robinpaid isnot 1) or $robinmissing isnot 0>>
-	<<link [[Далее|Robin's Room Entrance]]>><</link>>
+	<<link [[Next|Robin's Room Entrance]]>><</link>>
 <<elseif $robin_naked_fail is 1>>
-	<<link [[Далее|Robin Room Naked Fail]]>><</link>>
+	<<link [[Next|Robin Room Naked Fail]]>><</link>>
 <<else>>
-	<<link [[Далее|Robin Room Naked 2]]>><</link>>
+	<<link [[Next|Robin Room Naked 2]]>><</link>>
 <</if>>
 <br>
 
@@ -928,7 +930,7 @@ Finally, you stand victorious outside of Robin's room,
 		<<He>> looks up and is about to say something when <<he>> sees your state of undress. <<He>> blanches and stares in horror at you.
 		<br><br>
 
-		<<link [[Далее|Robin Room Naked Fail]]>><</link>>
+		<<link [[Next|Robin Room Naked Fail]]>><</link>>
 
 	<<else>>
 		"Come in!" <<he>> says.
@@ -980,7 +982,7 @@ Finally, you stand victorious outside of Robin's room,
 	There's no point in arguing. You walk out of Robin's room and return to your bedroom.
 	<br><br>
 
-	<<link [[Далее|Bedroom]]>><<endevent>><</link>>
+	<<link [[Next|Bedroom]]>><<endevent>><</link>>
 
 <<else>>
 	<<if $speech_attitude is "meek">>
@@ -1026,7 +1028,7 @@ Finally, you stand victorious outside of Robin's room,
 There's no changing Robin's mind when <<hes>> like this. You say your goodbyes and leave, slipping back down the hallway to the safety of your bedroom.
 <br><br>
 
-<<link [[Далее|Bedroom]]>><<set $robin_naked_fail to 1>><<endevent>><</link>>
+<<link [[Next|Bedroom]]>><<set $robin_naked_fail to 1>><<endevent>><</link>>
 
 :: Robin Room Naked Fail Leave
 <<effects>>
@@ -1034,7 +1036,7 @@ There's no changing Robin's mind when <<hes>> like this. You say your goodbyes a
 You wait for a few seconds, but Robin doesn't say anything else. You say your goodbyes and leave, slipping back down the hallway to the safety of your bedroom.
 <br><br>
 
-<<link [[Далее|Bedroom]]>><<set $robin_naked_fail to 1>><<endevent>><</link>>
+<<link [[Next|Bedroom]]>><<set $robin_naked_fail to 1>><<endevent>><</link>>
 
 :: Robin Room Naked Reassure
 <<effects>>
@@ -1188,7 +1190,7 @@ You wait for a few seconds, but Robin doesn't say anything else. You say your go
 
 <</if>>
 
-<<link [[Далее|Robin's Room Entrance]]>><<set $robin_naked_room to 1>><<endevent>><</link>>
+<<link [[Next|Robin's Room Entrance]]>><<set $robin_naked_room to 1>><<endevent>><</link>>
 
 :: Robin Room Naked Flirt
 <<effects>>
@@ -1234,7 +1236,7 @@ You wait for a few seconds, but Robin doesn't say anything else. You say your go
 
 	<</if>>
 
-	<<link [[Далее|Robin's Room Entrance]]>><<set $robin_naked_room to 1>><<endevent>><</link>>
+	<<link [[Next|Robin's Room Entrance]]>><<set $robin_naked_room to 1>><<endevent>><</link>>
 
 <<else>>
 	You lean forward and embrace Robin with your body, whispering in <<his>> ear.
@@ -1291,7 +1293,7 @@ You wait for a few seconds, but Robin doesn't say anything else. You say your go
 			Robin's groping gets more aggressive, and soon <<hes>> kissing your neck and pushing you back towards the bed. You can tell that Robin wants more.
 			<br><br>
 
-			<<if $promiscuity gte 15>>
+			<<if hasSexStat("promiscuity", 2)>>
 				<<link [[Return the favour|Robin Room Naked Return]]>><<set $phase to 1>><</link>><<promiscuous2>>
 				<br>
 			<</if>>
@@ -1317,7 +1319,7 @@ You wait for a few seconds, but Robin doesn't say anything else. You say your go
 You return Robin's affections and nibble <<his>> neck as <<he>> guides you towards the bed. When your knees hit the bed frame, you tumble onto the mattress, tugging <<him>> on top of you. With your help, <<he>> soon strips off <<his>> own clothes and kisses you deeply.
 <br><br>
 
-<<link [[Далее|Robin Room Naked Sex]]>><<set $sexstart to 1>><</link>>
+<<link [[Next|Robin Room Naked Sex]]>><<set $sexstart to 1>><</link>>
 
 :: Robin Room Naked Sex
 
@@ -1340,9 +1342,9 @@ You return Robin's affections and nibble <<his>> neck as <<he>> guides you towar
 <<actionsman>>
 
 <<if _combatend>>
-	<span id="next"><<link [[Далее|Robin Room Naked Sex Finish]]>><</link>></span><<nexttext>>
+	<span id="next"><<link [[Next|Robin Room Naked Sex Finish]]>><</link>></span><<nexttext>>
 <<else>>
-	<span id="next"><<link [[Далее|Robin Room Naked Sex]]>><</link>></span><<nexttext>>
+	<span id="next"><<link [[Next|Robin Room Naked Sex]]>><</link>></span><<nexttext>>
 <</if>>
 
 :: Robin Room Naked Sex Finish
@@ -1419,7 +1421,7 @@ You return Robin's affections and nibble <<his>> neck as <<he>> guides you towar
 
 <<endcombat>>
 
-<<link[[Далее|Robin's Room Entrance]]>><</link>>
+<<link[[Next|Robin's Room Entrance]]>><</link>>
 
 :: Robin Room Naked Decline
 <<effects>>
@@ -1433,7 +1435,7 @@ You put your hands on Robin's shoulders and stop <<him>> before it gets to <<his
 Robin looks disappointed but nods in agreement.
 <br><br>
 
-<<link [[Далее|Robin's Room Entrance]]>><<set $robin_naked_room to 1>><<endevent>><</link>>
+<<link [[Next|Robin's Room Entrance]]>><<set $robin_naked_room to 1>><<endevent>><</link>>
 
 :: Robin Room Naked Towel
 <<effects>><<towelup>>
@@ -1444,7 +1446,7 @@ Robin looks disappointed but nods in agreement.
 Robin throws you a towel and you quickly wrap it around yourself. You enter the room and sit down with Robin.
 <br><br>
 
-<<link [[Далее|Robin's Room Entrance]]>><<set $robin_naked_room to 1>><<endevent>><</link>>
+<<link [[Next|Robin's Room Entrance]]>><<set $robin_naked_room to 1>><<endevent>><</link>>
 
 :: Robin Room Naked Request
 <<effects>>
@@ -1549,7 +1551,7 @@ Robin throws you a towel and you quickly wrap it around yourself. You enter the 
 
 			<<set $robin_naked_room to 1>>
 
-			<<link [[Далее|Robin Room Naked Request 2]]>><<set $phase to 1>><</link>>
+			<<link [[Next|Robin Room Naked Request 2]]>><<set $phase to 1>><</link>>
 
 		<</if>>
 
@@ -1602,7 +1604,7 @@ Smiling, you stand up and start taking off your clothes.
 You turn around and pull down your <<bottoms>>, <span class="lewd">exposing your ass.</span> You can't see Robin's face, but you're sure <<hes>> watching.
 <br><br>
 
-<<link [[Далее|Robin Room Naked Request 3]]>><</link>>
+<<link [[Next|Robin Room Naked Request 3]]>><</link>>
 
 :: Robin Room Naked Request 3
 <<effects>><<undress "Robin's Room">><<exposure>>
@@ -1632,13 +1634,13 @@ Now completely naked, you turn around and face Robin.
 <<effects>>
 <<npc Robin 0>>
 <<outfitChecks>>
-<<if $worn.upper.name isnot "naked" or $worn.over_upper.name isnot "ничего">>
+<<if $worn.upper.name isnot "naked" or $worn.over_upper.name isnot "naked">>
 	<<set _it to ($worn.upper.name isnot "naked" and $worn.over_upper.name isnot "naked") or _top.plural is 1 ? "them" : "it">>
 	Keeping eye contact with Robin, you slowly start to remove your <<allTops>>. You pull _it up over your head and gracefully let _it fall to the floor.
 	<br><br>
 <</if>>
 
-<<if $worn.under_upper.name isnot "ничего">>
+<<if $worn.under_upper.name isnot "naked">>
 	<<set _it to $worn.under_upper.plural is 1 ? "them" : "it">>
 	You remove your $worn.under_upper.name and toss _it aside.
 	<br><br>
@@ -1657,7 +1659,7 @@ Now completely naked, you turn around and face Robin.
 	<br><br>
 <</if>>
 
-<<if $worn.under_lower.name isnot "ничего">>
+<<if $worn.under_lower.name isnot "naked">>
 	<<set _it to $worn.under_lower.plural is 1 ? "them" : "it">>
 	Finally, you slip your fingers into the back of your $worn.under_lower.name. You slowly, confidently, tease them down your legs, <span class="lewd">revealing your <<bottom>></span> to Robin.
 <<else>>
@@ -1671,9 +1673,9 @@ You peek beneath your knees. Robin is staring directly at your bent-over, naked 
 <<undress "Robin's Room">>
 
 <<if C.npc.Robin.lust gte 20>>
-	<<link [[Далее|Robin Room Naked Tease 2]]>><</link>>
+	<<link [[Next|Robin Room Naked Tease 2]]>><</link>>
 <<else>>
-	<<link [[Далее|Robin's Room Entrance]]>><</link>>
+	<<link [[Next|Robin's Room Entrance]]>><</link>>
 <</if>>
 
 :: Robin Room Naked Tease 2
@@ -1700,7 +1702,7 @@ You peek beneath your knees. Robin is staring directly at your bent-over, naked 
 	You smile and nod your head. Robin gives you a quick kiss before leading you to the bed. You lie down and watch <<him>> quickly strip <<his>> own clothes off before joining you.
 	<br><br>
 
-	<<link [[Далее|Robin Room Naked Sex]]>><<unset $phase>><<set $sexstart to 1>><</link>>
+	<<link [[Next|Robin Room Naked Sex]]>><<unset $phase>><<set $sexstart to 1>><</link>>
 
 <<else>>
 	"I think I'd rather just hang out, if that's okay," you say. "I'm not really in the mood."
@@ -1758,7 +1760,7 @@ You undo the ribbon tied around Robin's chest. The wrapping paper falls to the b
 Robin points up. There's mistletoe. "Caught you," <<he>> says. Before you can say a word, <<his>> arms wrap around your body and pull you to the bed. <<His>> lips meet yours. <<takeKissVirginity "Robin" `($robinromance is 1?"loveInterest":"romantic")`>>
 <br><br>
 
-<<link [[Далее|Robin Unwrap Sex]]>><<set $sexstart to 1>><</link>>
+<<link [[Next|Robin Unwrap Sex]]>><<set $sexstart to 1>><</link>>
 <br>
 
 
@@ -1782,7 +1784,7 @@ Robin's eyes light up, and <<he>> rises to <<his>> feet. <<He>> points up. There
 <<He>> smiles. "I'm going to change into the clothes you brought me." You nod, and take your leave.
 <br><br>
 
-<<link [[Далее|Orphanage]]>><<endevent>><</link>>
+<<link [[Next|Orphanage]]>><<endevent>><</link>>
 <br>
 
 
@@ -1806,9 +1808,9 @@ Robin's eyes light up, and <<he>> rises to <<his>> feet. <<He>> points up. There
 <<actionsman>>
 
 <<if _combatend>>
-	<span id="next"><<link [[Далее|Robin Unwrap Sex Finish]]>><</link>></span><<nexttext>>
+	<span id="next"><<link [[Next|Robin Unwrap Sex Finish]]>><</link>></span><<nexttext>>
 <<else>>
-	<span id="next"><<link [[Далее|Robin Unwrap Sex]]>><</link>></span><<nexttext>>
+	<span id="next"><<link [[Next|Robin Unwrap Sex]]>><</link>></span><<nexttext>>
 <</if>>
 
 :: Robin Unwrap Sex Finish
@@ -1904,7 +1906,7 @@ Robin's eyes light up, and <<he>> rises to <<his>> feet. <<He>> points up. There
 <br><br>
 
 
-<<link [[Далее|Orphanage]]>><<endevent>><</link>>
+<<link [[Next|Orphanage]]>><<endevent>><</link>>
 <br>
 
 
@@ -1940,7 +1942,7 @@ You take <<him>> by the hand and together walk to the kitchen. You pour <<him>> 
 
 <<endevent>>
 
-<<link [[Далее|Orphanage]]>><</link>>
+<<link [[Next|Orphanage]]>><</link>>
 <br>
 
 :: Robin Console
@@ -1965,7 +1967,7 @@ Five minutes later <<hes>> holding a large box in <<his>> arms, and you're £400
 <<He>> runs ahead of you once back on Domus Street, eager to set it up.
 <br><br>
 <<endevent>>
-<<link [[Далее|Domus Street]]>><<set $eventskip to 1>><</link>>
+<<link [[Next|Domus Street]]>><<set $eventskip to 1>><</link>>
 <br>
 
 :: Robin Hospital
@@ -2119,7 +2121,7 @@ You console <<him>> for a while, giving the occasional comforting word or gestur
 You realise <<hes>> looking right at you. "A-am I attractive?" <<he>> asks, keeping <<his>> voice quiet. "The way you were looking at me..." You feel guilty for checking <<him>> out and look away as <<he>> tugs off <<his>> shirt.
 <br><br>
 
-<<link [[Далее|Robin Hospital 2]]>><</link>>
+<<link [[Next|Robin Hospital 2]]>><</link>>
 <br>
 
 :: Robin Hospital 2
@@ -2151,7 +2153,7 @@ The doctor frowns. "Some of this needs bandaging. You'll also need painkillers..
 Once home, Robin gives you a surprise hug. "Thank you," <<he>> says. <<Hes>> tearful, but smiling. "I feel better already." <<He>> heads back to <<his>> room.
 <br><br>
 <<endevent>>
-<<link [[Далее|Orphanage]]>><</link>>
+<<link [[Next|Orphanage]]>><</link>>
 <br>
 
 :: Robin Walk School
@@ -2164,7 +2166,7 @@ Once home, Robin gives you a surprise hug. "Thank you," <<he>> says. <<Hes>> tea
 	<br><br>
 	<<He>> drags you into a nearby alley, leaving Robin in shock.
 	<br><br>
-	<<link [[Далее|Tutorial]]>><<set $molestationstart to 1>><<set $tutorialExit to "Robin Walk School Tutorial">><</link>>
+	<<link [[Next|Tutorial]]>><<set $molestationstart to 1>><<set $tutorialExit to "Robin Walk School Tutorial">><</link>>
 <<elseif $robinromance is 1>>
 	You leave the orphanage with Robin and walk to school.
 
@@ -2237,7 +2239,7 @@ Once home, Robin gives you a surprise hug. "Thank you," <<he>> says. <<Hes>> tea
 
 			<<link [[Comply|Avery Walk Comply]]>><<npcincr Avery rage -5>><</link>><<larage>>
 			<br>
-			<<link [[Отказаться|Avery Walk Refuse 2]]>><<npcincr Avery rage 5>><</link>><<garage>>
+			<<link [[Refuse|Avery Walk Refuse 2]]>><<npcincr Avery rage 5>><</link>><<garage>>
 			<br>
 		<</if>>
 	<<else>>
@@ -2252,7 +2254,7 @@ Once home, Robin gives you a surprise hug. "Thank you," <<he>> says. <<Hes>> tea
 
 			<<link [[Reassure Robin|Avery Walk School]]>><</link>>
 			<br>
-			<<link [[Отказаться|Avery Walk Refuse]]>><<npcincr Avery rage 1>><</link>><<garage>>
+			<<link [[Refuse|Avery Walk Refuse]]>><<npcincr Avery rage 1>><</link>><<garage>>
 			<br>
 		<<else>>
 			A car pulls up beside you. Robin tenses as the window winds down, revealing a <<if $pronoun is "m">>man in a suit<<else>>woman in a smart dress<</if>>. It's Avery. "I'm on my way to work," <<he>> says. "I thought I'd give you a lift." <<He>> glances at Robin. "Your friend can come too."
@@ -2265,13 +2267,13 @@ Once home, Robin gives you a surprise hug. "Thank you," <<he>> says. <<Hes>> tea
 
 			<<link [[Reassure Robin|Avery Walk School]]>><</link>>
 			<br>
-			<<link [[Отказаться|Avery Walk Refuse]]>><<npcincr Avery rage 1>><</link>><<garage>>
+			<<link [[Refuse|Avery Walk Refuse]]>><<npcincr Avery rage 1>><</link>><<garage>>
 			<br>
 		<</if>>
 	<</if>>
 	<<set $averywalkintro to 1>>
 <<else>>
-	<<link [[Далее|School Front Courtyard]]>><</link>>
+	<<link [[Next|School Front Courtyard]]>><</link>>
 	<br>
 <</if>>
 
@@ -2282,7 +2284,7 @@ Robin spots you exiting the alley. "A-Are you okay?" <<he>> asks, with a worried
 <br><br>
 You nod, continuing to walk to the school with Robin. The rest of the trip is uneventful.
 <br><br>
-<<link [[Далее|School Front Courtyard]]>><<endevent>><</link>>
+<<link [[Next|School Front Courtyard]]>><<endevent>><</link>>
 
 :: Robin Walk Home
 <<set $outside to 1>><<set $location to "town">><<effects>>
@@ -2405,7 +2407,7 @@ You nod, continuing to walk to the school with Robin. The rest of the trip is un
 <</if>>
 <<npcincr Robin love 1>>
 <<endevent>>
-<<link [[Далее|Orphanage]]>><</link>>
+<<link [[Next|Orphanage]]>><</link>>
 <br>
 
 :: Robin Walk Home Topless
@@ -2442,7 +2444,7 @@ You nod, continuing to walk to the school with Robin. The rest of the trip is un
 		<<set $robin_oxford_bare += 1>>
 	<</if>>
 
-	<<link [[Далее|Orphanage]]>><<endevent>><</link>>
+	<<link [[Next|Orphanage]]>><<endevent>><</link>>
 	<br>
 <<elseif $robinReunionScene is "dungeon">>
 	<<unset $robinReunionScene>><<set $robinPostMortem to true>>
@@ -2473,7 +2475,7 @@ You nod, continuing to walk to the school with Robin. The rest of the trip is un
 		<<set $robin_oxford_bare += 1>>
 	<</if>>
 
-	<<link [[Далее|Orphanage]]>><<endevent>><</link>>
+	<<link [[Next|Orphanage]]>><<endevent>><</link>>
 	<br>
 <<elseif $robinReunionScene is "asylum">>
 	<<unset $robinReunionScene>>
@@ -2502,7 +2504,7 @@ You nod, continuing to walk to the school with Robin. The rest of the trip is un
 		<<set $robin_oxford_bare += 1>>
 	<</if>>
 
-	<<link [[Далее|Orphanage]]>><<endevent>><</link>>
+	<<link [[Next|Orphanage]]>><<endevent>><</link>>
 	<br>
 <<elseif $robin_oxford_bare is undefined>>
 	<<set $robin_oxford_bare to 1>>
@@ -2516,7 +2518,7 @@ You nod, continuing to walk to the school with Robin. The rest of the trip is un
 
 	<<npcincr Robin love 1>><<npcincr Robin lust 1>><<npcincr Robin trauma -2>>
 	<<endevent>>
-	<<link [[Далее|Orphanage]]>><</link>>
+	<<link [[Next|Orphanage]]>><</link>>
 
 <<elseif $robin_oxford_bare lte 4>>
 	<<set $robin_oxford_bare += 1>>
@@ -2530,7 +2532,7 @@ You nod, continuing to walk to the school with Robin. The rest of the trip is un
 
 	<<npcincr Robin love 1>><<npcincr Robin lust 1>><<npcincr Robin trauma -2>>
 	<<endevent>>
-	<<link [[Далее|Orphanage]]>><</link>>
+	<<link [[Next|Orphanage]]>><</link>>
 
 <<else>>
 	At the sight of your exposed <<undertop>>, <<he>> reaches into <<his>> bag and produces a towel. "I knew you'd forget your shirt again," <<he>> whispers. "Here."
@@ -2538,8 +2540,8 @@ You nod, continuing to walk to the school with Robin. The rest of the trip is un
 
 	<<towelicon>><<link [[Wear the towel|Robin Walk Home Towel]]>><<upperwear 3>><</link>>
 	<br>
-	<<if $exhibitionism gte 15>>
-		<<refuseicon>><<link [[Отказаться|Robin Walk Home Refuse]]>><</link>><<exhibitionist2>>
+	<<if hasSexStat("exhibitionism", 2)>>
+		<<refuseicon>><<link [[Refuse|Robin Walk Home Refuse]]>><</link>><<exhibitionist2>>
 		<br>
 	<</if>>
 <</if>>
@@ -2554,7 +2556,7 @@ The two of you head back to the orphanage. Robin looks around for any sign that 
 
 <<npcincr Robin love 1>><<npcincr Robin lust 1>><<npcincr Robin trauma -2>>
 <<endevent>>
-<<link [[Далее|Orphanage]]>><</link>>
+<<link [[Next|Orphanage]]>><</link>>
 
 :: Robin Walk Home Refuse
 <<set $outside to 1>><<set $location to "town">><<effects>>
@@ -2569,7 +2571,7 @@ The two of you head back to the orphanage. Robin looks around for any sign that 
 
 <<npcincr Robin love 1>><<npcincr Robin lust 1>><<npcincr Robin trauma -2>>
 <<endevent>>
-<<link [[Далее|Orphanage]]>><</link>>
+<<link [[Next|Orphanage]]>><</link>>
 
 :: Docks_Robin
 <<set $outside to 1>><<set $location to "docks">><<effects>>
@@ -2614,9 +2616,9 @@ They pause for a moment, then burst into laughter. "Sure thing," the <<person1>>
 <</if>>
 <<ind>><<link [[Take Robin's place|Docks_Robin Swap]]>><</link>>
 <br>
-<<ind>><<link [[Драться|Docks_Robin Fight]]>><<set $fightstart to 1>><</link>>
+<<ind>><<link [[Fight|Docks_Robin Fight]]>><<set $fightstart to 1>><</link>>
 <br>
-<<mericon>><<link [[Покинуть|Docks_Robin Leave]]>><</link>>
+<<mericon>><<link [[Leave|Docks_Robin Leave]]>><</link>>
 <br>
 
 :: Docks_Robin Get Help
@@ -2624,7 +2626,7 @@ They pause for a moment, then burst into laughter. "Sure thing," the <<person1>>
 
 You run down the pier and look for familiar faces. Your heart pounds fast. You must hurry.
 <br><br>
-<<link [[Далее|Docks_Robin Get Help 2]]>><</link>>
+<<link [[Next|Docks_Robin Get Help 2]]>><</link>>
 
 :: Docks_Robin Get Help 2
 <<set $outside to 1>><<set $location to "docks">><<effects>>
@@ -2656,7 +2658,7 @@ The <<person>> puts <<his>> foot on <<his>> crate with a loud thump.
 <br><br>
 You nod and run back to Robin.
 <br><br>
-<<link [[Далее|Docks_Robin Get Help 3]]>><</link>>
+<<link [[Next|Docks_Robin Get Help 3]]>><</link>>
 
 :: Docks_Robin Get Help 3
 <<set $outside to 1>><<set $location to "docks">><<effects>>
@@ -2708,7 +2710,7 @@ Before they manage to fire it up and flee, the masked people already hop onboard
 	You jump onto the boat, pick Robin up and run away, leaving the rest to the disguised dockers.
 <</if>>
 <br><br>
-<<link [[Далее|Docks_Robin Rescue]]>><<endevent>><</link>>
+<<link [[Next|Docks_Robin Rescue]]>><<endevent>><</link>>
 
 :: Docks_Robin Swap
 <<location "sea">><<effects>>
@@ -2722,7 +2724,7 @@ The <<person1>><<person>> unties Robin, who doesn't seem to be aware of what's h
 
 <<upperruined>><<lowerruined>><<underruined>>
 <<set $leftarm to "bound">><<set $rightarm to "bound">>
-"You won't be needing these," the <<person2>><<person>> says, tearing off your clothing<<print $worn.handheld.name isnot "naked" ? " and tossing your $worn.handheld.name aside<<handheldruined>>." : ".">> "Right, let's go."
+"You won't be needing these," the <<person2>><<person>> says, tearing off your clothing<<print $worn.handheld.name isnot "naked" ? " and tossing your $worn.handheld.name aside.<<handheldruined>>" : ".">> "Right, let's go."
 <br><br>
 
 The yacht starts to move. You see Robin lying on the dock, but the <<person3>><<person>> steps in the way. "So what will we do with you?"
@@ -2738,7 +2740,7 @@ They argue for a while, the topic of conversation moving away from you. You're l
 <<pass 30>>
 <br><br>
 
-<<link [[Далее|Docks_Robin Swap 2]]>><</link>>
+<<link [[Next|Docks_Robin Swap 2]]>><</link>>
 <br>
 
 :: Docks_Robin Fight
@@ -2759,9 +2761,9 @@ They argue for a while, the topic of conversation moving away from you. You're l
 <<actionsman>>
 
 <<if _combatend or ($pain gte 100 and $willpowerpain is 0)>>
-	<span id="next"><<link [[Далее|Docks_Robin Fight Finish]]>><</link>></span><<nexttext>>
+	<span id="next"><<link [[Next|Docks_Robin Fight Finish]]>><</link>></span><<nexttext>>
 <<else>>
-	<span id="next"><<link [[Далее|Docks_Robin Fight]]>><</link>></span><<nexttext>>
+	<span id="next"><<link [[Next|Docks_Robin Fight]]>><</link>></span><<nexttext>>
 <</if>>
 
 :: Docks_Robin Fight Finish
@@ -2776,7 +2778,7 @@ They argue for a while, the topic of conversation moving away from you. You're l
 	<<clotheson>>
 	<<endcombat>>
 
-	<<link [[Далее|Docks_Robin Rescue]]>><</link>>
+	<<link [[Next|Docks_Robin Rescue]]>><</link>>
 	<br>
 
 <<elseif $enemyhealth lte 0>>
@@ -2787,7 +2789,7 @@ They argue for a while, the topic of conversation moving away from you. You're l
 	<<clotheson>>
 	<<endcombat>>
 
-	<<link [[Далее|Docks_Robin Rescue]]>><</link>>
+	<<link [[Next|Docks_Robin Rescue]]>><</link>>
 	<br>
 
 <<else>>
@@ -2795,7 +2797,7 @@ They argue for a while, the topic of conversation moving away from you. You're l
 	You collapse in a heap. "Someone make room for the fresh one."
 	<br><br>
 
-	<<link [[Далее|Docks_Robin Swap]]>><<clotheson>><</link>>
+	<<link [[Next|Docks_Robin Swap]]>><<clotheson>><</link>>
 	<br>
 
 <</if>>
@@ -2815,7 +2817,7 @@ Bailey shoves Robin into the back seat, and drives away.
 
 <<robinpay>>
 
-<<link [[Далее|Mer Street]]>><</link>>
+<<link [[Next|Mer Street]]>><</link>>
 <br>
 
 :: Docks_Robin Leave
@@ -2824,7 +2826,7 @@ Bailey shoves Robin into the back seat, and drives away.
 Robin watches as you leave <<him>> on the table. <<His>> soulless eyes stare at you as the last glimmer of hope leaves <<him>>. <<llllove>><<npcincr Robin love -10>><<gggrtrauma>><<npcincr Robin trauma 10>>
 <br><br>
 
-<<link [[Далее|Mer Street]]>><<endevent>><</link>>
+<<link [[Next|Mer Street]]>><<endevent>><</link>>
 
 :: Bailey's Office
 <<set $outside to 0>><<set $location to "home">><<effects>>
@@ -2885,7 +2887,7 @@ Robin watches as you leave <<him>> on the table. <<His>> soulless eyes stare at 
 		<<set _options to 2>>
 		<<He>> glares at you, then storms out of <<his>> chair and marches your way. "I told you to stop bothering me," <<he>> hisses. "Couldn't leave well enough alone, could you?" <<He>> grabs you before you can react and bends you over <<his>> desk.
 		<br><br>
-		<<link [[Далее|Bailey Beating]]>><<set $molestationstart to 1>><<set $phase to 0>><</link>>
+		<<link [[Next|Bailey Beating]]>><<set $molestationstart to 1>><<set $phase to 0>><</link>>
 	<<elseif $daily.baileyVisit is 100>>
 		<<He>> looks tired. "Don't you have anything better to do?"
 	<<else>>
@@ -2895,8 +2897,8 @@ Robin watches as you leave <<him>> on the table. <<His>> soulless eyes stare at 
 		<</if>>
 	<</if>>
 	<<set $daily.baileyVisit++>>
+	<br><br>
 <</if>>
-<br><br>
 
 <<if C.npc.Alex.pregnancy.fee isnot true and C.npc.Alex.pregnancy.nursery is true and (_alexMother or _alexFather) and (Time.hour gte 7 and Time.hour lte 9)>>
 	<<ind>><<link [[Take your children to the farm|Bailey Office Alex Children Fee]]>><</link>>
@@ -2925,11 +2927,6 @@ Robin watches as you leave <<him>> on the table. <<His>> soulless eyes stare at 
 		<br>
 	<</if>>
 
-	<<if $renttime is 1 and ($promiscuity gte 35 or $uncomfortable.prostituting is false) and $baileyOfficeSeduced is undefined>>
-		<<ind>><<link [[Seduce Bailey|Bailey Office Seduce]]>><<set $baileyOfficeSeduced to 1>><<trauma 6>><</link>><<gtrauma>><<promiscuous3>>
-		<br>
-	<</if>>
-
 	<<if $mason_pond is 1>>
 		<<ind>><<link [[Ask about a spring|Bailey Pond]]>><<set $mason_pond to 2>><</link>>
 		<br>
@@ -2946,7 +2943,7 @@ Robin watches as you leave <<him>> on the table. <<His>> soulless eyes stare at 
 <</if>>
 
 <<if _options isnot 2>>
-	<<getouticon>><<link [[Покинуть|Orphanage]]>><<endevent>><</link>>
+	<<getouticon>><<link [[Leave|Orphanage]]>><<endevent>><</link>>
 	<br>
 <</if>>
 
@@ -2968,7 +2965,7 @@ You place the document in front of Bailey. <<He>> regards it with little interes
 The ghost of a frown crosses Bailey's face. <<He>> pulls <<his>> phone from <<his>> pocket. "You can leave," <<he>> says. "Go."
 <br><br>
 
-<<link [[Далее|Orphanage]]>><<endevent>><</link>>
+<<link [[Next|Orphanage]]>><<endevent>><</link>>
 <br>
 
 :: Bailey Pond
@@ -2984,7 +2981,7 @@ You ask Bailey if it were possible to install a spring in the orphanage garden, 
 	<<ind>><<link [[Pay for spring (£6000)|Bailey Pond Pay]]>><<set $money -= 600000>><</link>>
 	<br>
 <</if>>
-<<getouticon>><<link [[Покинуть|Orphanage]]>><<endevent>><</link>>
+<<getouticon>><<link [[Leave|Orphanage]]>><<endevent>><</link>>
 <br>
 
 :: Bailey Pond 2
@@ -2997,7 +2994,7 @@ You ask Bailey if it were possible to install a spring in the orphanage garden, 
 	<<ind>><<link [[Pay for spring (£6000)|Bailey Pond Pay]]>><<set $money -= 600000>><</link>>
 	<br>
 <</if>>
-<<getouticon>><<link [[Покинуть|Orphanage]]>><<endevent>><</link>>
+<<getouticon>><<link [[Leave|Orphanage]]>><<endevent>><</link>>
 <br>
 
 :: Bailey Pond Pay
@@ -3006,10 +3003,11 @@ You ask Bailey if it were possible to install a spring in the orphanage garden, 
 You put the cash on the desk. Bailey snatches it, and reclines in <<his>> chair as <<he>> counts. "Good," <<he>> says as <<he>> finishes. "I'll get them on it." <<He>> turns back to <<his>> computer.
 <br><br>
 
-<<link [[Покинуть|Orphanage]]>><<endevent>><</link>>
+<<link [[Leave|Orphanage]]>><<endevent>><</link>>
 <br>
 
 :: Bailey Office Seduce
+/* Intentionally inaccessible */
 <<set $outside to 0>><<set $location to "home">><<effects>>
 
 <<if $promiscuity lt 35>><<set $desperateaction to 1>><</if>>
@@ -3031,7 +3029,7 @@ You put the cash on the desk. Bailey snatches it, and reclines in <<his>> chair 
 	<</if>>
 	<br><br>
 
-	<<link [[Далее|Bailey Office Sex]]>><<set $molestationstart to 1>><</link>>
+	<<link [[Next|Bailey Office Sex]]>><<set $molestationstart to 1>><</link>>
 	<br>
 <<else>>
 	You step over to Bailey's desk and lean forward, earning a glare from <<him>>. You put on your best pouty face. "I know something better than money," you whisper in a sly, sultry voice. <<promiscuity3>>
@@ -3048,11 +3046,12 @@ You put the cash on the desk. Bailey snatches it, and reclines in <<his>> chair 
 	You step out of Bailey's office. It was worth a shot.
 	<br><br>
 
-	<<link [[Далее|Orphanage]]>><<endevent>><</link>>
+	<<link [[Next|Orphanage]]>><<endevent>><</link>>
 	<br>
 <</if>>
 
 :: Bailey Office Sex
+/* Intentionally inaccessible */
 <<if $molestationstart is 1>>
 	<<set $molestationstart to 0>>
 	<<controlloss>>
@@ -3073,12 +3072,13 @@ You put the cash on the desk. Bailey snatches it, and reclines in <<his>> chair 
 <<actionsman>>
 
 <<if _combatend>>
-	<span id="next"><<link [[Далее|Bailey Office Sex Finish]]>><</link>></span><<nexttext>>
+	<span id="next"><<link [[Next|Bailey Office Sex Finish]]>><</link>></span><<nexttext>>
 <<else>>
-	<span id="next"><<link [[Далее|Bailey Office Sex]]>><</link>></span><<nexttext>>
+	<span id="next"><<link [[Next|Bailey Office Sex]]>><</link>></span><<nexttext>>
 <</if>>
 
 :: Bailey Office Sex Finish
+/* Intentionally inaccessible */
 <<set $outside to 0>><<set $location to "home">><<effects>>
 
 <<if $enemyarousal gte $enemyarousalmax>>
@@ -3103,7 +3103,7 @@ You put the cash on the desk. Bailey snatches it, and reclines in <<his>> chair 
 	<<clotheson>>
 	<<endcombat>>
 
-	<<link [[Далее|Orphanage]]>><</link>>
+	<<link [[Next|Orphanage]]>><</link>>
 	<br>
 <<elseif $enemyhealth lte 0>>
 	Bailey reels back, surprised at your ferocity. <<He>> nurses a bruise. <<tearful>> you scramble to your feet and leave the office.
@@ -3115,7 +3115,7 @@ You put the cash on the desk. Bailey snatches it, and reclines in <<his>> chair 
 	<<clotheson>>
 	<<endcombat>>
 
-	<<link [[Далее|Orphanage]]>><</link>>
+	<<link [[Next|Orphanage]]>><</link>>
 	<br>
 <</if>>
 
@@ -3142,7 +3142,7 @@ You take the plushie back to your room and nestle it atop your wardrobe. It shou
 })>>
 
 
-<<link [[Далее|Bedroom]]>><</link>>
+<<link [[Next|Bedroom]]>><</link>>
 <br>
 
 :: Bailey's Office Robin
@@ -3162,7 +3162,7 @@ You take the plushie back to your room and nestle it atop your wardrobe. It shou
 
 <<ind>><<link [[Confirm|Bailey's Office Robin 2]]>><</link>>
 <br>
-<<getouticon>><<link [[Покинуть|Orphanage]]>><<endevent>><</link>>
+<<getouticon>><<link [[Leave|Orphanage]]>><<endevent>><</link>>
 <br>
 
 :: Bailey's Office Robin 2
@@ -3177,7 +3177,7 @@ You take the plushie back to your room and nestle it atop your wardrobe. It shou
 "Fine," Bailey says. "You owe me <<printmoney $rentmoney "red">> for this week then. I'd get busy if I were you."
 <br><br>
 <<endevent>>
-<<link [[Далее|Orphanage]]>><</link>>
+<<link [[Next|Orphanage]]>><</link>>
 <br>
 
 :: Bailey Office Alex Children Fee
@@ -3196,7 +3196,7 @@ You take the plushie back to your room and nestle it atop your wardrobe. It shou
 <</if>>
 <br>
 
-<<getouticon>><<link [[Покинуть|Orphanage]]>><<endevent>><</link>>
+<<getouticon>><<link [[Leave|Orphanage]]>><<endevent>><</link>>
 
 :: Bailey Office Alex Children Fee 2
 <<effects>><<set C.npc.Alex.pregnancy.fee to true>>
@@ -3213,7 +3213,7 @@ You place the money on <<his>> desk and <<he>> takes it.
 <span class="gold">You can now take your children to the farm, you should speak with Alex.</span>
 <br><br>
 
-<<link [[Далее|Orphanage]]>><<endevent>><</link>>
+<<link [[Next|Orphanage]]>><<endevent>><</link>>
 
 :: Docks_Robin Swap 2
 "So," the <<person1>><<person>> slurs. "If we did use <<phim>> as bait, I bet we'd catch a whale."
@@ -3249,14 +3249,14 @@ The <<person1>><<person>> and <<person2>><<person>> lift you onto the railing. T
 	You float to the surface and gasp for air. Something grabs your thighs and tugs you back down. You feel the rope snap.
 	<br><br>
 
-	<<link [[Далее|Sea Vore]]>><<unbind>><<set $molestationstart to 1>><<set $sea to 40>><<set $vorecreature to "whale">><</link>>
+	<<link [[Next|Sea Vore]]>><<unbind>><<set $molestationstart to 1>><<set $sea to 40>><<set $vorecreature to "whale">><</link>>
 	<br>
 
 <<else>>
 	You feel the rope snap, and the boat speeds away from you.
 	<br><br>
 
-	<<link [[Далее|Sea]]>><<set $sea to 80>><</link>>
+	<<link [[Next|Sea]]>><<set $sea to 80>><</link>>
 	<br>
 
 <</if>>
@@ -3279,14 +3279,14 @@ You enter Robin's room and sit down next to <<him>>. <<He>> looks at you, eyes w
 <<He>> manages a small "thank you" before asking you to leave.
 <br><br>
 
-<<link [[Покинуть|Orphanage]]>><<set $fromRobinRoom to true>><<set $robin_kicked_out to true>><<set $daily.robin.kickedOut to true>><<endevent>><</link>>
+<<link [[Leave|Orphanage]]>><<set $fromRobinRoom to true>><<set $robin_kicked_out to true>><<set $daily.robin.kickedOut to true>><<endevent>><</link>>
 
 :: Docks_Robin Ignore
 <<set $outside to 0>><<set $location to "home">><<effects>>
 You decide it's better to just walk away. You have yourself to worry about.
 <br><br>
 
-<<link [[Далее|Bedroom]]>><<set $robin_kicked_out to true>><<set $daily.robin.kickedOut to true>><<endevent>><</link>>
+<<link [[Next|Bedroom]]>><<set $robin_kicked_out to true>><<set $daily.robin.kickedOut to true>><<endevent>><</link>>
 
 
 :: Robin Note
@@ -3311,7 +3311,7 @@ Thank you for looking after me,
 Robin</i>"
 <br><br>
 
-<<link [[Далее|Bedroom]]>><</link>>
+<<link [[Next|Bedroom]]>><</link>>
 <br>
 
 :: Robin Romance
@@ -3438,9 +3438,9 @@ You pull away again, this time turning aside so <<his>> kiss lands on your cheek
 <<actionsman>>
 
 <<if _combatend>>
-	<span id="next"><<link [[Далее|Robin Kiss Finish]]>><</link>></span><<nexttext>>
+	<span id="next"><<link [[Next|Robin Kiss Finish]]>><</link>></span><<nexttext>>
 <<else>>
-	<span id="next"><<link [[Далее|Robin Kiss]]>><</link>></span><<nexttext>>
+	<span id="next"><<link [[Next|Robin Kiss]]>><</link>></span><<nexttext>>
 <</if>>
 
 :: Robin Options
@@ -3504,9 +3504,9 @@ One of them, a <<generatey1>><<person1>><<person>>, laughs. "Aww, is this your <
 <br><br>
 
 <<if C.npc.Robin.trauma lte 10 and (C.npc.Robin.dom gte 80 or $robininfirmarypromise is 1)>>
-	<<link [[Далее|Canteen Lunch Robin Interrupt]]>><</link>>
+	<<link [[Next|Canteen Lunch Robin Interrupt]]>><</link>>
 <<else>>
-	<<link [[Далее|Canteen Lunch Fight]]>><<set $fightstart to 1>><</link>>
+	<<link [[Next|Canteen Lunch Fight]]>><<set $fightstart to 1>><</link>>
 <</if>>
 <br>
 
@@ -3763,7 +3763,7 @@ A soft moan escapes Robin's lips, prompting <<him>> to place a hand over <<his>>
 <</if>>
 <br><br>
 
-<<if $promiscuity gte 15>>
+<<if hasSexStat("promiscuity", 2)>>
 	<<link [[Continue teasing|Canteen Lunch Robin Tease 2]]>><<npcincr Robin lust 1>><</link>><<promiscuous2>><<glust>>
 	<br>
 <</if>>
@@ -3826,7 +3826,7 @@ Your hand moves closer to <<his>> <<if $NPCList[0].penis isnot "none">>penis<<el
 	<<He>> seems oblivious to both of you, and opens <<his>> book to read. Robin freezes and stares at you.
 	<br><br>
 	<<person1>>
-	<<if $promiscuity gte 35>>
+	<<if hasSexStat("promiscuity", 3)>>
 		<<link [[Keep going|Canteen Lunch Robin Tease 3]]>><<npcincr Robin lust 1>><</link>><<promiscuous3>><<glust>>
 		<br>
 	<</if>>
@@ -3888,7 +3888,7 @@ Robin covers <<his>> mouth again, <<his>> grip on the table tightening. The stud
 <<endevent>>
 <<npc Robin>><<person1>>
 
-<<link [[Далее|Canteen Lunch Robin Tease 4]]>><</link>>
+<<link [[Next|Canteen Lunch Robin Tease 4]]>><</link>>
 <br>
 
 :: Canteen Lunch Robin Tease 4
@@ -3906,7 +3906,7 @@ Robin tugs your arm, and you rise from your seat.
 <<He>> turns and kisses you, almost pushing you over. <<He>> tugs off <<his>> shirt.
 <br><br>
 
-<<link [[Далее|Canteen Robin Sex]]>><<set $sexstart to 1>><</link>>
+<<link [[Next|Canteen Robin Sex]]>><<set $sexstart to 1>><</link>>
 <br>
 
 
@@ -3930,9 +3930,9 @@ Robin tugs your arm, and you rise from your seat.
 <<actionsman>>
 
 <<if _combatend>>
-	<span id="next"><<link [[Далее|Canteen Robin Sex Finish]]>><</link>></span><<nexttext>>
+	<span id="next"><<link [[Next|Canteen Robin Sex Finish]]>><</link>></span><<nexttext>>
 <<else>>
-	<span id="next"><<link [[Далее|Canteen Robin Sex]]>><</link>></span><<nexttext>>
+	<span id="next"><<link [[Next|Canteen Robin Sex]]>><</link>></span><<nexttext>>
 <</if>>
 
 :: Canteen Robin Sex Finish
@@ -4058,7 +4058,7 @@ Robin leans on to you, panting, beads of sweat dripping down <<his>> naked body.
 <<endcombat>>
 
 
-<<link [[Далее|Hallways]]>><</link>>
+<<link [[Next|Hallways]]>><</link>>
 <br>
 
 :: Canteen Lunch Robin Interrupt
@@ -4145,9 +4145,9 @@ As you watch Robin from behind, you notice <<person2>><<his>> shoulders shaking 
 <<actionsman>>
 
 <<if _combatend or ($pain gte 100 and $willpowerpain is 0)>>
-	<span id="next"><<link [[Далее|Canteen Lunch Fight Finish]]>><</link>></span><<nexttext>>
+	<span id="next"><<link [[Next|Canteen Lunch Fight Finish]]>><</link>></span><<nexttext>>
 <<else>>
-	<span id="next"><<link [[Далее|Canteen Lunch Fight]]>><</link>></span><<nexttext>>
+	<span id="next"><<link [[Next|Canteen Lunch Fight]]>><</link>></span><<nexttext>>
 <</if>>
 
 :: Canteen Lunch Fight Finish
@@ -4365,7 +4365,7 @@ When it's done, Robin looks a little relieved. "Are you feeling better now?" <<h
 		Before you can respond, <<he>> turns back to the door. "I-I'm going to class." <<He>> leaves in a hurry.
 		<br><br>
 		<<endevent>>
-		<<link [[Далее|Hallways]]>><</link>>
+		<<link [[Next|Hallways]]>><</link>>
 	<<elseif $robinromance is 1>>
 		<<if C.npc.Robin.dom gte 50 and C.npc.Robin.trauma lt 10>>
 			Robin lets you cry on <<his>> shoulder, listening and waiting for you to calm down. "I'm sorry for putting you through all of this." <<He>> clenches <<his>> fist and looks at you with determined eyes. "I promise, I won't let it happen again." <<set $robininfirmarypromise to 1>><<npcincr Robin dom 5>><<ggdom>>
@@ -4374,7 +4374,7 @@ When it's done, Robin looks a little relieved. "Are you feeling better now?" <<h
 			<br><br>
 			You apologise for blowing up at <<him>> and tell Robin that it's time for class. <<He>> nods and takes your hand, leading you to the hallway.
 			<br><br>
-			<<link [[Далее|History Classroom]]>><<set $justEntered to true>><<set $withRobin to "yes">><<pass 1>><</link>><br>
+			<<link [[Next|History Classroom]]>><<set $justEntered to true>><<set $withRobin to "yes">><<pass 1>><</link>><br>
 		<<else>>
 			Before things get too serious, the nurse interrupts. "Hey, I don't know what happened, but don't fight, okay?"
 			You calm down. Robin clenches <<his>> fist, keeping <<his>> head down. You can't see <<his>> face, but tears are falling on the back of <<his>> hand.
@@ -4383,7 +4383,7 @@ When it's done, Robin looks a little relieved. "Are you feeling better now?" <<h
 			<br><br>
 			Before you can respond, <<he>> turns back to the door. "I-I'm going to class." <<He>> leaves in a hurry. <<endevent>>
 			<br><br>
-			<<link [[Далее|Hallways]]>><</link>>
+			<<link [[Next|Hallways]]>><</link>>
 		<</if>>
 	<<else>>
 		<<if C.npc.Robin.dom gte 50 and C.npc.Robin.trauma lt 10>>
@@ -4391,14 +4391,14 @@ When it's done, Robin looks a little relieved. "Are you feeling better now?" <<h
 			<br><br>
 			It really works. Robin's hug consoles you, just like it always has. <<He>> stays put for a long time, until you notice the nurse stifling a laugh. You suddenly feel a bit embarrassed, so you tell Robin it's time for class. <<He>> nods and takes your hand, leading you to the hallway. <<endevent>>
 			<br><br>
-			<<link [[Далее|History Classroom]]>><<set $justEntered to true>><<set $withRobin to "yes">><<pass 1>><</link>><br>
+			<<link [[Next|History Classroom]]>><<set $justEntered to true>><<set $withRobin to "yes">><<pass 1>><</link>><br>
 		<<else>>
 			Before things get too serious, the nurse interrupts. "Hey, I don't know what happened, but you two need to stop fighting."
 			<br><br>
 			You calm down. Robin seems unsure of what to say. An uncomfortable silence fills the room until <<he>> finally breaks it.<<npcincr Robin love -2>><<npcincr Robin dom -2>><<npcincr Robin trauma 2>><<llove>><<ldom>><<grtrauma>>
 			"You can take a rest. I'll see you in class." <<He>> turns back to the door. "Just... try not to push yourself too hard." <<He>> leaves in a hurry. <<endevent>>
 			<br><br>
-			<<link [[Далее|Hallways]]>><</link>>
+			<<link [[Next|Hallways]]>><</link>>
 		<</if>>
 	<</if>>
 <<elseif $phase is 1>>
@@ -4417,7 +4417,7 @@ When it's done, Robin looks a little relieved. "Are you feeling better now?" <<h
 	Robin's eyes light up. "Can we get <<print Time.season is "winter" ? "pancakes" : "chocolate ice cream">>?"
 	<<print $robinromance is 1 ? "You hold hands as you" : "You">> walk to the classroom. <<He>> excitedly talks about some food stands you might pass on your way home.
 	<br><br>
-	<<link [[Далее|History Classroom]]>><<set $justEntered to true>><<set $withRobin to "yes">><<pass 1>><</link>><br>
+	<<link [[Next|History Classroom]]>><<set $justEntered to true>><<set $withRobin to "yes">><<pass 1>><</link>><br>
 <<else>>
 	You thank Robin and tell <<him>> you're good. Just as <<hes>> about to reply, a growling sound coming from your stomach stops <<him>>.	"Sorry... " <<He>> checks the clock. "Looks like there's no time to finish lunch."
 	<br><br>
@@ -4426,7 +4426,7 @@ When it's done, Robin looks a little relieved. "Are you feeling better now?" <<h
 	Robin's eyes light up. "Can we get <<print Time.season is "winter" ? "pancakes" : "chocolate ice cream">>?"
 	<<print $robinromance is 1 ? "You hold hands as you" : "You">> walk to the classroom. <<He>> excitedly talks about some food stands you might pass on your way home.
 	<br><br>
-	<<link [[Далее|History Classroom]]>><<set $justEntered to true>><<set $withRobin to "yes">><<pass 1>><</link>><br>
+	<<link [[Next|History Classroom]]>><<set $justEntered to true>><<set $withRobin to "yes">><<pass 1>><</link>><br>
 <</if>>
 
 
@@ -4453,9 +4453,9 @@ When it's done, Robin looks a little relieved. "Are you feeling better now?" <<h
 <<actionsman>>
 
 <<if _combatend>>
-	<span id="next"><<link [[Далее|Bed Robin Sex Finish]]>><</link>></span><<nexttext>>
+	<span id="next"><<link [[Next|Bed Robin Sex Finish]]>><</link>></span><<nexttext>>
 <<else>>
-	<span id="next"><<link [[Далее|Bed Robin Sex]]>><</link>></span><<nexttext>>
+	<span id="next"><<link [[Next|Bed Robin Sex]]>><</link>></span><<nexttext>>
 <</if>>
 
 :: Bed Robin Sex Finish
@@ -4495,7 +4495,7 @@ When it's done, Robin looks a little relieved. "Are you feeling better now?" <<h
 	<</if>>
 <</if>>
 
-<<link [[Далее|Bed]]>><<clotheson>><</link>>
+<<link [[Next|Bed]]>><<clotheson>><</link>>
 <br>
 
 :: Robin Room Bed Intro
@@ -4547,7 +4547,7 @@ When it's done, Robin looks a little relieved. "Are you feeling better now?" <<h
 	<<link [[Take it further|Robin Room Bed Sex]]>><<strip "strap-on">><<set $sexstart to 1>><</link>>
 	<br>
 <</if>>
-<<link [[Спать|Robin Bed]]>><<endevent>><<trauma -6>><<stress -12>><<npcincr Robin trauma -3>><</link>><<ltrauma>><<lstress>><<lrtrauma>>
+<<link [[Sleep|Robin Bed]]>><<endevent>><<trauma -6>><<stress -12>><<npcincr Robin trauma -3>><</link>><<ltrauma>><<lstress>><<lrtrauma>>
 <br>
 
 :: Robin Room Bed Sex
@@ -4570,9 +4570,9 @@ When it's done, Robin looks a little relieved. "Are you feeling better now?" <<h
 <<actionsman>>
 
 <<if _combatend>>
-	<span id="next"><<link [[Далее|Robin Room Bed Sex Finish]]>><</link>></span><<nexttext>>
+	<span id="next"><<link [[Next|Robin Room Bed Sex Finish]]>><</link>></span><<nexttext>>
 <<else>>
-	<span id="next"><<link [[Далее|Robin Room Bed Sex]]>><</link>></span><<nexttext>>
+	<span id="next"><<link [[Next|Robin Room Bed Sex]]>><</link>></span><<nexttext>>
 <</if>>
 
 :: Robin Room Bed Sex Finish
@@ -4666,7 +4666,7 @@ When it's done, Robin looks a little relieved. "Are you feeling better now?" <<h
 <<clotheson>>
 <<endcombat>>
 
-<<link [[Далее|Robin Bed]]>><<endevent>><</link>>
+<<link [[Next|Robin Bed]]>><<endevent>><</link>>
 <br>
 
 :: Robin Hug
@@ -4788,7 +4788,7 @@ When it's done, Robin looks a little relieved. "Are you feeling better now?" <<h
 	You can't be in here when Robin comes back with Bailey. You manage to gather yourself, pick yourself up and dash full-long right out of the building.
 	<br><br>
 	<<endevent>>
-	<<link [[Далее|Domus Street]]>><</link>>
+	<<link [[Next|Domus Street]]>><</link>>
 	<br>
 
 <<elseif $phase is 1>>
@@ -4814,7 +4814,7 @@ When it's done, Robin looks a little relieved. "Are you feeling better now?" <<h
 	<br><br>
 
 	<<endevent>>
-	<<link [[Далее|Bedroom]]>><</link>>
+	<<link [[Next|Bedroom]]>><</link>>
 	<br>
 
 <<else>>
@@ -4847,7 +4847,7 @@ When it's done, Robin looks a little relieved. "Are you feeling better now?" <<h
 	<br><br>
 
 	<<endevent>>
-	<<link [[Далее|Bedroom]]>><</link>>
+	<<link [[Next|Bedroom]]>><</link>>
 	<br>
 <<elseif $phase is 1>><<set $robinbaileyhelp to 1>>
 	You bite back at <<him>> and tell <<him>> it's <<his>> fault for going to Bailey in the first place, and dismiss <<his>> concerns.
@@ -4855,7 +4855,7 @@ When it's done, Robin looks a little relieved. "Are you feeling better now?" <<h
 	<br><br>
 
 	<<endevent>>
-	<<link [[Далее|Bedroom]]>><</link>>
+	<<link [[Next|Bedroom]]>><</link>>
 	<br>
 <<elseif $phase is 2>><<set $robinbaileyhelp to 1>>
 	You lay into Robin for leaving in the middle of your breakdown and getting Bailey.
@@ -4865,14 +4865,14 @@ When it's done, Robin looks a little relieved. "Are you feeling better now?" <<h
 	<br><br>
 
 	<<endevent>>
-	<<link [[Далее|Bedroom]]>><</link>>
+	<<link [[Next|Bedroom]]>><</link>>
 	<br>
 <<else>>
 	You shrug off Robin and refuse to speak to <<him>>. Eventually, <<he>> takes the hint and leaves.
 	<br><br>
 
 	<<endevent>>
-	<<link [[Далее|Bedroom]]>><</link>>
+	<<link [[Next|Bedroom]]>><</link>>
 	<br>
 <</if>>
 
@@ -5275,7 +5275,7 @@ Robin looks down, then at you, waiting for your response.
 <<link [[Resentfully go with Whitney|Canteen Robin Whitney Oral]]>><<trauma 6>><<stress 6>><<sub 1>><<npcincr Whitney dom 1>><<set $molestationstart to 1>><<set $sexstart to 0>><</link>><<gtrauma>><<gstress>><<gdom>>
 <br>
 
-<<if $promiscuity gte 55>>
+<<if hasSexStat("promiscuity", 4)>>
 	<<link [[Go willingly|Canteen Robin Whitney Oral]]>><<sub 1>><<npcincr Whitney dom 1>><<set $sexstart to 1>><<set $molestationstart to 0>><<npcincr Whitney love 1>><</link>><<promiscuous4>><<glove>><<gdom>>
 	<br>
 <</if>>
@@ -5301,9 +5301,9 @@ Robin looks down, then at you, waiting for your response.
 <<actionsman>>
 
 <<if _combatend or ($pain gte 100 and $willpowerpain is 0)>>
-	<span id="next"><<link [[Далее|Canteen Robin Whitney Fight Finish]]>><</link>></span><<nexttext>>
+	<span id="next"><<link [[Next|Canteen Robin Whitney Fight Finish]]>><</link>></span><<nexttext>>
 <<else>>
-	<span id="next"><<link [[Далее|Canteen Robin Whitney Fight]]>><</link>></span><<nexttext>>
+	<span id="next"><<link [[Next|Canteen Robin Whitney Fight]]>><</link>></span><<nexttext>>
 <</if>>
 
 :: Canteen Robin Whitney Fight Finish
@@ -5317,7 +5317,7 @@ Robin looks down, then at you, waiting for your response.
 	<<clotheson>>
 	<<endcombat>>
 
-	<<link [[Далее|Canteen Robin Whitney Fight 2]]>><</link>>
+	<<link [[Next|Canteen Robin Whitney Fight 2]]>><</link>>
 
 <<elseif $enemyarousal gte $enemyarousalmax>>
 	<<ejaculation "short">>
@@ -5329,7 +5329,7 @@ Robin looks down, then at you, waiting for your response.
 	<<clotheson>>
 	<<endcombat>>
 
-	<<link [[Далее|Canteen Robin Whitney Fight 2]]>><</link>>
+	<<link [[Next|Canteen Robin Whitney Fight 2]]>><</link>>
 
 <<else>>
 
@@ -5340,7 +5340,7 @@ Robin looks down, then at you, waiting for your response.
 	<<clotheson>>
 	<<endcombat>>
 
-	<<link [[Далее|Canteen Robin Whitney Fight 2]]>><</link>>
+	<<link [[Next|Canteen Robin Whitney Fight 2]]>><</link>>
 <</if>>
 
 :: Canteen Robin Whitney Fight 2
@@ -5421,9 +5421,9 @@ Robin looks down, then at you, waiting for your response.
 <<actionsman>>
 
 <<if _combatend>>
-	<span id="next"><<link [[Далее|Canteen Robin Whitney Oral Finish]]>><</link>></span><<nexttext>>
+	<span id="next"><<link [[Next|Canteen Robin Whitney Oral Finish]]>><</link>></span><<nexttext>>
 <<else>>
-	<span id="next"><<link [[Далее|Canteen Robin Whitney Oral]]>><</link>></span><<nexttext>>
+	<span id="next"><<link [[Next|Canteen Robin Whitney Oral]]>><</link>></span><<nexttext>>
 <</if>>
 
 :: Canteen Robin Whitney Oral Finish
@@ -5443,7 +5443,7 @@ Robin looks down, then at you, waiting for your response.
 	<<clotheson>>
 	<<endcombat>>
 
-	<<link [[Далее|Canteen Robin Whitney Talk]]>><<set $phase to 0>><</link>>
+	<<link [[Next|Canteen Robin Whitney Talk]]>><<set $phase to 0>><</link>>
 
 <<else>>
 
@@ -5453,7 +5453,7 @@ Robin looks down, then at you, waiting for your response.
 	<<clotheson>>
 	<<endcombat>>
 
-	<<link [[Далее|Canteen Robin Whitney Talk]]>><<set $phase to 1>><</link>>
+	<<link [[Next|Canteen Robin Whitney Talk]]>><<set $phase to 1>><</link>>
 
 <</if>>
 
@@ -5524,7 +5524,7 @@ Robin looks down, then at you, waiting for your response.
 <</if>>
 
 <<if $phase is 3>>
-	<<link [[Далее|Canteen]]>><<endevent>><</link>>
+	<<link [[Next|Canteen]]>><<endevent>><</link>>
 <<else>>
 	<<historyicon>><<link [[Go with Robin to your history lesson (0:01)|History Classroom]]>><<set $justEntered to true>><<set $withRobin to "yes">><<pass 1>><</link>><br>
 	<<schoolicon "library">><<link [[Say you'd rather go to the library|Canteen Stay]]>><<set $robinexit to $phase is 0 ? "whitney concern" : "whitney leave">><<set $phase2 to "library">><</link>><br>
@@ -5604,7 +5604,7 @@ You cuddle Robin, but <<his>> hands continue to wander and grope. <<He>> pulls y
 		<span class="green">You have completed the hacker's tasks. You should talk to Landry.</span>
 		<br><br>
 	<</if>>
-	<<link [[Далее|Orphanage]]>><<endevent>><</link>>
+	<<link [[Next|Orphanage]]>><<endevent>><</link>>
 	<br>
 
 <<else>>
@@ -5617,7 +5617,7 @@ You cuddle Robin, but <<his>> hands continue to wander and grope. <<He>> pulls y
 
 	<<skulduggeryuse>>
 
-	<<link [[Далее|Bailey Beating]]>><<set $molestationstart to 1>><</link>>
+	<<link [[Next|Bailey Beating]]>><<set $molestationstart to 1>><</link>>
 	<br>
 
 <</if>>
@@ -5641,9 +5641,9 @@ You cuddle Robin, but <<his>> hands continue to wander and grope. <<He>> pulls y
 <<actionsman>>
 
 <<if _combatend or $enemyanger lte 0>>
-	<span id="next"><<link [[Далее|Bailey Beating Finish]]>><</link>></span><<nexttext>>
+	<span id="next"><<link [[Next|Bailey Beating Finish]]>><</link>></span><<nexttext>>
 <<else>>
-	<span id="next"><<link [[Далее|Bailey Beating]]>><</link>></span><<nexttext>>
+	<span id="next"><<link [[Next|Bailey Beating]]>><</link>></span><<nexttext>>
 <</if>>
 
 :: Bailey Beating Finish
@@ -5676,7 +5676,7 @@ You cuddle Robin, but <<his>> hands continue to wander and grope. <<He>> pulls y
 	<</if>>
 <</if>>
 <<endcombat>>
-<<link [[Далее|Orphanage]]>><</link>>
+<<link [[Next|Orphanage]]>><</link>>
 <br>
 
 :: Bailey Sheet
@@ -5714,7 +5714,7 @@ You install the USB, and a file folder automatically pops up a second later. You
 	You remove the device and leave before Bailey returns.
 	<br><br>
 
-	<<link [[Далее|Orphanage]]>><<endevent>><</link>>
+	<<link [[Next|Orphanage]]>><<endevent>><</link>>
 
 <<elseif $rng gte 51 and $skulduggerysuccess is 0>>
 	You look through the folder, and can't find anything mentioning Mickey. You're scanning through a document when <span class="red">Bailey stomps back into the room</span>.
@@ -5724,7 +5724,7 @@ You install the USB, and a file folder automatically pops up a second later. You
 	<<He>> rips the device out and grabs your arm.
 	<br><br>
 
-	<<link [[Далее|Bailey Beating]]>><<set $molestationstart to 1>><</link>>
+	<<link [[Next|Bailey Beating]]>><<set $molestationstart to 1>><</link>>
 
 <<elseif $rng gte 26>>
 	<<set $pubfame.detail to "baileyList">>
@@ -5735,7 +5735,7 @@ You install the USB, and a file folder automatically pops up a second later. You
 		You delete the line and add a line about "refilling the fuel" in its place. <span class="green">Bailey is gone long enough for you to remove the device and escape.</span>
 		<<pubfameComplete "bailey" "list">>
 
-		<<link [[Далее|Orphanage]]>><<endevent>><</link>>
+		<<link [[Next|Orphanage]]>><<endevent>><</link>>
 	<<else>>
 		You delete the line and add a line about "refilling the fuel" in its place. You remove the USB and go to leave, but <span class="red">a scowling Bailey blocks the door</span>.
 		<br>
@@ -5746,7 +5746,7 @@ You install the USB, and a file folder automatically pops up a second later. You
 
 		<<pubfameComplete "bailey" "list">>
 
-		<<link [[Далее|Bailey Beating]]>><<set $molestationstart to 1>><</link>>
+		<<link [[Next|Bailey Beating]]>><<set $molestationstart to 1>><</link>>
 	<</if>>
 <<else>>
 	You look through the folder and find a spreadsheet. You open it and look through it. It's filled with dozens of names, <span class="red">all of them of orphans that ran away from the orphanage</span>.
@@ -5779,13 +5779,13 @@ You install the USB, and a file folder automatically pops up a second later. You
 
 	<<pubfameComplete "bailey" "list">>
 
-	<<link [[Далее|Bailey Beating]]>><<set $molestationstart to 1>><</link>>
+	<<link [[Next|Bailey Beating]]>><<set $molestationstart to 1>><</link>>
 <<elseif $phase is 1>>
 	<<set $pubfame.detail to "baileyList">>
 	You remove Mickey's name from the list, save and close the file, and remove the USB. <span class="green">Bailey is gone long enough for you to escape.</span>
 	<<pubfameComplete "bailey" "list">>
 
-	<<link [[Далее|Orphanage]]>><<endevent>><</link>>
+	<<link [[Next|Orphanage]]>><<endevent>><</link>>
 <<elseif $phase is 2>>
 	<<set $pubfame.detail to "baileyWiped">><<set $pubfame.bailey.fight to "ready">>
 	You exit out of the file and delete it from the folder. You also clear the file's history. You then delete it from the recycling bin, and use a program on the USB to clear the cache. It also automatically deletes all system restore points, which you hadn't thought of doing.
@@ -5802,7 +5802,7 @@ You install the USB, and a file folder automatically pops up a second later. You
 	Finally, <<he>> looks up at you. "I see." <<He>> stares at you for an uncomfortably long time. "You can go." You feel <<his>> eyes on you as you leave.
 	<br><br>
 
-	<<link [[Далее|Orphanage]]>><<endevent>><</link>>
+	<<link [[Next|Orphanage]]>><<endevent>><</link>>
 <</if>>
 
 :: Bailey Sheet Fight
@@ -5825,9 +5825,9 @@ You install the USB, and a file folder automatically pops up a second later. You
 <<actionsman>>
 
 <<if _combatend or ($pain gte 100 and $willpowerpain is 0)>>
-	<span id="next"><<link [[Далее|Bailey Sheet Fight Finish]]>><</link>></span><<nexttext>>
+	<span id="next"><<link [[Next|Bailey Sheet Fight Finish]]>><</link>></span><<nexttext>>
 <<else>>
-	<span id="next"><<link [[Далее|Bailey Sheet Fight]]>><</link>></span><<nexttext>>
+	<span id="next"><<link [[Next|Bailey Sheet Fight]]>><</link>></span><<nexttext>>
 <</if>>
 
 :: Bailey Sheet Fight Finish
@@ -5878,7 +5878,7 @@ You install the USB, and a file folder automatically pops up a second later. You
 	"But I don't care. After what you put me through, I'm not accepting anything less than this."
 	<br><br>
 
-	<<link [[Далее|Rent Intro]]>><<clotheson>><<endcombat>><</link>>
+	<<link [[Next|Rent Intro]]>><<clotheson>><<endcombat>><</link>>
 <</if>>
 
 :: Robin Give Milkshake
@@ -5958,7 +5958,7 @@ Robin hasn't left <<his>> room in a while, nor has <<he>> come to talk to you. <
 You slowly shut the door, leaving Robin all by <<himself>> in <<his>> room.
 <br><br>
 
-<<link [[Покинуть|$robindestination]]>><<endevent>><<unset $robindestination>><</link>>
+<<link [[Leave|$robindestination]]>><<endevent>><<unset $robindestination>><</link>>
 
 :: Robin Trauma Visit 2
 <<set $outside to 0>><<set $location to "home">><<home_effects>><<effects>>
@@ -5992,7 +5992,7 @@ The two of you spend the next few hours talking about whatever comes to mind, su
 Robin sometimes struggles to talk about <<himself>> and <<his>> condition, but <<he>> always seems to perk back up whenever you mention wanting to take <<him>> out window shopping.
 <br><br>
 
-<<link [[Далее|Robin Trauma Visit 3]]>><<pass 3 hours>><</link>>
+<<link [[Next|Robin Trauma Visit 3]]>><<pass 3 hours>><</link>>
 <br>
 
 :: Robin Trauma Visit 3
@@ -6039,7 +6039,7 @@ You're not convinced, but you head towards the door regardless.
 Just as you shut the door, you hear Robin let out a depressed sigh. You return to your room, feeling a sting of guilt.<<stress 2>><<gstress>>
 <br><br>
 
-<<link [[Далее|Bedroom]]>><<endevent>><</link>>
+<<link [[Next|Bedroom]]>><<endevent>><</link>>
 <br>
 
 :: Robin Trauma Visit Yes
@@ -6068,7 +6068,7 @@ You get into bed next to <<him>>, and turn off the lamp.
 <<His>> voice trails off into a yawn. It doesn't take long until you hear the sound of Robin's soft breathing. You find yourself succumbing to sleep yourself, your eyes close shut as you drift away into a peaceful sleep.
 <br><br>
 
-<<link [[Спать|Robin Trauma Visit Sleep]]>><<set $robinbed to "yours">><<set $bedGuest to "Robin">><<set $sleephour to 8>><</link>><<ltiredness>>
+<<link [[Sleep|Robin Trauma Visit Sleep]]>><<set $robinbed to "yours">><<set $bedGuest to "Robin">><<set $sleephour to 8>><</link>><<ltiredness>>
 <br>
 
 :: Robin Trauma Visit Sleep
@@ -6092,7 +6092,7 @@ You get into bed next to <<him>>, and turn off the lamp.
 	You head back to your room.
 	<br><br>
 
-	<<link [[Далее|Bedroom]]>><<unset $robinbed>><<endevent>><</link>>
+	<<link [[Next|Bedroom]]>><<unset $robinbed>><<endevent>><</link>>
 	<br>
 <</if>>
 
@@ -6228,7 +6228,7 @@ You slowly nod. Robin smiles weakly in response<<if $robinconsole is 1>>, then t
 <</if>>
 <br><br>
 
-<<link [[Далее|Hallways]]>><<endevent>><</link>>
+<<link [[Next|Hallways]]>><<endevent>><</link>>
 <br>
 
 :: Robin Brothel
@@ -6290,7 +6290,7 @@ A customer passes by and watches both of you.
 You notice a look of disgust on Robin's face. Furrowing <<his>> eyebrows, <<he>> ignores the patron and hastens <<his>> pace. You soon find yourself alone with Robin in an empty room.
 <br><br>
 
-<<link [[Далее|Robin Brothel 2]]>><</link>>
+<<link [[Next|Robin Brothel 2]]>><</link>>
 <br>
 
 :: Robin Brothel 2
@@ -6456,7 +6456,7 @@ You notice a look of disgust on Robin's face. Furrowing <<his>> eyebrows, <<he>>
 	<</if>>
 	<br><br>
 
-	<<link [[Далее|Robin Brothel Home]]>><</link>>
+	<<link [[Next|Robin Brothel Home]]>><</link>>
 	<br>
 <<elseif $phase is 1>>
 	<<if $speech_attitude is "meek">>
@@ -6500,7 +6500,7 @@ You notice a look of disgust on Robin's face. Furrowing <<his>> eyebrows, <<he>>
 	<<stress 6>><<trauma 6>><<gstress>><<gtrauma>><<npcincr Robin trauma 4>><<grtrauma true>>
 	<br><br>
 
-	<<link [[Далее|Brothel]]>><<endevent>><</link>>
+	<<link [[Next|Brothel]]>><<endevent>><</link>>
 	<br>
 <</if>>
 
@@ -6571,7 +6571,7 @@ You arrive at the orphanage and step off the bus. Robin walks you to your room.
 	<<He>> shuffles into the hallway, leaving you alone in your room.
 	<br><br>
 
-	<<link [[Далее|Bedroom]]>><<endevent>><</link>>
+	<<link [[Next|Bedroom]]>><<endevent>><</link>>
 	<br>
 <</if>>
 
@@ -6595,7 +6595,7 @@ You arrive at the orphanage and step off the bus. Robin walks you to your room.
 	<<He>> shuffles into the hallway, leaving you alone in your room.
 	<br><br>
 
-	<<link [[Далее|Bedroom]]>><<endevent>><</link>>
+	<<link [[Next|Bedroom]]>><<endevent>><</link>>
 	<br>
 <<else>>
 	Robin blushes at your request, but <<he>> nods nonetheless.
@@ -6619,7 +6619,7 @@ You arrive at the orphanage and step off the bus. Robin walks you to your room.
 	<<Hes>> soon out like a light, <<his>> gentle breaths tickling your skin.
 	<br><br>
 
-	<<link [[Спать|Bed]]>><<endevent>><<undressSleep "bed">><<set $robinbed to "yours">><<set $bedGuest to "Robin">><<trauma -6>><<stress -12>><</link>>
+	<<link [[Sleep|Bed]]>><<endevent>><<undressSleep "bed">><<set $robinbed to "yours">><<set $bedGuest to "Robin">><<trauma -6>><<stress -12>><</link>>
 	<br>
 <</if>>
 
@@ -6633,7 +6633,7 @@ You arrive at the orphanage and step off the bus. Robin walks you to your room.
 	You're alone in Robin's room.
 	<br><br>
 
-	<<getouticon>><<link [[Покинуть|Orphanage]]>><<endevent>><</link>>
+	<<getouticon>><<link [[Leave|Orphanage]]>><<endevent>><</link>>
 	<br>
 <<elseif Time.hour lte 5 or Time.hour gte 21>>
 	You wake up before Robin does.
@@ -6641,7 +6641,7 @@ You arrive at the orphanage and step off the bus. Robin walks you to your room.
 
 	<<bedicon "zzz">><<link [[Go back to sleep|Robin Bed]]>><<endevent>><<set $wear_outfit to "none">><</link>>
 	<br>
-	<<getouticon>><<link [[Покинуть|Orphanage]]>><<endevent>><<storeon "bed">><</link>>
+	<<getouticon>><<link [[Leave|Orphanage]]>><<endevent>><<storeon "bed">><</link>>
 <<else>>
 	<<storeon "bed">>
 	<<if $phase is 0>> <!-- player wakes up before robin -->
@@ -6765,7 +6765,7 @@ Robin's grip on your hand trembles, then tightens. <<His>> arm reaches up yours,
 <</if>>
 <br><br>
 
-<<link [[Драться|Robin Mist Fight]]>><<set $molestationstart to 1>><</link>>
+<<link [[Fight|Robin Mist Fight]]>><<set $molestationstart to 1>><</link>>
 <br><br>
 
 :: Robin Mist Fight
@@ -6793,9 +6793,9 @@ Robin's grip on your hand trembles, then tightens. <<His>> arm reaches up yours,
 <<actionsman>>
 
 <<if _combatend>>
-	<span id="next"><<link [[Далее|Robin Mist Fight Finish]]>><</link>></span><<nexttext>>
+	<span id="next"><<link [[Next|Robin Mist Fight Finish]]>><</link>></span><<nexttext>>
 <<else>>
-	<span id="next"><<link [[Далее|Robin Mist Fight]]>><</link>></span><<nexttext>>
+	<span id="next"><<link [[Next|Robin Mist Fight]]>><</link>></span><<nexttext>>
 <</if>>
 
 :: Robin Mist Fight Finish
@@ -6836,7 +6836,7 @@ Robin's grip on your hand trembles, then tightens. <<His>> arm reaches up yours,
 <<endcombat>>
 <<clotheson>>
 
-<<link [[Далее|Robin Mist Rescue]]>><</link>>
+<<link [[Next|Robin Mist Rescue]]>><</link>>
 
 :: Robin Mist Rescue
 <<set $location to "landfill">><<set $outside to 1>><<effects>>
@@ -6874,7 +6874,7 @@ Robin's grip on your hand trembles, then tightens. <<His>> arm reaches up yours,
 Robin holds you for a few moments, still sobbing.
 <br><br>
 
-<<link [[Далее|Robin Mist Rescue 2]]>><</link>>
+<<link [[Next|Robin Mist Rescue 2]]>><</link>>
 
 :: Robin Mist Silence
 <<set $location to "landfill">><<set $outside to 1>><<effects>>
@@ -6885,7 +6885,7 @@ Words fail you.
 Robin sobs harder at your silence. "I'm so sorry..." <<he>> says, still choking back tears.
 <br><br>
 
-<<link [[Далее|Robin Mist Rescue 2]]>><</link>>
+<<link [[Next|Robin Mist Rescue 2]]>><</link>>
 
 :: Robin Mist Rescue 2
 <<set $location to "landfill">><<set $outside to 1>><<effects>>
@@ -6938,7 +6938,7 @@ When Robin falls silent you leave the room, closing the door carefully as to not
 <<run setRobinLocationOverride("sleep", numbersBetween(Time.hour, 24))>>
 <br><br>
 
-<<link [[Далее|Orphanage]]>><<endevent>><</link>>
+<<link [[Next|Orphanage]]>><<endevent>><</link>>
 
 :: Robin Mist Abandon
 <<set $outside to 1>><<set $location to "town">><<effects>><<set $bus to "elk">>
@@ -6956,7 +6956,7 @@ Robin fidgets, but nods. "I-I understand." <<He>> begins walking towards the orp
 <<run setRobinLocationOverride("sleep", numbersBetween(Time.hour, 24))>>
 <br><br>
 
-<<link [[Далее|Elk Street]]>><<endevent>><</link>>
+<<link [[Next|Elk Street]]>><<endevent>><</link>>
 
 :: Robin Pillory Intro
 <<set $outside to 0>><<set $location to "home">><<effects>>
@@ -7019,7 +7019,7 @@ Another orphan interjects. "You might just be able to save <<person2>><<him>> if
 <span class="red">You don't have much time left.</span>
 <br><br>
 
-<<link [[Далее|Orphanage]]>><<endevent>><</link>>
+<<link [[Next|Orphanage]]>><<endevent>><</link>>
 <br>
 
 :: Robin Pillory Evade
@@ -7041,7 +7041,7 @@ They nod in response. Reluctantly, the orphans scatter, heading back to their ro
 <span class="red">You don't have much time left.</span>
 <br><br>
 
-<<link [[Далее|Orphanage]]>><<endevent>><</link>>
+<<link [[Next|Orphanage]]>><<endevent>><</link>>
 <br>
 
 :: Robin Pillory Watch
@@ -7119,7 +7119,7 @@ You join the crowd around the pillory on Cliff Street. Robin is locked in the to
 			A <<generate2>><<person2>><<person>> walks up to the pillory before violently
 			<<print (C.npc.Robin.breastsize gte 1 ? "fondling Robin's breasts" : "pinching Robin's nipples")>>.
 		<<case 3>>
-			The people around mock Robin, talking selfies with the helpless orphan. <<He>> refuses eye contact.
+			The people around mock Robin, taking selfies with the helpless orphan. <<He>> refuses eye contact.
 		<<case 4>>
 			The people around attempt to taunt Robin, taking pictures while posing around <<him>>. Robin looks away in disgust, tears in <<his>> eyes.
 	<</switch>>
@@ -7182,6 +7182,16 @@ remaining before Robin can be freed.
 <<if Time.hour lte 22>>
 	<<ind>><<link [[Watch Robin (0:10)|Robin Pillory Watch]]>><<pass 10>><<endevent>><</link>>
 	<br>
+	<<if $replayScene>>
+		/* Replay specific code */
+		<<if $trackedHour is undefined>><<set $trackedHour to Time.hour>><</if>>
+		<<if $trackedHour lt Time.hour>>
+			<<robinPilloryHour>>
+			<<set $trackedHour to Time.hour>>
+		<</if>>
+		<<ind>><<link [[Watch Robin for Longer (1:00)|Robin Pillory Watch]]>><<pass 60>><<endevent>><</link>> | Scene Viewer
+		<br>
+	<</if>>
 	<<if !$robinPillory.distracted>>
 		<<ind>><<link [[Distract the crowd|Robin Pillory Distractions]]>><<endevent>><</link>>
 		<br>
@@ -7191,11 +7201,11 @@ remaining before Robin can be freed.
 		<<lockpickicon>><<link [[Pick a lock (0:30)|Robin Pillory Lockpick]]>><<endevent>><<set $robinPillory.distracted to 0>><<pass 30>><</link>><<skulduggerydifficulty>>
 	<</if>>
 	<br>
-	<<getouticon>><<link [[Покинуть|Cliff Street]]>><</link>>
+	<<getouticon>><<link [[Leave|Cliff Street]]>><</link>>
 <<else>>
 	<span class="red">You're too late.</span>
 	<br><br>
-	<<link [[Далее|Robin Pillory Failure]]>><<pass 10>><<endevent>><</link>>
+	<<link [[Next|Robin Pillory Failure]]>><<pass 10>><<endevent>><</link>>
 <</if>>
 <br>
 
@@ -7236,7 +7246,7 @@ You hear a voice from behind you. "Back away from the convicted." A <<generatePo
 Robin collapses to the ground as soon as the pillory is opened. The <<person2>><<person>> leaves without a second glance.
 <br><br>
 
-<<link [[Далее|Robin Pillory Failure 2]]>><<pass 60>><<endevent>><</link>>
+<<link [[Next|Robin Pillory Failure 2]]>><<pass 60>><<endevent>><</link>>
 <br>
 
 :: Robin Pillory Failure 2
@@ -7264,7 +7274,7 @@ Robin unsteadily gets to <<his>> feet and you wrap <<his>> arm around your shoul
 You hold <<him>> close to you as you help the limping Robin back home.
 <br><br>
 
-<<link [[Далее|Robin Pillory Failure 3]]>><</link>>
+<<link [[Next|Robin Pillory Failure 3]]>><</link>>
 <br>
 
 :: Robin Pillory Failure 3
@@ -7318,7 +7328,7 @@ You gently put <<him>> down on <<his>> bed and tuck <<him>> in. "Goodnight Robin
 <<run setRobinLocationOverride("sleep", numbersBetween(1, 24))>>
 <br><br>
 
-<<getouticon>><<link [[Покинуть|Orphanage]]>><<endevent>><</link>>
+<<getouticon>><<link [[Leave|Orphanage]]>><<endevent>><</link>>
 
 
 :: Robin Pillory Failure Pessimism
@@ -7342,7 +7352,7 @@ You gently put <<him>> down on <<his>> bed and tuck <<him>> in. "Goodnight Robin
 <<run setRobinLocationOverride("sleep", numbersBetween(Time.hour, 24))>>
 <br><br>
 
-<<getouticon>><<link [[Покинуть|Orphanage]]>><<endevent>><</link>>
+<<getouticon>><<link [[Leave|Orphanage]]>><<endevent>><</link>>
 
 :: Robin Pillory Lockpick
 <<set $outside to 1>><<set $location to "town">><<effects>><<set $bus to "cliff">>
@@ -7401,11 +7411,11 @@ You begin to lockpick one of the locks keeping Robin in the pillory.
 <br><br>
 
 <<if $robinPillory.locks is 0>>
-	<<link [[Далее|Robin Pillory Escape]]>><<set $molestationstart to 1>><<endevent>><</link>>
+	<<link [[Next|Robin Pillory Escape]]>><<set $molestationstart to 1>><<endevent>><</link>>
 <<elseif Time.hour lte 22>>
-	<<link [[Далее|Robin Pillory Watch]]>><<endevent>><</link>>
+	<<link [[Next|Robin Pillory Watch]]>><<endevent>><</link>>
 <<else>>
-	<<link [[Далее|Robin Pillory Failure]]>><<endevent>><</link>>
+	<<link [[Next|Robin Pillory Failure]]>><<endevent>><</link>>
 <</if>>
 
 :: Robin Pillory Distractions
@@ -7438,9 +7448,9 @@ You try to come up with a way to distract the crowd from Robin.
 	<br>
 <</if>>
 <<if Time.hour lte 22>>
-	<<link [[Вернуться|Robin Pillory Watch]]>><</link>>
+	<<link [[Back|Robin Pillory Watch]]>><</link>>
 <<else>>
-	<<link [[Вернуться|Robin Pillory Failure]]>><</link>>
+	<<link [[Back|Robin Pillory Failure]]>><</link>>
 <</if>>
 <br>
 
@@ -7476,9 +7486,9 @@ Making your way in front of the pillory in the centre of the crowd's attention,
 
 <</if>>
 <<if Time.hour lte 22>>
-	<<link [[Далее|Robin Pillory Watch]]>><</link>>
+	<<link [[Next|Robin Pillory Watch]]>><</link>>
 <<else>>
-	<<link [[Далее|Robin Pillory Failure]]>><</link>>
+	<<link [[Next|Robin Pillory Failure]]>><</link>>
 <</if>>
 <br>
 
@@ -7509,9 +7519,9 @@ One of the delinquents takes a fruit and lobs it at Robin's head.
 <br><br>
 
 <<if Time.hour lte 22>>
-	<<link [[Далее|Robin Pillory Watch]]>><</link>>
+	<<link [[Next|Robin Pillory Watch]]>><</link>>
 <<else>>
-	<<link [[Далее|Robin Pillory Failure]]>><</link>>
+	<<link [[Next|Robin Pillory Failure]]>><</link>>
 <</if>>
 <br>
 
@@ -7526,15 +7536,14 @@ Seeing free money, many members of the crowd starts frantically trying to pick i
 <br><br>
 
 <span class="gold">That should distract them for a while.</span>
-<<set $money -= 20000>>
 <<set $robinPillory.distracted to 1>>
 <<set $robinPillory.distractions.push("money")>>
 <br><br>
 
 <<if Time.hour lte 22>>
-	<<link [[Далее|Robin Pillory Watch]]>><</link>>
+	<<link [[Next|Robin Pillory Watch]]>><</link>>
 <<else>>
-	<<link [[Далее|Robin Pillory Failure]]>><</link>>
+	<<link [[Next|Robin Pillory Failure]]>><</link>>
 <</if>>
 <br>
 
@@ -7551,9 +7560,9 @@ With the people in the crowd now looking for a nonexistent fire, <span class="go
 <br><br>
 
 <<if Time.hour lte 22>>
-	<<link [[Далее|Robin Pillory Watch]]>><</link>>
+	<<link [[Next|Robin Pillory Watch]]>><</link>>
 <<else>>
-	<<link [[Далее|Robin Pillory Failure]]>><</link>>
+	<<link [[Next|Robin Pillory Failure]]>><</link>>
 <</if>>
 <br>
 
@@ -7623,9 +7632,9 @@ You run off to a nearby gardening store and start looking for something that wil
 <br><br>
 
 <<if Time.hour lte 22>>
-	<<link [[Далее|Robin Pillory Watch]]>><<endevent>><</link>>
+	<<link [[Next|Robin Pillory Watch]]>><<endevent>><</link>>
 <<else>>
-	<<link [[Далее|Robin Pillory Failure]]>><<endevent>><</link>>
+	<<link [[Next|Robin Pillory Failure]]>><<endevent>><</link>>
 <</if>>
 <br>
 
@@ -7665,9 +7674,9 @@ You run off to a nearby gardening store and start looking for something that wil
 <<actionsman>>
 
 <<if $stalk_end>>
-	<span id="next"><<link [[Далее|Robin Pillory Escape End]]>><</link>></span><<nexttext>>
+	<span id="next"><<link [[Next|Robin Pillory Escape End]]>><</link>></span><<nexttext>>
 <<else>>
-	<span id="next"><<link [[Далее|Robin Pillory Escape]]>><</link>></span><<nexttext>>
+	<span id="next"><<link [[Next|Robin Pillory Escape]]>><</link>></span><<nexttext>>
 <</if>>
 
 :: Robin Pillory Escape End
@@ -7704,7 +7713,7 @@ You run off to a nearby gardening store and start looking for something that wil
 		Before <<he>> can continue, Robin punches <<him>> in the stomach. Hard. Robin then grabs your hand and runs while the <<person1>><<person>> recoils in pain.
 		<br><br>
 
-		<<link [[Далее|Robin Pillory Escape Orphanage]]>><<endcombat>><<set $phase to 1>><</link>>
+		<<link [[Next|Robin Pillory Escape Orphanage]]>><<endcombat>><<set $phase to 1>><</link>>
 	<<else>>
 		Robin nods hesitantly and runs towards the orphanage.
 		<br><br>
@@ -7720,7 +7729,7 @@ You run off to a nearby gardening store and start looking for something that wil
 		<<clearNPC "robin_stalk">>
 		<br><br>
 
-		<<link [[Далее|Robin Pillory Escape Sex]]>><<set $molestationstart to 1>><</link>>
+		<<link [[Next|Robin Pillory Escape Sex]]>><<set $molestationstart to 1>><</link>>
 	<</if>>
 <<elseif $stalk_end is "hide">>
 	You emerge from your hiding place. <<if $stalk_assess>>The <<person1>><<person>><<else>>Whoever was following you<</if>> is nowhere to be found.
@@ -7733,7 +7742,7 @@ You run off to a nearby gardening store and start looking for something that wil
 	You nod and grab Robin's hand as you continue to the orphanage.
 	<br><br>
 
-	<<link [[Далее|Robin Pillory Escape Orphanage]]>><<endcombat>><<set $phase to 1>><</link>>
+	<<link [[Next|Robin Pillory Escape Orphanage]]>><<endcombat>><<set $phase to 1>><</link>>
 <<else>>
 	Robin pants as you lose your pursuer.
 	"I need... a second," <<person2>><<he>> says while wheezing.
@@ -7742,7 +7751,7 @@ You run off to a nearby gardening store and start looking for something that wil
 	After giving Robin a few minutes, you hold <<his>> hand and take <<him>> to the orphanage. <<takeHandholdingVirginity "Robin" "romantic">>
 	<br><br>
 
-	<<link [[Далее|Robin Pillory Escape Orphanage]]>><<endcombat>><<set $phase to 1>><</link>>
+	<<link [[Next|Robin Pillory Escape Orphanage]]>><<endcombat>><<set $phase to 1>><</link>>
 <</if>>
 
 :: Robin Pillory Escape Sex
@@ -7774,9 +7783,9 @@ You run off to a nearby gardening store and start looking for something that wil
 <<actionsman>>
 
 <<if _combatend>>
-	<span id="next"><<link [[Далее|Robin Pillory Escape Sex Finish]]>><</link>></span><<nexttext>>
+	<span id="next"><<link [[Next|Robin Pillory Escape Sex Finish]]>><</link>></span><<nexttext>>
 <<else>>
-	<span id="next"><<link [[Далее|Robin Pillory Escape Sex]]>><</link>></span><<nexttext>>
+	<span id="next"><<link [[Next|Robin Pillory Escape Sex]]>><</link>></span><<nexttext>>
 <</if>>
 
 :: Robin Pillory Escape Sex Finish
@@ -7802,7 +7811,7 @@ You run off to a nearby gardening store and start looking for something that wil
 <<clotheson>>
 <<endcombat>>
 
-<<link [[Далее|Robin Pillory Escape Orphanage]]>><<endevent>><<set $phase to 0>><</link>>
+<<link [[Next|Robin Pillory Escape Orphanage]]>><<endevent>><<set $phase to 0>><</link>>
 
 :: Robin Pillory Escape Orphanage
 <<set _robin to statusCheck("Robin")>>
@@ -7910,7 +7919,7 @@ You run off to a nearby gardening store and start looking for something that wil
 Robin tries to wash <<his>> body, but every time <<he>> moves, it looks like <<hes>> in pain.
 "Looks like the adrenaline finally wore off," Robin gives a pained chuckle.
 <br><br>
-
+<<wearProp "rag">>
 You take a cloth and soap it up before gently starting to wash Robin's body. <<He>> seems surprised at first, but doesn't voice any complaints.
 You have to empty the tub a few times just to keep the water clean.
 <br><br>
@@ -7923,7 +7932,7 @@ You make sure to get every trace of dirt<<if $robinPillory.danger gte 11>>, frui
 Once Robin is squeaky clean you help <<him>> get dressed in a towel and you both go to <<his>> room.
 <br><br>
 
-<<link [[Далее|Robin Pillory Finish]]>><</link>>
+<<link [[Next|Robin Pillory Finish]]>><<handheldon>><</link>>
 <br>
 
 
@@ -7944,7 +7953,7 @@ You wait outside the bathroom while Robin cleans <<himself>> up, and make sure t
 Eventually, you hear the water begin to drain, and Robin exits the bathroom in a towel shortly after. You walk <<him>> back to <<his>> room.
 <br><br>
 
-<<link [[Далее|Robin Pillory Finish]]>><</link>>
+<<link [[Next|Robin Pillory Finish]]>><</link>>
 <br>
 
 :: Robin Pillory Finish
@@ -7973,7 +7982,7 @@ You gently put <<him>> down on <<his>> bed and tuck <<him>> in. "Goodnight Robin
 <<run setRobinLocationOverride("sleep", numbersBetween(1, 24))>>
 <br><br>
 
-<<getouticon>><<link [[Покинуть|Orphanage]]>><<endevent>><</link>>
+<<getouticon>><<link [[Leave|Orphanage]]>><<endevent>><</link>>
 
 :: Robin Mischief
 <<effects>><<set _robin to statusCheck("Robin")>>
@@ -8001,7 +8010,7 @@ You're about to enter when the cover slides down, <<npcRevealText $NPCList[0] "l
 	<br>
 	<<link [[Close the door|Robin Mischief Close]]>><</link>>
 	<br>
-	<<if $promiscuity gte 55>>
+	<<if hasSexStat("promiscuity", 4)>>
 		<<link [[Masturbate|Robin Mischief Masturbation]]>><<set $masturbationstart to 1>><</link>><<promiscuous4>>
 		<br>
 	<</if>>
@@ -8020,7 +8029,7 @@ You're about to enter when the cover slides down, <<npcRevealText $NPCList[0] "l
 After regaining <<his>> breath, Robin turns on <<his>> side and pulls the cover over <<him>>. You decide to leave <<him>> to rest and close the door.
 <br><br>
 
-<<link [[Далее|Orphanage]]>><<endevent>><</link>>
+<<link [[Next|Orphanage]]>><<endevent>><</link>>
 
 :: Robin Mischief Close
 <<effects>>
@@ -8028,7 +8037,7 @@ After regaining <<his>> breath, Robin turns on <<his>> side and pulls the cover 
 You decide not to bother Robin. You close the door and return to the main hall.
 <br><br>
 
-<<link [[Далее|Orphanage]]>><<endevent>><</link>>
+<<link [[Next|Orphanage]]>><<endevent>><</link>>
 
 :: Robin Mischief Masturbation
 <<effects>>
@@ -8064,7 +8073,7 @@ After regaining <<his>> breath, Robin turns on <<his>> side and pulls the cover 
 <<endmasturbation>>
 <<endcombat>>
 
-<<link [[Далее|Orphanage]]>><<clotheson>><</link>>
+<<link [[Next|Orphanage]]>><<clotheson>><</link>>
 <br>
 
 :: Robin Mischief Leave
@@ -8073,7 +8082,7 @@ After regaining <<his>> breath, Robin turns on <<his>> side and pulls the cover 
 You apologise and close the door. You hear Robin call out to you, before giving up.
 <br><br>
 
-<<link [[Далее|Orphanage]]>><<endevent>><</link>>
+<<link [[Next|Orphanage]]>><<endevent>><</link>>
 
 :: Robin Mischief Enter
 <<effects>><<set _robin to statusCheck("Robin")>>
@@ -8092,7 +8101,7 @@ Before you can answer, <<he>> grabs you by your shoulders and pushes you down on
 
 <<link [[Kiss Robin|Robin Mischief Sex]]>><<set $sexstart to 1>><</link>>
 <br>
-<<link [[Покинуть|Robin Mischief Enter Leave]]>><</link>>
+<<link [[Leave|Robin Mischief Enter Leave]]>><</link>>
 
 :: Robin Mischief Enter Leave
 <<effects>>
@@ -8100,7 +8109,7 @@ Before you can answer, <<he>> grabs you by your shoulders and pushes you down on
 You get up from the bed and leave the room. Robin doesn't look at you.
 <br><br>
 
-<<link [[Далее|Orphanage]]>><<endevent>><</link>>
+<<link [[Next|Orphanage]]>><<endevent>><</link>>
 
 :: Robin Mischief Sex
 <<set _robin to statusCheck("Robin")>>
@@ -8126,9 +8135,9 @@ You get up from the bed and leave the room. Robin doesn't look at you.
 <<actionsman>>
 
 <<if _combatend>>
-	<span id="next"><<link [[Далее|Robin Mischief Sex Finish]]>><</link>></span><<nexttext>>
+	<span id="next"><<link [[Next|Robin Mischief Sex Finish]]>><</link>></span><<nexttext>>
 <<else>>
-	<span id="next"><<link [[Далее|Robin Mischief Sex]]>><</link>></span><<nexttext>>
+	<span id="next"><<link [[Next|Robin Mischief Sex]]>><</link>></span><<nexttext>>
 <</if>>
 
 :: Robin Mischief Sex Finish
@@ -8190,7 +8199,7 @@ You get up from the bed and leave the room. Robin doesn't look at you.
 <<clotheson>>
 <<endcombat>>
 
-<<link [[Далее|Orphanage]]>><</link>>
+<<link [[Next|Orphanage]]>><</link>>
 <br>
 
 :: Robin Bath
@@ -8217,7 +8226,7 @@ You get up from the bed and leave the room. Robin doesn't look at you.
 		<br><br>
 
 		<<ind>><<link [[Stay and watch (0:30)|Robin Bath Watch]]>><<pass 30>><<arousal 600>><<npcincr Robin lust 1>><</link>><<garousal>><<glust>>
-		<<if $exhibitionism gte 15 and ($leftarm isnot "bound" or $rightarm isnot "bound")>>
+		<<if hasSexStat("exhibitionism", 2) and ($leftarm isnot "bound" or $rightarm isnot "bound")>>
 			<br>
 			<<ind>><<link [[Ask to join (0:30)|Robin Bath Join]]>><<pass 30>><<npcincr Robin lust 3>><</link>><<exhibitionist2>><<gglust>>
 		<</if>>
@@ -8226,7 +8235,7 @@ You get up from the bed and leave the room. Robin doesn't look at you.
 		<br><br>
 
 		<<ind>><<link [[Stay and watch (0:30)|Robin Bath Watch]]>><<pass 30>><<arousal 600>><<npcincr Robin dom -1>><<pass 5>><</link>><<garousal>><<ldom>>
-		<<if $exhibitionism gte 15 and ($leftarm isnot "bound" or $rightarm isnot "bound")>>
+		<<if hasSexStat("exhibitionism", 2) and ($leftarm isnot "bound" or $rightarm isnot "bound")>>
 			<br>
 			<<ind>><<link [[Ask to join (0:30)|Robin Bath Join]]>><<pass 30>><<npcincr Robin lust 3>><</link>><<exhibitionist2>><<gglust>>
 		<</if>>
@@ -8238,7 +8247,7 @@ You get up from the bed and leave the room. Robin doesn't look at you.
 	<</if>>
 <</if>>
 <br>
-<<getouticon>><<link [[Покинуть|Orphanage]]>>
+<<getouticon>><<link [[Leave|Orphanage]]>>
 	<<endevent>>
 	<<if C.npc.Robin.trauma gte 40>>
 		<<stress 6>><<npcincr Robin confidence -1>>
@@ -8257,7 +8266,7 @@ You try your best to enquire Robin about what happened to <<him>>. <<Hes>> silen
 
 <<link [[Offer to help (0:30)|Robin Bath Trauma]]>><<pass 30>><<npcincr Robin trauma -3>><</link>><<lrtrauma>>
 <br>
-<<link [[Покинуть|Orphanage]]>><<endevent>><<stress 6>><<npcincr Robin confidence -1>><</link>><<gstress>><<ldom>>
+<<link [[Leave|Orphanage]]>><<endevent>><<stress 6>><<npcincr Robin confidence -1>><</link>><<gstress>><<ldom>>
 
 :: Robin Bath Trauma
 <<effects>><<set $daily.robin.bath to true>>
@@ -8271,7 +8280,7 @@ You gently scrub Robin's skin, making sure to be extra careful around sensitive 
 You help Robin get up from the bathtub and reach for a towel. "I-I'll be fine," Robin says softly as <<he>> wraps <<himself>> in the towel, before staggering back to <<his>> room.
 <br><br>
 
-<<link [[Далее|Orphanage]]>><<endevent>><</link>>
+<<link [[Next|Orphanage]]>><<endevent>><</link>>
 
 :: Robin Bath Watch
 <<effects>>
@@ -8296,7 +8305,7 @@ You help Robin get up from the bathtub and reach for a towel. "I-I'll be fine," 
 <</if>>
 <br><br>
 
-<<link [[Далее|Orphanage]]>><<endevent>><</link>>
+<<link [[Next|Orphanage]]>><<endevent>><</link>>
 
 :: Robin Bath Join
 <<effects>><<strip>><<wash>><<set $daily.robin.bath to true>>
@@ -8322,7 +8331,7 @@ You help Robin get up from the bathtub and reach for a towel. "I-I'll be fine," 
 		<br><br>
 
 		<<link [[Get out|Robin Bath Out]]>><<set $phase to 0>><</link>>
-		<<if $promiscuity gte 15>>
+		<<if hasSexStat("promiscuity", 2)>>
 			<br>
 			<<link [[Ask to go further|Robin Bath Sex]]>><<set $phase to 0>><<npcincr Robin love 1>><<npcincr Robin dom 1>><<set $sexstart to 1>><</link>><<glove>><<gdom>>
 		<</if>>
@@ -8340,7 +8349,7 @@ You help Robin get up from the bathtub and reach for a towel. "I-I'll be fine," 
 	while covering <<his>> own <<npcGenitals>>.
 	<br><br>
 
-	<<if $promiscuity gte 15>>
+	<<if hasSexStat("promiscuity", 2)>>
 		<<link [[Tease|Robin Bath Join Tease]]>><<npcincr Robin lust 1>><</link>><<glust>><<promiscuous2>>
 		<br>
 	<</if>>
@@ -8353,7 +8362,7 @@ You help Robin get up from the bathtub and reach for a towel. "I-I'll be fine," 
 You and Robin wash until you're both squeaky clean. Robin exits first, wrapping <<himself>> in a towel. "I'll... be in my room," <<he>> says, before quickly leaving the bathroom.
 <br><br>
 
-<<link [[Далее|Bath Finish]]>><<endevent>><</link>>
+<<link [[Next|Bath Finish]]>><<endevent>><</link>>
 
 :: Robin Bath Join Tease
 <<effects>>
@@ -8377,7 +8386,7 @@ You stretch your arms above your head, baring your <<chest>> to Robin. "I'm so t
 <</if>>
 <br><br>
 
-<<link [[Далее|Bath Finish]]>><<endevent>><</link>>
+<<link [[Next|Bath Finish]]>><<endevent>><</link>>
 
 :: Robin Bath Out
 <<effects>>
@@ -8390,7 +8399,7 @@ You stretch your arms above your head, baring your <<chest>> to Robin. "I'm so t
 Robin exits the bath and wraps <<himself>> in a towel. "I'll wait for you in my room," <<he>> says, kissing you on the cheek before leaving the bathroom.<<wash>>
 <br><br>
 
-<<link [[Далее|Bath Finish]]>><<endevent>><</link>>
+<<link [[Next|Bath Finish]]>><<endevent>><</link>>
 
 :: Robin Bath Sex
 <<set _robin to statusCheck("Robin")>>
@@ -8417,9 +8426,9 @@ Robin exits the bath and wraps <<himself>> in a towel. "I'll wait for you in my 
 <<actionsman>>
 
 <<if _combatend>>
-	<span id="next"><<link [[Далее|Robin Bath Sex Finish]]>><</link>></span><<nexttext>>
+	<span id="next"><<link [[Next|Robin Bath Sex Finish]]>><</link>></span><<nexttext>>
 <<else>>
-	<span id="next"><<link [[Далее|Robin Bath Sex]]>><</link>></span><<nexttext>>
+	<span id="next"><<link [[Next|Robin Bath Sex]]>><</link>></span><<nexttext>>
 <</if>>
 
 :: Robin Bath Sex Finish
@@ -8480,7 +8489,7 @@ Once <<hes>> done, Robin exits the bath and wraps <<himself>> in a towel. "I'll 
 
 <<endcombat>>
 
-<<link [[Далее|Bath Finish]]>><<endevent>><</link>>
+<<link [[Next|Bath Finish]]>><<endevent>><</link>>
 
 :: Bath Robin Tease
 <<effects>>
@@ -8495,7 +8504,7 @@ Once <<hes>> done, Robin exits the bath and wraps <<himself>> in a towel. "I'll 
 <</if>>
 <br><br>
 
-<<link [[Далее|Bath]]>><<endevent>><</link>>
+<<link [[Next|Bath]]>><<endevent>><</link>>
 
 :: Bath Robin Help
 <<effects>><<wash>>
@@ -8515,7 +8524,7 @@ Once <<hes>> done, Robin exits the bath and wraps <<himself>> in a towel. "I'll 
 	Robin helps you get up from the bathtub after rinsing you clean. <<He>> grabs a towel from the stack and gently dries your damp body. "I'll leave you to get dressed," <<he>> says. <<He>> pecks you on the cheek before leaving.
 	<br><br>
 
-	<<link [[Далее|Bath Finish]]>><<endevent>><</link>>
+	<<link [[Next|Bath Finish]]>><<endevent>><</link>>
 <<else>>
 	Robin looks at you nervously, but nods. <<He>> shuffles closer to the tub, doing <<his>> best to not let <<his>> eyes linger anywhere for too long.
 	<br><br>
@@ -8553,7 +8562,7 @@ Once <<hes>> done, Robin exits the bath and wraps <<himself>> in a towel. "I'll 
 You're almost done, and only have a little more to do until you're squeaky clean.
 <br><br>
 
-<<link [[Далее|Bath Finish]]>><<endevent>><</link>>
+<<link [[Next|Bath Finish]]>><<endevent>><</link>>
 
 :: Bath Robin Join
 <<effects>><<set $phase to 0>>
@@ -8579,7 +8588,7 @@ After that, Robin gently helps scrub you clean of dirt and grime, and you do the
 	Robin pauses, in the middle of taking off <<his>> shirt. "Oh," <<he>> says, a little confused. "Okay, I'll... be in my room." <<He>> awkwardly puts <<his>> clothes back on and leaves the bathroom.
 	<br><br>
 
-	<<link [[Далее|Bath]]>><<endevent>><</link>>
+	<<link [[Next|Bath]]>><<endevent>><</link>>
 <<else>>
 	Robin smiles and strips, before entering the bathtub <<himself>>. The tub isn't built for two, so Robin needs to squeeze against one side to make room for you. "Here," <<he>> says, gently pulling your head into <<his>> lap. <<He>> rubs shampoo into your hair and washes it, humming under <<his>> breath.
 	<<stress -6>><<trauma -6>><<lstress>><<ltrauma>>
@@ -8598,7 +8607,7 @@ After that, Robin gently helps scrub you clean of dirt and grime, and you do the
 		<br><br>
 
 		<<link [[Get out|Robin Bath Out]]>><<set $phase to 0>><</link>>
-		<<if $promiscuity gte 15>>
+		<<if hasSexStat("promiscuity", 2)>>
 			<br>
 			<<link [[Ask to go further|Robin Bath Sex]]>><<set $phase to 0>><<npcincr Robin love 1>><<npcincr Robin dom 1>><<set $sexstart to 1>><</link>><<glove>><<gdom>>
 		<</if>>
@@ -8614,7 +8623,7 @@ After that, Robin gently helps scrub you clean of dirt and grime, and you do the
 
 	You leave Robin with <<his>> thoughts.
 	<br><br>
-	<<link [[Покинуть|Orphanage]]>><<set $fromRobinRoom to true>><<set $robin_kicked_out to true>><<set $daily.robin.kickedOut to true>><<endevent>><</link>>
+	<<link [[Leave|Orphanage]]>><<set $fromRobinRoom to true>><<set $robin_kicked_out to true>><<set $daily.robin.kickedOut to true>><<endevent>><</link>>
 	<br>
 <<else>>
 	Robin nods, and frowns. "I understand," <<he>> says. "It's exciting, in a way! Bailey will help too. There's nothing to be afraid of." <<He>> squeezes your hand.<<gglove>><<npcincr Robin love 3>>
@@ -8631,7 +8640,7 @@ After that, Robin gently helps scrub you clean of dirt and grime, and you do the
 	<br><br>
 	You leave Robin with <<his>> thoughts.
 	<br><br>
-	<<link [[Покинуть|Orphanage]]>><<set $fromRobinRoom to true>><<set $robin_kicked_out to true>><<set $daily.robin.kickedOut to true>><<endevent>><</link>>
+	<<link [[Leave|Orphanage]]>><<set $fromRobinRoom to true>><<set $robin_kicked_out to true>><<set $daily.robin.kickedOut to true>><<endevent>><</link>>
 	<br>
 <<else>>
 	Robin shushes you. "It doesn't matter," <<he>> says. "I'll support you no matter what." <<He>> squeezes you. "It's exciting, in a way! Bailey will help too. There's nothing to be afraid of."
@@ -8703,4 +8712,4 @@ You unscrew the thermos.
 <<lstress>><<stress -6>>
 <br><br>
 
-<<link [[Далее|Domus Street]]>><<endevent>><</link>>
+<<link [[Next|Domus Street]]>><<endevent>><</link>>

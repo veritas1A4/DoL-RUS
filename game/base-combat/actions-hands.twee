@@ -269,7 +269,7 @@
 	<</if>>
 
 	<<if $lefttarget is "self" or $options.targetYourself is false or _targetnumber is 1>>
-		<<if $worn.under_lower.name isnot "ничего">>
+		<<if $worn.under_lower.name isnot "naked">>
 			<<if $worn.under_lower.state is "thighs" or $worn.under_lower.state is "knees" or $worn.under_lower.state is "ankles">>
 				<<set _leftaction["Pull up your " + $worn.under_lower.name] to "leftunderpull">>
 			<</if>>
@@ -283,7 +283,7 @@
 			<</if>>
 		<</if>>
 
-		<<if $worn.lower.name isnot "ничего">>
+		<<if $worn.lower.name isnot "naked">>
 			<<if $worn.upper.set is $worn.lower.set>>
 				<<if $worn.lower.state isnot setup.clothes.lower[clothesIndex('lower', $worn.lower)].state_base and $worn.upper.state is setup.clothes.upper[clothesIndex('upper', $worn.upper)].state_base and $worn.upper.state_top is setup.clothes.upper[clothesIndex('upper', $worn.upper)].state_top_base>>
 					<<set _leftaction["Fix your " + $worn.lower.name] to "leftlowerpull">>
@@ -293,7 +293,7 @@
 			<</if>>
 		<</if>>
 
-		<<if $worn.over_lower.name isnot "ничего">>
+		<<if $worn.over_lower.name isnot "naked">>
 			<<if $worn.over_upper.set is $worn.over_lower.set>>
 				<<if $worn.over_lower.state isnot setup.clothes.over_lower[clothesIndex('over_lower', $worn.over_lower)].state_base and $worn.over_upper.state is setup.clothes.over_upper[clothesIndex('over_upper', $worn.over_upper)].state_base and $worn.over_upper.state_top is setup.clothes.over_upper[clothesIndex('over_upper', $worn.over_upper)].state_top_base>>
 					<<set _leftaction["Fix your " + $worn.over_lower.name] to "leftoverlowerpull">>
@@ -304,13 +304,13 @@
 		<</if>>
 
 
-		<<if $worn.upper.name isnot "ничего">>
+		<<if $worn.upper.name isnot "naked">>
 			<<if $worn.upper.state isnot setup.clothes.upper[clothesIndex('upper', $worn.upper)].state_base or $worn.upper.state_top isnot setup.clothes.upper[clothesIndex('upper', $worn.upper)].state_top_base>>
 				<<set _leftaction["Fix your " + $worn.upper.name] to "leftupperpull">>
 			<</if>>
 		<</if>>
 
-		<<if $worn.over_upper.name isnot "ничего">>
+		<<if $worn.over_upper.name isnot "naked">>
 			<<if $worn.over_upper.state isnot setup.clothes.over_upper[clothesIndex('over_upper', $worn.over_upper)].state_base or $worn.over_upper.state_top isnot setup.clothes.over_upper[clothesIndex('over_upper', $worn.over_upper)].state_top_base>>
 				<<set _leftaction["Fix your " + $worn.over_upper.name] to "leftoverupperpull">>
 			<</if>>
@@ -656,7 +656,7 @@
 		<</if>>
 	<</if>>
 	<<if $righttarget is "self" or $options.targetYourself is false or _targetnumber is 1>>
-		<<if $worn.under_lower.name isnot "ничего">>
+		<<if $worn.under_lower.name isnot "naked">>
 			<<if $worn.under_lower.state is "thighs" or $worn.under_lower.state is "knees" or $worn.under_lower.state is "ankles">>
 				<<set _rightaction["Pull up your " + $worn.under_lower.name] to "rightunderpull">>
 			<</if>>
@@ -670,7 +670,7 @@
 			<</if>>
 		<</if>>
 
-		<<if $worn.lower.name isnot "ничего">>
+		<<if $worn.lower.name isnot "naked">>
 			<<if $worn.upper.set is $worn.lower.set>>
 				<<if $worn.lower.state isnot setup.clothes.lower[clothesIndex('lower', $worn.lower)].state_base and $worn.upper.state is setup.clothes.upper[clothesIndex('upper', $worn.upper)].state_base and $worn.upper.state_top is setup.clothes.upper[clothesIndex('upper', $worn.upper)].state_top_base>>
 					<<set _rightaction["Fix your " + $worn.lower.name] to "rightlowerpull">>
@@ -680,7 +680,7 @@
 			<</if>>
 		<</if>>
 
-		<<if $worn.over_lower.name isnot "ничего">>
+		<<if $worn.over_lower.name isnot "naked">>
 			<<if $worn.over_upper.set is $worn.over_lower.set>>
 				<<if $worn.over_lower.state isnot setup.clothes.over_lower[clothesIndex('over_lower', $worn.over_lower)].state_base and $worn.over_upper.state is setup.clothes.over_upper[clothesIndex('over_upper', $worn.over_upper)].state_base and $worn.over_upper.state_top is setup.clothes.over_upper[clothesIndex('over_upper', $worn.over_upper)].state_top_base>>
 					<<set _rightaction["Fix your " + $worn.over_lower.name] to "rightoverlowerpull">>
@@ -690,13 +690,13 @@
 			<</if>>
 		<</if>>
 
-		<<if $worn.upper.name isnot "ничего">>
+		<<if $worn.upper.name isnot "naked">>
 			<<if $worn.upper.state isnot setup.clothes.upper[clothesIndex('upper', $worn.upper)].state_base or $worn.upper.state_top isnot setup.clothes.upper[clothesIndex('upper', $worn.upper)].state_top_base>>
 				<<set _rightaction["Fix your " + $worn.upper.name] to "rightupperpull">>
 			<</if>>
 		<</if>>
 
-		<<if $worn.over_upper.name isnot "ничего">>
+		<<if $worn.over_upper.name isnot "naked">>
 			<<if $worn.over_upper.state isnot setup.clothes.over_upper[clothesIndex('over_upper', $worn.over_upper)].state_base or $worn.over_upper.state_top isnot setup.clothes.over_upper[clothesIndex('over_upper', $worn.over_upper)].state_top_base>>
 				<<set _rightaction["Fix your " + $worn.over_upper.name] to "rightoverupperpull">>
 			<</if>>
@@ -866,27 +866,27 @@
 	<<if _args[0] isnot undefined>>
 		<<if ($worn.over_lower.exposed gte 1 and $worn.lower.exposed gte 1) or setup.clothes.lower[clothesIndex('lower', $worn.lower)].skirt is 1 or $worn.lower.type.includes("naked")>>
 			<<if _args[0] is "left">>
-				<<if $promiscuity gte 15 and ($lefttarget is "self" or $options.targetYourself is false or _targetnumber is 1)>>
+				<<if hasSexStat("promiscuity", 2) and ($lefttarget is "self" or $options.targetYourself is false or _targetnumber is 1)>>
 					<<if $player.penisExist and $penisuse is 0 and !playerChastity("penis")>>
 						<<set _leftaction["Stroke your penis"] to "leftmasturbatepenis">>
 					<</if>>
 					<<if $player.vaginaExist and $vaginause is 0 and !playerChastity("vagina")>>
 						<<set _leftaction["Play with your pussy"] to "leftmasturbatepussy">>
 					<</if>>
-					<<if $promiscuity gte 35 and $awareness gte 200 and $anususe is 0 and !playerChastity("anus")>>
+					<<if hasSexStat("promiscuity", 3) and $awareness gte 200 and $anususe is 0 and !playerChastity("anus")>>
 						<<set _leftaction["Play with your anus"] to "leftmasturbateanus">>
 					<</if>>
 				<</if>>
 			<</if>>
 			<<if _args[0] is "right">>
-				<<if $promiscuity gte 15 and ($righttarget is "self" or $options.targetYourself is false or _targetnumber is 1)>>
+				<<if hasSexStat("promiscuity", 2) and ($righttarget is "self" or $options.targetYourself is false or _targetnumber is 1)>>
 					<<if $player.penisExist and $penisuse is 0 and !playerChastity("penis")>>
 						<<set _rightaction["Stroke your penis"] to "rightmasturbatepenis">>
 					<</if>>
 					<<if $player.vaginaExist and $vaginause is 0 and !playerChastity("vagina")>>
 						<<set _rightaction["Play with your pussy"] to "rightmasturbatepussy">>
 					<</if>>
-					<<if $promiscuity gte 35 and $awareness gte 200 and $anususe is 0 and !playerChastity("anus")>>
+					<<if hasSexStat("promiscuity", 3) and $awareness gte 200 and $anususe is 0 and !playerChastity("anus")>>
 						<<set _rightaction["Play with your anus"] to "rightmasturbateanus">>
 					<</if>>
 				<</if>>
@@ -982,7 +982,7 @@
 
 			/* Masturbate */
 			<<if $worn.lower.state isnot setup.clothes.lower[clothesIndex('lower', $worn.lower)].state_base or setup.clothes.lower[clothesIndex('lower', $worn.lower)].skirt is 1 or $worn.lower.type.includes("naked")>>
-				<<if $promiscuity gt 34 and ($lefttarget is "self" or $options.targetYourself is false or _targetnumber is 1)>>
+				<<if hasSexStat("promiscuity", 3) and ($lefttarget is "self" or $options.targetYourself is false or _targetnumber is 1)>>
 					<<if $player.vaginaExist and $currentSexToyLeft.type.includes("dildo")>>
 						<<set _leftaction["Move your "+$currentSexToyLeft.name+" to your pussy"] to "dildoSelfPussyEntrance">>
 					<</if>>
@@ -1021,7 +1021,7 @@
 
 				/* Masturbate */
 			<<if $worn.lower.state isnot setup.clothes.lower[clothesIndex('lower', $worn.lower)].state_base or setup.clothes.lower[clothesIndex('lower', $worn.lower)].skirt is 1 or $worn.lower.type.includes("naked")>>
-				<<if $promiscuity gt 34 and ($righttarget is "self" or $options.targetYourself is false or _targetnumber is 1)>>
+				<<if hasSexStat("promiscuity", 3) and ($righttarget is "self" or $options.targetYourself is false or _targetnumber is 1)>>
 					<<if $player.vaginaExist and $currentSexToyRight.type.includes("dildo")>>
 						<<set _rightaction["Move your "+$currentSexToyRight.name+" to your pussy"] to "dildoSelfPussyEntrance">>
 					<</if>>
@@ -1041,7 +1041,7 @@
 	<<if _args[0] isnot undefined>>
 		<<if _args[0] is "left">>
 			<<set $_genitals_exposed to $worn.over_lower.vagina_exposed gte 1 and ($worn.lower.vagina_exposed gte 1 or setup.clothes.lower[clothesIndex('lower', $worn.lower)].skirt gte 1) and $worn.under_lower.vagina_exposed gte 1 and $worn.genitals.vagina_exposed gte 1>>
-			<<if $promiscuity gt 34 and ($lefttarget is "self" or $options.targetYourself is false or _targetnumber is 1)>>
+			<<if hasSexStat("promiscuity", 3) and ($lefttarget is "self" or $options.targetYourself is false or _targetnumber is 1)>>
 				<<if $_genitals_exposed and $vaginause is 0>>
 					<<set _leftaction["Push your " + $currentSexToyLeft.name + " in"] to "dildoSelfPussy">>
 				<</if>>
@@ -1055,7 +1055,7 @@
 		<</if>>
 		<<if _args[0] is "right">>
 			<<set $_genitals_exposed to $worn.over_lower.vagina_exposed gte 1 and ($worn.lower.vagina_exposed gte 1 or setup.clothes.lower[clothesIndex('lower', $worn.lower)].skirt gte 1) and $worn.under_lower.vagina_exposed gte 1 and $worn.genitals.vagina_exposed gte 1>>
-			<<if $promiscuity gt 34 and ($righttarget is "self" or $options.targetYourself is false or _targetnumber is 1)>>
+			<<if hasSexStat("promiscuity", 3) and ($righttarget is "self" or $options.targetYourself is false or _targetnumber is 1)>>
 				<<if $_genitals_exposed and $vaginause is 0>>
 					<<set _rightaction["Push your " + $currentSexToyRight.name + " in"] to "dildoSelfPussy">>
 				<</if>>
@@ -1075,7 +1075,7 @@
 		<<if _args[0] is "left">>
 			<<set $_genitals_exposed to $worn.over_lower.vagina_exposed gte 1 and ($worn.lower.vagina_exposed gte 1 or setup.clothes.lower[clothesIndex('lower', $worn.lower)].skirt gte 1) and $worn.under_lower.vagina_exposed gte 1 and $worn.genitals.vagina_exposed gte 1>>
 			<<set $_anus_exposed to $worn.over_lower.anus_exposed gte 1 and ($worn.lower.anus_exposed gte 1 or setup.clothes.lower[clothesIndex('lower', $worn.lower)].skirt gte 1) and $worn.under_lower.anus_exposed gte 1 and $worn.genitals.anus_exposed gte 1>>
-			<<if $promiscuity gt 34 and ($lefttarget is "self" or $options.targetYourself is false or _targetnumber is 1)>>
+			<<if hasSexStat("promiscuity", 3) and ($lefttarget is "self" or $options.targetYourself is false or _targetnumber is 1)>>
 				<<if $_anus_exposed and $anususe is 0>>
 					<<set _leftaction["Push your " + $currentSexToyLeft.name + " in"] to "dildoSelfAnus">>
 				<</if>>
@@ -1090,7 +1090,7 @@
 		<<if _args[0] is "right">>
 			<<set $_genitals_exposed to $worn.over_lower.vagina_exposed gte 1 and ($worn.lower.vagina_exposed gte 1 or setup.clothes.lower[clothesIndex('lower', $worn.lower)].skirt gte 1) and $worn.under_lower.vagina_exposed gte 1 and $worn.genitals.vagina_exposed gte 1>>
 			<<set $_anus_exposed to $worn.over_lower.anus_exposed gte 1 and ($worn.lower.anus_exposed gte 1 or setup.clothes.lower[clothesIndex('lower', $worn.lower)].skirt gte 1) and $worn.under_lower.anus_exposed gte 1 and $worn.genitals.anus_exposed gte 1>>
-			<<if $promiscuity gt 34 and ($righttarget is "self" or $options.targetYourself is false or _targetnumber is 1)>>
+			<<if hasSexStat("promiscuity", 3) and ($righttarget is "self" or $options.targetYourself is false or _targetnumber is 1)>>
 				<<if $_anus_exposed and $anususe is 0>>
 					<<set _rightaction["Push your " + $currentSexToyRight.name + " in"] to "dildoSelfAnus">>
 				<</if>>
@@ -1109,7 +1109,7 @@
 	<<if _args[0] isnot undefined>>
 		<<if _args[0] is "left">>
 			<<set $_genitals_exposed to $worn.over_lower.vagina_exposed gte 1 and ($worn.lower.vagina_exposed gte 1 or setup.clothes.lower[clothesIndex('lower', $worn.lower)].skirt gte 1) and $worn.under_lower.vagina_exposed gte 1 and $worn.genitals.vagina_exposed gte 1>>
-			<<if $promiscuity gt 34 and ($lefttarget is "self" or $options.targetYourself is false or _targetnumber is 1)>>
+			<<if hasSexStat("promiscuity", 3) and ($lefttarget is "self" or $options.targetYourself is false or _targetnumber is 1)>>
 				<<if $_genitals_exposed and $penisuse is 0>>
 					<<set _leftaction["Penetrate your " + $currentSexToyLeft.name] to "strokerSelfPenis">>
 				<</if>>
@@ -1121,7 +1121,7 @@
 
 		<<if _args[0] is "right">>
 			<<set $_genitals_exposed to $worn.over_lower.vagina_exposed gte 1 and ($worn.lower.vagina_exposed gte 1 or setup.clothes.lower[clothesIndex('lower', $worn.lower)].skirt gte 1) and $worn.under_lower.vagina_exposed gte 1 and $worn.genitals.vagina_exposed gte 1>>
-			<<if $promiscuity gt 34 and ($righttarget is "self" or $options.targetYourself is false or _targetnumber is 1)>>
+			<<if hasSexStat("promiscuity", 3) and ($righttarget is "self" or $options.targetYourself is false or _targetnumber is 1)>>
 				<<if $_genitals_exposed and $penisuse is 0>>
 					<<set _rightaction["Penetrate your " + $currentSexToyRight.name] to "strokerSelfPenis">>
 				<</if>>

@@ -1,10 +1,9 @@
 :: Widgets Img [widget]
 <<widget "img">>
-	<<set _filters to $skinColor.current>>
 	<<if !_thermoDisable>>
 		<<thermometer>>
 	<</if>>
-	<<charLight "118px" "183px">>
+
 	<div id="imgInv">
 		<<if $condoms>>
 			<div><<condomsSidebar>></div>
@@ -15,179 +14,10 @@
 			<div><<peppersprays>></div>
 		<</if>>
 	</div>
-	<div id="img" @class="limitedColourContainerClasses() + ($options.sidebarAnimations isnot false ? '':' noAnimations') + ' offset-sidebar-img'">
-	<<canvasimg>>
-	<div id="characterTooltip"></div>
+	<div id="img" class="offset-sidebar-img">
+		<<canvasimg "mainCanvas">>
 	</div>
-<</widget>>
-
-<<widget "faceimg">>
-	<<set _diagram = _args[0] ? 1 : 0>>
-	<<set _animIdle = _diagram ? "" : "anim-idle-2f">>
-
-	<<if $options.tanImgEnabled>>
-		<<set _red = "/red">>
-	<<else>>
-		<<set _red = "">>
-	<</if>>
-
-	<img @class="'layer-facebase ' + _animIdle" @src="'img/face/' + $facestyle + _red + '/base.png'" @style="'filter: '+_filters.body">
-
-	<<if $earsfront == true>>
-		<img class="layer-ears ears" @src="'img/face/' + $facestyle + '/ears.png'" @style="'filter: '+_filters.body">
-	<</if>>
-
-	<<if $player.freckles == true and $makeup.concealer != 1>>
-		<img class="layer-freckles freckles" @src="'img/face/' + $facestyle + _red + '/freckles.png'" @style="'filter: '+_filters.body">
-	<</if>>
-
-	<!-- Eyes -->
-	<<if ($trauma gte ($traumamax * 0.9) and _diagram is 0) or $possessed>>
-		<<set _iris = "irisempty">>
-		<<set _trauma = "-trauma">>
-	<<else>>
-		<<set _iris = "iris">>
-		<<set _trauma = "">>
-	<</if>>
-	<<if $options.blinkingEnabled and _diagram is 0>>
-		<<set _blink = "eyes-blink" + _trauma>>
-	<<else>>
-		<<set _blink = "">>
-	<</if>>
-	<<if $pain gte 100 and $willpowerpain is 0 and _diagram is 0>>
-		<<set _sclera = "sclerabloodshot">>
-	<<else>>
-		<<set _sclera = "sclera">>
-	<</if>>
-	<<if $options.halfClosedEnabled and ($arousal gte ($arousalmax / 5) * 4 or $orgasmdown gte 1) and _trauma is "" and $pain lt 60 and _diagram is 0 and $eyelidTEST is true or $possessed>>
-		<<set _half = "_halfclosed">>
-	<<else>>
-		<<set _half = "">>
-	<</if>>
-
-	<<run defineCustomEyeColourStyle()>> /* define Filter: css style for eyes for old renderer */
-
-	<<if $possessed>>
-		<<set _colourEye to (["haunt", "despair"].includes($wraith.state) ? "eye-redPossessed" : "eye-bluePossessed")>>
-	<<else>>
-		<<set _colourEye to "">>
-		<<if $passage == "Start">>
-			<<set _colourEyeLeft to "eye-" + $eyeselect>>
-			<<set _colourEyeRight to "eye-" + $eyeselect>>
-			<<script>>T.colourEyeLeft = T.colourEyeLeft.replace(/\s/g, '-')<</script>>
-			<<script>>T.colourEyeRight = T.colourEyeRight.replace(/\s/g, '-')<</script>>
-		<<else>>
-			<<if $makeup.eyelenses.left == 0>>
-				<<set _colourEyeLeft to "eye-" + $leftEyeColour>>
-				<<script>>T.colourEyeLeft = T.colourEyeLeft.replace(/\s/g, '-')<</script>>
-			<<else>>
-				<<set _colourEyeLeft to "eye-" + $makeup.eyelenses.left>>
-				<<script>>T.colourEyeLeft = T.colourEyeLeft.replace(/\s/g, '-')<</script>>
-			<</if>>
-			<<if $makeup.eyelenses.right == 0>>
-				<<set _colourEyeRight to "eye-" + $rightEyeColour>>
-				<<script>>T.colourEyeRight = T.colourEyeRight.replace(/\s/g, '-')<</script>>
-			<<else>>
-				<<set _colourEyeRight to "eye-" + $makeup.eyelenses.right>>
-				<<script>>T.colourEyeRight = T.colourEyeRight.replace(/\s/g, '-')<</script>>
-			<</if>>
-		<</if>>
-	<</if>>
-	<<run defineCustomEyeColourStyle()>> /* define Filter: css style for eyes for old renderer */
-	<img class="layer-eyes" @src="'img/face/' + $facestyle + _red + '/eyes.png'" @style="'filter: '+_filters.body">
-	<img class="layer-sclera" @src="'img/face/' + $facestyle + '/' + _sclera + '.png'">
-	<img @style="_custom_eyelenses_left_style" @class="'layer-iris' + _colourEye + ' left-iris ' + _colourEyeLeft + ' ' + _animIdle" @src="'img/face/' + $facestyle + '/' + _iris + _half + '_left.png'">
-	<img @style="_custom_eyelenses_right_style" @class="'layer-iris' + _colourEye + ' right-iris ' + _colourEyeRight + ' ' + _animIdle" @src="'img/face/' + $facestyle + '/' + _iris + _half + '_right.png'">
-	<img @class="'layer-eyelids ' + _blink" @src="'img/face/' + $facestyle + _red + '/eyelids' + _half + '.png'" @style="'filter: '+_filters.body">
-	<img @class="'layer-lashes ' + _blink" @src="'img/face/' + $facestyle + '/lashes' + _half + '.png'">
-
-	<<if _diagram is 0>>
-		<<if $makeup.eyeshadow != 0>>
-			<img @class="'layer-eyelids ' + _blink + ' eyeshadow-' + $makeup.eyeshadow.replace(/ /g, '-')" @src="'img/face/' + $facestyle + '/makeup/eyeshadows' + _half + '.png'">
-		<</if>>
-		<<if $makeup.mascara != 0>>
-			<img @class="'layer-lashes ' + _blink + ' mascara-' + $makeup.mascara.replace(/ /g, '-')" @src="'img/face/' + $facestyle + '/makeup/mascara' + _half + '.png'">
-		<</if>>
-	<</if>>
-
-	<!-- Brows -->
-	<<if $trauma gte $traumamax or $possessed or _diagram is 1>>
-		<<set _brows = "top">>
-	<<elseif $pain gte 60>>
-		<<set _brows = "low">>
-	<<elseif $arousal gte ($arousalmax / 5) * 4 or $orgasmdown gte 1>>
-		<<set _brows = "orgasm">>
-	<<elseif $pain gte 20>>
-		<<set _brows = "mid">>
-	<<else>>
-		<<set _brows = "top">>
-	<</if>>
-	<<if $makeup.browscolour != 0>>
-		<<set _naturalColour = "">>
-		<<set _browsColour = "brows-" + $makeup.browscolour.replace(/ /g, '-')>>
-	<<else>>
-		<<set _naturalColour = "hair-" + $naturalhaircolour.replace(/ /g, '-')>>
-		<<set _browsColour = "colour-hair">>
-	<</if>>
-	<<if $browsposition is "back">>
-		<div @class="'layer-backbrow ' + _naturalColour">
-			<img @class="_browsColour" @src="'img/face/' + $facestyle + '/brow' + _brows + '.png'">
-		</div>
-	<<else>>
-		<div @class="'layer-brow ' + _naturalColour">
-			<img @class="_browsColour" @src="'img/face/' + $facestyle + '/brow' + _brows + '.png'">
-		</div>
-	<</if>>
-
-
-	<!-- Mouth -->
-	<<if $trauma gte $traumamax or _diagram is 1>>
-		<<set _mouth = "neutral">>
-	<<elseif $pain gte 60 or $orgasmdown gte 1 or ($possessed)>>
-		<<set _mouth = "cry">>
-	<<elseif $exposed is 2 and $uncomfortable.nude is true and $dontHide is false or $pain gte 20>>
-		<<set _mouth = "frown">>
-	<<elseif $pain gte 1 or ($exposed is 1 and $uncomfortable.underwear is true) or ($combat is 1 and $consensual isnot 1)>>
-		<<set _mouth = "neutral">>
-	<<else>>
-		<<set _mouth = "smile">>
-	<</if>>
-	<img class="layer-mouth" @src="'img/face/' + $facestyle + _red + '/mouth' + _mouth + '.png'" @style="'filter: ' + _filters.mouth">
-
-	<<if $makeup.lipstick != 0 and _diagram is 0>>
-		<img @class="'layer-mouth lipstick-' + $makeup.lipstick.replace(/ /g, '-')" @src="'img/face/' + $facestyle + '/makeup/lipstick_' + _mouth + '.png'">
-	<</if>>
-
-	<!-- Don't draw blush or tears on a static diagram -->
-	<<if _diagram is 0>>
-		<!-- Blush -->
-		<<set _blush = Math.min(5, Math.floor($arousal / 2000) + 1)>>
-		<<if _blush lt 2 and $exposed gte 2>>
-			<<set _blush = 2>>
-		<<elseif $arousal lt 100 and $exposed lt 1>>
-			<<set _blush = 0>>
-		<</if>>
-		<<if !$worn.over_upper.type.includes("naked") and !$worn.over_lower.type.includes("naked") and
-		$worn.upper.type.includes("naked") and $worn.lower.type.includes("naked") and
-		$worn.under_upper.type.includes("naked") and $worn.under_lower.type.includes("naked")>>
-			<<set _blush = 2>>
-		<</if>>
-		<<if _blush gte 1>>
-			<img class="layer-blush" @src="'img/face/' + $facestyle + _red + '/blush' + _blush + '.png'">
-		<</if>>
-
-		<!-- Tears -->
-		<<if $pain gte 20>>
-			<img class="layer-tears anim-idle-2f" @src="'img/face/' + $facestyle + '/' + 'tear' + painToTearsLvl($pain) + '.png'">
-			<<if $makeup.mascara != 0>>
-				<img @class="'layer-lashes ' + _blink + ' mascara-' + $makeup.mascara.replace(/ /g, '-')" @src="'img/face/' + $facestyle + '/' + 'makeup/mascara' + painToTearsLvl($pain) + '.png'">
-			<</if>>
-		<</if>>
-	<</if>>
-	<<if $passage == "Pharmacy Select Custom Lenses">>
-		<<unset _custom_eyelenses_right_style>>
-		<<unset _custom_eyelenses_left_style>>
-	<</if>>
+	<div id="characterTooltip"></div>
 <</widget>>
 
 :: Widgets Combat Clothes Img [widget]
@@ -626,7 +456,7 @@
 		<img @class="'layer-sexunder colour-face anim-doggy-4f-'+_animspeed" src="img/sex/doggy/active/facewear/muzzle/full.png" @style="$worn.face.colourCustom">
 	<<elseif $worn.face.name is "islander mask">>
 		<img @class="'layer-sexsleeve anim-doggy-4f-'+_animspeed" @src="'img/sex/doggy/active/facewear/'+$worn.face.variable+'/full.png'">
-	<<elseif $worn.face.name isnot "ничего">>
+	<<elseif $worn.face.name isnot "naked">>
 		<img @class="'layer-sexunder colour-face anim-doggy-4f-'+_animspeed" @src="'img/sex/doggy/active/facewear/'+$worn.face.variable+'/full.png'" @style="$worn.face.colourCustom">
 		/* hardcoded to fix missing image bug until the canvas combat renderer is replaced. forgive me my sins. */
 		<<if $worn.face.accessory is 1 && ["monocle", "gasmask", "square", "round", "punk", "coolshades", "cateye", "belly", "aviator"].includes($worn.face.variable)>>
@@ -646,7 +476,7 @@
 		<img @class="'layer-sexunder colour-neck anim-doggy-4f-'+_animspeed" src="img/sex/doggy/active/clothchoker/full.png" @style="($worn.neck.colour is 'custom'? $worn.neck.colourCustom : '')">
 	<</if>>
 
-	<<if $worn.hands.name isnot "ничего">>
+	<<if $worn.hands.name isnot "naked">>
 		<<if $worn.hands.leftImage is 1>>
 			<<if $leftarm is "penis">>
 				<<if $enemytype isnot "beast">>
@@ -1222,7 +1052,7 @@
 		<img @class="'layer-sexunder colour-face anim-idle-2f-'+_animspeed" src="img/sex/doggy/active/facewear/muzzle/full.png" @style="$worn.face.colourCustom">
 	<<elseif $worn.face.name is "islander mask">>
 		<img @class="'layer-sexsleeve anim-idle-2f-'+_animspeed" @src="'img/sex/doggy/active/facewear/'+$worn.face.variable+'/full.png'">
-	<<elseif $worn.face.name isnot "ничего">>
+	<<elseif $worn.face.name isnot "naked">>
 		<img @class="'layer-sexunder colour-face anim-idle-2f-'+_animspeed" @src="'img/sex/doggy/active/facewear/'+$worn.face.variable+'/full.png'" @style="$worn.face.colourCustom">
 		<<if $worn.face.accessory is 1 && ["monocle", "gasmask", "square", "round", "punk", "coolshades", "cateye", "belly", "aviator"].includes($worn.face.variable)>>
 			<img @class="'layer-sexunder colour-face_acc anim-idle-2f-'+_animspeed" @src="'img/sex/doggy/active/facewear/'+$worn.face.variable+'/acc.png'">
@@ -1241,7 +1071,7 @@
 		<img class="layer-sexunder colour-neck anim-idle-2f" src="img/sex/doggy/active/clothchoker/full.png" @style="($worn.neck.colour is 'custom'? $worn.neck.colourCustom : '')">
 	<</if>>
 
-	<<if $worn.hands.name isnot "ничего">>
+	<<if $worn.hands.name isnot "naked">>
 		<<if $worn.hands.leftImage is 1>>
 			<<if $leftarm is "penis">>
 				<img class="layer-sexunder colour-hands anim-idle-2f" @src="'img/sex/doggy/active/hands/'+$worn.hands.variable+'/left handjob.png'" @style="$worn.hands.colourCustom">
@@ -1792,7 +1622,7 @@
 		<img class="layer-sexunder colour-face anim-idle-2f" src="img/sex/missionary/active/facewear/muzzle/full.png" @style="$worn.face.colourCustom">
 	<<elseif $worn.face.name is "islander mask">>
 		<img class="layer-sexsleeve anim-idle-2f" @src="'img/sex/missionary/active/facewear/'+$worn.face.variable+'/full.png'">
-	<<elseif $worn.face.name isnot "ничего">>
+	<<elseif $worn.face.name isnot "naked">>
 		<img class="layer-sexunder colour-face anim-idle-2f" @src="'img/sex/missionary/active/facewear/'+$worn.face.variable+'/full.png'" @style="$worn.face.colourCustom">
 		<<if $worn.face.accessory is 1 && ["monocle", "gasmask", "square", "round", "punk", "coolshades", "cateye", "belly", "aviator"].includes($worn.face.variable)>>
 			<img class="layer-sexunder colour-face_acc anim-idle-2f" @src="'img/sex/missionary/active/facewear/'+$worn.face.variable+'/acc.png'">
@@ -1811,7 +1641,7 @@
 		<img class="layer-sexunder colour-neck anim-idle-2f" src="img/sex/missionary/active/clothchoker/full.png" @style="($worn.neck.colour is 'custom'? $worn.neck.colourCustom : '')">
 	<</if>>
 
-	<<if $worn.hands.name isnot "ничего">>
+	<<if $worn.hands.name isnot "naked">>
 		<<if $worn.hands.leftImage is 1>>
 			<<if $leftarm is "penis">>
 				<img class="layer-sexunder colour-hands anim-idle-2f" @src="'img/sex/missionary/active/hands/'+$worn.hands.variable+'/left handjob.png'" @style="$worn.hands.colourCustom">
@@ -2333,7 +2163,7 @@
 		<img @class="'layer-sexunder colour-face anim-doggy-4f-'+_animspeed" src="img/sex/missionary/active/facewear/muzzle/full.png" @style="$worn.face.colourCustom">
 	<<elseif $worn.face.name is "islander mask">>
 		<img @class="'layer-sexsleeve anim-doggy-4f-'+_animspeed" @src="'img/sex/missionary/active/facewear/'+$worn.face.variable+'/full.png'">
-	<<elseif $worn.face.name isnot "ничего">>
+	<<elseif $worn.face.name isnot "naked">>
 		<img @class="'layer-sexunder colour-face anim-doggy-4f-'+_animspeed" @src="'img/sex/missionary/active/facewear/'+$worn.face.variable+'/full.png'" @style="$worn.face.colourCustom">
 		<<if $worn.face.accessory is 1 && ["monocle", "gasmask", "square", "round", "punk", "coolshades", "cateye", "belly", "aviator"].includes($worn.face.variable)>>
 			<img @class="'layer-sexunder anim-doggy-4f-'+_animspeed" @src="'img/sex/missionary/active/facewear/'+$worn.face.variable+'/acc.png'">
@@ -2352,7 +2182,7 @@
 		<img @class="'layer-sexunder colour-neck anim-doggy-4f-'+_animspeed" src="img/sex/missionary/active/clothchoker/full.png" @style="($worn.neck.colour is 'custom'? $worn.neck.colourCustom : '')">
 	<</if>>
 
-	<<if $worn.hands.name isnot "ничего">>
+	<<if $worn.hands.name isnot "naked">>
 		<<if $worn.hands.leftImage is 1>>
 			<<if $leftarm is "penis">>
 				<img @class="'layer-sexsclera colour-hands anim-doggy-4f-'+_animspeed" @src="'img/sex/missionary/active/hands/'+$worn.hands.variable+'/left handjob.png'" @style="$worn.hands.colourCustom">
@@ -2532,7 +2362,7 @@
 <</widget>>
 
 <<widget "baseClothingImg">>
-	<<if $worn[_args[0]].name isnot "ничего">>
+	<<if $worn[_args[0]].name isnot "naked">>
 		<<baseClothingStrings _args[0]>>
 		<div @class="'clothes-div layer-'+_args[0]">
 			<<if $worn[_args[0]].mainImage isnot 0>>
@@ -2551,7 +2381,7 @@
 <</widget>>
 
 <<widget "neckimg">>
-	<<if $worn.neck.name isnot "ничего">>
+	<<if $worn.neck.name isnot "naked">>
 		<<if $worn.neck.name is "necktie">>
 			<<baseClothingStrings "neck">>
 			<<if $worn.upper.has_collar is 1>>
@@ -2573,7 +2403,7 @@
 <</widget>>
 
 <<widget "handsimg">>
-	<<if $worn.hands.name isnot "ничего">>
+	<<if $worn.hands.name isnot "naked">>
 		<<baseClothingStrings "hands">>
 		<div @class="'clothes-div layer-hands'">
 			<<if $worn.hands.mainImage isnot 0>>
@@ -2604,7 +2434,7 @@
 <</widget>>
 
 <<widget "underupperimg">>
-	<<if $worn.under_upper.name isnot "ничего">>
+	<<if $worn.under_upper.name isnot "naked">>
 		<<baseClothingStrings "under_upper">>
 		<<switch $underupperwetstage>>
 			<<case 1>><<set _underUpperWetness to " clothes-damp">>
@@ -2664,7 +2494,7 @@
 <</widget>>
 
 <<widget "underlowerimg">>
-	<<if $worn.under_lower.name isnot "ничего">>
+	<<if $worn.under_lower.name isnot "naked">>
 		<<baseClothingStrings "under_lower">>
 		<<switch $underlowerwetstage>>
 			<<case 1>><<set _underlowerWetness to " clothes-damp">>
@@ -2707,7 +2537,7 @@
 <</widget>>
 
 <<widget "lowerimg">>
-	<<if $worn.lower.name isnot "ничего">>
+	<<if $worn.lower.name isnot "naked">>
 		<<baseClothingStrings "lower">>
 		<<switch $lowerwetstage>>
 			<<case 1>><<set _lowerWetness to " clothes-damp">>
@@ -2748,7 +2578,7 @@
 <</widget>>
 
 <<widget "overlowerimg">>
-	<<if $worn.over_lower.name isnot "ничего">>
+	<<if $worn.over_lower.name isnot "naked">>
 		<<baseClothingStrings "over_lower">>
 		<<if $worn.over_lower.integrity lte (clothingData('over_lower',$worn.over_lower,'integrity_max') / 10) * 2>>
 			<<set _imgName to "tattered">>
@@ -2776,7 +2606,7 @@
 <</widget>>
 
 <<widget "genitalsimg">>
-	<<if $worn.genitals.name isnot "ничего">>
+	<<if $worn.genitals.name isnot "naked">>
 		<<set _genitalsColour = ($worn.genitals.colour ? " clothes-"+$worn.genitals.colour.replace(/ /g, '-') : "")>>
 		<div class="layer-genitals">
 			<<if $worn.genitals.mainImage isnot 0 and !setup.clothes.genitals[clothesIndex('genitals',$worn.genitals)].hideUnderLower.includes($worn.under_lower.name)>>
@@ -2817,7 +2647,7 @@
 <</widget>>
 
 <<widget "upperimg">>
-	<<if $worn.upper.name isnot "ничего">>
+	<<if $worn.upper.name isnot "naked">>
 		<<baseClothingStrings "upper">>
 		<<switch $upperwetstage>>
 			<<case 1>><<set _upperWetness to " clothes-damp">>
@@ -2881,7 +2711,7 @@
 <</widget>>
 
 <<widget "overupperimg">>
-	<<if $worn.over_upper.name isnot "ничего">>
+	<<if $worn.over_upper.name isnot "naked">>
 		<<baseClothingStrings "over_upper">>
 		<<if $worn.over_upper.integrity lte (clothingData('over_upper',$worn.over_upper,'integrity_max') / 10) * 2>>
 			<<set _imgName to "tattered">>
@@ -2981,9 +2811,7 @@
 <</widget>>
 
 <<widget "player-base-body">>
-	<<set _filters to $skinColor.current>>
-	<div id="img" @class="limitedColourContainerClasses() + ' noAnimations'">
-		<<charLight "118px" "187px" "limited">>
+	<div id="img">
 		<<canvas-player-base-body>>
 	</div>
 <</widget>>

@@ -642,37 +642,37 @@
 <<widget "destination_prison">>
 	<<switch $bus>>
 		<<case "walkway">>
-			<<link [[Далее|Prison Walkway]]>><<endevent>><<set $eventskip to 1>><</link>>
+			<<link [[Next|Prison Walkway]]>><<endevent>><<set $eventskip to 1>><</link>>
 			<br>
 		<<case "cell_block">>
-			<<link [[Далее|Prison Block]]>><<endevent>><<set $eventskip to 1>><</link>>
+			<<link [[Next|Prison Block]]>><<endevent>><<set $eventskip to 1>><</link>>
 			<br>
 		<<case "medical">>
-			<<link [[Далее|Prison Medical]]>><<endevent>><<set $eventskip to 1>><</link>>
+			<<link [[Next|Prison Medical]]>><<endevent>><<set $eventskip to 1>><</link>>
 			<br>
 		<<case "shower">>
-			<<link [[Далее|Prison Shower]]>><<endevent>><<set $eventskip to 1>><</link>>
+			<<link [[Next|Prison Shower]]>><<endevent>><<set $eventskip to 1>><</link>>
 			<br>
 		<<case "canteen">>
-			<<link [[Далее|Prison Canteen]]>><<endevent>><<set $eventskip to 1>><</link>>
+			<<link [[Next|Prison Canteen]]>><<endevent>><<set $eventskip to 1>><</link>>
 			<br>
 		<<case "laundry">>
-			<<link [[Далее|Prison Laundry]]>><<endevent>><<set $eventskip to 1>><</link>>
+			<<link [[Next|Prison Laundry]]>><<endevent>><<set $eventskip to 1>><</link>>
 			<br>
 		<<case "spire">>
-			<<link [[Далее|Prison Spire]]>><<endevent>><<set $eventskip to 1>><</link>>
+			<<link [[Next|Prison Spire]]>><<endevent>><<set $eventskip to 1>><</link>>
 			<br>
 		<<case "library">>
-			<<link [[Далее|Prison Library]]>><<endevent>><<set $eventskip to 1>><</link>>
+			<<link [[Next|Prison Library]]>><<endevent>><<set $eventskip to 1>><</link>>
 			<br>
 		<<case "chapel">>
-			<<link [[Далее|Prison Chapel]]>><<endevent>><<set $eventskip to 1>><</link>>
+			<<link [[Next|Prison Chapel]]>><<endevent>><<set $eventskip to 1>><</link>>
 			<br>
 		<<case "yard">>
-			<<link [[Далее|Prison Yard]]>><<endevent>><<set $eventskip to 1>><</link>>
+			<<link [[Next|Prison Yard]]>><<endevent>><<set $eventskip to 1>><</link>>
 			<br>
 		<<default>>
-			<<link [[Далее|Prison Cell]]>><<endevent>><<set $eventskip to 1>><</link>>
+			<<link [[Next|Prison Cell]]>><<endevent>><<set $eventskip to 1>><</link>>
 			<br>
 	<</switch>>
 <</widget>>
@@ -681,10 +681,10 @@
 	<<if $prison.schedule is "lockdown" or $prison.schedule is "wake" or Time.hour is 6>>
 		You are escorted back to your cell.
 		<br><br>
-		<<link [[Далее|Prison Cell]]>><<endevent>><</link>>
+		<<link [[Next|Prison Cell]]>><<endevent>><</link>>
 		<br>
 	<<else>>
-		<<link [[Далее|Prison Walkway]]>><<endevent>><</link>>
+		<<link [[Next|Prison Walkway]]>><<endevent>><</link>>
 		<br>
 	<</if>>
 <</widget>>
@@ -864,10 +864,10 @@
 	<<link [[Go quietly|Prison Repunishment]]>><<set $prison.hours_worked to 0>><</link>>
 	<br>
 	<<if $prison.shock is 1>>
-	<<link [[Драться|Prison Punishment Shock]]>><<set $prison.hours_worked to 0>><</link>>
+	<<link [[Fight|Prison Punishment Shock]]>><<set $prison.hours_worked to 0>><</link>>
 	<br>
 	<<else>>
-	<<link [[Драться|Prison Punishment Fight]]>><<set $fightstart to 1>><<set $prison.hours_worked to 0>><</link>>
+	<<link [[Fight|Prison Punishment Fight]]>><<set $fightstart to 1>><<set $prison.hours_worked to 0>><</link>>
 	<br>
 	<</if>>
 <</widget>>
@@ -903,7 +903,7 @@
 			<span class="blue">It's hard to defend yourself with your arms bound.</span>
 			<br>
 		<<else>>
-			<<link [[Оттолкнуть|Prison Shove]]>><</link>><<physiquedifficulty 1 16000>>
+			<<link [[Shove|Prison Shove]]>><</link>><<physiquedifficulty 1 16000>>
 			<br>
 		<</if>>
 		<<link [[Stay still|Prison Still]]>><</link>><<difficulty 50>>
@@ -916,7 +916,7 @@
 			<<link [[Kick|Prison Kick]]>><</link>><<athleticsdifficulty 1 1000>>
 			<br>
 		<</if>>
-		<<link [[Терпеть|Prison Endure]]>><<trauma 6>><<stress 6>><<arousal 600>><</link>><<difficulty 70>><<gtrauma>><<gstress>><<garousal>>
+		<<link [[Endure|Prison Endure]]>><<trauma 6>><<stress 6>><<arousal 600>><</link>><<difficulty 70>><<gtrauma>><<gstress>><<garousal>>
 		<br>
 	<<elseif $prison_event_trigger is "three">>
 		<<set $skulduggerydifficulty to random(500, 1000)>>
@@ -928,14 +928,14 @@
 		<<link [[Go quietly|Prison Punishment]]>><</link>>
 		<br>
 		<<if $prison.shock is 1>>
-			<<link [[Драться|Prison Punishment Shock]]>><</link>>
+			<<link [[Fight|Prison Punishment Shock]]>><</link>>
 			<br>
 		<<else>>
-			<<link [[Драться|Prison Punishment Fight]]>><<set $fightstart to 1>><</link>>
+			<<link [[Fight|Prison Punishment Fight]]>><<set $fightstart to 1>><</link>>
 			<br>
 		<</if>>
 	<<else>>
-		<<link [[Далее|Prison Rape]]>><<set $molestationstart to 1>><</link>>
+		<<link [[Next|Prison Rape]]>><<set $molestationstart to 1>><</link>>
 		<br>
 	<</if>>
 	<<unset $prison_event_trigger>>
@@ -1082,9 +1082,9 @@
 				<br><br>
 			<<case 3>>
 				<<generate1>><<person1>>
-				<<if $worn.lower.name isnot "ничего">>
+				<<if $worn.lower.name isnot "naked">>
 					A <<person>> seizes the hem of your $worn.lower.name, and tugs, pulling it taut against your crotch.
-				<<elseif $worn.under_lower.name isnot "ничего">>
+				<<elseif $worn.under_lower.name isnot "naked">>
 					A <<person>> seizes the hem of your $worn.under_lower.name, and tugs, pulling it taut against your crotch.
 				<<else>>
 					A <<person>> gropes your <<bottom>> as <<he>> passes.
@@ -1196,7 +1196,7 @@
 		The riotous noise quells. An inmate staggers by, and collapses. You find it hard to remain on your feet yourself. <span class="red">Something is wrong.</span>
 		<br><br>
 
-		<<link [[Далее|Prison Warden]]>><</link>>
+		<<link [[Next|Prison Warden]]>><</link>>
 		<br>
 	<<elseif $prison.attention_level is 0>>
 		<<generate_scarred_inmate 0>>
@@ -1210,7 +1210,7 @@
 		<br><br>
 		<<link [[Go quietly|Prison Attention Quiet]]>><<set $prison.attention_level to 1>><<set $prison.attention to 0>><</link>>
 		<br>
-		<<link [[Отказаться|Prison Attention Refuse]]>><<set $prison.attention_level to 1>><<set $prison.attention to 0>><</link>>
+		<<link [[Refuse|Prison Attention Refuse]]>><<set $prison.attention_level to 1>><<set $prison.attention to 0>><</link>>
 		<br>
 	<<elseif $prison.protection is "scarred">>
 		<<generate_veteran_guard 0>><<generate_scarred_inmate 1>><<person1>><<generate3>><<generate4>>
@@ -1247,7 +1247,7 @@
 
 		<<link [[Do as instructed|Prison Attention]]>><</link>>
 		<br>
-		<<link [[Драться|Prison Attention Fight Refuse]]>><</link>>
+		<<link [[Fight|Prison Attention Fight Refuse]]>><</link>>
 		<br>
 		<<if $prison.kylar is "active">>
 			<<if $worn.face.type.includes("gag")>>
@@ -1272,7 +1272,7 @@
 		You shuffle from the room with the other inmates.
 		<br><br>
 
-		<<link [[Далее|Prison Block]]>><<endevent>><</link>>
+		<<link [[Next|Prison Block]]>><<endevent>><</link>>
 		<br>
 	<<elseif Time.hour is 18>>
 		<<generate_relaxed_guard 0>><<person1>>"Shift over," <<relaxed_guard 0>> shouts. "Dinner time."
@@ -1280,18 +1280,18 @@
 		You shuffle from the room with the other inmates.
 		<br><br>
 
-		<<link [[Далее|Prison Block]]>><<endevent>><</link>>
+		<<link [[Next|Prison Block]]>><<endevent>><</link>>
 		<br>
 	<<else>>
-		<<link [[Work hard (1:00)|Prison Laundry Work Hard]]>><<prison_work 1>><<pass 1>><<advancetohour>><</link>><<note "Will give opportunities to reduce suspicion" "green">>
+		<<prisonicon "laundry_work">><<link [[Work hard (1:00)|Prison Laundry Work Hard]]>><<prison_work 1>><<pass 1>><<advancetohour>><</link>><<note "Will give opportunities to reduce suspicion" "green">>
 		<br>
-		<<link [[Socialise with inmates (1:00)|Prison Laundry Work Socialise]]>><<prison_work 1>><<pass 1>><<advancetohour>><</link>><<note "Will give opportunities to raise respect" "green">>
+		<<socialiseicon>><<link [[Socialise with inmates (1:00)|Prison Laundry Work Socialise]]>><<prison_work 1>><<pass 1>><<advancetohour>><</link>><<note "Will give opportunities to raise respect" "green">>
 		<br>
 		<<if !$daily.prison.prisonRelaxedSpoke>>
-			<<link [[Speak with guard (1:00)|Prison Laundry Work Chat]]>><<pass 60>><</link>><<note "Will give opportunities to raise love" "green">>
+			<<socialiseicon>><<link [[Speak with guard|Prison Laundry Work Chat]]>><</link>><<note "Will give opportunities to raise love" "green">>
 			<br>
 		<</if>>
-		<<link [[Stop|Prison Laundry]]>><</link>>
+		<<refuseicon>><<link [[Stop|Prison Laundry]]>><</link>>
 		<br>
 	<</if>>
 <</widget>>
@@ -1302,22 +1302,22 @@
 		<<generate_methodical_guard 0>><<person1>>"Lunch time," <<methodical_guard 0>> says. <<He>> pulls a prayer book from <<his>> pocket, and walks towards the door.
 		<br><br>
 
-		<<link [[Далее|Prison Medical]]>><<endevent>><</link>>
+		<<link [[Next|Prison Medical]]>><<endevent>><</link>>
 		<br>
 	<<elseif Time.hour is 18>>
 		<<generate_methodical_guard 0>><<person1>>"Dinner time," <<methodical_guard 0>> says. <<He>> pulls a prayer book from <<his>> pocket, and walks towards the door.
 		<br><br>
 
-		<<link [[Далее|Prison Medical]]>><<endevent>><</link>>
+		<<link [[Next|Prison Medical]]>><<endevent>><</link>>
 		<br>
 	<<else>>
-		<<link [[Assist (1:00)|Prison Medical Work Hard]]>><<prison_work 1>><<pass 1>><<advancetohour>><</link>>
+		<<prisonicon "medical_work">><<link [[Assist (1:00)|Prison Medical Work Hard]]>><<prison_work 1>><<pass 1>><<advancetohour>><</link>>
 		<br>
 		<<if !$daily.prison.methodicalSpoke>>
-			<<link [[Speak with guard|Prison Medical Work Chat]]>><</link>>
+			<<socialiseicon>><<link [[Speak with guard|Prison Medical Work Chat]]>><</link>>
 			<br>
 		<</if>>
-		<<link [[Stop|Prison Medical]]>><</link>>
+		<<refuseicon>><<link [[Stop|Prison Medical]]>><</link>>
 		<br>
 	<</if>>
 <</widget>>
@@ -1328,13 +1328,13 @@
 		<<generate_anxious_guard 0>><<person1>>"Lunch," <<anxious_guard 0>> says. <<He>> takes a deep breath, and runs for the staircase down.
 		<br><br>
 
-		<<link [[Далее|Prison Spire]]>><<endevent>><</link>>
+		<<link [[Next|Prison Spire]]>><<endevent>><</link>>
 		<br>
 	<<elseif Time.hour gte 18>>
 		<<generate_anxious_guard 0>><<person1>>"Dinner," <<anxious_guard 0>> says. <<He>> takes a deep breath, and runs for the staircase down.
 		<br><br>
 
-		<<link [[Далее|Prison Spire]]>><<endevent>><</link>>
+		<<link [[Next|Prison Spire]]>><<endevent>><</link>>
 		<br>
 	<<elseif $prison.anxious gte 60 and $per_npc.anxious_guard.name_known isnot 1>>
 		<<beastNEWinit 2 "hawk">><<person1>>
@@ -1348,16 +1348,16 @@
 		The endangered creature struggles free, but the other turns its eyes on <<anxious_guard 0>>. <<He>> turns at once, but isn't fast enough. Wings flap, and the creature lifts <<him>> from the ground.
 		<br><br>
 
-		<<link [[Далее|Prison Spire Precipice]]>><</link>>
+		<<link [[Next|Prison Spire Precipice]]>><</link>>
 		<br>
 	<<else>>
-		<<link [[Work (1:00)|Prison Spire Work Hard]]>><<prison_work 1>><<pass 1>><<advancetohour>><</link>>
+		<<ind>><<link [[Work (1:00)|Prison Spire Work Hard]]>><<prison_work 1>><<pass 1>><<advancetohour>><</link>>
 		<br>
 		<<if !$daily.prison.anxiousSpoke>>
-			<<link [[Speak with guard|Prison Spire Work Chat]]>><</link>>
+			<<socialiseicon>><<link [[Speak with guard|Prison Spire Work Chat]]>><</link>>
 			<br>
 		<</if>>
-		<<link [[Stop|Prison Spire]]>><</link>>
+		<<refuseicon>><<link [[Stop|Prison Spire]]>><</link>>
 		<br>
 	<</if>>
 <</widget>>
@@ -1382,7 +1382,7 @@
 
 <<widget "prison_birds_text">>
 	<<if $statdisable is "f">>
-		<span class="green">+ Watchers</span>
+		| <span class="green">+ Watchers</span>
 	<</if>>
 <</widget>>
 
@@ -1444,7 +1444,7 @@
 <</silently>><<print _text_output>><</widget>>
 
 <<widget "passout_prison">>
-	<<if isPlayerNonparasitePregnancyEnding()>>
+	<<if isPregnancyEnding()>>
 		<<if $bus is "canteen">>
 			<<pregnancyPassout "prisonCanteen">>
 		<<elseif $bus is "yard">>

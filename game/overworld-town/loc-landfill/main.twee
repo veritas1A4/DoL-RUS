@@ -10,7 +10,7 @@ You awaken on your back, surrounded by mountains of rubbish. You're in a landfil
 
 <<set $trash to 50>>
 
-<<link [[Далее|Trash]]>><</link>>
+<<link [[Next|Trash]]>><</link>>
 
 :: Trash
 <<set $location to "landfill">><<set $outside to 1>><<effects>>
@@ -63,13 +63,13 @@ You are in the landfill on Elk Street.
 			<br><br>
 		<</if>>
 
-		<<link [[Далее|Trash Slime]]>><</link>>
+		<<link [[Next|Trash Slime]]>><</link>>
 		<br>
 	<<else>>
 		To have cum in such a place!<<llcontrol>><<gtrauma>><<trauma 6>><<control -25>>
 		<br><br>
 
-		<<link [[Далее|Trash]]>><<set $eventskip to 1>><</link>>
+		<<link [[Next|Trash]]>><<set $eventskip to 1>><</link>>
 		<br>
 	<</if>>
 <<elseif $danger gte (9900 - $allure) and $eventskip is 0>>
@@ -142,7 +142,7 @@ The gate is barred by a heavy-duty padlock.
 	<</if>>
 <</if>>
 
-<<elkicon>><<link [[Покинуть|Elk Street]]>><</link>>
+<<elkicon>><<link [[Leave|Elk Street]]>><</link>>
 <br>
 
 :: Trash Gate Leave
@@ -164,7 +164,7 @@ The gate is barred by a chain and padlock. You wonder if there's a key somewhere
 	<br><br>
 	<</if>>
 
-<<getouticon>><<link [[Покинуть|Trash]]>><</link>>
+<<getouticon>><<link [[Leave|Trash]]>><</link>>
 
 :: Trash Lock Enter
 <<set $location to "landfill">><<set $outside to 1>><<effects>>
@@ -172,7 +172,7 @@ The gate is barred by a chain and padlock. You wonder if there's a key somewhere
 You successfully pick the lock and walk onto the landfill.
 <br><br>
 
-<<link [[Далее|Trash]]>><<set $trash to 0>><</link>>
+<<link [[Next|Trash]]>><<set $trash to 0>><</link>>
 <br>
 
 :: Trash Enter
@@ -181,7 +181,7 @@ You successfully pick the lock and walk onto the landfill.
 The gate is barred by a chain. You push the large key into the padlock, and the chain falls loose. You walk into the landfill.
 <br><br>
 
-<<link [[Далее|Trash]]>><<set $trash to 0>><</link>>
+<<link [[Next|Trash]]>><<set $trash to 0>><</link>>
 <br>
 
 :: Trash Lock Leave
@@ -190,7 +190,7 @@ The gate is barred by a chain. You push the large key into the padlock, and the 
 You successfully pick the lock and walk onto Elk Street.
 <br><br>
 
-<<link [[Далее|Elk Street]]>><</link>>
+<<link [[Next|Elk Street]]>><</link>>
 <br>
 
 :: Trash Leave
@@ -199,7 +199,7 @@ You successfully pick the lock and walk onto Elk Street.
 The gate is barred by a chain. You push the large key into the padlock, and the chain falls loose. You walk onto Elk Street.
 <br><br>
 
-<<link [[Далее|Elk Street]]>><</link>>
+<<link [[Next|Elk Street]]>><</link>>
 <br>
 
 :: Trash Search
@@ -220,6 +220,7 @@ You search the piles of rubbish for anything of value.
 		You spot a pink light reflect off the base of the compactor. You investigate, and find a small canister. There's a glass window on the side, letting you see the glowing pink gel within. <span class="gold">This must be the fuel used by the brothel sex machine.</span>
 		<<set $brothel_machine_repair to 3>>
 	<<elseif $rng gte 80>>
+		<<wearProp "incense">>
 		You find an ancient incense burner. It's clearly an antique. You're not sure why anyone would throw it out.
 		<<set $antiquemoney += 100>><<museumAntiqueStatus "antiquetrashburner" "found">><<crimeUp 100 "thievery">>
 
@@ -294,6 +295,7 @@ You search the piles of rubbish for anything of value.
 	<</if>>
 <<elseif $trash gte 10>>
 	<<if $rng gte 80>>
+		<<wearProp "cup">>
 		You find a stained metal cup. You wipe the grime off, and reveal a silver shine beneath. It looks like it belongs in a museum.
 		<<set $antiquemoney += 50>><<museumAntiqueStatus "antiquetrashcup" "found">><<crimeUp 20 "thievery">>
 	<<elseif $rng gte 60>>
@@ -345,12 +347,12 @@ You search the piles of rubbish for anything of value.
 	<<generatey1>><<generatey2>><<generatey3>><<generatey4>><<generatey5>><<generatey6>>
 	You hear the sound of <<group>> in the distance.
 	<br><br>
-	<<investigateicon>><<link [[Investigate|Trash Compare]]>><</link>>
+	<<link [[Investigate|Trash Compare]]>><<handheldon>><</link>>
 	<br>
-	<<link [[Игнорировать|Trash]]>><<endevent>><</link>>
+	<<link [[Ignore|Trash]]>><<endevent>><</link>>
 	<br>
 <<else>>
-	<<link [[Далее|Trash]]>><</link>>
+	<<link [[Next|Trash]]>><<handheldon>><</link>>
 	<br>
 <</if>>
 
@@ -388,7 +390,7 @@ You search the piles of rubbish for anything of value.
 			"Holy shit," the <<trashSelect>><<person>> gasps. The rest of the <<group>> follow suit. The <<person>> grins and mimes milking a cow. "<<pShes>> massive. You could drown in those!"
 			<<set _notInsecure to $acceptance_breasts_big gte 1000>>
 			<<set _insecurityType to "breasts_big">>
-			<<set _breastEnvy to !_noFollowUp and $trashCompare.enviousBreastIds.length gte 1 and $deviancy gte 55>>
+			<<set _breastEnvy to !_noFollowUp and $trashCompare.enviousBreastIds.length gte 1 and hasSexStat("deviancy", 4)>>
 	<</switch>>
 	<br><br>
 
@@ -432,7 +434,7 @@ You search the piles of rubbish for anything of value.
 			"Holy shit," the <<trashSelect>><<person>> whispers. "It's a fucking monster." The rest of the <<group>> gape in shock.
 			<<set _notInsecure to $acceptance_penis_big gte 1000>>
 			<<set _insecurityType to "penis_big">>
-			<<set _penisEnvy to !_noFollowUp and $trashCompare.enviousPenisIds.length gte 1 and $deviancy gte 55>>
+			<<set _penisEnvy to !_noFollowUp and $trashCompare.enviousPenisIds.length gte 1 and hasSexStat("deviancy", 4)>>
 	<</switch>>
 	<<if $player.penissize isnot 2>>
 		<br><br>
@@ -499,14 +501,14 @@ You climb to a higher position in the hopes of peeking down at them and seeing w
 
 <<link [[Approach them|Trash Compare Greet]]>><</link>>
 <br>
-<<link [[Покинуть|Trash Compare Leave]]>><</link>>
+<<link [[Leave|Trash Compare Leave]]>><</link>>
 
 :: Trash Compare Leave
 <<effects>>
 Not wanting to be caught peeping on the <<group>>, you carefully sneak away.
 <br><br>
 
-<<link [[Далее|Trash]]>><<endevent>><</link>>
+<<link [[Next|Trash]]>><<endevent>><</link>>
 
 :: Trash Compare Greet
 <<effects>>
@@ -517,21 +519,21 @@ You approach the group, and find a <<fullGroup>>. They turn quiet when they hear
 <<if $beauty gte 2000>>
 	The <<person4>><<person>> whispers to the <<person1>><<person>> at the front. The <<person1>><<person>> looks at <<him>> and the others questioningly, and they give <<him>> a nervous nod. "We'll tell you," the <<person1>><<person>> says, "but only if you agree not to tell anyone about it. Oh, and you had best do as we say too. If we show you it you'll have to join in with us."
 	<br><br>
-	<<link [[Согласиться|Trash Compare Others]]>><<set $phase to 0>><</link>>
+	<<link [[Accept|Trash Compare Others]]>><<set $phase to 0>><</link>>
 	<br>
-	<<refuseicon>><<link [[Отказаться|Trash Compare Refuse]]>><</link>>
+	<<refuseicon>><<link [[Refuse|Trash Compare Refuse]]>><</link>>
 <<else>>
 	"Nothing you would be interested in, ugly," the <<person3>><<person>> says, before <<he>> turns around and walks away with <<his>> friends.
 	<<trauma 6>><<gtrauma>>
 	<br><br>
-	<<link [[Далее|Trash]]>><<endevent>><<unset $trashCompare>><<set $eventskip to 1>><</link>>
+	<<link [[Next|Trash]]>><<endevent>><<unset $trashCompare>><<set $eventskip to 1>><</link>>
 <</if>>
 
 :: Trash Compare Refuse
 <<effects>>
 Wary of their offer, you decline, and take your leave. The <<group>> watch you as you go, clearly wanting to make sure you're gone before they go back to whatever it is they were doing.
 <br><br>
-<<link [[Далее|Trash]]>><<endevent>><<unset $trashCompare>><<set $eventskip to 1>><</link>>
+<<link [[Next|Trash]]>><<endevent>><<unset $trashCompare>><<set $eventskip to 1>><</link>>
 
 :: Trash Compare Others
 <<set _selectCount to 0>>
@@ -722,12 +724,12 @@ Wary of their offer, you decline, and take your leave. The <<group>> watch you a
 
 	<<link [[Try and back out|Trash Compare Back Out]]>><</link>>
 	<br>
-	<<if $exhibitionism gte 55>>
+	<<if hasSexStat("exhibitionism", 4)>>
 		<<link [[Show them|Trash Compare Show]]>><</link>><<exhibitionist4>>
 		<br>
 	<</if>>
 <<else>>
-	<<link [[Далее|Trash Compare Others]]>><<set $phase++>><</link>>
+	<<link [[Next|Trash Compare Others]]>><<set $phase++>><</link>>
 <</if>>
 
 :: Trash Compare Back Out
@@ -742,13 +744,13 @@ Wary of their offer, you decline, and take your leave. The <<group>> watch you a
 <</if>>
 <<stress 6>><<gstress>>
 <br><br>
-<<if $exhibitionism gte 55>>
+<<if hasSexStat("exhibitionism", 4)>>
 	<<link [[Strip|Trash Compare Show]]>><</link>><<exhibitionist4>>
 <<else>>
 	<<link [[Reluctantly strip|Trash Compare Show]]>><<set $desperateaction to 2>><</link>><<exhibitionist4>>
 <</if>>
 <br>
-<<link [[Отказаться|Trash Compare Forced Strip]]>><<set $molestationstart to 1>><</link>>
+<<link [[Refuse|Trash Compare Forced Strip]]>><<set $molestationstart to 1>><</link>>
 <br>
 
 :: Trash Compare Show
@@ -756,7 +758,7 @@ Wary of their offer, you decline, and take your leave. The <<group>> watch you a
 <<set _audience to [0,1,2,3,4,5]>>
 
 <<if $player.gender_appearance is "f">>
-	<<if $exhibitionism gte 55>>
+	<<if hasSexStat("exhibitionism", 4)>>
 		"My turn," you say with a grin, before grasping your $worn.upper.name.
 	<<else>>
 		You nervously grasp your $worn.upper.name.
@@ -768,7 +770,7 @@ Wary of their offer, you decline, and take your leave. The <<group>> watch you a
 	<<TrashComparePlayerBreastsReact>>
 
 <<else>>
-	<<if $exhibitionism gte 55>>
+	<<if hasSexStat("exhibitionism", 4)>>
 		"My turn," you say with a grin, before grasping your $worn.lower.name.
 	<<else>>
 		You nervously grasp your $worn.lower.name.
@@ -797,9 +799,9 @@ Wary of their offer, you decline, and take your leave. The <<group>> watch you a
 	<</if>>
 	<br><br>
 
-	<<link [[Отказаться|Trash Compare Show Refuse]]>><<set $phase to 2>><</link>>
+	<<link [[Refuse|Trash Compare Show Refuse]]>><<set $phase to 2>><</link>>
 	<br>
-	<<if $exhibitionism gte 55>>
+	<<if hasSexStat("exhibitionism", 4)>>
 		<<link [[Show them|Trash Compare Breasts Show All]]>><</link>><<exhibitionist4>>
 	<</if>>
 
@@ -810,9 +812,9 @@ Wary of their offer, you decline, and take your leave. The <<group>> watch you a
 	<<He>> takes a step forward. "Show us your pussy. Or, if I'm right... your penis."
 	<br><br>
 
-	<<link [[Отказаться|Trash Compare Show Refuse]]>><<set $phase to 1>><</link>>
+	<<link [[Refuse|Trash Compare Show Refuse]]>><<set $phase to 1>><</link>>
 	<br>
-	<<if $exhibitionism gte 55>>
+	<<if hasSexStat("exhibitionism", 4)>>
 		<<link [[Show them|Trash Compare Penis Show All]]>><</link>><<exhibitionist4>>
 	<</if>>
 
@@ -832,7 +834,7 @@ Wary of their offer, you decline, and take your leave. The <<group>> watch you a
 
 	"Yeah, me too," the <<trashSelect>><<person>> agrees. The rest of the <<group>> nod in agreement and follow <<him>> in getting dressed again. You follow their lead and get dressed, feeling a little awkward. The <<person>> glances at you once last time and gives you a flirtatious wink, before joining the rest.
 	<br><br>
-	<<link [[Покинуть|Trash]]>><<endevent>><<clotheson>><<unset $trashCompare>><<set $eventskip to 1>><</link>>
+	<<link [[Leave|Trash]]>><<endevent>><<clotheson>><<unset $trashCompare>><<set $eventskip to 1>><</link>>
 <</if>>
 
 :: Trash Compare Secret
@@ -864,7 +866,7 @@ You can only imagine them attempting to try this before realising in shock what 
 You follow suit and get dressed yourself.
 <br><br>
 
-<<link [[Покинуть|Trash]]>><<endevent>><<clotheson>><<unset $trashCompare>><<set $eventskip to 1>><</link>>
+<<link [[Leave|Trash]]>><<endevent>><<clotheson>><<unset $trashCompare>><<set $eventskip to 1>><</link>>
 
 :: Trash Compare Wrap It Up
 <<effects>><<set _audience to [0,1,2,3,4,5]>>
@@ -874,7 +876,7 @@ You follow suit and get dressed yourself.
 "Yeah, me too," the <<trashSelect>><<person>> agrees. The rest of the <<group>> nod in agreement and follow <<him>> in getting dressed again. You follow their lead and get dressed, feeling a little awkward. The <<person>> glances at you once last time and gives you a flirtatious wink, before joining the rest.
 <br><br>
 
-<<link [[Покинуть|Trash]]>><<endevent>><<clotheson>><<unset $trashCompare>><<set $eventskip to 1>><</link>>
+<<link [[Leave|Trash]]>><<endevent>><<clotheson>><<unset $trashCompare>><<set $eventskip to 1>><</link>>
 
 :: Trash Compare Show Refuse
 <<effects>><<set _audience to [0,1,2,3,4,5]>>
@@ -886,7 +888,7 @@ The <<person>> looks disappointed, but nods in understanding. "Sorry," <<he>> sa
 
 "Think it's time we head out," the <<trashSelect>><<person>> says. The rest of the <<group>> nod in agreement and follow <<him>> in getting dressed again. You follow their lead and get dressed, feeling a little awkward. The <<person>> glances at you once last time and gives you a flirtatious wink, before joining the rest.
 <br><br>
-<<link [[Покинуть|Trash]]>><<endevent>><<clotheson>><<unset $trashCompare>><<set $eventskip to 1>><</link>>
+<<link [[Leave|Trash]]>><<endevent>><<clotheson>><<unset $trashCompare>><<set $eventskip to 1>><</link>>
 
 :: Trash Compare Breasts Show All
 <<effects>><<set _audience to [0,1,2,3,4,5]>>
@@ -905,7 +907,7 @@ You grin, before grasping your $worn.upper.name.
 "Yeah, me too," the <<trashSelect>><<person>> agrees. The rest of the <<group>> nod in agreement and follow <<him>> in getting dressed again. You follow their lead and get dressed, feeling a little awkward. The <<person>> glances at you once last time and gives you a flirtatious wink, before joining the rest.
 <br><br>
 
-<<link [[Покинуть|Trash]]>><<endevent>><<clotheson>><<unset $trashCompare>><<set $eventskip to 1>><</link>>
+<<link [[Leave|Trash]]>><<endevent>><<clotheson>><<unset $trashCompare>><<set $eventskip to 1>><</link>>
 
 :: Trash Compare Penis Show All
 <<effects>><<set _audience to [0,1,2,3,4,5]>>
@@ -931,7 +933,7 @@ You grin, before grasping your $worn.upper.name.
 "Yeah, me too," the <<trashSelect>><<person>> agrees. The rest of the <<group>> nod in agreement and follow <<him>> in getting dressed again. You follow their lead and get dressed, feeling a little awkward. The <<person>> glances at you once last time and gives you a flirtatious wink, before joining the rest.
 <br><br>
 
-<<link [[Покинуть|Trash]]>><<endevent>><<clotheson>><<unset $trashCompare>><<set $eventskip to 1>><</link>>
+<<link [[Leave|Trash]]>><<endevent>><<clotheson>><<unset $trashCompare>><<set $eventskip to 1>><</link>>
 
 :: Trash Compare Forced Strip
 <<if $molestationstart is 1>>
@@ -957,11 +959,11 @@ You grin, before grasping your $worn.upper.name.
 <br><br>
 <<actionsman>>
 <<if $worn.upper.type.includes("naked") and $worn.lower.type.includes("naked") and $worn.under_lower.type.includes("naked") and $worn.under_upper.type.includes("naked")>>
-	<span id="next"><<link [[Далее|Trash Compare Combat Loss]]>><</link>></span><<nexttext>>
+	<span id="next"><<link [[Next|Trash Compare Combat Loss]]>><</link>></span><<nexttext>>
 <<elseif $enemyhealth lte 0 or $enemyarousal gte $enemyarousalmax>>
-	<span id="next"><<link [[Далее|Trash Compare Combat Win]]>><</link>></span><<nexttext>>
+	<span id="next"><<link [[Next|Trash Compare Combat Win]]>><</link>></span><<nexttext>>
 <<else>>
-	<span id="next"><<link [[Далее|Trash Compare Forced Strip]]>><</link>></span><<nexttext>>
+	<span id="next"><<link [[Next|Trash Compare Forced Strip]]>><</link>></span><<nexttext>>
 <</if>>
 
 :: Trash Compare Combat Win
@@ -973,7 +975,7 @@ You shove the <<group>> away from you. <<tearful>> you run to safety.
 <<endcombat>>
 <<clotheson>>
 
-<<link [[Далее|Trash]]>><<unset $trashCompare>><<set $eventskip to 1>><</link>>
+<<link [[Next|Trash]]>><<unset $trashCompare>><<set $eventskip to 1>><</link>>
 <br>
 
 :: Trash Compare Combat Loss
@@ -1000,4 +1002,4 @@ They gather around to have a good look at your naked body.
 <br><br>
 
 <<endcombat>>
-<<link [[Далее|Trash]]>><<endevent>><<clotheson>><<unset $trashCompare>><<set $eventskip to 1>><</link>>
+<<link [[Next|Trash]]>><<endevent>><<clotheson>><<unset $trashCompare>><<set $eventskip to 1>><</link>>

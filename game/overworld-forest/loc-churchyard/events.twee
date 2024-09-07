@@ -7,19 +7,19 @@ You push your arms through a gap, feeling around until you find something you ca
 	It takes a bit of wriggling, <span class="green">but you manage to pull yourself clear,</span> clambering down the other side of the rubble.
 <<else>>
 	<span class="red">The gap isn't as wide as you thought.</span> You make it through to the other side,
-	<<if $worn.upper.name isnot "ничего">>
+	<<if $worn.upper.name isnot "naked">>
 		<<set $worn.upper.integrity -= 20>>
 		<<set _clothes_torn to true>>
 	<</if>>
-	<<if $worn.lower.name isnot "ничего">>
+	<<if $worn.lower.name isnot "naked">>
 		<<set $worn.lower.integrity -= 20>>
 		<<set _clothes_torn to true>>
 	<</if>>
-	<<if $worn.under_upper.name isnot "ничего">>
+	<<if $worn.under_upper.name isnot "naked">>
 		<<set $worn.under_upper.integrity -= 20>>
 		<<set _clothes_torn to true>>
 	<</if>>
-	<<if $worn.under_lower.name isnot "ничего">>
+	<<if $worn.under_lower.name isnot "naked">>
 		<<set $worn.under_lower.integrity -= 20>>
 		<<set _clothes_torn to true>>
 	<</if>>
@@ -80,8 +80,10 @@ You search the catacombs for plunder, looking in nooks and crannies, kicking ope
 	<</if>>
 <<elseif $rng gte 61>>
 	You have no luck, until you come across a strongbox, its lock still intact. You make short work of the primitive design. Inside is a blade of tarnished silver. Whatever hilt or handle it was attached to has long since decayed away. It might be worth something.
+	<<wearProp "silver blade">>
 	<<set $antiquemoney += 60>><<museumAntiqueStatus "antiquesilverblade" "found">><<crimeUp 60 "thievery">>
 <<else>>
+	<<wearProp "copper coin">>
 	You find a copper coin, the metal corroded and any text long-faded. Still, it might be valuable to a collector.
 	<<set $antiquemoney += 10>><<museumAntiqueStatus "antiquecoppercoin" "found">><<crimeUp 10 "thievery">>
 <</if>>
@@ -106,9 +108,11 @@ You search among the debris for anything of value, kneeling while rummaging thro
 		You feed your torch.<<gtorch>><<catacombs_torch 10>>
 	<</if>>
 <<elseif $rng gte 61>>
+	<<wearProp "silver goblet">>
 	Your fingers find something cold, and hard. You tug it free from the earth. A goblet of corroded silver. Lines cover the surface, all that remains of an intricate engraving. It might be worth something to a collector.
 	<<set $antiquemoney += 60>><<museumAntiqueStatus "antiquesilvergoblet" "found">><<crimeUp 60 "thievery">>
 <<else>>
+	<<wearProp "fetish">>
 	You feel a rubbery texture, and pull a strange fetish from the mud. Inhuman arms dangle from a decrepit frame. Still, it might be worth something to a collector.
 	<<set $antiquemoney += 15>><<museumAntiqueStatus "antiquestrangefetish" "found">><<crimeUp 15 "thievery">>
 <</if>>
@@ -132,9 +136,11 @@ You crack open old coffers, and avoid the resulting clouds of dust.
 		You have no luck however, though you do find some old scraps of rag. You feed your torch.<<gtorch>><<catacombs_torch 10>>
 	<</if>>
 <<elseif $rng gte 61>>
+	<<wearProp "gold coin">>
 	Coffer after coffer yields nothing, until you see a glint of yellow metal. A gold coin, corroded by time, but still valuable no doubt. The face of a long-dead monarch stares at you.
 	<<set $antiquemoney += 100>><<museumAntiqueStatus "antiquegoldcoin" "found">><<crimeUp 100 "thievery">>
 <<else>>
+	<<wearProp "silver coin">>
 	You find a silver coin, buried under ruined scrap.
 	<<set $antiquemoney += 20>><<museumAntiqueStatus "antiquesilvercoin" "found">><<crimeUp 20 "thievery">>
 <</if>>
@@ -211,9 +217,9 @@ You double back, and find a longer route that doesn't involve scary sarcophagi.
 <<struggle>>
 
 <<if $struggle.done gte $struggle.number>>
-	<span id="next"><<link [[Далее|Catacombs Struggle End]]>><</link>></span>
+	<span id="next"><<link [[Next|Catacombs Struggle End]]>><</link>></span>
 <<else>>
-	<span id="next"><<link [[Далее|Catacombs Struggle]]>><</link>></span>
+	<span id="next"><<link [[Next|Catacombs Struggle]]>><</link>></span>
 <</if>>
 
 :: Catacombs Struggle End
@@ -262,7 +268,7 @@ You wade across the pool, and emerge on the other side. Sticky strands cling to 
 	"Thought you'd give us the slip?" <<he>> tuts. "Best be good now."
 	<br><br>
 
-	<<link [[Драться|Catacombs Caught Fight]]>><<set $fightstart to 1>><</link>>
+	<<link [[Fight|Catacombs Caught Fight]]>><<set $fightstart to 1>><</link>>
 	<br>
 	<<link [[Hold still|Catacombs Caught Still]]>><</link>>
 <</if>>
@@ -285,9 +291,9 @@ You wade across the pool, and emerge on the other side. Sticky strands cling to 
 <<actionsman>>
 
 <<if _combatend or ($pain gte 100 and $willpowerpain is 0)>>
-	<span id="next"><<link [[Далее|Catacombs Caught Fight Finish]]>><</link>></span><<nexttext>>
+	<span id="next"><<link [[Next|Catacombs Caught Fight Finish]]>><</link>></span><<nexttext>>
 <<else>>
-	<span id="next"><<link [[Далее|Catacombs Caught Fight]]>><</link>></span><<nexttext>>
+	<span id="next"><<link [[Next|Catacombs Caught Fight]]>><</link>></span><<nexttext>>
 <</if>>
 
 :: Catacombs Caught Fight Finish
@@ -310,7 +316,7 @@ You wade across the pool, and emerge on the other side. Sticky strands cling to 
 <<else>>
 	<<tearful>> you fall to the ground. You're too hurt to continue.
 	<br><br>
-	<<link [[Далее|Catacombs Caught Still]]>><</link>>
+	<<link [[Next|Catacombs Caught Still]]>><</link>>
 <</if>>
 
 :: Catacombs Caught Still
@@ -369,9 +375,9 @@ You wade across the pool, and emerge on the other side. Sticky strands cling to 
 <<actionstentacles>>
 
 <<if $tentacles.active lte ($tentacles.max / 2)>>
-	<span id="next"><<link [[Далее|Catacombs Tentacles Finish]]>><</link>></span><<nexttext>>
+	<span id="next"><<link [[Next|Catacombs Tentacles Finish]]>><</link>></span><<nexttext>>
 <<else>>
-	<span id="next"><<link [[Далее|Catacombs Tentacles]]>><</link>></span><<nexttext>>
+	<span id="next"><<link [[Next|Catacombs Tentacles]]>><</link>></span><<nexttext>>
 <</if>>
 
 :: Catacombs Tentacles Finish
@@ -408,7 +414,7 @@ The metal tendrils fall inert, and the red light flickers off.
 		<</if>>
 		<br><br>
 
-		<<link [[Далее|Catacombs Passout 2]]>><</link>>
+		<<link [[Next|Catacombs Passout 2]]>><</link>>
 		<br>
 	<<else>>
 		<<bind>>
@@ -421,7 +427,7 @@ The metal tendrils fall inert, and the red light flickers off.
 		You flail in a mad panic. The web spins around and around, until it covers you from head to toe, and at last the string snaps. You flee into the dark.<<beastescape>>
 		<br><br>
 
-		<<link [[Далее|Catacombs Ridge]]>><<endevent>><</link>>
+		<<link [[Next|Catacombs Ridge]]>><<endevent>><</link>>
 		<br>
 	<</if>>
 <<else>>
@@ -454,24 +460,24 @@ The <<beasttype>> spins you around and around, coating your legs with web. <<bHe
 			<<genitalsruined>>
 			<br><br>
 
-			<<link [[Далее|Catacombs Passout 3]]>><</link>>
+			<<link [[Next|Catacombs Passout 3]]>><</link>>
 			<br>
 		<<else>>
 			<<bHe>> claws at the metal. "Too tough," <<bhe>> admits. "For now."
 			<br><br>
 
-			<<link [[Далее|Catacombs Passout End]]>><</link>>
+			<<link [[Next|Catacombs Passout End]]>><</link>>
 			<br>
 		<</if>>
 	<<else>>
-		<<link [[Далее|Catacombs Passout 3]]>><</link>>
+		<<link [[Next|Catacombs Passout 3]]>><</link>>
 		<br>
 	<</if>>
 <<else>>
 	<<bHe>> spurts a final string of silk over your eyes.
 	<br><br>
 
-	<<link [[Далее|Catacombs Passout End]]>><</link>>
+	<<link [[Next|Catacombs Passout End]]>><</link>>
 	<br>
 <</if>>
 <br><br>
@@ -495,7 +501,7 @@ You feel the <<beasttype>>'s breath on your <<genitals>>, followed by a long, wa
 "Delicious." <<bHe>> laughs. The echo chitters around you. "I'll save the main course for later."
 <br><br>
 
-<<link [[Далее|Catacombs Passout End]]>><</link>>
+<<link [[Next|Catacombs Passout End]]>><</link>>
 <br>
 
 :: Catacombs Passout End
@@ -507,7 +513,7 @@ You hear <<bhim>> scuttle away, and then silence.
 You use your weight to pull down on the string suspending you, loosened by the <<beasttype>>'s weaving. It gives a little, then snaps, dropping you to the floor.
 <br><br>
 
-<<link [[Далее|Catacombs Ridge]]>><<endevent>><</link>>
+<<link [[Next|Catacombs Ridge]]>><<endevent>><</link>>
 <br>
 
 :: Catacombs Struggle Web

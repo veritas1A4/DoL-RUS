@@ -18,22 +18,6 @@
 	<</if>>
 	<br><br>
 	<<switch $phase>>
-		<<case "hot drink" "cold drink">>
-			<<set $daily.ex.balloonDrink to ($daily.ex.balloonDrink or 0) + 1>>
-			<<set _prop to $phase is "cold drink" ? "lemonade" : "cocoa">>
-			<<wearProp _prop>>
-
-			<<set _drink to $phase is "hot drink" ?
-			"a cup of steaming <<seasonal_beverage>>. The paper cup warms your hands" :
-			"glass of ice-cold <<seasonal_beverage>>. The plastic cup swelters in your hand">>
-			<<He>> pours you a _drink.
-
-			<<if $daily.ex.balloonDrink is 2>>
-				"Thirsty, eh?" <<he>> says. "<<print playerBellyVisible() ? "Guess you gotta keep that little one hydrated" : "Glad to see you're staying hydrated">>." <<He>> smiles at you.
-			<<elseif $daily.ex.balloonDrink is 3>>
-				"Gotta save some for the other customers, so I'm gonna have to cut you off after this." <<He>> gives you an apologetic smile.
-			<</if>>
-
 		<<case "popcorn">>
 			<<He>> scoops out some freshly-popped popcorn. The bag's still warm when <<he>> hands it to you.
 			<<set $daily.ex.popcorn to ($daily.ex.popcorn or 0) + 1>>
@@ -44,12 +28,23 @@
 			<<elseif $daily.ex.popcorn is 3>>
 				"Gotta save some for the other customers, so I'm gonna have to cut you off after this." <<print $balloonStand.owner is "angry" ? "<<His>> voice is curt" : "<<He>> gives you an apologetic smile">>.
 			<</if>>
+		<<default>>
+			<<set $daily.ex.balloonDrink to ($daily.ex.balloonDrink or 0) + 1>>
+			<<set _prop to $phase is "cold drink" ? "lemonade" : $phase is "hot cider" ? "hot cider" : "hot cocoa">>
+			<<wearProp _prop>>
+
+			<<set _drink to $phase is "cold drink" ? "glass of ice-cold <<seasonal_beverage>>. The plastic cup swelters in your hand" : "a cup of steaming <<seasonal_beverage>>. The paper cup warms your hands">>
+			<<He>> pours you a _drink.
+
+			<<if $daily.ex.balloonDrink is 2>>
+				"Thirsty, eh?" <<he>> says. "<<print playerBellyVisible() ? "Guess you gotta keep that little one hydrated" : "Glad to see you're staying hydrated">>." <<He>> smiles at you.
+			<<elseif $daily.ex.balloonDrink is 3>>
+				"Gotta save some for the other customers, so I'm gonna have to cut you off after this." <<He>> gives you an apologetic smile.
+			<</if>>
 	<</switch>>
 	"<<print $balloonStand.owner is "angry" ? "There you go. Get lost." : either("Good to see you, love.", "Have a great rest of your day now.", "Thanks for your custom.", "Enjoy!")>>"
 	<br><br>
 	<<switch $phase>>
-		<<case "hot drink" "cold drink">>
-			<<link [[Take a sip (0:15)|Balloon Consume]]>><<stress -9>><<pass 15>><</link>><<lstress>><br>
 		<<case "popcorn">>
 			<<link [[Eat the popcorn (0:15)|Balloon Consume]]>><<set $phase to $balloonStand.robin.status is "help needed" ? "ask_eat" : "popcorn">><<trauma -3>><</link>><<ltrauma>><br>
 			<<if $balloonStand.robin.status is "help needed">>
@@ -57,16 +52,18 @@
 			<<else>>
 				<<link [[Save it for later|Beach]]>><<set $eventskip to 1>><<set $popcorn += 1>><<endevent>><</link>>
 			<</if>>
+		<<default>>
+			<<link [[Take a sip (0:15)|Balloon Consume]]>><<stress -9>><<pass 15>><</link>><<lstress>><br>
 	<</switch>>
 
 :: Balloon Consume
 <<effects>>
 
 <<switch $phase>>
-	<<case "hot drink">>You take a careful sip, careful not to scald your tongue. The <<seasonal_beverage>> is rich <<print Time.season is "winter" ? "and creamy" : "with spices">>, and you can feel the stress melting away.
 	<<case "cold drink">>You take a sip. The <<seasonal_beverage>> is <<print Time.season is "spring" ? "pleasantly fruity" : "tart">> and refreshing, and you can feel the stress melting away.
 	<<case "popcorn" "park" "ask_eat">>You pop a handful of popcorn into your mouth. It's buttery and salty, and it brings back nostalgic memories of trips to the cinema.
 	<<case "ask">>You fold over the top of the bag so popcorn doesn't spill everywhere before pocketing it.<<handheldon>>
+	<<default>>You take a careful sip, careful not to scald your tongue. The <<seasonal_beverage>> is rich <<print Time.season is "winter" ? "and creamy" : "with spices">>, and you can feel the stress melting away.
 <</switch>>
 <br><br>
 <<if ["ask","ask_eat"].includes($phase)>>
@@ -85,9 +82,9 @@
 	<<link [[Suggest that the stall owner partner with Robin|Balloon Partner]]>><<set $phase to "help">><<handheldon>><</link>><br>
 	<<link [[Suggest that the stall owner sell beverages|Balloon Partner]]>><<set $phase to "sabotage">><<handheldon>><</link>>
 <<elseif $phase is "park">>
-	<<link [[Далее|Park]]>><<set $eventskip to 1>><<endevent>><</link>>
+	<<link [[Next|Park]]>><<set $eventskip to 1>><<endevent>><</link>>
 <<else>>
-	<<link [[Далее|Beach]]>><<set $eventskip to 1>><<endevent>><</link>>
+	<<link [[Next|Beach]]>><<set $eventskip to 1>><<endevent>><</link>>
 <</if>>
 
 :: Balloon Partner
@@ -111,7 +108,7 @@
 		"I've tried that lemonade of <<person2>><<hers>> before," <<person1>><<he>> says. "It's mostly sugar water. I'm not saying no, but you're gonna have to work a little harder to convince me that partnering with your little _boyfriend isn't a terrible idea."
 		<br><br>
 		<<link [[Persuade|Balloon Convince]]>><<set $phase to "persuade">><</link>><<englishdifficulty 1 1000>><br>
-		<<if $promiscuity gte 55>>
+		<<if hasSexStat("promiscuity", 4)>>
 			<<link [[Seduce|Balloon Convince]]>><<set $phase to "seduce">><</link>><<promiscuous4>>
 			<br>
 		<</if>>
@@ -138,7 +135,7 @@
 
 		<<balloonRobinSabotaged>>
 		<br><br>
-		<<link [[Далее|Beach]]>><<set $eventskip to 1>><<endevent>><</link>>
+		<<link [[Next|Beach]]>><<set $eventskip to 1>><<endevent>><</link>>
 <</switch>>
 
 :: Balloon Convince
@@ -154,7 +151,7 @@
 			<br><br>
 			The <<person1>><<person>> looks moved by your passionate words. <<balloonRobinHelped>>
 			<br><br>
-			<<link [[Далее|Beach]]>><<set $eventskip to 1>><<endevent>><</link>>
+			<<link [[Next|Beach]]>><<set $eventskip to 1>><<endevent>><</link>>
 		<<else>>
 			The <<person1>><<person>> looks unmoved. "So, the <<person2>><<personsimple>>'s had a rough life. Who hasn't? I'm not providing a charity service here, and I don't see what <<he>> has to offer that will benefit me."
 			<br><br>
@@ -162,7 +159,7 @@
 			<<set $daily.ex.balloonConvince to 1>>
 			<<set $balloonStand.robin.status to "convince">>
 			<br><br>
-			<<link [[Далее|Beach]]>><<set $eventskip to 1>><<endevent>><</link>>
+			<<link [[Next|Beach]]>><<set $eventskip to 1>><<endevent>><</link>>
 		<</if>>
 
 	<<case "seduce">>
@@ -177,13 +174,13 @@
 		<<if $seductionrating gte $seductionrequired>>
 			<<He>> looks conflicted for a moment, but relents. "Ah, alright." <<He>> glances around quickly, then ushers you under the stall. "Make good use of that mouth, and I'll help you out. Hurry, before someone sees. I think I spot some potential customers over there."
 			<br><br>
-			<<link [[Далее|Balloon Sex]]>><<set $sexstart to 1>><</link>>
+			<<link [[Next|Balloon Sex]]>><<set $sexstart to 1>><</link>>
 		<<else>>
 			The <<person>> looks at you and bursts into laughter, leaving you self-conscious. "Not a chance, sorry. Look, I'm not an asshole," <<he>> says. "I'm not interested, but I like you. Stop by the stall again tomorrow, and I'd be happy to hear you out. Use your words next time, not... whatever this was." <<He>> chuckles to <<himself>> and waves you off.
 			<<set $daily.ex.balloonConvince to 1>>
 			<<set $balloonStand.robin.status to "convince">>
 			<br><br>
-			<<link [[Далее|Beach]]>><<set $eventskip to 1>><<endevent>><</link>>
+			<<link [[Next|Beach]]>><<set $eventskip to 1>><<endevent>><</link>>
 		<</if>>
 
 	<<case "bribe">>
@@ -197,7 +194,7 @@
 		<br><br>
 		<<He>> pockets the money, looking impressed. <<balloonRobinHelped>>
 		<br><br>
-		<<link [[Далее|Beach]]>><<set $eventskip to 1>><<endevent>><</link>>
+		<<link [[Next|Beach]]>><<set $eventskip to 1>><<endevent>><</link>>
 <</switch>>
 
 :: Balloon Sex
@@ -223,9 +220,9 @@ The <<personsimple>> chats up a customer, doing <<his>> best to keep <<his>> voi
 <<actionsman>>
 
 <<if _combatend>>
-	<span id="next"><<link [[Далее|Balloon Sex Finish]]>><</link>></span><<nexttext>>
+	<span id="next"><<link [[Next|Balloon Sex Finish]]>><</link>></span><<nexttext>>
 <<else>>
-	<span id="next"><<link [[Далее|Balloon Sex]]>><</link>></span><<nexttext>>
+	<span id="next"><<link [[Next|Balloon Sex]]>><</link>></span><<nexttext>>
 <</if>>
 
 :: Balloon Sex Finish
@@ -247,7 +244,7 @@ The <<personsimple>> chats up a customer, doing <<his>> best to keep <<his>> voi
 <</if>>
 <<clotheson>>
 <<endcombat>>
-<<link [[Далее|Beach]]>><</link>>
+<<link [[Next|Beach]]>><</link>>
 
 :: Balloon Robin Check-In
 <<effects>>
@@ -326,8 +323,8 @@ The <<personsimple>> chats up a customer, doing <<his>> best to keep <<his>> voi
 	<</capture>>
 <<else>>
 	<<switch $location>>
-		<<case "park">><<link [[Далее|Park]]>><<endevent>><</link>>
-		<<default>>	<<link [[Далее|Beach]]>><<endevent>><</link>>
+		<<case "park">><<link [[Next|Park]]>><<endevent>><</link>>
+		<<default>>	<<link [[Next|Beach]]>><<endevent>><</link>>
 	<</switch>>
 <</if>>
 
@@ -369,8 +366,8 @@ The <<personsimple>> chats up a customer, doing <<his>> best to keep <<his>> voi
 <br><br>
 
 <<switch $location>>
-	<<case "park">><<link [[Далее|Park]]>><<endevent>><</link>>
-	<<default>>	<<link [[Далее|Beach]]>><<endevent>><</link>>
+	<<case "park">><<link [[Next|Park]]>><<endevent>><</link>>
+	<<default>>	<<link [[Next|Beach]]>><<endevent>><</link>>
 <</switch>>
 
 :: Balloon Decline
@@ -390,7 +387,7 @@ You take your leave and let the <<person>> finish setting up <<his>> stall.
 	<<npc Robin 2>><<person2>>
 	<<balloonRobinIntro>>
 <<else>>
-	<<link [[Далее|Beach]]>><<set $eventskip to 1>><<endevent>><</link>>
+	<<link [[Next|Beach]]>><<set $eventskip to 1>><<endevent>><</link>>
 <</if>>
 
 :: Balloon Robin Response
@@ -422,8 +419,8 @@ You take your leave and let the <<person>> finish setting up <<his>> stall.
 <<set $balloonStand.robin.status to "help needed">>
 <br><br>
 <<switch $location>>
-	<<case "park">><<link [[Далее|Beach]]>><<set $eventskip to 1>><<endevent>><</link>>
-	<<default>><<link [[Далее|Beach]]>><<set $eventskip to 1>><<endevent>><</link>>
+	<<case "park">><<link [[Next|Beach]]>><<set $eventskip to 1>><<endevent>><</link>>
+	<<default>><<link [[Next|Beach]]>><<set $eventskip to 1>><<endevent>><</link>>
 <</switch>>
 
 :: Balloon Widgets [widget]
@@ -484,7 +481,7 @@ You take your leave and let the <<person>> finish setting up <<his>> stall.
 		You make small talk with the stall owner until a customer interrupts. You thank <<him>> for the free drink and step away.
 		<br><br>
 
-		<<link [[Далее|Beach]]>><<set $eventskip to 1>><<endevent>><</link>>
+		<<link [[Next|Beach]]>><<set $eventskip to 1>><<endevent>><</link>>
 
 	<<else>>
 		<<if $tryOn.autoReset isnot false>><<tryOnReset>><</if>><<unset $tempDisable>>
@@ -515,10 +512,10 @@ You take your leave and let the <<person>> finish setting up <<his>> stall.
 		<</if>>
 		<<if $balloonStand.robin.status is "sabotaged" and $money gte 300 and !($daily.ex.balloonDrink gte 3)>>
 			<<switch Time.season>>
-				<<case "winter">><<set _drink to "hotcocoa">><<set _phase to "hot drink">>
+				<<case "winter">><<set _drink to "hotcocoa">><<set _phase to "hot cocoa">>
 				<<case "spring">><<set _drink to "strawberrylemonade">><<set _phase to "cold drink">>
 				<<case "summer">><<set _drink to "lemonade">><<set _phase to "cold drink">>
-				<<default>><<set _drink to "hotcider">><<set _phase to "hot drink">>
+				<<default>><<set _drink to "hotcider">><<set _phase to "hot cider">>
 			<</switch>>
 			<br>
 			<<foodicon _drink>><<link [[Buy something to drink (0:02 £3)|Balloon Purchase]]>><<set $money -= 300>><<set $phase to _phase>><<pass 2>><</link>>
@@ -548,7 +545,7 @@ You take your leave and let the <<person>> finish setting up <<his>> stall.
 				<br>
 			<</if>>
 		<<else>>
-			<<getouticon>><<link [[Покинуть|Beach]]>><<shopClothingFilterReset>><<set $tryOn.autoReset to true>><<endevent>><</link>>
+			<<getouticon>><<link [[Leave|Beach]]>><<shopClothingFilterReset>><<set $tryOn.autoReset to true>><<endevent>><</link>>
 		<</if>>
 	<</if>>
 <</widget>>
@@ -576,7 +573,7 @@ You take your leave and let the <<person>> finish setting up <<his>> stall.
 	<<set _lemonade to Time.season is "winter" ? "hot chocolate" : "lemonade">>
 	<<set _stall to Time.season is "winter" ? "A <<person1>><<personsimple>> at the beach" : "That <<person1>><<personsimple>> over there">>
 
-	Robin's mouth gapes for a few minutes. "You... did that for me?"
+	Robin's mouth gapes for a few seconds. "You... did that for me?"
 	<br><br>
 	"Of course I did," you say. "You're my _boyfriend."
 	<br><br>

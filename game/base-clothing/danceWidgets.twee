@@ -3,10 +3,10 @@
 	<<outfitChecks>>
 	<<switch $danceaction>>
 		<<case "stripOverOutfit">>
-			<<if $worn.upper.name isnot "naked" and $worn.lower.name isnot "ничего">>
+			<<if $worn.upper.name isnot "naked" and $worn.lower.name isnot "naked">>
 				You gracefully remove your $worn.over_upper.name, exposing your <<outfit>>. You're careful not to give too much away, but such a lewd gesture thrills you nonetheless.
 				<<set $audiencearousal += 3>><<set $audienceexcitement += 3>><<set $audiencemod += 1>><<arousal 100>><<overupperstrip>><<exhibitionism1>>
-			<<elseif $worn.upper.name isnot "ничего">>
+			<<elseif $worn.upper.name isnot "naked">>
 				<<if !$worn.under_lower.type.includes("naked")>>
 					You gracefully remove your $worn.over_upper.name, exposing your $worn.under_lower.name. Being seen in your underwear excites you.
 					<<set $audiencearousal += 6>><<set $audienceexcitement += 6>><<set $audiencemod += 2>><<arousal 300>><<overupperstrip>><<exhibitionism3>>
@@ -20,7 +20,7 @@
 					<<set $audiencearousal += 10>><<set $audienceexcitement += 10>><<set $audiencemod += 4>><<arousal 300>><<overupperstrip>><<exhibitionism5>>
 					<<dance_crossdress_reveal>>
 				<</if>>
-			<<elseif $worn.lower.name isnot "ничего">>
+			<<elseif $worn.lower.name isnot "naked">>
 				<<if !$worn.under_upper.type.includes("naked")>>
 					You gracefully remove your $worn.over_upper.name, exposing your $worn.under_upper.name. Being seen in your underwear excites you.
 					<<set $audiencearousal += 6>><<set $audienceexcitement += 6>><<set $audiencemod += 2>><<arousal 300>><<overupperstrip>><<exhibitionism3>>
@@ -71,7 +71,7 @@
 			<</if>>
 			<<set $danceaction to 0>>
 		<<case "stripOverUpper">>
-			<<if $worn.upper.name isnot "ничего">>
+			<<if $worn.upper.name isnot "naked">>
 				You gracefully remove your $worn.over_upper.name, exposing your $worn.upper.name. You're careful not to give too much away, but such a lewd gesture thrills you nonetheless.
 				<<set $audiencearousal += 3>><<set $audienceexcitement += 3>><<set $audiencemod += 1>><<arousal 100>><<overupperstrip>><<exhibitionism1>>
 			<<elseif !$worn.under_upper.type.includes("naked")>>
@@ -95,7 +95,7 @@
 			<</if>>
 			<<set $danceaction to 0>>
 		<<case "stripOverLower">>
-			<<if $worn.lower.name isnot "ничего">>
+			<<if $worn.lower.name isnot "naked">>
 				You gracefully remove your $worn.over_lower.name, exposing your $worn.lower.name. You're careful not to give too much away, but such a lewd gesture thrills you nonetheless.
 				<<set $audiencearousal += 3>><<set $audienceexcitement += 3>><<set $audiencemod += 1>><<arousal 100>><<overlowerstrip>><<exhibitionism1>>
 			<<elseif !$worn.under_lower.type.includes("naked")>>
@@ -169,7 +169,7 @@
 			<</if>>
 			<<set $danceaction to 0>>
 		<<case "stripLower">>
-			<<if $worn.over_lower.name isnot "ничего">>
+			<<if $worn.over_lower.name isnot "naked">>
 				You gracefully remove your $worn.lower.name from below your $worn.over_lower.name. You're careful not to give too much away, but such a lewd gesture thrills you nonetheless.
 				<<set $audiencearousal += 3>><<set $audienceexcitement += 3>><<set $audiencemod += 1>><<arousal 100>><<lowerstrip>><<exhibitionism1>>
 			<<elseif !$worn.under_lower.type.includes("naked")>>
@@ -430,15 +430,15 @@
 		5:[5,75]
 	}>>
 	<<if _overOutfit>>
-		<<if $worn.upper.name isnot "naked" and $worn.lower.name isnot "ничего">>
+		<<if $worn.upper.name isnot "naked" and $worn.lower.name isnot "naked">>
 			<<set _danceExhibition.overOutfit to clone(_exhibitionObject[1])>>
-		<<elseif $worn.upper.name isnot "ничего">>
+		<<elseif $worn.upper.name isnot "naked">>
 			<<if !$worn.under_lower.type.includes("naked")>>
 				<<set _danceExhibition.overOutfit to clone(_exhibitionObject[3])>>
 			<<else>>
 				<<set _danceExhibition.overOutfit to clone(_exhibitionObject[5])>>
 			<</if>>
-		<<elseif $worn.lower.name isnot "ничего">>
+		<<elseif $worn.lower.name isnot "naked">>
 			<<if !$worn.under_upper.type.includes("naked")>>
 				<<set _danceExhibition.overOutfit to clone(_exhibitionObject[3])>>
 			<<else>>
@@ -453,7 +453,7 @@
 		<<else>>
 			<<if !$worn.under_upper.type.includes("naked") and !$worn.under_lower.type.includes("naked")>>
 				<<set _danceExhibition.overOutfit to clone(_exhibitionObject[3])>>
-			<<elseif $worn.under_lower.name isnot "ничего">>
+			<<elseif $worn.under_lower.name isnot "naked">>
 				<<if $player.breastsize gte 3>>
 					<<set _danceExhibition.overOutfit to clone(_exhibitionObject[4])>>
 				<<elseif $player.gender_appearance isnot "m" and $worn.lower.gender isnot "m">>
@@ -469,7 +469,7 @@
 		<</if>>
 	<<elseif _overOutfit is false>>
 		<<if !$worn.over_upper.type.includes("naked")>>
-			<<if $worn.upper.name isnot "ничего">>
+			<<if $worn.upper.name isnot "naked">>
 				<<set _danceExhibition.over_upper to clone(_exhibitionObject[1])>>
 			<<elseif !$worn.under_upper.type.includes("naked")>>
 				<<set _danceExhibition.over_upper to clone(_exhibitionObject[3])>>
@@ -484,7 +484,7 @@
 			<</if>>
 		<</if>>
 		<<if !$worn.over_lower.type.includes("naked")>>
-			<<if $worn.lower.name isnot "ничего">>
+			<<if $worn.lower.name isnot "naked">>
 				<<set _danceExhibition.over_lower to clone(_exhibitionObject[1])>>
 			<<elseif !$worn.under_lower.type.includes("naked")>>
 				<<set _danceExhibition.over_lower to clone(_exhibitionObject[3])>>
@@ -531,7 +531,7 @@
 			<</if>>
 		<</if>>
 		<<if !$worn.lower.type.includes("naked") and ($worn.over_lower.type.includes("naked") or setup.clothes.over_lower[clothesIndex('over_lower', $worn.over_lower)].skirt is 1)>>
-			<<if $worn.over_lower.name isnot "ничего">>
+			<<if $worn.over_lower.name isnot "naked">>
 				<<set _danceExhibition.lower to clone(_exhibitionObject[3])>>
 			<<elseif !$worn.under_lower.type.includes("naked")>>
 				<<set _danceExhibition.lower to clone(_exhibitionObject[3])>>
@@ -664,31 +664,31 @@
 			<<if !$worn.under_lower.type.includes("naked")>>
 				<<if !$worn.under_upper.type.includes("naked")>>
 					<<if $player.breastsize gte 3 or $player.gender_appearance isnot "m">>
-						<<if $exhibitionism gte 55>>
+						<<if hasSexStat("exhibitionism", 4)>>
 							<label><span class="meek">Strip $worn.upper.name</span> <<combatexhibitionist4>> <<radiobutton "$danceaction" "outfitstripunderbreasts">></label> |
 						<</if>>
 					<<else>>
-						<<if $exhibitionism gte 35>>
+						<<if hasSexStat("exhibitionism", 3)>>
 							<label><span class="meek">Strip $worn.upper.name</span> <<combatexhibitionist3>> <<radiobutton "$danceaction" "outfitstripunderchest">></label> |
 						<</if>>
 					<</if>>
 				<<else>>
 					<<if $player.breastsize gte 3>>
-						<<if $exhibitionism gte 55>>
+						<<if hasSexStat("exhibitionism", 4)>>
 						<label><span class="meek">Strip $worn.upper.name</span> <<combatexhibitionist4>> <<radiobutton "$danceaction" "outfitstripbreasts">></label> |
 						<</if>>
 					<<elseif $player.gender_appearance isnot "m" and $worn.lower.gender isnot "m">>
-						<<if $exhibitionism gte 55>>
+						<<if hasSexStat("exhibitionism", 4)>>
 						<label><span class="meek">Strip $worn.upper.name</span> <<combatexhibitionist4>> <<radiobutton "$danceaction" "outfitstripchest">></label> |
 						<</if>>
 					<<else>>
-						<<if $exhibitionism gte 35>>
+						<<if hasSexStat("exhibitionism", 3)>>
 						<label><span class="meek">Strip $worn.upper.name</span> <<combatexhibitionist3>> <<radiobutton "$danceaction" "outfitstripunder">></label> |
 						<</if>>
 					<</if>>
 				<</if>>
 			<<else>>
-				<<if $exhibitionism gte 75>>
+				<<if hasSexStat("exhibitionism", 5)>>
 				<label><span class="meek">Strip $worn.upper.name</span> <<combatexhibitionist5>> <<radiobutton "$danceaction" "outfitstripnude">></label> |
 				<</if>>
 			<</if>>
@@ -697,7 +697,7 @@
 		<<if !$worn.upper.type.includes("naked") and _middleOutfit is false>>
 			<<if !$worn.under_upper.type.includes("naked")>>
 				<<if $player.breastsize gte 3 or $player.gender_appearance isnot "m">>
-					<<if $exhibitionism gte 15>>
+					<<if hasSexStat("exhibitionism", 2)>>
 						<label><span class="meek">Strip $worn.upper.name</span> <<combatexhibitionist2>> <<radiobutton "$danceaction" "upperstripunderbreasts">></label> |
 					<</if>>
 				<<else>>
@@ -705,11 +705,11 @@
 				<</if>>
 			<<else>>
 				<<if $player.breastsize gte 3>>
-					<<if $exhibitionism gte 55>>
+					<<if hasSexStat("exhibitionism", 4)>>
 					<label><span class="meek">Strip $worn.upper.name</span> <<combatexhibitionist4>> <<radiobutton "$danceaction" "upperstripbreasts">></label> |
 					<</if>>
 				<<elseif $player.gender_appearance isnot "m" and $worn.lower.gender isnot "m">>
-					<<if $exhibitionism gte 55>>
+					<<if hasSexStat("exhibitionism", 4)>>
 					<label><span class="meek">Strip $worn.upper.name</span> <<combatexhibitionist4>> <<radiobutton "$danceaction" "upperstripfchest">></label> |
 					<</if>>
 				<<else>>
@@ -720,11 +720,11 @@
 
 		<<if !$worn.lower.type.includes("naked") and _middleOutfit is false>>
 			<<if !$worn.under_lower.type.includes("naked")>>
-				<<if $exhibitionism gte 35>>
+				<<if hasSexStat("exhibitionism", 3)>>
 					<label><span class="meek">Strip $worn.lower.name</span> <<combatexhibitionist3>> <<radiobutton "$danceaction" "lowerstripunder">></label> |
 				<</if>>
 			<<else>>
-				<<if $exhibitionism gte 75>>
+				<<if hasSexStat("exhibitionism", 5)>>
 					<label><span class="meek">Strip $worn.lower.name</span> <<combatexhibitionist5>> <<radiobutton "$danceaction" "lowerstripnude">></label> |
 				<</if>>
 			<</if>>
@@ -733,30 +733,30 @@
 		<<if _underOutfit>>
 			<<if !$worn.lower.type.includes("naked") and !$worn.upper.type.includes("naked")>>
 				<<if setup.clothes.lower[clothesIndex('lower', $worn.lower)].skirt is 1>>
-					<<if $exhibitionism gte 35>>
+					<<if hasSexStat("exhibitionism", 3)>>
 						<label><span class="meek">Strip $worn.under_upper.name</span> <<combatexhibitionist3>> <<radiobutton "$danceaction" "underoutfitstripskirt">></label> |
 					<</if>>
 				<<elseif $worn.upper.open is 1>>
-					<<if $exhibitionism gte 35>>
+					<<if hasSexStat("exhibitionism", 3)>>
 						<label><span class="meek">Strip $worn.under_upper.name</span> <<combatexhibitionist3>> <<radiobutton "$danceaction" "underoutfitstripopen">></label> |
 					<</if>>
 				<</if>>
 			<<elseif !$worn.lower.type.includes("naked")>>
 				<<if $player.breastsize gte 3>>
-					<<if $exhibitionism gte 55>>
+					<<if hasSexStat("exhibitionism", 4)>>
 					<label><span class="meek">Strip $worn.under_upper.name</span> <<combatexhibitionist4>> <<radiobutton "$danceaction" "underoutfitstripbreasts">></label> |
 					<</if>>
 				<<elseif $player.gender_appearance isnot "m" and $worn.under_lower.gender isnot "m">>
-					<<if $exhibitionism gte 55>>
+					<<if hasSexStat("exhibitionism", 4)>>
 					<label><span class="meek">Strip $worn.under_upper.name</span> <<combatexhibitionist4>> <<radiobutton "$danceaction" "underoutfitstripchest">></label> |
 					<</if>>
 				<<else>>
-					<<if $exhibitionism gte 35>>
+					<<if hasSexStat("exhibitionism", 3)>>
 					<label><span class="meek">Strip $worn.under_upper.name</span> <<combatexhibitionist3>> <<radiobutton "$danceaction" "underoutfitstripunder">></label> |
 					<</if>>
 				<</if>>
 			<<else>>
-				<<if $exhibitionism gte 75>>
+				<<if hasSexStat("exhibitionism", 5)>>
 					<label><span class="meek">Strip $worn.under_upper.name</span> <<combatexhibitionist5>> <<radiobutton "$danceaction" "underoutfitstripnude">></label> |
 				<</if>>
 			<</if>>
@@ -766,11 +766,11 @@
 			<<if !$worn.upper.type.includes("naked") and $worn.upper.open is 1>>
 				<label><span class="meek">Strip $worn.under_upper.name</span> <<combatexhibitionist1>> <<radiobutton "$danceaction" "underupperstripopen">></label> |
 			<<elseif $player.breastsize gte 3>>
-				<<if $exhibitionism gte 55>>
+				<<if hasSexStat("exhibitionism", 4)>>
 				<label><span class="meek">Strip $worn.under_upper.name</span> <<combatexhibitionist4>> <<radiobutton "$danceaction" "underupperstripbreasts">></label> |
 				<</if>>
 			<<elseif $player.gender_appearance isnot "m" and $worn.under_lower.gender isnot "m">>
-				<<if $exhibitionism gte 55>>
+				<<if hasSexStat("exhibitionism", 4)>>
 				<label><span class="meek">Strip $worn.under_upper.name</span> <<combatexhibitionist4>> <<radiobutton "$danceaction" "underupperstripfchest">></label> |
 				<</if>>
 			<<else>>
@@ -780,11 +780,11 @@
 
 		<<if !$worn.under_lower.type.includes("naked") and _underOutfit is false>>
 			<<if !$worn.lower.type.includes("naked") and setup.clothes.lower[clothesIndex('lower', $worn.lower)].skirt is 1>>
-				<<if $exhibitionism gte 35>>
+				<<if hasSexStat("exhibitionism", 3)>>
 				<label><span class="meek">Strip $worn.under_lower.name</span> <<combatexhibitionist3>> <<radiobutton "$danceaction" "understripskirt">></label> |
 				<</if>>
 			<<elseif $worn.lower.type.includes("naked")>>
-				<<if $exhibitionism gte 75>>
+				<<if hasSexStat("exhibitionism", 5)>>
 				<label><span class="meek">Strip $worn.under_lower.name</span> <<combatexhibitionist5>> <<radiobutton "$danceaction" "understripnude">></label> |
 				<</if>>
 			<</if>>
@@ -802,13 +802,6 @@
 <</widget>>
 
 <<widget "dance_private_init">>
-	<!--
-	<<for _i to 0; _i lt $NPCList.length; _i++>>
-		<<if $dance_place isnot _i>>
-			<<deactivateNPC _i>>
-		<</if>>
-	<</for>>
-	-->
 	<<if $dance_place isnot 0>>
 		<<saveNPC $dance_place chosen_npc>>
 		<<saveNPC 0 zero_npc>>

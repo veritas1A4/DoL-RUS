@@ -6,7 +6,7 @@ You approach the photography studio, a tall old building opposite the hospital. 
 
 <<getinicon>><<link [[Knock|Photo Intro]]>><</link>>
 <br>
-<<nightingaleicon>><<link [[Покинуть|Nightingale Street]]>><</link>>
+<<nightingaleicon>><<link [[Leave|Nightingale Street]]>><</link>>
 <br>
 
 :: Photo Intro
@@ -33,7 +33,7 @@ You lift the heavy knocker, and let it fall against the door. You wait a minute,
 Niki opens the door the rest of the way. "Come in."
 <br><br>
 
-<<set $niki_seen to "photo">>
+<<set $nikiSeen.pushUnique("photo")>>
 
 <<link [[Enter|Photo Intro 2]]>><</link>>
 <br>
@@ -59,9 +59,9 @@ cover the wall behind <<him>>, most of them suggestive, but all tasteful. <<He>>
 <<He>> pulls a lollipop from <<his>> pocket, and sticks it in <<his>> mouth. "One shoot a week. What do you think?"
 <br><br>
 
-<<link [[Согласиться|Photo Accept]]>><<npcincr Niki love 1>><</link>><<glove>>
+<<link [[Accept|Photo Accept]]>><<npcincr Niki love 1>><</link>><<glove>>
 <br>
-<<link [[Отказаться|Photo Refuse]]>><</link>>
+<<link [[Refuse|Photo Refuse]]>><</link>>
 <br>
 
 :: Photo Accept
@@ -79,7 +79,7 @@ cover the wall behind <<him>>, most of them suggestive, but all tasteful. <<He>>
 Niki nods. "Let me know when you're ready to start."
 <br><br>
 
-<<link [[Далее|Photo]]>><<endevent>><</link>>
+<<link [[Next|Photo]]>><<endevent>><</link>>
 <br>
 
 :: Photo Refuse
@@ -98,7 +98,7 @@ Niki nods. "You know where I am if you change your mind."
 <br><br>
 
 
-<<link [[Далее|Nightingale Street]]>><<endevent>><</link>>
+<<link [[Next|Nightingale Street]]>><<endevent>><</link>>
 <br>
 
 :: Photo
@@ -120,7 +120,7 @@ Niki nods. "You know where I am if you change your mind."
 	Briar continues on <<his>> way.
 	<br><br>
 
-	<<link [[Далее|Photo]]>><<endevent>><</link>>
+	<<link [[Next|Photo]]>><<endevent>><</link>>
 	<br>
 <<else>>
 	<<npc Niki>><<person1>>
@@ -181,7 +181,7 @@ Niki nods. "You know where I am if you change your mind."
 	<</if>>
 	<br><br>
 
-	<<if $stress gte $stressmax and isPlayerNonparasitePregnancyEnding()>>
+	<<if $stress gte $stressmax and isPregnancyEnding()>>
 		<<pregnancyPassout "photo">>
 	<<else>>
 		<<if isPubfameTaskAccepted("niki")>>
@@ -214,10 +214,10 @@ Niki nods. "You know where I am if you change your mind."
 			<br>
 		<</if>>
 		*/
-		<<nightingaleicon>><<link [[Покинуть|Nightingale Street]]>><<endevent>><</link>>
+		<<nightingaleicon>><<link [[Leave|Nightingale Street]]>><<endevent>><</link>>
 		<br>
 
-		<<set $niki_seen to "photo">>
+		<<set $nikiSeen.pushUnique("photo")>>
 	<</if>>
 <</if>>
 
@@ -250,7 +250,7 @@ Niki nods, and stares at <<his>> screen a moment longer.
 	<br>
 <</if>>
 
-<<link [[Покинуть|Nightingale Street]]>><<endevent>><</link>>
+<<link [[Leave|Nightingale Street]]>><<endevent>><</link>>
 <br>
 
 :: Photo Silly Paid
@@ -259,9 +259,9 @@ Niki nods, and stares at <<his>> screen a moment longer.
 Niki throws you a small bundle of notes. You make <<moneyGain 100>>.
 <br><br>
 
-<<link [[Попроситься на работу|Photo Ask]]>><</link>>
+<<link [[Ask for work|Photo Ask]]>><</link>>
 <br>
-<<link [[Покинуть|Nightingale Street]]>><<endevent>><</link>>
+<<link [[Leave|Nightingale Street]]>><<endevent>><</link>>
 <br>
 
 :: Photo Silly
@@ -270,9 +270,9 @@ Niki throws you a small bundle of notes. You make <<moneyGain 100>>.
 Niki nods. "Shop's on the High Street." <<He>> hands you the business card with the address. "Come back after for your pay."
 <br><br>
 
-<<link [[Попроситься на работу|Photo Ask]]>><</link>>
+<<link [[Ask for work|Photo Ask]]>><</link>>
 <br>
-<<link [[Покинуть|Nightingale Street]]>><<endevent>><</link>>
+<<link [[Leave|Nightingale Street]]>><<endevent>><</link>>
 <br>
 
 :: Photography Chef
@@ -285,7 +285,7 @@ Niki nods. "Shop's on the High Street." <<He>> hands you the business card with 
 A young <<nnpc_gender "Niki">> stands there, a white stick poking out of <<his>> mouth. <<He>> stares at you, waiting.
 <br><br>
 
-<<if $niki_seen is undefined>>
+<<if !$nikiSeen.length>>
 	<<if $speech_attitude is "meek">>
 		"I-I'm looking for a photographer," you say. "Sam said they were here."
 	<<elseif $speech_attitude is "bratty">>
@@ -297,16 +297,16 @@ A young <<nnpc_gender "Niki">> stands there, a white stick poking out of <<his>>
 
 	The <<nnpc_gender "Niki">> regards you for a moment longer, then holds out <<his>> hand. "Name's Niki," <<he>> says. "Studio's ready." <<He>> removes the stick from <<his>> mouth and flicks it onto the street.
 	<br><br>
-<<elseif $niki_seen is "farm">>
+<<elseif $nikiSeen.includes("farm")>>
 	You recognise <<him>>. It's Niki, the photographer from the farm. You freeze on the spot. Niki stares at you, then removes the stick from <<his>> mouth and flicks it onto the street. "Studio's ready." <<He>> pauses. "I'm glad you're okay."
 	<br><br>
 <<else>>
 	It's Niki, the photographer. <<He>> regards you. "Thought the description sounded familiar." <<He>> removes the stick from <<his>> mouth and flicks it onto the street. "Studio's ready."
 	<br><br>
 <</if>>
-<<set $niki_seen to "chef">>
+<<set $nikiSeen.pushUnique("chef")>>
 
-<<link [[Далее|Photography Chef 2]]>><</link>>
+<<link [[Next|Photography Chef 2]]>><</link>>
 <br>
 
 :: Photography Chef 2
@@ -325,7 +325,7 @@ The interior is more modern. You follow Niki up a flight of stairs, and enter a 
 You walk behind a screen, and find a chef's apron and hat. You put them on.
 <br><br>
 
-<<link [[Далее|Photography Chef 3]]>><</link>>
+<<link [[Next|Photography Chef 3]]>><</link>>
 <br>
 
 :: Photography Chef 3
@@ -356,7 +356,7 @@ You stand in front of the camera. <<if $pronoun is "m">>Niki strokes <<his>> stu
 
 <<endevent>>
 
-<<link [[Далее|Photography Chef 5]]>><</link>>
+<<link [[Next|Photography Chef 5]]>><</link>>
 <br>
 
 :: Photography Chef 5
@@ -385,7 +385,7 @@ You walk over. The <<person1>><<person>> holds an arm out. "Don't get in the way
 "But I want to see," you say, ignoring <<him>>. You approach the oven, and bend over to look inside. "I said-" the <<person>> begins, but <<he>> cuts off when you start wiggling your <<bottom>>. The others stop working. You can feel their eyes on you.
 <<exhibitionism1>><<fameexhibitionism 6>>
 
-<<if $promiscuity gte 55>>
+<<if hasSexStat("promiscuity", 4)>>
 	<span class="lewd">An idea strikes you.</span>
 	<br><br>
 
@@ -439,7 +439,7 @@ The <<person>> looks bemused. "We're busy here <<girl>>. We don't have time to g
 Satisfied, you turn to the others. "Next."
 <<promiscuity4>>
 
-<<link [[Далее|Photography Chef Milk]]>><</link>>
+<<link [[Next|Photography Chef Milk]]>><</link>>
 <br>
 
 :: Photography Chef Milk
@@ -453,7 +453,7 @@ The door opens. Niki's back. The workers hurry to cover up, and pretend to be bu
 
 <<endevent>>
 
-<<link [[Далее|Photography Chef 6]]>><</link>>
+<<link [[Next|Photography Chef 6]]>><</link>>
 
 :: Photography Chef Leave
 <<set $outside to 0>><<set $location to "town">><<effects>>
@@ -461,7 +461,7 @@ The door opens. Niki's back. The workers hurry to cover up, and pretend to be bu
 You walk away from the stage. You watch them get back to work, their faces red.
 <br><br>
 
-<<link [[Далее|Photography Chef Wait]]>><</link>>
+<<link [[Next|Photography Chef Wait]]>><</link>>
 <br>
 
 :: Photography Chef Wait
@@ -474,7 +474,7 @@ You wait for the <<person>> and <<his>> colleagues to lay out the prop kitchen. 
 
 <<endevent>>
 
-<<link [[Далее|Photography Chef 6]]>><</link>>
+<<link [[Next|Photography Chef 6]]>><</link>>
 <br>
 
 :: Photography Chef 6
@@ -487,7 +487,7 @@ Niki has you pose holding various kitchen utensils. You smile for the camera, po
 <<He>> walks over, and places a pot of cream on the oven.
 <br><br>
 
-<<if $exhibitionism gte 15 and $chef_picture is "lewd">>
+<<if hasSexStat("exhibitionism", 2) and $chef_picture is "lewd">>
 	<span class="lewd">Another lewd idea strikes you.</span>
 	<br><br>
 	<<link [[Use the lewd fluid you collected|Photography Chef Lewd Cream]]>><<set $chef_picture to "lewd">><</link>><<exhibitionist2>>
@@ -508,7 +508,7 @@ You end up on the floor, with the pot on your head, covered head-to-toe in stick
 <<exhibitionism2>>
 <<drench "goo" 5 "outside">>
 
-<<link [[Далее|Photography Chef 7]]>><</link>>
+<<link [[Next|Photography Chef 7]]>><</link>>
 
 :: Photography Chef Normal Cream
 <<set $outside to 0>><<set $location to "town">><<effects>>
@@ -520,7 +520,7 @@ You spoon out a ladle of cream, smile at the camera, and pour it over your chest
 You end up on the floor, with the pot on your head, covered head-to-toe in sticky fluid.
 <<exhibitionism2>>
 
-<<link [[Далее|Photography Chef 7]]>><</link>>
+<<link [[Next|Photography Chef 7]]>><</link>>
 <br>
 
 :: Photography Chef 7

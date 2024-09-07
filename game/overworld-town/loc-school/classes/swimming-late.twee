@@ -74,7 +74,7 @@ and (($worn.upper.type.includes("naked") or $worn.upper.type.includes("swim")) a
 			"I don't even want to know how you got yourself bound up," <<he>> exclaims, "you can explain that to Leighton, too."<<detention 1>>
 			<br><br>
 
-			<<link [[Далее|School Swimming Late Detention]]>><<endevent>><<pass 2>><<towelupm>><</link>>
+			<<link [[Next|School Swimming Late Detention]]>><<endevent>><<pass 2>><<towelupm>><</link>>
 		<<elseif $exposed gte 2>>
 			On the way out <<he>> picks up a towel from the rack. "Put this on," <<he>> says.
 			<br><br>
@@ -84,7 +84,7 @@ and (($worn.upper.type.includes("naked") or $worn.upper.type.includes("swim")) a
 		<<else>>
 			<br><br>
 
-			<<link [[Далее|School Swimming Late Detention]]>><<endevent>><<pass 2>><</link>>
+			<<link [[Next|School Swimming Late Detention]]>><<endevent>><<pass 2>><</link>>
 		<</if>>
 	<<elseif $rng gte 25>>
 		"Glad you could join us," <<he>> says. "I'm afraid you are too late to
@@ -141,7 +141,7 @@ and (($worn.upper.type.includes("naked") or $worn.upper.type.includes("swim")) a
 You sit down on the chair.
 <<if $exposed gte 2>>
 	<<if $swimall isnot 1>>
-		<<if $exhibitionism gte 75>>
+		<<if hasSexStat("exhibitionism", 5)>>
 			Your exposed <<genitalsandbreasts is are>> on display for the whole class.<<arousal 600>>
 		<<else>>
 			You cover your exposed <<genitalsandbreasts>> with your hands.<<arousal 300>><<stress 1>>
@@ -222,14 +222,14 @@ Mason holds you fast and drags you towards Leighton's office.
 <<else>>
 	<<link [[Walk|School Swimming Late Detention 2]]>><<endevent>><<set $phase to 1>><</link>>
 	<br>
-	<<if $exposed gte 2 and $exhibitionism gte 75>>
+	<<if $exposed gte 2 and hasSexStat("exhibitionism", 5)>>
 		<<link [[Flaunt|School Swimming Late Detention Flaunt]]>><<endevent>><</link>><<exhibitionist5>>
 		<br>
-	<<elseif $exposed gte 1 and $exhibitionism gte 55>>
+	<<elseif $exposed gte 1 and hasSexStat("exhibitionism", 4)>>
 		<<link [[Flaunt|School Swimming Late Detention Flaunt]]>><<endevent>><</link>><<exhibitionist4>>
 		<br>
 	<</if>>
-	<<if $exhibitionism gte 55 and ($rightarm isnot "bound" or $leftarm isnot "bound") and $exposed lt 2>>
+	<<if hasSexStat("exhibitionism", 4) and ($rightarm isnot "bound" or $leftarm isnot "bound") and $exposed lt 2>>
 		<<checkdroptowel>>
 		<<if _exlevel gte 2>>
 			<<link [[Drop the towel and flaunt|School Swimming Late Detention Flaunt]]>><<droptowel>><<endevent>><</link>><<exhibitionist5>>
@@ -312,7 +312,7 @@ Most though are keen to take in the sight of the <<if $worn.lower.type.includes(
 	<</if>>
 	<<if $exposed gte 1>><<covered>><</if>>
 	<br><br>
-	<<if $carried.upper.name isnot "naked" or $carried.lower.name isnot "ничего">> <!-- Detention scene doesn't account for you being naked, put the towel back on if you took it off -->
+	<<if $carried.upper.name isnot "naked" or $carried.lower.name isnot "naked">> <!-- Detention scene doesn't account for you being naked, put the towel back on if you took it off -->
 		You put your towel back on just before
 		<<silently>><<clotheson>><</silently>>
 	<</if>>

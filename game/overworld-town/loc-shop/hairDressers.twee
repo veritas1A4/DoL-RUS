@@ -11,7 +11,7 @@
 	<<skulduggeryrequired>>
 	<br><br>
 <</if>>
-<<getouticon>><<link [[Покинуть|Shopping Centre]]>><</link>>
+<<getouticon>><<link [[Leave|Shopping Centre]]>><</link>>
 <br>
 
 :: Hairdressers
@@ -73,7 +73,7 @@ You are in the hairdressers. Various hair products are available for sale. You c
 			<<hairdressericon "chair">><<link [[Take a seat|Hairdressers Seat]]>><</link>>
 			<br><br>
 		<</if>>
-		<<getouticon>><<link [[Покинуть|Shopping Centre]]>><</link>>
+		<<getouticon>><<link [[Leave|Shopping Centre]]>><</link>>
 		<br>
 	<</if>>
 <</if>>
@@ -99,7 +99,7 @@ The hairdresser makes small talk as <<he>> rings up your purchase. "That stuff's
 <</if>>
 <br><br>
 
-<<link [[Далее|Hairdressers]]>><<endevent>><</link>>
+<<link [[Next|Hairdressers]]>><<endevent>><</link>>
 
 :: Hairdressers Seat
 
@@ -122,7 +122,7 @@ The hairdresser makes small talk as <<he>> rings up your purchase. "That stuff's
 
 :: Hairdressers Session
 <<hairdressersSession>>
-<<link [[Покинуть|Hairdressers]]>><<endevent>><</link>>
+<<link [[Leave|Hairdressers]]>><<endevent>><</link>>
 
 :: Hairdressers Widgets [widget]
 /*args[0]: dye name in colours.js */
@@ -319,9 +319,7 @@ The hairdresser makes small talk as <<he>> rings up your purchase. "That stuff's
 					<<optionsfrom _browsDyeOptions>>
 				<</listbox>>
 				<<if $browsDyeOption isnot "noChange"and $browsDyeOption isnot "removeDye">>
-					<div @class="'hair-'+$browsDyeOption">
-						<div style="height: 25px; width: 100px; margin-top:5px; background-color: #fd6064; border:1px solid #ccc;" class="colour-hair"></div>
-					</div>
+					<<dyeSwatch $browsDyeOption>>
 					<br>
 				<<else>>
 					<br><br>
@@ -346,7 +344,7 @@ The hairdresser makes small talk as <<he>> rings up your purchase. "That stuff's
 		<</if>>
 		<<if _cancel>>
 			<br><br>
-			<<link [[Покинуть|Sydney Hairdressers Cancel]]>><<endevent>><</link>>
+			<<link [[Leave|Sydney Hairdressers Cancel]]>><<endevent>><</link>>
 		<</if>>
 	<<else>>
 
@@ -360,7 +358,7 @@ The hairdresser makes small talk as <<he>> rings up your purchase. "That stuff's
 			<</link>>
 		<</if>>
 		<br><br>
-		<<link [[Покинуть|Hairdressers]]>><<endevent>><</link>>
+		<<link [[Leave|Hairdressers]]>><<endevent>><</link>>
 	<</if>>
 <</widget>>
 
@@ -540,6 +538,10 @@ The hairdresser makes small talk as <<he>> rings up your purchase. "That stuff's
 <<widget "mannequinHairdresser">>
 	<<if $options.images is 1>>
 		<div class="mannequin-inner">
+			<<selectmodel "lighting" "hairdresser">>
+			<<set _modeloptions.lights.gradient.enabled = false>>
+			<<set _modeloptions.lights.flat.enabled = false>>
+			<<rendermodel "lighting">>
 			<<selectmodel "main" "hairdresser">>
 				<<set _modeloptions.mannequin to true>>
 				<<set _modeloptions.show_face to false>>
