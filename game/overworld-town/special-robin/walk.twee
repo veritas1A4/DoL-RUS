@@ -200,7 +200,7 @@ You spill popcorn on Robin's lap. You clean the mess off <<him>>, and feel aroun
 <<He>> stares at the screen, but you hear a small moan escape <<him>>.
 <br><br>
 
-<<if $promiscuity gte 55>>
+<<if hasSexStat("promiscuity", 4)>>
 	<<link [[Give oral (0:15)|Robin Cinema Oral]]>><<pass 15>><<npcincr Robin love 1>><</link>><<promiscuous4>><<glove>>
 	<br>
 <</if>>
@@ -229,7 +229,7 @@ Someone in front turns and shushes <<him>>. "S-sorry," <<he>> pants in response.
 You watch the film to its satisfying conclusion. Robin doesn't say much on the way home, but insists on holding your hand. <<takeHandholdingVirginity "Robin" "romantic">>
 <br><br>
 
-<<link [[Далее|Robin Options]]>><</link>>
+<<link [[Next|Robin Options]]>><</link>>
 <br>
 
 :: Robin Cinema Watch
@@ -244,7 +244,7 @@ You watch the film to its satisfying conclusion. Robin doesn't say much on the w
 	<br><br>
 <</if>>
 <<set $phase to 0>>
-<<link [[Далее|Robin Options]]>><</link>>
+<<link [[Next|Robin Options]]>><</link>>
 <br>
 
 :: Robin Cinema Romance
@@ -322,13 +322,13 @@ You wrap your arms around <<him>> as your lips meet. <<takeKissVirginity "Robin"
 No one in the room seems to notice what you're up to.
 <br><br>
 
-<<if $promiscuity gte 15>>
+<<if hasSexStat("promiscuity", 2)>>
 	<<link [[Pull away|Robin Cinema Frisky Leave]]>><<npcincr Robin lust 1>><</link>><<glust>>
 	<br>
 	<<link [[Pull Robin to the floor|Robin Cinema Floor]]>><</link>><<promiscuous2>>
 	<br>
 <<else>>
-	<<link [[Далее|Robin Cinema Frisky Leave]]>><<npcincr Robin lust 1>><</link>><<glust>>
+	<<link [[Next|Robin Cinema Frisky Leave]]>><<npcincr Robin lust 1>><</link>><<glust>>
 	<br>
 <</if>>
 
@@ -369,7 +369,7 @@ Hidden by the unoccupied row of seats in front of you, the two of you have free 
 		<br><br>
 	<</if>>
 
-	<<link [[Далее|Robin Cinema Sex]]>><<set $sexstart to 1>><</link>>
+	<<link [[Next|Robin Cinema Sex]]>><<set $sexstart to 1>><</link>>
 	<br>
 
 <<else>>
@@ -411,7 +411,7 @@ Hidden by the unoccupied row of seats in front of you, the two of you have free 
 	You awaken some time later.
 	<br><br>
 
-	<<link [[Далее|Robin Cinema Romance Watch]]>><</link>>
+	<<link [[Next|Robin Cinema Romance Watch]]>><</link>>
 <<else>>
 
 	You gingerly rest your head on Robin's shoulder. You look up to see <<his>> face flushed as <<he>> struggles to stay focused on the film. After a moment, <<he>> wraps an arm around you. It's not long before your eyelids start to feel heavy. The rhythm of Robin's breathing gradually lulls you into a light sleep.
@@ -421,7 +421,7 @@ Hidden by the unoccupied row of seats in front of you, the two of you have free 
 	You awaken some time later.
 	<br><br>
 
-	<<link [[Далее|Robin Cinema Bush]]>><</link>>
+	<<link [[Next|Robin Cinema Bush]]>><</link>>
 <</if>>
 
 :: Robin Cinema Bush
@@ -445,7 +445,7 @@ Applause rings through the showroom as the credits roll. Robin can't look away f
 You try to recall some minor details about the film, but it all escapes you. Robin seems content to just lie in your arms. You make the rest of the walk home safely.
 <br><br>
 
-<<link [[Далее|Robin Options]]>><</link>>
+<<link [[Next|Robin Options]]>><</link>>
 <br>
 
 :: Robin Park Tease
@@ -470,7 +470,7 @@ Robin takes your hand with more force than usual. <<He>> stands, but looks confl
 In one swift motion, Robin pulls you back, turns, and pushes all of <<his>> body weight onto you. You both fall into the thick bushes behind the bench.
 <<promiscuity1>>
 
-<<link [[Далее|Robin Park Tease 2]]>><</link>>
+<<link [[Next|Robin Park Tease 2]]>><</link>>
 
 :: Robin Park Tease 2
 <<set $outside to 0>><<set $location to "town">><<effects>>
@@ -503,7 +503,7 @@ You don't think Robin's face could get any more red.
 Robin removes your clothing with trembling fingers. <<He>> tosses your clothing aside.
 <br><br>
 <<strip "strap-on">>
-<<link [[Далее|Robin Bush Sex]]>><<set $sexstart to 1>><</link>>
+<<link [[Next|Robin Bush Sex]]>><<set $sexstart to 1>><</link>>
 <br>
 
 :: Bush Strip
@@ -511,7 +511,7 @@ Robin removes your clothing with trembling fingers. <<He>> tosses your clothing 
 You strip yourself naked. You barely have enough time to remove the last piece before <<hes>> on top of you.
 <br><br>
 <<strip "strap-on">>
-<<link [[Далее|Robin Bush Sex]]>><<set $sexstart to 1>><</link>>
+<<link [[Next|Robin Bush Sex]]>><<set $sexstart to 1>><</link>>
 <br>
 
 :: Robin Bush Sex
@@ -534,9 +534,9 @@ You strip yourself naked. You barely have enough time to remove the last piece b
 <<actionsman>>
 
 <<if _combatend>>
-	<span id="next"><<link [[Далее|Robin Bush Sex Finish]]>><</link>></span><<nexttext>>
+	<span id="next"><<link [[Next|Robin Bush Sex Finish]]>><</link>></span><<nexttext>>
 <<else>>
-	<span id="next"><<link [[Далее|Robin Bush Sex]]>><</link>></span><<nexttext>>
+	<span id="next"><<link [[Next|Robin Bush Sex]]>><</link>></span><<nexttext>>
 <</if>>
 
 :: Robin Bush Sex Finish
@@ -570,7 +570,7 @@ You strip yourself naked. You barely have enough time to remove the last piece b
 <<endcombat>>
 
 <<npc Robin>><<person1>>
-<<link [[Далее|Robin Bush End]]>><</link>>
+<<link [[Next|Robin Bush End]]>><</link>>
 <br>
 
 :: Robin Bush End
@@ -579,7 +579,7 @@ You strip yourself naked. You barely have enough time to remove the last piece b
 You peek outside to make sure there's nobody around, and then help Robin out of the bush. You brush stray leaves from <<him>> before planting a kiss on <<his>> forehead. <<He>> clings to you for the entire walk home.
 <br><br>
 
-<<link [[Далее|Robin Options]]>><</link>>
+<<link [[Next|Robin Options]]>><</link>>
 <br>
 
 :: Robin Cinema Sex
@@ -609,9 +609,9 @@ You peek outside to make sure there's nobody around, and then help Robin out of 
 <<actionsman>>
 
 <<if _combatend or $timer lte 0>>
-	<span id="next"><<link [[Далее|Robin Cinema Sex Fail]]>><</link>></span><<nexttext>>
+	<span id="next"><<link [[Next|Robin Cinema Sex Fail]]>><</link>></span><<nexttext>>
 <<else>>
-	<span id="next"><<link [[Далее|Robin Cinema Sex]]>><</link>></span><<nexttext>>
+	<span id="next"><<link [[Next|Robin Cinema Sex]]>><</link>></span><<nexttext>>
 <</if>>
 
 :: Robin Cinema Sex Finish
@@ -646,7 +646,7 @@ You peek outside to make sure there's nobody around, and then help Robin out of 
 
 <<npc Robin>><<person1>>
 
-<<link [[Далее|Robin Cinema Watch]]>><</link>>
+<<link [[Next|Robin Cinema Watch]]>><</link>>
 <br>
 
 :: Robin Cinema Sex Fail
@@ -662,7 +662,7 @@ After everyone else has left the theatre you and Robin get dressed and leave.
 <<endcombat>>
 <<npc Robin>><<person1>>
 
-<<link [[Далее|Robin Cinema Bush 2]]>><</link>>
+<<link [[Next|Robin Cinema Bush 2]]>><</link>>
 <br>
 
 :: Robin Cinema Bush 2
@@ -698,7 +698,7 @@ Robin pulls <<his>> shirt away from <<his>> skin, before letting it fall back in
 You take Robin's sticky hand and pull <<him>> to <<his>> feet. <<He>> clings to you for the entire walk home.
 <br><br>
 
-<<link [[Далее|Robin Options]]>><</link>>
+<<link [[Next|Robin Options]]>><</link>>
 <br>
 
 :: Robin Cat Walk
@@ -709,7 +709,7 @@ You pull <<him>> closer and lick <<his>> fingers, running your tongue along and 
 You pounce onto <<him>>. <<He>> yelps, face awash with confused arousal. In one swift move, you pull off <<his>> shirt and get back to work, licking <<his>> chest and working your way down. Robin looks around nervously, making sure there are no prying eyes. <<His>> breathing speeds up as you reach <<his>> waist.
 <br><br>
 
-<<link [[Далее|Robin Cinema Wet 2]]>><</link>>
+<<link [[Next|Robin Cinema Wet 2]]>><</link>>
 
 :: Robin Cinema Wet 2
 <<set $outside to 0>><<set $location to "town">><<effects>>
@@ -737,7 +737,7 @@ The two of you fix your clothing. <<He>> clings to you tight, only letting out t
 <br><br>
 <<if $phase2 is "popcorn">><<popcornEat>><</if>>
 
-<<link [[Далее|Robin Options]]>><</link>>
+<<link [[Next|Robin Options]]>><</link>>
 <br>
 
 :: Robin Cinema Romance Watch
@@ -763,14 +763,14 @@ You quote one of the film's leads, from the part right before the two protagonis
 	<<He>> hugs you and leans close. "We have to kiss now," <<he>> says. "Or it won't be proper." <<He>> kisses you with more vigour than usual, trying to replicate the movie. <<Hes>> blushing when <<he>> pulls away, and continues to until you make it back to <<his>> room.<<takeKissVirginity "Robin" `($robinromance is 1?"loveInterest":"romantic")`>>
 	<br><br>
 
-	<<link [[Далее|Robin Options]]>><</link>>
+	<<link [[Next|Robin Options]]>><</link>>
 	<br>
 <<else>>
 	"And then we smooch," Robin laughs. <<He>> blushes and looks away from you. <<He>> doesn't say anything else until you're back at the orphanage.
 	<<ltrauma>><<trauma -6>>
 	<br><br>
 
-	<<link [[Далее|Robin Options]]>><</link>>
+	<<link [[Next|Robin Options]]>><</link>>
 	<br>
 <</if>>
 
@@ -781,7 +781,7 @@ You quote one of the film's leads, from the part right before the two protagonis
 You listen to Robin talk about the film. <<He>> enjoyed it more than you, and <<his>> delight is infectious. Maybe it wasn't so bad.
 <br><br>
 
-<<link [[Далее|Robin Options]]>><</link>>
+<<link [[Next|Robin Options]]>><</link>>
 <br>
 
 :: Robin Cinema Horror
@@ -813,7 +813,7 @@ The film starts. Robin screams and wraps <<his>> arms around you whenever someth
 <<He>> stays close beside you on the way home, asking if you think the monster is real. <<He>> almost sounds excited by the time you get back to <<his>> room.
 <br><br>
 
-<<link [[Далее|Robin Options]]>><</link>>
+<<link [[Next|Robin Options]]>><</link>>
 <br>
 
 :: Robin Cinema Embolden
@@ -829,13 +829,33 @@ The film starts. It's quite frightening. You think you're getting used to it whe
 <<He>> stays close beside you on the way home, asking if you think the monster is real. <<He>> almost sounds excited by the time you get back to <<his>> room.
 <br><br>
 
-<<link [[Далее|Robin Options]]>><</link>>
+<<link [[Next|Robin Options]]>><</link>>
 <br>
 
 :: Robin Forest
 <<location "forest">><<effects>>
 
-<<if Weather.precipitation is "rain">>
+<<if $edenCagedEscape and $rng gte 80>>
+	You enter the forest with Robin. <<He>> looks around, a little unsure. "Let's not go too deep," <<he>> says. "The forest is scary."
+	<br><br>
+	<<He>> sets up the picnic. You hang back. The trees seem closer together than normal. It's like they're crowding around you and Robin.
+	<br><br>
+	A chill runs up your spine, a warning from some primal instinct. <span class="red">Something is watching you.</span>
+	<br><br>
+	<<if C.npc.Robin.trauma gte 80>>
+		Robin glances at you. "What's wrong?" <<he>> asks. <<His>> voice is tight with panic.
+	<<else>>
+		"What's wrong?" <<he>> asks. A small grin steals over <<his>> face. "Are you scared?"
+		<br><br>
+		<<Hes>> teasing, but you can't bring yourself to laugh. You can feel the force watching you getting closer.<<stress 6>><<gstress>>
+	<</if>>
+	<br><br>
+
+	<<link [[Reassure|Robin Forest Crash Response]]>><<set $phase to 1>><<stress 6>><<npcincr Robin trauma -1>><<npcincr Robin dom 3>><</link>><<gstress>><<lrtrauma>><<ggdom>>
+	<br>
+	<<link [[Confide|Robin Forest Crash Response]]>><<set $phase to 0>><<npcincr Robin dom 1>><</link>><<gdom>>
+	<<exit>>
+<<elseif Weather.precipitation is "rain">>
 	You walk to the forest, running between shelter to avoid the worst of the rain. "I like the rain," Robin says. "It's fun running between cover like this."
 	<br><br>
 
@@ -909,7 +929,7 @@ The film starts. It's quite frightening. You think you're getting used to it whe
 	There's not much food in the basket. "I took what I could get away with," <<he>> says. "It's more for the fun of it anyway."
 	<br><br>
 
-	<<if $milk_amount gte 100 and $lactating gte 1 and $exhibitionism gte 75 and $robinromance is 1>>
+	<<if $milk_amount gte 100 and $lactating gte 1 and hasSexStat("exhibitionism", 5) and $robinromance is 1>>
 		<<link [[Get milked|Robin Forest Milking]]>><<npcincr Robin lust 1>><<npcincr Robin love 1>><</link>><<glove>><<glust>><<exhibitionist5>>
 		<br>
 	<</if>>
@@ -947,7 +967,7 @@ You say you'll look for the basket. Robin nods. "Please be careful," <<he>> says
 You spot it caught under a root. As you bend over to free it, you feel something soft and heavy land on your back. It coils around your body.
 <br><br>
 <<endevent>>
-<<link [[Далее|Robin Forest Vore]]>><<set $molestationstart to 1>><</link>>
+<<link [[Next|Robin Forest Vore]]>><<set $molestationstart to 1>><</link>>
 <br>
 
 :: Robin Forest Vore
@@ -972,13 +992,13 @@ You spot it caught under a root. As you bend over to free it, you feel something
 <<voreactions>>
 
 <<if $stress gte $stressmax>>
-	<span id="next"><<link [[Далее|Robin Forest Vore Finish]]>><</link>></span><<nexttext>>
+	<span id="next"><<link [[Next|Robin Forest Vore Finish]]>><</link>></span><<nexttext>>
 <<elseif $vorestage lte 0>>
-	<span id="next"><<link [[Далее|Robin Forest Vore Finish]]>><</link>></span><<nexttext>>
+	<span id="next"><<link [[Next|Robin Forest Vore Finish]]>><</link>></span><<nexttext>>
 <<elseif $vorestomach gte 5>>
-	<span id="next"><<link [[Далее|Robin Forest Vore Finish]]>><</link>></span><<nexttext>>
+	<span id="next"><<link [[Next|Robin Forest Vore Finish]]>><</link>></span><<nexttext>>
 <<else>>
-	<span id="next"><<link [[Далее|Robin Forest Vore]]>><</link>></span><<nexttext>>
+	<span id="next"><<link [[Next|Robin Forest Vore]]>><</link>></span><<nexttext>>
 <</if>>
 
 :: Robin Forest Vore Finish
@@ -993,7 +1013,7 @@ You spot it caught under a root. As you bend over to free it, you feel something
 	"-you okay? Where are you? Please answer." It's Robin's voice. <<He>> must have realised something was wrong after so much time had passed. You cry for help as loud as you can. You hear Robin scream. "No! Let my friend go!" You feel the snake lurch forward with you still in it, causing you to rub against its insides. Robin shrieks.
 	<br><br>
 
-	<<link [[Далее|Robin Forest Double Vore]]>><<set $daily.robin.walk to 2>><</link>>
+	<<link [[Next|Robin Forest Double Vore]]>><<set $daily.robin.walk to 2>><</link>>
 <<else>>
 	<<tearful>> you escape the snake's ravenous maw, then remember what you came here for. The picnic basket is still where you last saw it, so you dash away from the snake, now too slow without the element of surprise, and bring the basket back to Robin.
 	<br><br>
@@ -1028,7 +1048,7 @@ Robin's shriek is muffled. When <<he>> cries out again, it sounds a lot closer t
 <br>
 <<link [[Comfort Robin|Robin Forest Vore Comfort]]>><<upperruined>><<lowerruined>><<underruined>><<npcincr Robin love 5>><<trauma 6>><<stress 6>><<npcincr Robin dom -1>><</link>><<gglove>><<ldom>><<gtrauma>><<gstress>>
 <br>
-<<if $deviancy gte 75 and $voretrait gte 1>>
+<<if hasSexStat("deviancy", 5) and $voretrait gte 1>>
 	<<link [[Drag Robin down|Robin Forest Vore Tasty]]>><</link>><<deviant5>><<voreTrait>>
 	<br>
 <</if>>
@@ -1050,7 +1070,7 @@ Robin hugs you but doesn't say anything. The ordeal must have been as traumatisi
 	Robin gives you the rug to cover with and together you return to the orphanage.
 	<br><br>
 
-	<<link [[Далее|Bedroom]]>><<endevent>><</link>>
+	<<link [[Next|Bedroom]]>><<endevent>><</link>>
 	<br>
 <<else>>
 	Together you return to the orphanage.
@@ -1068,7 +1088,7 @@ You tell Robin that you're both going to be okay. You reach your hand towards wh
 Unable to escape the snake that's swallowed both of you whole, there's nothing to do but wait as you're squeezed and massaged. The viscous fluids eat away at your clothes. It isn't long until you're naked and completely covered in slime. The walls contract and rub against your <<breasts>> and <<genitals>>, and you realise with shame that your body is responding to the stimulation. The warmth and pressure on your body is having an effect, and you feel hot. Robin seems to be feeling it too, as <<his>> whimpers have turned into soft moans that escape <<his>> lips every time the snake's throat churns with <<him>> in it.
 <br><br>
 
-<<link [[Далее|Robin Forest Vore Comfort 2]]>><</link>>
+<<link [[Next|Robin Forest Vore Comfort 2]]>><</link>>
 <br>
 
 :: Robin Forest Vore Comfort 2
@@ -1088,7 +1108,7 @@ Robin hugs you but doesn't say anything. The ordeal must have been as traumatisi
 	Robin gives you the rug to cover with and together you return to the orphanage.
 	<br><br>
 
-	<<link [[Далее|Bedroom]]>><<endevent>><</link>>
+	<<link [[Next|Bedroom]]>><<endevent>><</link>>
 	<br>
 <<else>>
 	Together you return to the orphanage.
@@ -1108,7 +1128,7 @@ You pull <<him>> towards you. "W-wait," <<he>> cries. "What are you doing? Don't
 The stomach is now even tighter than before with two people stuck in it. You feel the smooth skin of Robin's legs press against your face. You can feel <<his>> breath on your crotch. The walls of the stomach close in again and your mouth is pressed against <<his>> <<if $NPCList[0].penis isnot "none">>penis<<else>>pussy<</if>>, eliciting a gasp. You take the chance to start licking and sucking on <<his>> crotch through the fabric, trying to help <<him>> enjoy this situation as much as you are.
 <br><br>
 
-<<link [[Далее|Robin Forest Vore Tasty 2]]>><<upperruined>><<lowerruined>><<underruined>><</link>>
+<<link [[Next|Robin Forest Vore Tasty 2]]>><<upperruined>><<lowerruined>><<underruined>><</link>>
 <br>
 
 :: Robin Forest Vore Tasty 2
@@ -1126,7 +1146,7 @@ Pressed against Robin in the snake's stomach, you both continue to stimulate eac
 You and Robin both tremble in ecstasy, pressing and rubbing your slick bodies against each other. The snake's stomach rumbles around you. It seems like having two people shuddering with pleasure in its stomach has caused it more discomfort than it can take. As the squeezing around you intensifies, the fleshy valve by your face loosens and you and Robin are pushed out of the snake's gullet together, where you land in a slimy heap. As you and Robin lie panting from your oral sex session, the snake slithers away.
 <br><br>
 
-<<link [[Далее|Robin Forest Vore Tasty 3]]>><</link>>
+<<link [[Next|Robin Forest Vore Tasty 3]]>><</link>>
 <br>
 
 :: Robin Forest Vore Tasty 3
@@ -1150,7 +1170,7 @@ You help each other clean off as much slime as you can, but the stickiness makes
 
 <<endevent>>
 
-<<link [[Далее|Bedroom]]>><</link>>
+<<link [[Next|Bedroom]]>><</link>>
 <br>
 
 :: Robin Forest Break Down
@@ -1166,7 +1186,7 @@ You help each other clean off as much slime as you can, but the stickiness makes
 	Robin gives you the rug to cover with and together you return to the orphanage.
 	<br><br>
 
-	<<link [[Далее|Bedroom]]>><<endevent>><</link>>
+	<<link [[Next|Bedroom]]>><<endevent>><</link>>
 	<br>
 <<else>>
 	Together you return to the orphanage.
@@ -1188,7 +1208,7 @@ Robin rushes to your side, looking panicked. "I'm so sorry," <<he>> says. "I sho
 	Robin gives you the rug to cover with and together you return to the orphanage.
 	<br><br>
 
-	<<link [[Далее|Bedroom]]>><<endevent>><</link>>
+	<<link [[Next|Bedroom]]>><<endevent>><</link>>
 	<br>
 <<else>>
 	Together you return to the orphanage.
@@ -1207,7 +1227,7 @@ Robin clings to your arm and gazes on you with awe. "You fought off a giant snak
 <<if $exposed gte 1>>
 	Robin gives you the rug to cover with and together you return to the orphanage.
 	<br><br>
-	<<link [[Далее|Bedroom]]>><<endevent>><</link>>
+	<<link [[Next|Bedroom]]>><<endevent>><</link>>
 	<br>
 <<else>>
 	Together you return to the orphanage.
@@ -1284,7 +1304,7 @@ You let out a <<if $cow gte 6>>moo and <</if>>laugh, reminding Robin that <<hes>
 "Squeeze it," you say. "Don't be shy." <<He>> hesitates, then does as instructed. A little milk leaks out.
 <br><br>
 
-<<link [[Далее|Robin Forest Milking 2]]>><</link>>
+<<link [[Next|Robin Forest Milking 2]]>><</link>>
 <br>
 
 :: Robin Forest Milking 2
@@ -1299,7 +1319,7 @@ Robin releases your breast in shock. You laugh. "It's okay," you say, grabbing b
 "If it would make you happy," <<he>> says.
 <br><br>
 
-<<if $promiscuity gte 35>>
+<<if hasSexStat("promiscuity", 3)>>
 	<span class="blue">Another idea strikes you.</span>
 	<br><br>
 	<<link [[Ask Robin to drink from the source|Robin Forest Milking 3]]>><</link>><<promiscuous3>>
@@ -1325,7 +1345,7 @@ Robin looks at your face, then back at your <<breasts>>. <<He>> closes <<his>> e
 <<else>>
 	Robin leans closer, but then pulls away. "I'm sorry," <<he>> says. "I can't do it."
 	<br><br>
-	<<link [[Далее|Robin Forest Milking 4]]>><</link>>
+	<<link [[Next|Robin Forest Milking 4]]>><</link>>
 <</if>>
 
 :: Robin Forest Milking 4
@@ -1340,7 +1360,7 @@ Robin seems more confident eating the milky cookie. <<He>> does like sweet thing
 <br><br>
 The rest of the picnic is uneventful. Robin seems less embarrassed by the end.
 <br><br>
-<<link [[Далее|Robin Forest Milking End]]>><<clotheson>><</link>>
+<<link [[Next|Robin Forest Milking End]]>><<clotheson>><</link>>
 
 :: Robin Forest Milking Source
 <<location "forest">><<effects>>
@@ -1370,7 +1390,7 @@ The rest of the picnic is uneventful. Robin seems less embarrassed by the end.
 <<Hes>> a little overwhelmed by the situation, but you can tell <<hes>> keen to please you.
 <br><br>
 
-<<link [[Далее|Robin Forest Milking End]]>><<clotheson>><</link>>
+<<link [[Next|Robin Forest Milking End]]>><<clotheson>><</link>>
 
 :: Robin Forest Milking End
 <<location "forest">><<effects>>
@@ -1462,7 +1482,7 @@ You sit together for several minutes, before packing up the picnic and walking b
 	<br><br>
 	You walk through the town's streets and into the forest, to the small shop hidden beneath the boughs.
 	<br><br>
-	<<link [[Далее|Robin Forest Shop 4]]>><</link>>
+	<<link [[Next|Robin Forest Shop 4]]>><</link>>
 	<br>
 <</if>>
 
@@ -1484,7 +1504,7 @@ You sit together for several minutes, before packing up the picnic and walking b
 <br><br>
 "Wait!" Robin shouts. The mousy <<personsimple>> doesn't hear, and disappears around the corner. Robin runs after <<him>>. You follow close behind.
 <br><br>
-<<link [[Далее|Robin Forest Shop 3]]>><<pass 5>><</link>>
+<<link [[Next|Robin Forest Shop 3]]>><<pass 5>><</link>>
 <br>
 
 :: Robin Forest Shop 3
@@ -1494,7 +1514,7 @@ Each time you round a corner you see the mousy <<personsimple>> about to disappe
 <br><br>
 You arrive at Wolf Street just in time to see the <<personsimple>> disappear into the trees. Robin hesitates, then breaks into a run. You follow <<person1>><<him>> into the forest.
 <br><br>
-<<link [[Далее|Robin Forest Shop 4]]>><<pass 5>><</link>>
+<<link [[Next|Robin Forest Shop 4]]>><<pass 5>><</link>>
 <br>
 
 :: Robin Forest Shop 4
@@ -1551,7 +1571,7 @@ You arrive at Wolf Street just in time to see the <<personsimple>> disappear int
 	<</if>>
 	<<set $forest_shop_intro to 1>>
 	<br><br>
-	<<link [[Далее|Robin Forest Shop 5]]>><</link>>
+	<<link [[Next|Robin Forest Shop 5]]>><</link>>
 
 <<else>>
 	Gwylan greets you as you enter. "I'm glad to see you again," <<person2>><<he>> says, shaking both your and Robin's hand. "Let me know if you need anything."
@@ -1565,7 +1585,7 @@ You arrive at Wolf Street just in time to see the <<personsimple>> disappear int
 	Robin beelines towards the dark screen.
 	<br><br>
 
-	<<link [[Далее|Forest Shop]]>><</link>>
+	<<link [[Next|Forest Shop]]>><</link>>
 <</if>>
 
 :: Robin Forest Shop 5
@@ -1581,7 +1601,7 @@ Gwylan smiles. "Thank you," <<person2>><<he>> says. "I just picked up some new c
 Gwylan pauses. "You could wear them as such," <<he>> decides. "They're behind the dark screen over-" Robin doesn't wait for Gwylan to finish. <<person1>><<He>> rushes over, almost knocking over a shelf on the way.
 <br><br>
 
-<<link [[Далее|Forest Shop]]>><</link>>
+<<link [[Next|Forest Shop]]>><</link>>
 
 :: Robin Forest Shop Home
 
@@ -1604,7 +1624,7 @@ You bid Gwylan farewell. Together you and Robin walk back to the orphanage.
 	You return to your own room.
 	<br><br>
 
-	<<link [[Далее|Bedroom]]>><<endevent>><</link>>
+	<<link [[Next|Bedroom]]>><<endevent>><</link>>
 <<else>>
 	<<robinoptions>>
 <</if>>
@@ -1722,3 +1742,338 @@ You catch up with Robin, and find <<him>> admiring two outfits. A witch costume 
 Robin disappears behind the screen to dress. Despite <<his>> misgivings, you take the outfit to Gwylan and hand over the money.
 <br><br>
 <<robinForestCostumeOptions>>
+
+:: Robin Forest Crash Response
+<<effects>>
+
+<<if $phase is 1>> /* Reassure */
+	You don't have the heart to tell <<him>> about all you've experienced in the forest. Not after <<= C.npc.Robin.trauma gte 80 ? "what <<hes>> been through" : "<<he>> went through the trouble to put this picnic together">>. You just smile and sit next to <<him>>.
+	<br><br>
+	"Nothing's wrong," you say. "Is that your signature <<= Time.season is "winter" ? "hot chocolate" : "lemonade">>?"
+	<br><br>
+	<<He>> smiles. The simple gesture lights up <<his>> whole face.	"<<= C.npc.Robin.dom gte 60 ? "I'm trying something new. Let me know if you like it." : "Yeah, I hope that's okay.">>"
+<<else>> /* Confide */
+	<<if $speech_attitude is "meek">>
+		"A little," you admit. "I-I've had some tough experiences here. L-lots of scary animals. Lots of scary people too."
+	<<elseif $speech_attitude is "bratty">>
+		"Of course I'm scared," you say. "You know as well as I do what goes on in these woods."
+	<<else>>
+		"Kind of," you say. "Like you said, the woods can be pretty scary."
+	<</if>>
+	<br><br>
+	"I get it," Robin says. <<He>> looks over at the part of the forest that swallows light. "The people at school say not to go in there at night, or the monster will get you."
+	<br><br>
+	"Monster?" you ask.
+	<br><br>
+	<<He>> shrugs, not meeting your eyes. "Some people are convinced they've seen one."
+	<br><br>
+	<<if $speech_attitude is "meek">>
+		"I think- I think there are enough human monsters in the world to be adding more," you say.
+	<<elseif $speech_attitude is "bratty">>
+		"They should be afraid of monsters," you say with a sharp grin. "Especially the ones with human faces."
+	<<else>>
+		"You and I have seen real monsters," you say. "We don't need the stories."
+	<</if>>
+<</if>>
+<br><br>
+Robin doesn't say anything more as <<he>> sets out the food. You keep glancing at the tree line.
+<br><br>
+<<skulduggerycheck "silent">>
+<<if $skulduggerysuccess is 1>>
+	<span class="pink">You see movement. It's sharp and quick.</span>
+	<br><br>
+<<elseif $transformationParts.traits.sharpEyes isnot "disabled">>
+	<span class="red">Something shines in the depths of the forest. There are bullet casings on the ground. You think you hear heavy footsteps, though that could just be your imagination.</span>
+	<br><br>
+<<else>>
+	<span class="red">You aren't sure what you're looking for, but you don't find it.</span><<skulduggeryskilluse>>
+<</if>>
+
+Robin clears <<his>> throat. "Thank you for coming out with me," <<he>> says. "It's better <<= $robinromance is 1 ? "when I'm with you." : "if I'm not alone.">>"
+<br><br>
+
+<<link [[Offer to share food|Robin Forest Crash Food]]>><</link>>
+<<if $robinromance is 1>>
+	<br>
+	<<link [[Kiss|Robin Forest Crash Kiss]]>><</link>><<promiscuous1>>
+<</if>>
+
+:: Robin Forest Crash Food
+<<effects>>
+
+You break a piece of bread in half and hand <<him>> the bigger piece. <<He>> smiles at you with gratitude.<<npcincr Robin love 1>><<glove "Robin">>
+<br><br>
+<<if C.npc.Robin.dom gte 60>>
+	"You know," <<he>> says,"I used to be really scared all the time. I'm not scared anymore."
+	<br><br>
+	"You're not?" you ask.
+	<br><br>
+	"No." <<He>> moves closer. "You're so brave everyday. You taught me that I can be brave too." <<npcincr Robin dom 3>><<ggdom>>
+<<else>>
+	"I'm scared all the time," <<he>> whispers. "But when I'm with you, I feel like I can be brave." <<He>> looks at you. "Do you think I can be brave?"
+	<br><br>
+	<<if $speech_attitude is "meek">>
+		"I think you're the bravest person I know," you whisper. "You're far braver than me."
+	<<elseif $speech_attitude is "bratty">>
+		"I know you are," you say firmly. "I see it everyday."
+	<<else>>
+		"You're one of the bravest people I know," you say. "Everyone at the orphanage thinks so too."
+	<</if>>
+	<br><br>
+	<<He>> moves closer. "You're so brave everyday. I wouldn't be where I am if it wasn't for you. Thank you." <<npcincr Robin dom 1>><<gdom>>
+<</if>>
+<br><br>
+
+<<link [[Go home|Robin Forest Crash Home]]>><</link>>
+<br>
+<<if $robinromance is 1>>
+	<<link [[Kiss|Robin Forest Crash Kiss]]>><</link>><<promiscuous1>><<kissvirginitywarning>>
+	<br>
+<</if>>
+
+:: Robin Forest Crash Home
+<<set $outside to 0>><<set $location to "home">><<effects>>
+
+After a pleasant lunch, Robin packs away the picnic. You walk back to the orphanage together. Neither of you are very talkative. The feeling of being watched lingers until long after the forest is out of sight.
+<br><br>
+You only relax when you're safe in Robin's room.
+<br><br>
+<<robinoptions>>
+
+:: Robin Forest Crash Kiss
+<<effects>>
+
+You lean forwards and kiss Robin. <<He>> kisses back, pulling you closer. "I feel so safe with you," <<he>> says.<<takeKissVirginity "Robin" `($robinromance is 1?"loveInterest":"romantic")`>>
+<<promiscuity1>>
+
+Heavy footsteps interrupt before you can continue. A hand grabs your hair and yanks you back. You catch a glimpse of Eden's face contorted into a snarl, right before <<npc Eden 2>><<person2>><<he>> slams <<his>> fist into Robin's gut.
+<br><br>
+"Robin!" You try to go to <<person1>><<him>>, but Eden holds you still.<<pain 2>><<stress 6>><<npcincr Robin trauma 5>><<gpain>><<gstress>><<ggrtrauma>>
+<br><br>
+"I've been searching all over town for you, and you've been too busy acting like a bitch in heat to notice!" <<person2>><<he>> shouts.<<npcincr Eden love -30>><<llllove "Eden">>
+<br><br>
+<<if $speech_attitude is "meek">>
+	"That- that's not true," you try to explain. "Robin and I are friends. You know that the only one I want is you."
+<<elseif $speech_attitude is "bratty">>
+	"I'm not a dog," you shout back. "And I don't belong to you, Eden! I can kiss whoever I want!"
+<<else>>
+	"It was only a kiss," you say. "Nothing else happened. I promise."
+<</if>>
+<br><br>
+Eden glares at Robin, who lies prone on the ground. Then <<he>> turns <<his>> glare onto you. "I'm taking you back to the cabin," <<he>> spits out. "Things are not going to be pretty when we get there."
+<br><br>
+
+<<if $submissive lte 850>>
+	<<link [[Protest|Robin Forest Crash Protest]]>><<def 1>><<npcincr Eden love -1>><<npcincr Eden dom -5>><</link>><<llove "Eden">><<lldom "Eden">>
+<<elseif $submissive gte 1150>>
+	<<link [[Plead|Robin Forest Crash Protest]]>><<npcincr Eden love -1>><<npcincr Eden dom 1>><</link>><<llove "Eden">><<gdom "Eden">>
+<<else>>
+	<<link [[Ask to check on Robin|Robin Forest Crash Protest]]>><<npcincr Eden love -1>><<npcincr Eden dom -1>><</link>><<llove "Eden">><<ldom "Eden">>
+<</if>>
+<br>
+<<link [[Submit willingly|Robin Forest Crash Taken]]>><<set $phase to 1>><<sub 1>><<npcincr Eden dom 5>><</link>><<ggdom "Eden">>
+
+:: Robin Forest Crash Protest
+<<effects>><<person1>>
+
+<<if $submissive lte 850>>
+	"I'm not going anywhere until I check on Robin," you say.
+<<elseif $submissive gte 1150>>
+	"W-wait," you say, placing a hand on Eden's arm. "<<He>> looks hurt. C-can I check on <<him>>? Please."
+<<else>>
+	"<<Hes>> hurt," you say. "Can I check on <<him>> first?"
+<</if>>
+<br><br>
+Eden casts a dark look at Robin. <<person2>><<He>> tightens <<his>> grip. "Forget about <<person1>><<him>>," Eden says. "You're not going to spend another second in this town."
+<br><br>
+<<if $submissive lte 850>>
+	You try to pry your arm free. "You can't stop me from helping <<him>>. <<Hes>> my friend."
+<<elseif $submissive gte 1150>>
+	"B-but <<hes>> my friend," you try again.
+<<else>>
+	"<<Hes>> my friend," you say.
+<</if>>
+<br><br>
+"Friends? You have no friends," Eden snaps. "You have no one but me. The sooner you accept that, the better."
+<br><br>
+<<if $submissive lte 850>>
+	"That's not true," you say.
+<<elseif $submissive gte 1150>>
+	"That- that can't be true," you say.
+<<else>>
+	"That's a lie," you say.
+<</if>>
+
+<<willpowerdifficulty 1 1000 no_text>>
+<<if $willpowerSuccess>>
+	Your words ring true.
+<<else>>
+	Your voice wavers.<<trauma 6>><<gtrauma>><<stress 6>><<gstress>>
+<</if>>
+<br><br>
+
+<<person2>>
+<<if $submissive lte 850>>
+	Eden glares at you. "We're going home," <<he>> snarls. "I'll drag you there by your hair if I have to."
+	<br><br>
+	You glare back and pull. After a bit of back and forth,
+	<br><br>
+	<<if currentSkillValue('physique') gte random(4000,14000)>>
+		<span class="green">you manage to pull away.</span>
+		<br><br>
+		<<link [[Next|Robin Forest Crash Escape]]>><</link>>
+		<<exit>>
+	<<else>>
+		<span class="red">you stumble when Eden yanks you back into <<him>>.</span>
+	<</if>>
+<<elseif $submissive gte 1150>>
+	Eden glares at you. "It doesn't matter," <<he>> says through gritted teeth. "We're going home. It's up to you if you're going to walk or be dragged back."
+<<else>>
+	Eden glares at you. "We're going home," <<he>> says. "It's up to you if I'm dragging you there or not."
+<</if>>
+<br><br>
+
+<<link [[Submit|Robin Forest Crash Taken]]>><<sub 1>><<npcincr Eden dom 5>><<set $phase to 1>><</link>><<ggdom "Eden">>
+<br>
+<<link [[Fight|Robin Forest Crash Fight]]>><<def 1>><<npcincr Eden love -1>><<npcincr Eden dom -1>><<endevent>><<npc Eden>><<person1>><<set $fightstart to 1>><<set $daily.eden.robinCrash to 1>><</link>><<llove "Eden">><<ldom "Eden">>
+<br>
+
+:: Robin Forest Crash Fight
+<<if $fightstart is 1>>
+	<<set $fightstart to 0>>
+	<<neutral 1>>
+
+	<<maninit>>
+	<<set $enemytrust -= 100>>
+	<<set $enemyhealth to 600>>
+	<<set $enemyhealthmax to 600>>
+	<<set $enemyanger += 200>>
+	<<npcidlegenitals>>
+
+	"You need a reminder about who really cares about you," Eden says,
+	<<if $asphyxiaLvl gte 3>>
+		<<set $NPCList[0].righthand to "throat">><<set $NPCList[0].lefthand to "throat">><<set $neckuse to "hand">>
+		wrapping <<his>> hands around your throat. <span class="red">You're being strangled!</span>
+	<<else>>
+		pulling out a length of rope. <span class="red">You're about to be tied up!</span>
+	<</if>>
+<</if>>
+
+<<effects>>
+<<effectsman>>
+<<man>>
+<<stateman>>
+<br><br>
+<<actionsman>>
+
+<<if _combatend or ($pain gte 100 and $willpowerpain is 0)>>
+	<span id="next"><<link [[Next|Robin Forest Crash Fight Finish]]>><</link>></span><<nexttext>>
+<<else>>
+	<span id="next"><<link [[Next|Robin Forest Crash Fight]]>><</link>></span><<nexttext>>
+<</if>>
+
+:: Robin Forest Crash Fight Finish
+<<effects>>
+
+<<if $enemyhealth lte 0>>
+	You manage to break free of Eden's hold on you. <<He>> falls back to the ground.
+	<br><br>
+	<<tearful>> you rush to Robin's side.
+	<br><br>
+
+	<<clotheson>>
+	<<endcombat>>
+
+	<<npc Robin>><<npc Eden 2>><<person2>>
+	<<link [[Next|Robin Forest Crash Escape]]>><</link>>
+
+<<elseif $enemyarousal gte $enemyarousalmax>>
+	<<ejaculation "short">>
+	Eden pants from <<his>> exertions.
+	<br><br>
+	<<tearful>> you squirm out from under <<him>> and rush to Robin's side.
+	<br><br>
+
+	<<clotheson>>
+	<<endcombat>>
+
+	<<npc Robin>><<npc Eden 2>><<person2>>
+	<<link [[Next|Robin Forest Crash Escape]]>><</link>>
+
+<<else>>
+	You fall to the ground, too hurt to keep fighting.
+	<br><br>
+
+	<<clotheson>>
+	<<endcombat>>
+
+	<<npc Robin>><<npc Eden 2>><<person2>>
+	<<link [[Next|Robin Forest Crash Taken]]>><<set $phase to 0>><</link>>
+
+<</if>>
+
+:: Robin Forest Crash Escape
+<<effects>>
+
+You grab Robin's hand and try to pull <<person1>><<him>> to <<his>> feet.
+<br><br>
+<<if C.npc.Robin.dom gte 60>>
+	<<He>> stands. Your hands remain linked as you run with <<him>> back towards town.
+<<else>>
+	<<He>> is shaking too much to stand on <<his>> own. You let <<him>> lean against you and run towards town.
+<</if>>
+<br><br>
+Eden is hot on your trail. <<person2>><<He>> shouts after you and Robin as you lose <<him>> in the crowd. <<His>> anger is palpable. <span class="red">You know that going to the cabin will be dangerous.</span>
+<br><br>
+
+<<link [[Next|Robin Forest Crash Escape 2]]>><</link>>
+
+:: Robin Forest Crash Escape 2
+<<set $outside to 0>><<set $location to "home">><<effects>>
+<<person1>>
+
+You don't stop running until you're back at the orphanage. Robin hugs you.
+<<if C.npc.Robin.dom gte 60>>
+	<<His>> embrace is comforting. <<trauma -6>><<ltrauma>>
+<<else>>
+	<<Hes>> shaking like a leaf. You hug <<him>> tighter. <<stress 6>><<gstress>>
+<</if>>
+<<npcincr Robin love 1>><<npcincr Robin dom 1>><<glove "Robin">><<gdom "Robin">>
+
+<br><br>
+"That was so scary," <<he>> says. "Are you okay?"
+<br><br>
+"I'm okay," you say. "We're safe now."
+<br><br>
+After a moment, Robin pulls back.
+<br><br>
+"Who was that?" <<he>> asks. "<<nnpc_He "Eden">> acted like <<nnpc_he "Eden">> knew you."
+<br><br>
+You hesitate, unsure how to explain. Robin waits for an answer. When it becomes apparent you won't- or can't- answer, <<he>> heads to <<his>> bed and <<= $robinconsole is 1 ? "picks up <<his>> controller" : "sits down">>.
+<br><br>
+<<endevent>>
+
+<<npc Robin>><<person1>>
+<<robinoptions>>
+
+:: Robin Forest Crash Taken
+<<effects>>
+
+<<if $phase is 1>>
+	Eden's right. You've betrayed <<person2>><<his>> trust and hurt <<person2>><<him>>. You can't break free, and even if you could, you doubt you could escape with Robin.
+	<br><br>
+	Eden doesn't give you a chance to reconsider.
+<<else>>
+	Eden doesn't give you a chance to recover.
+<</if>>
+<br><br>
+<<person2>><<He>> ties you up, slings you over <<person2>><<his>> shoulder, and marches back into the forest. Robin watches from the ruins of your picnic.
+<br><br>
+<<if C.npc.Robin.dom gte 60>>
+	Robin throws a rock at Eden's back. <span class="red">Eden doesn't notice. Robin can't help you.</span><<trauma 12>><<npcincr Robin dom -5>><<npcincr Robin trauma 5>><<ggtrauma>><<lldom>><<ggrtrauma>>
+<<else>>
+	Robin meets your eyes, then looks away. <span class="red"><<person1>><<He>> stays on the ground. <<person1>><<He>> won't help you.</span><<stress 6>><<trauma 18>><<npcincr Robin dom -10>><<npcincr Robin trauma 10>><<gstress>><<gggtrauma>><<llldom>><<gggrtrauma>>
+<</if>>
+<br><br>
+
+<<link [[Next|Eden Robin Caged Caught]]>><<endevent>><</link>>

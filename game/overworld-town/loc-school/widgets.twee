@@ -103,9 +103,9 @@
 		<<set $whitneymaths to "absent">>
 	<</if>>
 	<<if _args[0] is "historyClassroom" and $robinhistory isnot "missing" and $robinReunionScene isnot undefined>>
-		<<link [[Далее|Robin After Class]]>><</link>>
+		<<link [[Next|Robin After Class]]>><</link>>
 	<<else>>
-		<<link [[Далее|Hallways]]>><</link>>
+		<<link [[Next|Hallways]]>><</link>>
 	<</if>>
 <</widget>>
 
@@ -286,31 +286,6 @@
 	<</if>>
 <</widget>>
 
-<<widget "changingrooms">>
-	<<if $exposed gte 2>>
-		<<if $player.gender_appearance is "m">>
-			<<if $exhibitionism gte 75>>
-				<<femaleicon>><<link [[Girls' changing room|School Girl Changing Room]]>><</link>><<exhibitionist5>>
-				<br>
-			<</if>>
-			<<maleicon>><<link [[Boys' changing room|School Boy Changing Room]]>><</link>>
-			<br>
-		<<else>>
-			<<if $exhibitionism gte 75>>
-				<<maleicon>><<link [[Boys' changing room|School Boy Changing Room]]>><</link>><<exhibitionist5>>
-				<br>
-			<</if>>
-			<<femaleicon>><<link [[Girls' changing room|School Girl Changing Room]]>><</link>>
-			<br>
-		<</if>>
-	<<else>>
-		<<maleicon>><<link [[Boys' changing room|School Boy Changing Room]]>><</link>>
-		<br>
-		<<femaleicon>><<link [[Girls' changing room|School Girl Changing Room]]>><</link>>
-		<br>
-	<</if>>
-<</widget>>
-
 :: Widgets Events Science [widget]
 <<widget "eventsscience">>
 	<<cleareventpool>>
@@ -328,7 +303,7 @@
 
 			<<link [[Kick|Science Kick]]>><<stress -12>><<trauma -6>><<detention 3>><</link>><<gdelinquency>><<ltrauma>><<lstress>>
 			<br>
-			<<link [[Игнорировать|Science Lesson]]>><<stress 6>><<trauma 6>><<endevent>><</link>><<gtrauma>><<gstress>>
+			<<link [[Ignore|Science Lesson]]>><<stress 6>><<trauma 6>><<endevent>><</link>><<gtrauma>><<gstress>>
 			<br>
 		<</addinlineevent>>
 	<</if>>
@@ -365,7 +340,7 @@
 		<</if>>
 		<br><br>
 
-		<<link [[Далее|Science Lesson]]>><<endevent>><</link>>
+		<<link [[Next|Science Lesson]]>><<endevent>><</link>>
 		<br>
 	<</addinlineevent>>
 
@@ -373,7 +348,7 @@
 		<<npc Sirris>><<person1>>Sirris asks you to come to the front of the class.
 		<br><br>
 
-		<<link [[Далее|Science Event3]]>><</link>>
+		<<link [[Next|Science Event3]]>><</link>>
 		<br>
 	<</addinlineevent>>
 
@@ -381,7 +356,7 @@
 		The class arrange themselves around the terrariums lining the edge of the room. You observe the plants contained within and try to identify the species.
 		<br><br>
 
-		<<link [[Далее|Science Terrarium]]>><</link>>
+		<<link [[Next|Science Terrarium]]>><</link>>
 		<br>
 	<</addinlineevent>>
 
@@ -423,7 +398,7 @@
 				<<gscience>><<scienceskill>>
 				<br><br>
 
-				<<link [[Далее|Science Lesson]]>><<endevent>><</link>>
+				<<link [[Next|Science Lesson]]>><<endevent>><</link>>
 				<br>
 			<<else>>
 				<<generatey1>><<generatey2>><<generatey3>>
@@ -647,7 +622,7 @@
 			You manage to suppress a squawk when a picture of the moor is shown in the presentation.
 		<<elseif $syndromebird gte 1>>
 			You smile, being reminded of Great Hawk's peculiar mating tendencies. <<arousal 200>><<garousal>>
-		<<elseif $deviancy gte 35>>
+		<<elseif hasSexStat("deviancy", 3)>>
 			You begin to see a certain appeal in this lecture. <<arousal 200>><<garousal>>
 		<<else>>
 			You grimace at <<his>> in-depth explanation of a cloaca. <<trauma 3>><<gtrauma>>
@@ -658,10 +633,10 @@
 		<<npc Sirris>><<person1>>
 		Sirris begins a lesson about canine habits and reproduction.
 		<<if $wolfgirl gte 6>>
-			You lick your lips hungrily when Sirris gets to the section about common prey. 
+			You lick your lips hungrily when Sirris gets to the section about common prey.
 		<<elseif $syndromewolves gte 1>>
 			You start to think of your pack, imagining yourself running through the forest alongside them. <<stress -3>><<lstress>>
-		<<elseif $deviancy gte 35>>
+		<<elseif hasSexStat("deviancy", 3)>>
 			You begin to see a certain appeal in this lecture. <<arousal 200>><<garousal>>
 		<<else>>
 			You listen to the best of your ability, but the topic seems uninteresting.
@@ -673,7 +648,7 @@
 		Sirris begins a lesson about feline habits and reproduction.
 		<<if $cat gte 6>>
 			You feel your tail swish and eyes sharpen when a picture of a mouse appears in the presentation.
-		<<elseif $deviancy gte 35>>
+		<<elseif hasSexStat("deviancy", 3)>>
 			You begin to see a certain appeal in this lecture. <<arousal 200>><<garousal>>
 		<<else>>
 			You listen to the best of your ability, but the topic seems uninteresting.
@@ -689,7 +664,7 @@
 			You feel that you have more in common with the cows than your fellow students. <<stress 3>><<gstress>>
 		<<elseif $lactating gte 1 and $breastfeedingdisable is "f">>
 			You begin to think that you and the cows have something in common.
-		<<elseif $deviancy gte 55>>
+		<<elseif hasSexStat("deviancy", 4)>>
 			You begin to see a certain appeal in this lecture. <<arousal 200>><<garousal>>
 		<<else>>
 			You listen to the best of your ability, but the topic seems uninteresting.
@@ -702,7 +677,7 @@
 
 		<<if $fox gte 6>>
 			You do your best to pay attention to the lesson, but your eyes continuously flicker to your classmates' stationry, feeling an intense urge to take their belongings.
-		<<elseif $deviancy gte 35>>
+		<<elseif hasSexStat("deviancy", 3)>>
 			You begin to see a certain appeal in this lecture. <<arousal 200>><<garousal>>
 		<<else>>
 			You listen to the best of your ability, but the topic seems uninteresting.
@@ -712,7 +687,7 @@
 
 	<<if $_linkSkip is false>>
 		<br><br>
-		<<link [[Далее|Science Lesson]]>><<endevent>><</link>>
+		<<link [[Next|Science Lesson]]>><<endevent>><</link>>
 	<</if>>
 <</widget>>
 
@@ -864,7 +839,7 @@
 
 	<<if $_linkSkip is false>>
 		<br><br>
-		<<link [[Далее|Science Lesson]]>><<endevent>><</link>>
+		<<link [[Next|Science Lesson]]>><<endevent>><</link>>
 	<</if>>
 <</widget>>
 
@@ -886,7 +861,7 @@
 
 	<i>Condoms will stop lewd fluids, preventing unintended insemination and keeping you clean, both inside and out. This will also help mitigate loss of purity, and lower arousal gains. However, they have a small chance to break, especially during intense sex. Combine with birth control for best results.</i>
 	<br><br>
-	<<link [[Далее|Science Lesson]]>><<endevent>><</link>>
+	<<link [[Next|Science Lesson]]>><<endevent>><</link>>
 <</widget>>
 
 <<widget "scienceProject">>
@@ -901,13 +876,13 @@
 	<br><br>
 	<span class="gold">Science project added to journal.</span>
 
-	<<if $sciencephallusknown isnot 1 and $promiscuity gte 35>>
+	<<if $sciencephallusknown isnot 1 and hasSexStat("promiscuity", 3)>>
 		<br><br>
 		<<set $sciencephallusknown to 1>>
 		A lewd thought comes to you as the other students discuss ideas. <span class="gold">You've conceived the "local phalli" science project.</span>
 	<</if>>
 	<br><br>
-	<<link [[Далее|Science Lesson]]>><<endevent>><</link>>
+	<<link [[Next|Science Lesson]]>><<endevent>><</link>>
 <</widget>>
 
 :: Widgets Events Maths [widget]
@@ -928,7 +903,7 @@
 
 			<<link [[Bite|Maths Event Bite]]>><<npcincr River dom -1>><<npcincr River love -1>><<detention 6>><<stress -12>><<trauma -6>><<def 3>><</link>><<ggdelinquency>><<ltrauma>><<lstress>>
 			<br>
-			<<link [[Терпеть|Maths Event Endure]]>><<npcincr River dom 1>><<stress 6>><<trauma 6>><<pain 5>><<sub 2>><</link>><<gpain>><<gtrauma>><<gstress>>
+			<<link [[Endure|Maths Event Endure]]>><<npcincr River dom 1>><<stress 6>><<trauma 6>><<pain 5>><<sub 2>><</link>><<gpain>><<gtrauma>><<gstress>>
 			<br>
 		<</addinlineevent>>
 	<</if>>
@@ -952,7 +927,7 @@
 
 			<<link [[Accept the bet|Maths Ruler]]>><<set $phase to 1>><<status 10>><<if $player.gender_appearance is "m">><<arousal 1500 "anus">><<else>><<arousal 1500 "pussy">><</if>><<set $mathrulerin to 1>><</link>><<exhibitionist5>><<fameexhibitionism 3>><<garousal>>
 			<br>
-			<<link [[Отказаться|Maths Ruler]]>><<stress 2>><<set $phase to 2>><<status -10>><<set $mathrulerin to 1>><</link>><<gstress>>
+			<<link [[Refuse|Maths Ruler]]>><<stress 2>><<set $phase to 2>><<status -10>><<set $mathrulerin to 1>><</link>><<gstress>>
 			<br>
 		<</addinlineevent>>
 	<</if>>
@@ -977,7 +952,7 @@
 					You blush. <<if $worn.under_upper.type.includes("naked")>>You're not wearing anything underneath!<</if>>
 					<br><br>
 
-					<<if !$worn.under_upper.type.includes("naked") or $exhibitionism gte 15>>
+					<<if !$worn.under_upper.type.includes("naked") or hasSexStat("exhibitionism", 2)>>
 						<<link [[Allow|Maths Whitney Shirt Allow]]>><<npcincr Whitney love 1>><<npcincr Whitney dom 1>><<npcincr Whitney lust 1>><<detention 4>><</link>><<exhibitionist `($worn.under_upper.type.includes("naked") ? 3 : 1)`>><<gdelinquency>><<glove>><<gdom>><<glust>>
 						<br>
 					<</if>>
@@ -987,7 +962,7 @@
 				<</if>>
 				<<link [[Resist|Maths Whitney Shirt Resist]]>><<stress 6>><</link>><<gstress>>
 				<br>
-				<<if $promiscuity gte 15>>
+				<<if hasSexStat("promiscuity", 2)>>
 					<<set $skulduggerydifficulty to 300>>
 					<<link [[`Expose ${$NPCList[0].pronouns.him} further`|Maths Whitney Shirt Expose]]>><<def 1>><<npcincr Whitney lust 5>><<npcincr Whitney dom -1>><</link>><<skulduggerydifficulty>><<promiscuous2>><<ldom>><<glust>>
 					<br>
@@ -1002,7 +977,7 @@
 
 				<<set $whitneymaths to "sent">>
 
-				<<link [[Далее|Maths Lesson]]>><<endevent>><</link>>
+				<<link [[Next|Maths Lesson]]>><<endevent>><</link>>
 				<br>
 			<</if>>
 		<</addinlineevent>>
@@ -1031,7 +1006,7 @@
 			Something jabs your waist. Whitney sits with an innocent smile and a protractor compass in <<his>> hand. You turn back to the front, and <<he>> jabs you again.<<gpain>><<pain 6>>
 			<br><br>
 
-			<<link [[Терпеть|Maths Whitney Protractor Endure]]>><<stress 6>><<pain 6>><</link>><<gstress>><<gpain>>
+			<<link [[Endure|Maths Whitney Protractor Endure]]>><<stress 6>><<pain 6>><</link>><<gstress>><<gpain>>
 			<br>
 			<<link [[Tell River|Maths Whitney Protractor Tell]]>><<status -10>><<mathsskill 6>><<npcincr Whitney love -1>><</link>><<llove>><<lcool>><<gmaths>>
 			<br>
@@ -1063,7 +1038,7 @@
 
 			<<link [[Comply grudgingly|Maths Whitney Oral]]>><<set $phase to 0>><<trauma 6>><<stress 6>><<npcincr Whitney dom 1>><<sub 1>><<set $molestationstart to 1>><</link>><<gtrauma>><<gstress>><<gdom>>
 			<br>
-			<<if $promiscuity gte 55>>
+			<<if hasSexStat("promiscuity", 4)>>
 				<<link [[Comply enthusiastically|Maths Whitney Oral]]>><<set $phase to 1>><<npcincr Whitney dom 1>><<sub 1>><<set $sexstart to 1>><</link>><<promiscuous4>><<gdom>>
 				<br>
 			<</if>>
@@ -1071,7 +1046,7 @@
 				<<link [[Comply lovingly|Maths Whitney Oral]]>><<set $phase to 2>><<trauma 6>><<npcincr Whitney dom 1>><<npcincr Whitney love 1>><<sub 1>><<set $sexstart to 1>><</link>><<promiscuous1>><<gtrauma>><<glove>><<gdom>>
 				<br>
 			<</if>>
-			<<link [[Отказаться|Maths Whitney Oral Refuse]]>><<stress 6>><<npcincr Whitney dom -1>><</link>><<gstress>><<ldom>>
+			<<link [[Refuse|Maths Whitney Oral Refuse]]>><<stress 6>><<npcincr Whitney dom -1>><</link>><<gstress>><<ldom>>
 		<</addinlineevent>>
 
 		<<addinlineevent "mathsWhitneyJealous">>
@@ -1093,7 +1068,7 @@
 
 			<<link [[Watch|Maths Whitney Watch]]>><<npcincr Whitney dom 1>><</link>><<gdom>>
 			<br>
-			<<link [[Вмешаться|Maths Whitney Intervene]]>><<famegood 10>><<npcincr Whitney dom -1>><<trauma -6>><</link>><<ldom>><<ltrauma>>
+			<<link [[Intervene|Maths Whitney Intervene]]>><<famegood 10>><<npcincr Whitney dom -1>><<trauma -6>><</link>><<ldom>><<ltrauma>>
 			<br>
 			<<link [[Encourage|Maths Whitney Encourage]]>><<npcincr Whitney love 1>><<detention 3>><</link>><<glove>><<gdelinquency>>
 			<br>
@@ -1151,8 +1126,8 @@
 				Whitney makes rigid eye contact with you as <<person1>><<he>> licks a broad stripe up the entirety of your pen. <<He>> beams proudly as <<he>> hands the spit-covered pen back to you.
 				<br><br>
 
-				<<link [[Терпеть|Maths Whitney Pen Lick]]>><<npcincr Whitney dom 1>><<set $phase to 0>><</link>><<gdom>><br>
-				<<if $promiscuity gte 15>>
+				<<link [[Endure|Maths Whitney Pen Lick]]>><<npcincr Whitney dom 1>><<set $phase to 0>><</link>><<gdom>><br>
+				<<if hasSexStat("promiscuity", 2)>>
 					<<link [[Tease|Maths Whitney Pen Lick]]>><<npcincr Whitney dom -1>><<npcincr Whitney love 1>><<npcincr Whitney lust 1>><<set $phase to 1>><</link>><<ldom>><<glove>><<glust>><<promiscuous2>>
 				<</if>>
 			<</addinlineevent>>
@@ -1223,7 +1198,7 @@
 		<</if>>
 		<br><br>
 
-		<<link [[Далее|Maths Lesson]]>><<endevent>><</link>>
+		<<link [[Next|Maths Lesson]]>><<endevent>><</link>>
 	<</addinlineevent>><<addinlineevent "mathsMessageDelivery">>
 		<<rng>>
 		<<npc River>><<person1>>
@@ -1254,7 +1229,7 @@
 			<</if>>
 			<br><br>
 
-			<<link [[Далее|Maths Lesson]]>><<endevent>><</link>>
+			<<link [[Next|Maths Lesson]]>><<endevent>><</link>>
 			<br>
 		<<else>>
 			<<generates1>>
@@ -1280,7 +1255,7 @@
 				The <<person>> is not at all happy with the arrangement, but they listen to you without incident.
 				<br><br>
 
-				<<link [[Далее|Maths Lesson]]>><<endevent>><</link>>
+				<<link [[Next|Maths Lesson]]>><<endevent>><</link>>
 				<br>
 			<</if>>
 		<</if>>
@@ -1301,12 +1276,12 @@
 			<</if>>
 			<br><br>
 
-			<<link [[Далее|Maths Event4]]>><<endevent>><</link>>
+			<<link [[Next|Maths Event4]]>><<endevent>><</link>>
 		<<else>>
 			River is not fooled by the <<person2>><<person>>, and sends <<him>> out.
 			<br><br>
 
-			<<link [[Далее|Maths Lesson]]>><<endevent>><</link>>
+			<<link [[Next|Maths Lesson]]>><<endevent>><</link>>
 		<</if>>
 	<</addinlineevent>>
 
@@ -1341,7 +1316,7 @@
 		<span class="gold">Maths competition added to journal.</span>
 		<br><br>
 
-		<<link [[Далее|Maths Lesson]]>><<endevent>><</link>>
+		<<link [[Next|Maths Lesson]]>><<endevent>><</link>>
 		<<exit>>
 	<</if>>
 
@@ -1465,7 +1440,7 @@
 
 	<<if !$_linkSkip>>
 		<br><br>
-		<<link [[Далее|Maths Lesson]]>><<endevent>><</link>>
+		<<link [[Next|Maths Lesson]]>><<endevent>><</link>>
 	<</if>>
 <</widget>>
 
@@ -1476,14 +1451,14 @@
 		<<npc River>><<person1>>
 		"Excuse me, young <<lady>>. What do you think you are doing?" You bolt upright to find River next to your desk, frowning in disapproval. You fumble for a response, but <<hes>> having none of it. "Sleeping in class? That's detention for you." <<ltiredness>><<detention 2>><<gdelinquency>>
 		<br><br>
-		<<link [[Далее|Maths Lesson]]>><<endevent>><</link>>
+		<<link [[Next|Maths Lesson]]>><<endevent>><</link>>
 	<</addinlineevent>>
 
 	<<addinlineevent "mathsNotCaught">>
 		<<npc River>><<person1>>
 		Your eyes snap open. You must have fallen asleep. You casually lift your head and stifle a yawn, pretending nothing happened. River has just called on another student to solve the equation on the board. You're grateful <<he>> didn't call on you. <<ltiredness>>
 		<br><br>
-		<<link [[Далее|Maths Lesson]]>><<endevent>><</link>>
+		<<link [[Next|Maths Lesson]]>><<endevent>><</link>>
 	<</addinlineevent>>
 
 	<<if random(1, 400) gte $cool>>
@@ -1502,7 +1477,7 @@
 			<</if>>
 			<<ltiredness>><<detention 2>><<gdelinquency>>
 			<br><br>
-			<<link [[Далее|Maths Lesson]]>><<endevent>><</link>>
+			<<link [[Next|Maths Lesson]]>><<endevent>><</link>>
 		<</addinlineevent>>
 	<</if>>
 
@@ -1510,7 +1485,7 @@
 		<<npc River>><<person1>>
 		You doze off to the sound of River's voice. <<His>> voice breaks through your slumber at odd intervals, narrating your dreams. Your eyes open minutes later. You lift your head and stifle a yawn. Despite the nap, the complex diagrams on the board make sense. You actually learned something while you slept. <<ltiredness>><<gmaths>><<mathsskill>>
 		<br><br>
-		<<link [[Далее|Maths Lesson]]>><<endevent>><</link>>
+		<<link [[Next|Maths Lesson]]>><<endevent>><</link>>
 	<</addinlineevent>>
 
 	<<addinlineevent "mathsLewdPhoto">>
@@ -1525,7 +1500,7 @@
 
 		"Already sent that to all my friends," <<he>> whispers. <<lcool>><<status -1>><<ltiredness>>
 		<br><br>
-		<<link [[Далее|Maths Lesson]]>><<endevent>><</link>>
+		<<link [[Next|Maths Lesson]]>><<endevent>><</link>>
 	<</addinlineevent>>
 
 	<<if $worn.face.type.includes("glasses")>>
@@ -1539,7 +1514,7 @@
 			River continues to lecture without noticing.
 			<<ltiredness>>
 			<br><br>
-			<<link [[Далее|Maths Lesson]]>><<endevent>><</link>>
+			<<link [[Next|Maths Lesson]]>><<endevent>><</link>>
 		<</addinlineevent>>
 	<</if>>
 
@@ -1550,11 +1525,11 @@
 			<<if C.npc.Whitney.dom lte 15>>
 				You feel something hit the back of your head. A moment later, you feel it again. You open your eyes and lift your head. Running your fingers through your hair, you find a spitball. You notice Whitney looking at you with a smirk. <<ltiredness>><<gdom>><<npcincr Whitney dom 1>>
 				<br><br>
-				<<link [[Далее|Maths Lesson]]>><<endevent>><</link>>
+				<<link [[Next|Maths Lesson]]>><<endevent>><</link>>
 			<<else>>
 				Your eyes snap open as you feel something hot and wet on your hand. Whitney suppresses a moan as <<he>> <<print C.npc.Whitney.penis is "none" ? "grinds <<his>> clit against the heel of your palm" : "curls your fingers around <<his>> cock and jerks <<himself>> off">>. <<He>> releases your hand and slumps back in <<his>> seat, panting as <<he>> comes down from <<his>> orgasm. Your hand is covered in <<his>> _cum. River continues to elaborate on complex formulas and has not noticed anything.
 				<br><br>
-				<<if $promiscuity gte 35>>
+				<<if hasSexStat("promiscuity", 3)>>
 					<<link [[Lick your fingers|Whitney Maths Wake]]>><<set $phase to 0>><</link>><<glust>><<promiscuous3>>
 					<br>
 				<</if>>
@@ -1578,7 +1553,7 @@
 			<br><br>
 			<<link [[Lick grudgingly|Whitney Maths Oral]]>><<set $phase to 0>><<trauma 6>><<stress 6>><<npcincr Whitney dom 1>><<sub 1>><<set $molestationstart to 1>><</link>><<gtrauma>><<gstress>><<gdom>>
 			<br>
-			<<if $promiscuity gte 55>>
+			<<if hasSexStat("promiscuity", 4)>>
 				<<link [[Lick enthusiastically|Whitney Maths Oral]]>><<set $phase to 1>><<npcincr Whitney dom 1>><<sub 1>><<set $sexstart to 1>><</link>><<promiscuous4>><<gdom>>
 				<br>
 			<</if>>
@@ -1586,7 +1561,7 @@
 				<<link [[Lick lovingly|Whitney Maths Oral]]>><<set $phase to 2>><<trauma 6>><<npcincr Whitney dom 1>><<npcincr Whitney love 1>><<sub 1>><<set $sexstart to 1>><</link>><<promiscuous1>><<gtrauma>><<glove>><<gdom>>
 				<br>
 			<</if>>
-			<<link [[Отказаться|Whitney Maths Oral]]>><<set $phase to 3>><<set $molestationstart to 1>><<def 1>><<stress 6>><<npcincr Whitney dom -1>><</link>><<gstress>><<ldom>>
+			<<link [[Refuse|Whitney Maths Oral]]>><<set $phase to 3>><<set $molestationstart to 1>><<def 1>><<stress 6>><<npcincr Whitney dom -1>><</link>><<gstress>><<ldom>>
 		<</addinlineevent>>
 	<</if>>
 
@@ -1598,7 +1573,7 @@
 
 			"Are you... intoxi-" River cannot bring <<himself>> to say it. <<He>> shakes <<his>> head in deep disapproval, looking scandalised. "Detention." <<ltiredness>><<detention 6>><<ggdelinquency>>
 			<br><br>
-			<<link [[Далее|Maths Lesson]]>><<endevent>><</link>>
+			<<link [[Next|Maths Lesson]]>><<endevent>><</link>>
 		<</addinlineevent>>
 	<</if>>
 
@@ -1706,7 +1681,7 @@
 		<<set $halloween_kylar to 1>>
 		<br><br>
 
-		<<link [[Далее|English Lesson]]>><<endevent>><</link>>
+		<<link [[Next|English Lesson]]>><<endevent>><</link>>
 		<br>
 		<<exit>>
 	<</if>>
@@ -1723,7 +1698,7 @@
 			<br><br>
 			<<person1>>
 
-			<<if $promiscuity gte 35>>
+			<<if hasSexStat("promiscuity", 3)>>
 				<<link [[Own it|English Events Own]]>><</link>><<promiscuous3>>
 				<br>
 			<</if>>
@@ -1747,7 +1722,7 @@
 			<<status 1>><<gcool>>
 			<br><br>
 
-			<<link [[Далее|English Lesson]]>><<endevent>><</link>>
+			<<link [[Next|English Lesson]]>><<endevent>><</link>>
 			<br>
 		<</addinlineevent>>
 	<</if>>
@@ -1813,7 +1788,7 @@
 		<</if>>
 		<br><br>
 		<<integritycheck>>
-		<<link [[Далее|English Lesson]]>><<towelup>><<endevent>><</link>>
+		<<link [[Next|English Lesson]]>><<towelup>><<endevent>><</link>>
 		<br>
 	<</addinlineevent>>
 
@@ -1834,7 +1809,7 @@
 
 			Kylar sits back down and smiles, oblivious to the embarrassment <<he>> caused.
 			<br><br>
-			<<link [[Далее|English Lesson]]>><<endevent>><</link>>
+			<<link [[Next|English Lesson]]>><<endevent>><</link>>
 			<br>
 		<</addinlineevent>>
 	<</if>>
@@ -1860,14 +1835,14 @@
 				<br><br>
 
 				<<if $monster is 1 or $bestialitydisable is "f">>
-					<<link [[Далее|English Outbuilding Molestation]]>><<set $molestationstart to 1>><</link>>
+					<<link [[Next|English Outbuilding Molestation]]>><<set $molestationstart to 1>><</link>>
 					<br>
 				<<else>>
 					You manage to flee back to the classroom, though not unscathed.<<beastescape>>
 					<br><br>
 					<<integritycheck>><<towelup>>
 
-					<<link [[Далее|English Lesson]]>><<endevent>><</link>>
+					<<link [[Next|English Lesson]]>><<endevent>><</link>>
 				<</if>>
 				<!-- Modified for Beast People -->
 			<</if>>
@@ -1877,7 +1852,7 @@
 			<<gstress>><<genglish>><<stress 2>><<englishskill>>
 			<br><br>
 
-			<<link [[Далее|English Lesson]]>><<endevent>><</link>>
+			<<link [[Next|English Lesson]]>><<endevent>><</link>>
 		<</if>>
 	<</addinlineevent>>
 
@@ -1928,7 +1903,7 @@
 				You try to make it through the passage, but it's beyond your comprehension. Your classmates openly snicker as you fumble over the words. Doren reprimands the class but takes pity on you by moving on to the next person. You sink into your seat and console yourself with the knowledge that you at least remembered to bring your book to class. <<lcool>><<status -3>>
 			<</if>>
 			<br><br>
-			<<link [[Далее|English Lesson]]>><<endevent>><</link>>
+			<<link [[Next|English Lesson]]>><<endevent>><</link>>
 		<</if>>
 	<</addinlineevent>>
 
@@ -1945,7 +1920,7 @@
 				<<endevent>>
 				<<npc Kylar>><<person1>>"Mine," Kylar whispers. <<He>> flashes the knife in <<his>> pocket. There are no arguments.
 				<br><br>
-				<<link [[Далее|English Lesson]]>><<endevent>><</link>>
+				<<link [[Next|English Lesson]]>><<endevent>><</link>>
 
 			<<else>>
 				<<He>> sits back down, but continues to molest you.
@@ -1960,14 +1935,14 @@
 			Some delinquents take an interest in you. One tries to grope, but is cowed by a look from Kylar.
 			<br><br>
 
-			<<link [[Далее|English Lesson]]>><</link>>
+			<<link [[Next|English Lesson]]>><</link>>
 			<br>
 		<<else>>
 			Some delinquents take an interest in you, and sneak gropes and fondles while the teacher isn't looking.
 			<<gtrauma>><<gstress>><<trauma 2>><<stress 2>>
 			<br><br>
 
-			<<link [[Далее|English Lesson]]>><<endevent>><</link>>
+			<<link [[Next|English Lesson]]>><<endevent>><</link>>
 		<</if>>
 	<</addinlineevent>>
 
@@ -1987,13 +1962,13 @@
 			You fall forward onto your knees, and the class laughs as you struggle back to your feet.<<stress 1>><<gstress>>
 			<br><br>
 		<</if>>
-		<<link [[Далее|English Lesson]]>><<endevent>><</link>>
+		<<link [[Next|English Lesson]]>><<endevent>><</link>>
 	<</addinlineevent>>
 
 	<<addinlineevent "englishBreeze" 2>>
 		<<generates1>><<person1>>A breeze blows through the classroom, rustling hair and lifting a <<person1>><<persons>> paper off <<his>> desk. It lands on the floor next to you. <<He>> walks over and bends to pick it up, almost sticking <<his>> butt in your face.
 		<br><br>
-		<<if $promiscuity gte 15>>
+		<<if hasSexStat("promiscuity", 2)>>
 			<<link [[Pinch|English Events Pinch]]>><</link>><<promiscuous2>>
 			<br>
 		<</if>>
@@ -2047,7 +2022,7 @@
 		<<set $halloween_kylar to 1>>
 		<br><br>
 
-		<<link [[Далее|English Lesson]]>><<endevent>><</link>>
+		<<link [[Next|English Lesson]]>><<endevent>><</link>>
 		<br>
 		<<exit>>
 	<</if>>
@@ -2094,7 +2069,7 @@
 		<</if>>
 		<br><br>
 
-		<<link [[Далее|English Lesson]]>><<endevent>><</link>>
+		<<link [[Next|English Lesson]]>><<endevent>><</link>>
 		<br>
 	<</addinlineevent>>
 
@@ -2109,7 +2084,7 @@
 		<</if>>
 		<br><br>
 
-		<<link [[Далее|English Lesson]]>><<endevent>><</link>>
+		<<link [[Next|English Lesson]]>><<endevent>><</link>>
 		<br>
 	<</addinlineevent>>
 
@@ -2159,7 +2134,7 @@
 			You write.
 		<</if>>
 		<br><br>
-		<<link [[Далее|English Lesson]]>><<endevent>><</link>>
+		<<link [[Next|English Lesson]]>><<endevent>><</link>>
 		<br>
 	<</addinlineevent>>
 
@@ -2180,7 +2155,7 @@
 		<</if>>
 		<br><br>
 
-		<<link [[Далее|English Lesson]]>><<endevent>><</link>>
+		<<link [[Next|English Lesson]]>><<endevent>><</link>>
 		<br>
 	<</addinlineevent>>
 
@@ -2222,7 +2197,7 @@
 			Doren orders them to their seats. Someone whistles.
 			<br><br>
 
-			<<link [[Далее|English Lesson]]>><<endevent>><</link>>
+			<<link [[Next|English Lesson]]>><<endevent>><</link>>
 			<br>
 		<</addinlineevent>>
 	<</if>>
@@ -2252,7 +2227,7 @@
 		<</if>>
 		<br><br>
 
-		<<link [[Далее|English Lesson]]>><<endevent>><</link>>
+		<<link [[Next|English Lesson]]>><<endevent>><</link>>
 		<br>
 	<</addinlineevent>>
 
@@ -2272,7 +2247,7 @@
 		<</if>>
 		<br><br>
 
-		<<link [[Далее|English Lesson]]>><<endevent>><</link>>
+		<<link [[Next|English Lesson]]>><<endevent>><</link>>
 		<br>
 	<</addinlineevent>>
 
@@ -2283,13 +2258,13 @@
 		<<else>>
 			Doren gives everyone 10 minutes to write a limerick.
 			<<if currentSkillValue('english') gte 400>>
-				<<if $promiscuity gte 65>>
+				<<if hasSexStat("promiscuity", 4)>>
 					You write a shockingly <<print either("filthy","dirty","blue","lewd")>> limerick about a sly <<girl>> from <<print either("Inchbare.","Glenridding.","Knutsford.")>><br>
 					Several students laugh when you read the final line. Doren winces, and quickly moves on to the next student.
 					<<gcool>><<status 1>>
-				<<elseif $promiscuity gte 35>>
+				<<elseif hasSexStat("promiscuity", 3)>>
 					You write a <<print either("rude","sexy","lewd")>>
-					<<if $exhibitionism gte 33>>
+					<<if hasSexStat("exhibitionism", 3)>>
 						limerick about a <<girl>> who's allergic to clothes.
 					<<elseif $masochism_level gte 2>>
 						limerick about a mischievous <<girl>> from Bank (who desperately needed a spank).
@@ -2305,7 +2280,7 @@
 					You write a
 					<<if $skulduggery gte 500>>
 						limerick about a thief who stole a gem.
-					<<elseif $exhibitionism gte 33>>
+					<<elseif hasSexStat("exhibitionism", 3)>>
 						limerick about a <<girl>> who lost <<pher>> clothes.
 					<<elseif $money lte 50000>>
 						limerick about an orphan <<girl>> who won lots of money.<br>
@@ -2326,7 +2301,7 @@
 		<</if>>
 		<br><br>
 
-		<<link [[Далее|English Lesson]]>><<endevent>><</link>>
+		<<link [[Next|English Lesson]]>><<endevent>><</link>>
 		<br>
 	<</addinlineevent>>
 
@@ -2341,7 +2316,7 @@
 		<<npc Doren>><<person1>>
 		A gentle but firm tap on the head wakes you. You bolt upright and see Doren standing in front of you. <<His>> arms are crossed, but <<he>> doesn't say anything before moving back to the front of the class. There is a detention slip on your desk. <<ltiredness>><<detention 2>><<gdelinquency>>
 		<br><br>
-		<<link [[Далее|English Lesson]]>><<endevent>><</link>>
+		<<link [[Next|English Lesson]]>><<endevent>><</link>>
 	<</addinlineevent>>
 
 	<<addinlineevent "englishNotCaught">>
@@ -2353,7 +2328,7 @@
 			You just manage to find your place as Doren calls on you next.
 		<</if>>
 		<br><br>
-		<<link [[Далее|English Lesson]]>><<endevent>><</link>>
+		<<link [[Next|English Lesson]]>><<endevent>><</link>>
 	<</addinlineevent>>
 
 	<<if random(1, 400) gte $cool>>
@@ -2373,7 +2348,7 @@
 			<</if>>
 			<<ltiredness>><<detention 2>><<gdelinquency>>
 			<br><br>
-			<<link [[Далее|English Lesson]]>><<endevent>><</link>>
+			<<link [[Next|English Lesson]]>><<endevent>><</link>>
 		<</addinlineevent>>
 	<</if>>
 
@@ -2383,9 +2358,9 @@
 			<br><br>
 
 			<<link [[Cover yourself|English Pantsing]]>><<set $phase to "cover">><</link>><br>
-			<<if $worn.under_lower.type.includes("naked") and $exhibitionism gte 75>>
+			<<if $worn.under_lower.type.includes("naked") and hasSexStat("exhibitionism", 5)>>
 				<<link [[Show off|English Pantsing]]>><<set $phase to "flaunt">><</link>><<exhibitionist5>>
-			<<elseif !$worn.under_lower.type.includes("naked") and $exhibitionism gte 55>>
+			<<elseif !$worn.under_lower.type.includes("naked") and hasSexStat("exhibitionism", 4)>>
 				<<link [[Show off|English Pantsing]]>><<set $phase to "flaunt">><</link>><<exhibitionist3>>
 			<</if>>
 		<</addinlineevent>>
@@ -2393,7 +2368,7 @@
 
 	<<if $trauma gte (($traumamax / 5) * 3)>>
 		<<addinlineevent "englishTrauma">>
-			<<link [[Далее|English Dream]]>><<endevent>><</link>>
+			<<link [[Next|English Dream]]>><<endevent>><</link>>
 		<</addinlineevent>>
 	<</if>>
 
@@ -2436,7 +2411,7 @@
 				You casually lift your head and stifle a yawn, pretending nothing happened. Kylar removes <<his>> hand when you sit up. Doren is still talking, none the wiser.
 			<</if>>
 			<br><br>
-			<<link [[Далее|English Lesson]]>><<endevent>><</link>>
+			<<link [[Next|English Lesson]]>><<endevent>><</link>>
 		<</addinlineevent>>
 	<</if>>
 
@@ -2454,7 +2429,7 @@
 			<<ltiredness>><<detention 6>><<ggdelinquency>>
 
 			<br><br>
-			<<link [[Далее|English Lesson]]>><<endevent>><</link>>
+			<<link [[Next|English Lesson]]>><<endevent>><</link>>
 		<</addinlineevent>>
 	<</if>>
 
@@ -2570,7 +2545,7 @@
 	<</if>>
 
 	<<if !$_specialOptions>>
-		<<link [[Далее|English Lesson]]>><<endevent>><</link>>
+		<<link [[Next|English Lesson]]>><<endevent>><</link>>
 		<br>
 	<</if>>
 <</widget>>
@@ -2634,7 +2609,7 @@
 			"Good," <<he>> nods, reading over your shoulder. "Good work."<<stress -2>><<lstress>>
 			<br><br>
 
-			<<link [[Далее|History Lesson]]>><<endevent>><</link>>
+			<<link [[Next|History Lesson]]>><<endevent>><</link>>
 		<<else>>
 			You sense <<him>> reading over your shoulder.
 			<br>
@@ -2644,7 +2619,7 @@
 			<<stress 2>><<gstress>>
 			<br><br>
 
-			<<link [[Далее|History Lesson]]>><<endevent>><</link>>
+			<<link [[Next|History Lesson]]>><<endevent>><</link>>
 		<</if>>
 	<</addinlineevent>>
 
@@ -2698,7 +2673,7 @@
 			<<else>>
 				Winter glares at the <<person>>. "Out. Now." Thwarted, the <<person>> rises from <<his>> seat and leaves the room.
 				<br><br>
-				<<link [[Далее|History Lesson]]>><<endevent>><</link>>
+				<<link [[Next|History Lesson]]>><<endevent>><</link>>
 				<br>
 			<</if>>
 		<</addinlineevent>>
@@ -2740,7 +2715,7 @@
 			They continue to fawn as Robin sinks into <<his>> chair.
 			<br><br>
 
-			<<link [[Далее|History Lesson]]>><<endevent>><</link>>
+			<<link [[Next|History Lesson]]>><<endevent>><</link>>
 			<br>
 		<</addinlineevent>>
 
@@ -2801,7 +2776,7 @@
 				<</if>>
 			<</if>>
 			<br><br>
-			<<link [[Далее|History Lesson]]>><<endevent>><</link>>
+			<<link [[Next|History Lesson]]>><<endevent>><</link>>
 		<</addinlineevent>>
 
 		<<addinlineevent "historyRobinAsk" 1>>
@@ -2813,7 +2788,7 @@
 				Robin doesn't react. <<person1>><<He>> just stares down at <<his>> desk. <<He>> doesn't need this right now. You shoo the <<person2>><<person>> away.
 				<br><br>
 
-				<<link [[Далее|History Lesson]]>><<endevent>><</link>>
+				<<link [[Next|History Lesson]]>><<endevent>><</link>>
 				<br>
 			<<else>>
 				<<if $robinromance is 1>>
@@ -2836,10 +2811,10 @@
 	<<addinlineevent "historyTease" 1>>
 		<<generates1>><<person1>>You catch a normally shy <<person>> checking you out from across the room.
 		<br><br>
-		<<if $exhibitionism gte 35 and setup.clothes.lower[clothesIndex('lower', $worn.lower)].skirt is 1 and !$worn.under_lower.type.includes("naked")>>
+		<<if hasSexStat("exhibitionism", 3) and setup.clothes.lower[clothesIndex('lower', $worn.lower)].skirt is 1 and !$worn.under_lower.type.includes("naked")>>
 			<<link [[Flash|History Flash]]>><</link>><<exhibitionist2>>
 			<br>
-		<<elseif $exhibitionism gte 55 and setup.clothes.lower[clothesIndex('lower', $worn.lower)].skirt is 1>>
+		<<elseif hasSexStat("exhibitionism", 4) and setup.clothes.lower[clothesIndex('lower', $worn.lower)].skirt is 1>>
 			<<link [[Flash|History Flash]]>><</link>><<exhibitionist4>>
 			<br>
 		<<else>>
@@ -2847,7 +2822,7 @@
 			<br>
 		<</if>>
 
-		<<link [[Игнорировать|History Lesson]]>><<endevent>><</link>>
+		<<link [[Ignore|History Lesson]]>><<endevent>><</link>>
 		<br>
 	<</addinlineevent>>
 
@@ -2867,7 +2842,7 @@
 			<br><br>
 			<<towelup>>
 		<</if>>
-		<<link [[Далее|History Lesson]]>><<endevent>><</link>>
+		<<link [[Next|History Lesson]]>><<endevent>><</link>>
 		<br>
 	<</addinlineevent>>
 
@@ -2938,7 +2913,7 @@
 				<br>
 				<<link [[Tell teacher and ask to go clean off (0:10)|History Cleanup]]>><<endevent>><<status -10>><<set $phase to 1>><</link>><<lcool>>
 				<br>
-				<<if $exhibitionism gte 35>>
+				<<if hasSexStat("exhibitionism", 3)>>
 					<<link [[Strip and clean off there|History Cleanup]]>><<endevent>><<set $phase to 2>><</link>><<exhibitionist3>>
 					<<if $worn.under_lower.type.includes("naked") or ($worn.under_upper.type.includes("naked") and $player.breastsize gte 1)>><<gdelinquency>><</if>>
 					<br>
@@ -2947,7 +2922,7 @@
 				Baggy enough to easily fit over your other clothing. It's an interesting segment, and you feel like you learned something. Winter has you remove the outfit before you get too warm.<<ghistory>><<historyskill 1>>
 				<br><br>
 
-				<<link [[Далее|History Lesson]]>><<endevent>><</link>>
+				<<link [[Next|History Lesson]]>><<endevent>><</link>>
 			<</if>>
 			<br>
 		<</if>>
@@ -2975,7 +2950,7 @@
 		<<if currentSkillValue('history') gte 800>>
 			No one volunteers, of course. Winter looks at you. "To the front of the class, please."
 			<br><br>
-			<<link [[Отказаться|History Lesson]]>><<detention 1>><<endevent>><</link>><<gdelinquency>>
+			<<link [[Refuse|History Lesson]]>><<detention 1>><<endevent>><</link>><<gdelinquency>>
 			<br>
 			<<link [[Go to the front of the class|History Lesson Pillory]]>><<historyskill>><<stress 2>><</link>><<ghistory>><<gstress>>
 			<br>
@@ -2983,7 +2958,7 @@
 		<<elseif currentSkillValue('history') gte 600>>
 			No one volunteers, of course. Winter looks at you. "To the front of the class, please."
 			<br><br>
-			<<link [[Отказаться|History Lesson]]>><<endevent>><<detention 1>><</link>><<gdelinquency>>
+			<<link [[Refuse|History Lesson]]>><<endevent>><<detention 1>><</link>><<gdelinquency>>
 			<br>
 			<<link [[Go to the front of the class|History Lesson Pillory]]>><<historyskill>><<stress 2>><</link>><<ghistory>><<gstress>>
 			<br>
@@ -3005,7 +2980,7 @@
 		<<npc Winter>><<person1>>Winter lectures to the class in <<his>> droning voice, but seems distracted. <<He>> looks in each of the room's cupboards, as if searching for something.
 		<br><br>
 
-		<<link [[Далее|History Lesson]]>><<endevent>><</link>>
+		<<link [[Next|History Lesson]]>><<endevent>><</link>>
 		<br>
 		<<exit>>
 	<</if>>
@@ -3021,7 +2996,7 @@
 		<<generates1>><<person1>><<set _coinflip to random(0,1)>>
 		Winter calls a <<person>> to the front of the class and asks <<him>> to model some historical clothes.
 		<<if currentSkillValue('history') gte 700>>
-			The clothes look like <<print either("early-medieval servant's garb,", "Tudor-era court clothes for a noble family, possibly the St. Clairs,", "those worn by a medieval 'runner' or courier,", "a pre-industrial Naval uniform,", "stable-boy garb,")>> unless you are mistaken.
+			The clothes look like <<print either("early-medieval servant's garb,", "Tudor-era court clothes for a noble family, possibly the St. Clairs,", "those worn by a medieval 'runner', or courier,", "a pre-industrial Naval uniform,", "stable-boy garb,")>> unless you are mistaken.
 			<<if $rng % 2>>However, judging by the <<print either("stitching,","colouring","hems","cut","'Made in Indonesia' label")>> these are only replicas.<<else>>As far as you can tell, these are genuine historical garments.<</if>>
 		<<elseif currentSkillValue('history') gte 300>>
 			They look like the stuff from <<print either("those plays you do in English where people say 'Hark!'","that TV show about posh old people in a huge house.","that TV show with all the beards and axes.","those old War photos.","those Roman things where everyone wears sheets.")>>
@@ -3100,12 +3075,12 @@
 		<<if $tiredness lt 2000>>
 			It's a job to stay awake.
 			<br><br>
-			<<link [[Далее|History Lesson]]>><<endevent>><<historyskill>><</link>><<ghistory>>
+			<<link [[Next|History Lesson]]>><<endevent>><<historyskill>><</link>><<ghistory>>
 			<br>
 		<<else>>
 			You do your best to stay awake, but you're so tired. You awaken several minutes later, fortunately Winter seems not to have noticed.
 			<br><br>
-			<<link [[Далее|History Lesson]]>><<endevent>><<set $tiredness -= 200>><</link>><<ltiredness>>
+			<<link [[Next|History Lesson]]>><<endevent>><<set $tiredness -= 200>><</link>><<ltiredness>>
 			<br>
 		<</if>>
 	<</addinlineevent>>
@@ -3127,7 +3102,7 @@
 	<</addinlineevent>>
 
 	<<addinlineevent "historyAncient" 1>>
-		Winter goes off on a tangent about the school, park and hospital being on the site of an ancient fortress. They mention rumours of underground lairs, murky dungeons and hidden escape tunnels.
+		Winter goes off on a tangent about the school, park and hospital being on the site of an ancient fortress. <<nnpc_He "Winter">> mention rumours of underground lairs, murky dungeons and hidden escape tunnels.
 	<</addinlineevent>>
 
 	<<addinlineevent "historyTangent" 1>>
@@ -3138,7 +3113,7 @@
 
 	<<if $_linkSkip is false>>
 		<br><br>
-		<<link [[Далее|History Lesson]]>><<endevent>><</link>>
+		<<link [[Next|History Lesson]]>><<endevent>><</link>>
 	<</if>>
 <</widget>>
 
@@ -3240,7 +3215,7 @@
 
 	<<if $_linkSkip is false>>
 		<br><br>
-		<<link [[Далее|History Lesson]]>><<endevent>><</link>>
+		<<link [[Next|History Lesson]]>><<endevent>><</link>>
 	<</if>>
 <</widget>>
 
@@ -3261,7 +3236,7 @@
 
 			<<link [[Be freed|Events Swimming Freed]]>><<unbind>><</link>>
 			<br>
-			<<link [[Отказаться|Events Swimming Freed Refuse]]>><</link>>
+			<<link [[Refuse|Events Swimming Freed Refuse]]>><</link>>
 			<br>
 		<</addinlineevent>>
 	<</if>>
@@ -3298,7 +3273,7 @@
 			The <<person>> swims to the edge and climbs out. <<He>> goes to the diving board. A number of people stop to watch.
 			<br><br>
 
-			<<link [[Далее|Events Swimming NPC Dive]]>><<set $phase to 3>><</link>>
+			<<link [[Next|Events Swimming NPC Dive]]>><<set $phase to 3>><</link>>
 		<<elseif $rng % 5 == 0>>
 			The <<person>> swims to the edge and whispers something to Mason. Mason flushes, says something back, and leaves. The <<person>> carries on swimming.
 			A few moments later you hear a loud whistle. Mason calls everyone to the edge.
@@ -3307,12 +3282,12 @@
 			"Class! Everyone here! It's time for a demonstration."
 			<br><br>
 
-			<<link [[Далее|Events Swimming NPC Dive]]>><<set $phase to 2>><</link>>
+			<<link [[Next|Events Swimming NPC Dive]]>><<set $phase to 2>><</link>>
 		<<elseif $rng % 10>>/*9 in 10 chance*/
 			The <<person>> swims to the edge and climbs out. <<He>> goes to the diving board. A number of people stop to watch.
 			<br><br>
 
-			<<link [[Далее|Events Swimming NPC Dive]]>><<set $phase to 1>><</link>>
+			<<link [[Next|Events Swimming NPC Dive]]>><<set $phase to 1>><</link>>
 		<<else>>
 			<<set $_linkSkip to false>>
 			The <<person>> refuses. Mason tries to persuade <<him>> and finally threatens <<him>> with detention, but <<he>> will not dive.
@@ -3346,7 +3321,7 @@
 					<<set $_linkSkip to true>>
 					<<generates2>><<person2>>As you approach the diving platform however, a <<person>> turns. You cover your body as <<he>> shouts to <<his>> friends, attracting more attention. Mason tries to control the situation, but it's no use. The whole class is soon staring at you. <<gtrauma>><<trauma 2>><<gstress>><<stress 2>>
 					<br><br>
-					<<if $exhibitionism gte 75>>
+					<<if hasSexStat("exhibitionism", 5)>>
 						<<link [[Flaunt|Events Swimming Flaunt]]>><</link>><<exhibitionist5>>
 						<br>
 					<</if>>
@@ -3379,9 +3354,9 @@
 					"I wanna have some fun with you. You better do what I want or you'll be spending the rest of the lesson naked."
 					<br><br>
 
-					<<link [[Согласиться|Events Swimming Molestation Single]]>><<set $molestationstart to 1>><</link>>
+					<<link [[Accept|Events Swimming Molestation Single]]>><<set $molestationstart to 1>><</link>>
 					<br>
-					<<link [[Отказаться|Events Swimming Refuse]]>><</link>>
+					<<link [[Refuse|Events Swimming Refuse]]>><</link>>
 					<br>
 				<</if>>
 			<</if>>
@@ -3395,7 +3370,7 @@
 
 		<<link [[Confront|Events Swimming Stalk Confront]]>><<detention 1>><</link>><<gdelinquency>>
 		<br>
-		<<link [[Игнорировать|Events Swimming Stalk Ignore]]>><</link>>
+		<<link [[Ignore|Events Swimming Stalk Ignore]]>><</link>>
 		<br>
 	<</addinlineevent>>
 
@@ -3463,7 +3438,7 @@
 					<<link [[Wiggle your butt seductively|Events Swimming Tail]]>><<set $phase to "Wiggle">><</link>><<print _tftail>>
 					<br>
 				<</if>>
-				<<link [[Терпеть|Events Swimming Tail]]>><<set $phase to "Endure">><</link>><<gstress>>
+				<<link [[Endure|Events Swimming Tail]]>><<set $phase to "Endure">><</link>><<gstress>>
 			<</if>>
 		<</addinlineevent>>
 	<</if>>
@@ -3471,7 +3446,7 @@
 	<<runeventpool>>
 	<<if $_linkSkip is false>>
 		<br><br>
-		<<link [[Далее|Swimming Lesson]]>><<endevent>><</link>>
+		<<link [[Next|Swimming Lesson]]>><<endevent>><</link>>
 	<</if>>
 <</widget>>
 
@@ -3499,7 +3474,7 @@
 		You're a very good swimmer, easily the best in the class.
 	<</if>>
 	<br><br>
-	<<link [[Далее|Swimming Lesson]]>><<endevent>><</link>>
+	<<link [[Next|Swimming Lesson]]>><<endevent>><</link>>
 	<br>
 <</widget>>
 
@@ -3641,67 +3616,66 @@
 	<br>
 	<<switch $studyBooks.rented>>
 		<<case "science" "maths" "English" "history">>
-			<<schoolicon "library">><<link [[`Return your ${$studyBooks.rented} textbook`|Book Rental]]>><<set $bookRent to "return">><</link>>
+			<<set _prop to "book" + $studyBooks.rented.toLowerCase() + "closed">>
+			<<schoolicon "library">><<link [[`Return your ${$studyBooks.rented} textbook`|Book Rental]]>><<handheldon>><<wearProp _prop>><<set $bookRent to "return">><</link>>
 			<br>
 		<<case "Raul and Janet">>
-			<<schoolicon "library">><<link [[Return "Raul and Janet"|Book Rental]]>><<set $phase to 5>><<set $bookRent to "return">><</link>>
+			<<schoolicon "library">><<link [[Return "Raul and Janet"|Book Rental]]>><<handheldon>><<wearProp "bookscarletclosed">><<set $phase to 5>><<set $bookRent to "return">><</link>>
 			<br>
 		<<case "Pinch">>
-			<<schoolicon "library">><<link [[Return the olive-coloured book|Book Rental]]>><<set $phase to 6>><<set $bookRent to "return">><</link>>
+			<<schoolicon "library">><<link [[Return the olive-coloured book|Book Rental]]>><<handheldon>><<wearProp "bookoliveclosed">><<set $phase to 6>><<set $bookRent to "return">><</link>>
 			<br>
 		<<default>>
 	<</switch>>
 	<<switch $studyBooks.stolen>>
 		<<case "science" "maths" "English" "history">>
-			<<schoolicon "library">><<link [[`Return your stolen ${$studyBooks.stolen} textbook`|Book Rental Return Stolen]]>><</link>>
+			<<set _prop to "book" + $studyBooks.stolen.toLowerCase() + "closed">>
+			<<schoolicon "library">><<link [[`Return your stolen ${$studyBooks.stolen} textbook`|Book Rental Return Stolen]]>><<wearProp _prop>><</link>>
 			<br>
 		<<case "Raul and Janet">>
-			<<schoolicon "library">><<link [[Return your stolen copy of "Raul and Janet"|Book Rental Return Stolen]]>><<set $phase to 5>><</link>>
+			<<schoolicon "library">><<link [[Return your stolen copy of "Raul and Janet"|Book Rental Return Stolen]]>><<wearProp "bookscarletclosed">><<set $phase to 5>><</link>>
 			<br>
 		<<case "Pinch">>
-			<<schoolicon "library">><<link [[Return the olive-coloured book|Book Rental Return Stolen]]>><<set $phase to 6>><</link>>
+			<<schoolicon "library">><<link [[Return the olive-coloured book|Book Rental Return Stolen]]>><<wearProp "bookoliveclosed">><<set $phase to 6>><</link>>
 			<br>
 		<<default>>
 	<</switch>>
 	<<sydneySchedule>>
 	<<if _sydney_location is "library">>
-		<<if $money gte 2000>>
-			<<if $studyBooks.rented is "none">>
-				<<if $studyBooks.stolen isnot "science">>
-					<<scienceicon>><<link [[Rent a science textbook (£20)|Book Rental]]>><<set $money -= 2000>><<set $bookRent to "rent">><<set $phase to 1>><<set $studyBooks.rented to "science">><</link>><<note "+ Passive Science" "green">>
-					<br>
-				<</if>>
-				<<if $studyBooks.stolen isnot "maths">>
-					<<mathicon>><<link [[Rent a maths textbook (£20)|Book Rental]]>><<set $money -= 2000>><<set $bookRent to "rent">><<set $phase to 2>><<set $studyBooks.rented to "maths">><</link>><<note "+ Passive Maths" "green">>
-					<br>
-				<</if>>
-				<<if $studyBooks.stolen isnot "English">>
-					<<englishicon>><<link [[Rent an English textbook (£20)|Book Rental]]>><<set $money -= 2000>><<set $bookRent to "rent">><<set $phase to 3>><<set $studyBooks.rented to "English">><</link>><<note "+ Passive English" "green">>
-					<br>
-				<</if>>
-				<<if $studyBooks.stolen isnot "history">>
-					<<historyicon>><<link [[Rent a history textbook (£20)|Book Rental]]>><<set $money -= 2000>><<set $bookRent to "rent">><<set $phase to 4>><<set $studyBooks.rented to "history">><</link>><<note "+ Passive History" "green">>
-					<br>
-				<</if>>
-				<<if currentSkillValue('english') gte 300 and $studyBooks.stolen isnot "Raul and Janet">>
-					<<scarleticon>><<link [[Rent "Raul and Janet" (£20)|Book Rental]]>><<set $money -= 2000>><<set $bookRent to "rent">><<set $phase to 5>><<set $studyBooks.rented to "Raul and Janet">><</link>>
-					<br>
-				<</if>>
-				<<if ((Time.monthName is "November" and Time.monthDay gte 24) or Time.monthName is "December") and $studyBooks.stolen isnot "Pinch">>
-					<<oliveicon>><<link [[Rent the olive-coloured book (£20)|Book Rental]]>><<set $money -= 2000>><<set $bookRent to "rent">><<set $phase to 6>><<set $studyBooks.rented to "Pinch">><</link>>
-					<br>
-				<</if>>
-			<<else>>
-				<<if $money gte 1500 and $book_rent_timer lte 13 and $book_rent_timer gt 0>>
-					<<highicon>><<link [[Renew your book rental (£15)|Book Rental]]>><<set $money -= 1500>><<set $bookRent to "renew">><</link>>
-					<br>
-				<<elseif $money lt 1500>>
-					<span class=purple>You can't afford to renew your rental.</span>
-					<br>
-				<<else>>
-				<</if>>
+		<<if $money gte 2000 and $studyBooks.rented is "none">>
+			<<if $studyBooks.stolen isnot "science">>
+				<<scienceicon>><<link [[Rent a science textbook (£20)|Book Rental]]>><<handheldon>><<wearProp "bookscienceclosed">><<set $money -= 2000>><<set $bookRent to "rent">><<set $phase to 1>><<set $studyBooks.rented to "science">><</link>><<note "+ Passive Science" "green">>
+				<br>
 			<</if>>
-		<<else>>
+			<<if $studyBooks.stolen isnot "maths">>
+				<<mathicon>><<link [[Rent a maths textbook (£20)|Book Rental]]>><<handheldon>><<wearProp "bookmathsclosed">><<set $money -= 2000>><<set $bookRent to "rent">><<set $phase to 2>><<set $studyBooks.rented to "maths">><</link>><<note "+ Passive Maths" "green">>
+				<br>
+			<</if>>
+			<<if $studyBooks.stolen isnot "English">>
+				<<englishicon>><<link [[Rent an English textbook (£20)|Book Rental]]>><<handheldon>><<wearProp "bookenglishclosed">><<set $money -= 2000>><<set $bookRent to "rent">><<set $phase to 3>><<set $studyBooks.rented to "English">><</link>><<note "+ Passive English" "green">>
+				<br>
+			<</if>>
+			<<if $studyBooks.stolen isnot "history">>
+				<<historyicon>><<link [[Rent a history textbook (£20)|Book Rental]]>><<handheldon>><<wearProp "bookhistoryclosed">><<set $money -= 2000>><<set $bookRent to "rent">><<set $phase to 4>><<set $studyBooks.rented to "history">><</link>><<note "+ Passive History" "green">>
+				<br>
+			<</if>>
+			<<if currentSkillValue('english') gte 300 and $studyBooks.stolen isnot "Raul and Janet">>
+				<<scarleticon>><<link [[Rent "Raul and Janet" (£20)|Book Rental]]>><<handheldon>><<wearProp "bookscarletclosed">><<set $money -= 2000>><<set $bookRent to "rent">><<set $phase to 5>><<set $studyBooks.rented to "Raul and Janet">><</link>>
+				<br>
+			<</if>>
+			<<if ((Time.monthName is "November" and Time.monthDay gte 24) or Time.monthName is "December") and $studyBooks.stolen isnot "Pinch">>
+				<<oliveicon>><<link [[Rent the olive-coloured book (£20)|Book Rental]]>><<handheldon>><<wearProp "bookoliveclosed">><<set $money -= 2000>><<set $bookRent to "rent">><<set $phase to 6>><<set $studyBooks.rented to "Pinch">><</link>>
+				<br>
+			<</if>>
+		<<elseif between($book_rent_timer, 1, 13)>>
+			<<if $money gte 1500>>
+				<<highicon>><<link [[Renew your book rental (£15)|Book Rental]]>><<set $money -= 1500>><<set $bookRent to "renew">><</link>>
+				<br>
+			<<else>>
+				<span class=purple>You can't afford to renew your rental.</span>
+				<br>
+			<</if>>
+		<<elseif $money lte 2000 and $studyBooks.rented is "none">>
 			<span class=purple>You can't afford to rent a textbook.</span>
 			<br>
 		<</if>>
@@ -3803,9 +3777,9 @@
 <<widget "checkdroptowel">>
 	<<set _bottom to "nothing">>
 	<<set _top to "nothing">>
-	<<if $exhibitionism gte 55>>
+	<<if hasSexStat("exhibitionism", 4)>>
 		<<if ($worn.lower.name is "towel skirt" or $worn.lower.name is "large towel bottom") and $worn.over_lower.exposed gte 2>>
-			<<if $worn.under_lower.exposed lt 1 or $exhibitionism gte 75>>
+			<<if $worn.under_lower.exposed lt 1 or hasSexStat("exhibitionism", 5)>>
 				<<set _bottom to "strip">>
 			<</if>>
 		<</if>>
@@ -3845,7 +3819,7 @@
 		<br>
 	<</if>>
 	<br>
-	<<getouticon>><<link [[Покинуть|Hallways]]>><<endevent>><</link>>
+	<<getouticon>><<link [[Leave|Hallways]]>><<endevent>><</link>>
 	<br>
 <</widget>>
 
@@ -3875,11 +3849,11 @@
 		<</if>>
 
 		/* There are no cases where Leighton being present and low delinquency are separate conditions for rescue, but there are some where both are required. ex: "Maths Note Molestation" */
-		<<if _args.includesAll("delinquency", "Leighton") and $delinquency lt 400 and $pillory_tenant.special.name isnot "Leighton">>
+		<<if _args.includesAll("delinquency", "Leighton") and $delinquency lt 400 and $pillory.tenant.special.name isnot "Leighton">>
 			<<set $_rescue.push("Leighton")>>
 		<<elseif _args.includes("delinquency") and $delinquency lt 400>>
 			<<set $_rescue.push("delinquency")>>
-		<<elseif _args.includes("Leighton") and $pillory_tenant.special.name isnot "Leighton">>
+		<<elseif _args.includes("Leighton") and $pillory.tenant.special.name isnot "Leighton">>
 			<<set $_rescue.push("Leighton")>>
 		<</if>>
 
@@ -3960,9 +3934,9 @@
 		You try to ignore the slime's command, but find yourself unable to enter the <<if $daily.earSlimeSkipLesson is "swimming">>pool<<else>>classroom<</if>>.
 		<br><br>
 		<<if $daily.earSlimeSkipLesson is "swimming">>
-			<<link [[Далее|$lastChangingRoom]]>><<endevent>><</link>>
+			<<link [[Next|$lastChangingRoom]]>><<endevent>><</link>>
 		<<else>>
-			<<link [[Далее|Hallways]]>><<endevent>><</link>>
+			<<link [[Next|Hallways]]>><<endevent>><</link>>
 		<</if>>
 		<<unset $justEntered>>
 		<<exitAll>>
@@ -3976,7 +3950,7 @@
 		<<if $earSlime.startedThreats>>
 			<<link [[Defy|School Lesson Slime]]>><<set $phase to 2>><<set $lessonPassage to $passage>><<corruption -1>><<pain 8>><<stress 6>><<trauma 6>><<def 1>><</link>><<lcorruption>><<ggpain>><<ggtrauma>><<ggstress>>
 		<<else>>
-			<<link [[Игнорировать|School Lesson Slime]]>><<set $phase to 1>><<set $lessonPassage to $passage>><</link>>
+			<<link [[Ignore|School Lesson Slime]]>><<set $phase to 1>><<set $lessonPassage to $passage>><</link>>
 		<</if>>
 		<br>
 		<<unset $justEntered>>

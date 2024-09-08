@@ -114,7 +114,7 @@
 			<span class="lewd">You feel the slime in your head command you to give yourself to the pair.</span> It promises rewards if you comply, and threatens consequences if you do not.
 			<br><br>
 
-			<<if $promiscuity gte 55 and $submissive gte 1900>>
+			<<if hasSexStat("promiscuity", 4) and $submissive gte 1900>>
 				<<link [[Submit willingly|Forest Slime Pair Submit willingly]]>><<corruption 3>><<pain -8>><<stress -12>><<trauma -24>><<sub 2>><</link>><<promiscuous4>><<ggcorruption>><<llpain>><<llltrauma>><<llstress>>
 				<br>
 			<</if>>
@@ -127,7 +127,7 @@
 			<<if $exposed is 1>>
 				You hear a pair up ahead, on the same trail as you.
 
-				<<if $exhibitionism gte 35>>
+				<<if hasSexStat("exhibitionism", 3)>>
 					You look down at your <<lewdness>> and feel a lewd thrill rush through you. Maybe it wouldn't be so bad if they saw you.
 					<br><br>
 
@@ -150,7 +150,7 @@
 
 				You hear a pair up ahead, on the same trail as you.
 				<<rng>>
-				<<if $exhibitionism gte 75>>
+				<<if hasSexStat("exhibitionism", 5)>>
 					You look down at your <<lewdness>> and feel a lewd thrill rush through you. Maybe it wouldn't be so bad if they saw you.
 					<br><br>
 
@@ -197,7 +197,7 @@
 		<br><br>
 
 		<<if $monster is 1 or $bestialitydisable is "f">>
-			<<link [[Далее|Forest Wolf]]>><<set $molestationstart to 1>><</link>>
+			<<link [[Next|Forest Wolf]]>><<set $molestationstart to 1>><</link>>
 			<br>
 		<<else>>
 			It chases you through the woods. You run until you can no longer hear it behind you. You're not sure if you outran it or it grew bored.
@@ -221,7 +221,7 @@
 			<br><br>
 
 			<<endevent>>
-			<<link [[Далее|Forest]]>><<set $eventskip to 1>><</link>>
+			<<link [[Next|Forest]]>><<set $eventskip to 1>><</link>>
 		<<else>>
 			<<generate1>><<person1>>
 			You see a <<person>> through the trees, reaching into a bramble patch. <<He>> holds a basket full of berries in <<his>> other hand.
@@ -236,7 +236,7 @@
 			<br><br>
 
 			<<endevent>>
-			<<link [[Далее|Forest]]>><<set $eventskip to 1>><</link>>
+			<<link [[Next|Forest]]>><<set $eventskip to 1>><</link>>
 			<br>
 		<</if>>
 	<</addinlineevent>>
@@ -246,7 +246,7 @@
 		<<set $stripintegrity to 10>><<set $stripobject to "tree branch">><<stripobject>>
 		<br><br>
 
-		<<link [[Далее|Forest]]>><<set $eventskip to 1>><</link>>
+		<<link [[Next|Forest]]>><<set $eventskip to 1>><</link>>
 	<</addinlineevent>>
 	<<runeventpool>>
 <</widget>>
@@ -272,7 +272,7 @@
 				<<endevent>>
 				<br><br>
 
-				<<link [[Далее|Forest]]>><<set $eventskip to 1>><</link>>
+				<<link [[Next|Forest]]>><<set $eventskip to 1>><</link>>
 			<</addinlineevent>>
 		<</if>>
 		<<addevent "forestwolfspy" 0.25>>
@@ -290,7 +290,7 @@
 				<br><br>
 
 			<<if $monster is 1 or $bestialitydisable is "f">>
-				<<link [[Далее|Forest Wolf]]>><<set $molestationstart to 1>><</link>>
+				<<link [[Next|Forest Wolf]]>><<set $molestationstart to 1>><</link>>
 				<br>
 			<<else>>
 				It chases you through the woods. You run until you can no longer hear it behind you. You're not sure if you outran it or it grew bored.
@@ -307,7 +307,7 @@
 			<<set $stripintegrity to 10>><<set $stripobject to "tree branch">><<stripobject>>
 			<br><br>
 
-			<<link [[Далее|Forest]]>><<set $eventskip to 1>><</link>>
+			<<link [[Next|Forest]]>><<set $eventskip to 1>><</link>>
 		<</addinlineevent>>
 		<<addevent "forestcutter" 0.15>>
 		<<set _forestNestUnsafe to true>>
@@ -339,7 +339,7 @@
 				<<endevent>>
 				<br><br>
 
-				<<link [[Далее|Forest]]>><<set $eventskip to 1>><</link>>
+				<<link [[Next|Forest]]>><<set $eventskip to 1>><</link>>
 			<</addinlineevent>>
 		<</if>>
 		<<addevent "forestwolfspy2">>
@@ -359,7 +359,7 @@
 
 			<!-- Modified for monster people -->
 			<<if $monster is 1 or $bestialitydisable is "f">>
-				<<link [[Далее|Forest Wolf2]]>><<set $molestationstart to 1>><</link>>
+				<<link [[Next|Forest Wolf2]]>><<set $molestationstart to 1>><</link>>
 				<br>
 			<<else>>
 				They chase you through the woods. You run until you can no longer hear them behind you. You're not sure if you outran them or they grew bored.
@@ -400,7 +400,7 @@
 
 				<<link [[Struggle|Forest Tentacles]]>><<set $molestationstart to 1>><</link>>
 				<br>
-				<<if $deviancy gte 75>>
+				<<if hasSexStat("deviancy", 5)>>
 					<<link [[Allow them to surround you|Forest Tentacles]]>><<set $molestationstart to 2>><</link>><<deviant5>>
 				<</if>>
 			<</addinlineevent>>
@@ -414,7 +414,7 @@
 			<<set $stripintegrity to 10>><<set $stripobject to "tree branch">><<stripobject>>
 			<br><br>
 
-			<<link [[Далее|Forest]]>><<set $eventskip to 1>><</link>>
+			<<link [[Next|Forest]]>><<set $eventskip to 1>><</link>>
 		<</addinlineevent>>
 	<<if $plantdisable is "f" and $tentacledisable is "f" and ($hallucinations gte 2 or $backgroundTraits.includes("plantlover"))>>
 		<<addevent "forestplant_kiss">>
@@ -429,7 +429,7 @@
 		<<set $stripintegrity to 10>><<set $stripobject to "tree branch">><<stripobject>>
 		<br><br>
 
-		<<link [[Далее|Forest]]>><<set $eventskip to 1>><</link>>
+		<<link [[Next|Forest]]>><<set $eventskip to 1>><</link>>
 	<</addinlineevent>>
 	<<set _forestNestUnsafe to true>>
 	<<addevent "forest_nest">>
@@ -452,12 +452,12 @@
 				You remember learning about the local species' rut and oestrus period with Sirris. Best not to linger.
 				<<gstress>><<stress 10>>
 			<<else>>
-				You don't know why the wolves sound different tonight.
+				You don't know why but you think the wolves sound different.
 				<<gstress>><<stress 1>>
 			<</if>>
 			<br><br>
 
-			<<link [[Далее|Forest]]>><<set $eventskip to 1>><</link>>
+			<<link [[Next|Forest]]>><<set $eventskip to 1>><</link>>
 			<br>
 		<</addinlineevent>>
 	<<else>>
@@ -470,7 +470,7 @@
 			<</if>>
 			<br><br>
 
-			<<link [[Далее|Forest]]>><<set $eventskip to 1>><</link>>
+			<<link [[Next|Forest]]>><<set $eventskip to 1>><</link>>
 			<br>
 		<</addinlineevent>>
 	<</if>>
@@ -479,12 +479,12 @@
 		<<lstress>><<stress -2>>
 		<br><br>
 
-		<<link [[Далее|Forest]]>><<set $eventskip to 1>><</link>>
+		<<link [[Next|Forest]]>><<set $eventskip to 1>><</link>>
 		<br>
 	<</addinlineevent>>
 	<<addinlineevent "event_ambient">>
 		<<eventAmbient>>
-		<<link [[Далее|Forest]]>><<set $eventskip to 1>><</link>>
+		<<link [[Next|Forest]]>><<set $eventskip to 1>><</link>>
 		<br>
 	<</addinlineevent>>
 	<<if $forest lte 60>>
@@ -496,7 +496,7 @@
 
 			<<link [[Approach|Forest Deer]]>><</link>>
 			<br>
-			<<link [[Игнорировать|Forest]]>><<set $eventskip to 1>><</link>>
+			<<link [[Ignore|Forest]]>><<set $eventskip to 1>><</link>>
 			<br>
 		<</addinlineevent>>
 	<</if>>
@@ -529,7 +529,7 @@
 					<span class="blue">You need a higher tending skill to harvest wild honeycomb.</span>
 					<br>
 				<</if>>
-				<<getouticon>><<link [[Покинуть|Forest]]>><<set $eventskip to 1>><</link>>
+				<<getouticon>><<link [[Leave|Forest]]>><<set $eventskip to 1>><</link>>
 				<br>
 			<</addinlineevent>>
 		<</if>>
@@ -548,7 +548,7 @@
 		<span class="lewd">You feel the slime in your head command you to drop to all fours.</span> It promises rewards if you comply, and threatens consequences if you do not.
 		<br><br>
 
-		<<if $deviancy gte 55 and $submissive gte 1900>>
+		<<if hasSexStat("deviancy", 4) and $submissive gte 1900>>
 			<<link [[Submit willingly|Forest Slime Wolf Submit willingly]]>><<corruption 3>><<pain -8>><<stress -12>><<trauma -24>><<sub 2>><</link>><<deviant4>><<ggcorruption>><<llpain>><<llltrauma>><<llstress>>
 			<br>
 		<</if>>
@@ -558,7 +558,7 @@
 		<br>
 
 	<<else>>
-		<<if $deviancy gte 15 and ($bestialitydisable is "f" or $monster is 1)>>
+		<<if hasSexStat("deviancy", 2) and ($bestialitydisable is "f" or $monster is 1)>>
 			<<link [[Adopt mating posture|Forest Wolf Mate]]>><</link>><<deviant2>>
 			<br>
 		<</if>>
@@ -577,7 +577,7 @@
 	<br><br>
 
 	<<beastNEWinit 2 wolf>>
-	<<if $deviancy gte 35 and ($bestialitydisable is "f" or $monster is 1)>>
+	<<if hasSexStat("deviancy", 3) and ($bestialitydisable is "f" or $monster is 1)>>
 		<<link [[Adopt mating posture|Forest Wolf Mate2]]>><</link>><<deviant3>>
 		<br>
 	<</if>>
@@ -597,12 +597,12 @@
 		<br><br>
 
 		<<if $exposed gte 2>>
-			<<if $exhibitionism gte 75>>
+			<<if hasSexStat("exhibitionism", 5)>>
 				<<link [[Let them see you|Forest Cutter Exhibitionism]]>><<set $phase to 2>><</link>><<exhibitionist5>>
 				<br>
 			<</if>>
 		<<else>>
-			<<if $exhibitionism gte 35>>
+			<<if hasSexStat("exhibitionism", 3)>>
 				<<link [[Let them see you|Forest Cutter Exhibitionism]]>><<set $phase to 1>><</link>><<exhibitionist3>>
 				<br>
 			<</if>>
@@ -625,7 +625,7 @@
 	<<set $trance to 1>>
 	<br><br>
 
-	<<link [[Далее|Forest Snake]]>><<set $molestationstart to 1>><</link>>
+	<<link [[Next|Forest Snake]]>><<set $molestationstart to 1>><</link>>
 	<br>
 <</widget>>
 
@@ -659,7 +659,7 @@
 		You leap from the creature's path, dodging it but landing in a thorny bush. The creature rushes into the forest, unconcerned with you.<<beastescape>>
 		<br><br>
 
-		<<link [[Далее|Forest]]>><<set $eventskip to 1>><</link>>
+		<<link [[Next|Forest]]>><<set $eventskip to 1>><</link>>
 		<br>
 	<</if>>
 <</widget>>
@@ -700,7 +700,7 @@
 		<<gstress>>
 		<br><br>
 
-		<<link [[Далее|Forest]]>><<set $eventskip to 1>><</link>>
+		<<link [[Next|Forest]]>><<set $eventskip to 1>><</link>>
 		<br>
 	<</if>>
 <</widget>>
@@ -711,13 +711,13 @@
 		<<gstress>><<gpain>><<stress 6>><<pain 6>>
 		<br><br>
 
-		<<link [[Далее|Forest]]>><<set $eventskip to 1>><</link>>
+		<<link [[Next|Forest]]>><<set $eventskip to 1>><</link>>
 		<br>
 	<<else>>
 		The ground here is covered by hard and jagged rocks. They're hard to spot within the grass, but your $worn.feet.name hold up.
 		<br><br>
 
-		<<link [[Далее|Forest]]>><<set $eventskip to 1>><</link>>
+		<<link [[Next|Forest]]>><<set $eventskip to 1>><</link>>
 		<br>
 	<</if>>
 <</widget>>
@@ -731,7 +731,7 @@
 	<</if>>
 	<br><br>
 
-	<<if $deviancy gte 55 and $exposed lt 2>>
+	<<if hasSexStat("deviancy", 4) and $exposed lt 2>>
 		<<link [[Strip clothes|Forest Wasps Strip]]>><</link>><<deviant4>>
 		<br>
 	<</if>>
@@ -762,11 +762,11 @@
 
 		<<link [["Kiss " + $NPCList[0].pronouns.him|Forest Plant Kiss]]>><</link>><<promiscuous1>><<kissvirginitywarning>>
 		<br>
-		<<link [[Отказаться|Forest Plant Kiss Refuse]]>><<stress 12>><</link>><<ggstress>>
+		<<link [[Refuse|Forest Plant Kiss Refuse]]>><<stress 12>><</link>><<ggstress>>
 	<<else>>
 		<<link [["Kiss " + $NPCList[0].pronouns.him|Forest Plant Kiss]]>><</link>><<promiscuous1>><<kissvirginitywarning>>
 		<br>
-		<<link [[Отказаться|Forest Plant Kiss Refuse]]>><</link>>
+		<<link [[Refuse|Forest Plant Kiss Refuse]]>><</link>>
 	<</if>>
 <</widget>>
 
@@ -786,20 +786,22 @@
 		A <<person "normal">> with <<plant_details>> in <<his>> hair and <span class="purple">writhing vines trailing behind <<him>></span> runs up to you from out of a bush. "Got one!" the <<person>> crows. "And I only waited six hours. I'm pretty much a trapping pro." <<He>> licks <<his>> lips and moves toward you, wiggling <<his>> fingers lewdly.
 		<br><br>
 
-		<<link [[Далее|Forest Plant Sex]]>><<set $molestationstart to 1>><<set $leftleg to "bound">><<set $rightleg to "bound">><</link>>
+		<<link [[Next|Forest Plant Sex]]>><<set $molestationstart to 1>><<set $leftleg to "bound">><<set $rightleg to "bound">><</link>>
 	<</if>>
 <</widget>>
 
 <<widget "forestdagger">>
+	<<wearProp "dagger">>
 	You tread on something hard. You kneel and pull it from the forest detritus. It's an ancient dagger, worn beyond use. A collector might pay for this.
 	<br><br>
 
 	<<set $antiquemoney += 40>><<museumAntiqueStatus "antiqueforestdagger" "found">>
-	<<link [[Далее|Forest]]>><<set $eventskip to 1>><</link>>
+	<<link [[Next|Forest]]>><<handheldon>><<set $eventskip to 1>><</link>>
 	<br>
 <</widget>>
 
 <<widget "forestgem">>
+	<<wearProp "forest gem">>
 	Something glints at the base of a tree stump. You tug it free. A calmness falls over you.
 	<<lstress>><<stress -3>>
 	<br><br>
@@ -808,16 +810,17 @@
 	<br><br>
 
 	<<set $antiquemoney += 100>><<museumAntiqueStatus "antiqueforestgem" "found">>
-	<<link [[Далее|Forest]]>><<set $eventskip to 1>><</link>>
+	<<link [[Next|Forest]]>><<handheldon>><<set $eventskip to 1>><</link>>
 	<br>
 <</widget>>
 
 <<widget "forestarrow">>
+	<<wearProp "arrow">>
 	You spot a decaying metal shard amongst the fallen bark at your feet. It's an arrowhead. A collector might pay for it.
 	<br><br>
 
 	<<set $antiquemoney += 20>><<museumAntiqueStatus "antiqueforestarrow" "found">>
-	<<link [[Далее|Forest]]>><<set $eventskip to 1>><</link>>
+	<<link [[Next|Forest]]>><<handheldon>><<set $eventskip to 1>><</link>>
 	<br>
 <</widget>>
 
@@ -836,7 +839,7 @@
 	<<elseif $blackwolfhunt is 1>>
 		<!-- Modified for monster people -->
 		<<npc "Black Wolf">>/*<<beastNNPCinit>>*/
-		<<if playerNormalPregnancyType() isnot "wolf" and isPlayerNonparasitePregnancyEnding()>>
+		<<if playerNormalPregnancyType() isnot "wolf" and isPregnancyEnding()>>
 			The Black Wolf bounds towards you! <<bHe>> observes you for a moment,
 			<<if $monster is 1>>
 				then howls. "Not good place for human birth," <<bhe>> says, <<bhis>> voice tinged with fear. "Come. Hold my fur. I'll take you."
@@ -845,7 +848,7 @@
 			<</if>>
 			<br><br>
 
-			<<link [[Далее|Pregnancy Birth Black Wolf Hospital 1]]>><</link>>
+			<<link [[Next|Pregnancy Birth Black Wolf Hospital 1]]>><</link>>
 			<br>
 		<<elseif $syndromewolves is 1 and $caveHumanPregnancyDiscovered is 1>>
 			<<if $wolfpackharmony gte 12>>
@@ -886,7 +889,7 @@
 			<</if>>
 			<br><br>
 
-			<<link [[Далее|Forest Wolf Molestation]]>><<set $molestationstart to 1>><</link>>
+			<<link [[Next|Forest Wolf Molestation]]>><<set $molestationstart to 1>><</link>>
 		<<elseif $monster is 1 or $bestialitydisable is "f">>
 			You hear rustling nearby. A pair of glowing yellow eyes watch you from the canopy.
 			<<if $monster is 1>>
@@ -896,12 +899,12 @@
 			<</if>>
 			<br><br>
 
-			<<link [[Далее|Forest Wolf Molestation]]>><<set $molestationstart to 1>><</link>>
+			<<link [[Next|Forest Wolf Molestation]]>><<set $molestationstart to 1>><</link>>
 		<<else>>
 			You hear rustling nearby. A pair of glowing yellow eyes watch you from the canopy. A monstrous black wolf bounds towards you! You flee in terror, and somehow manage to escape.<<beastescape>>
 			<br><br>
 
-			<<link [[Далее|Forest]]>><<endevent>><</link>>
+			<<link [[Next|Forest]]>><<endevent>><</link>>
 			<br>
 		<</if>>
 	<<else>>
@@ -910,7 +913,7 @@
 			<<set $wraith.mimic to "Eden">><<npc Eden>><<person1>>Something whizzes past and hits a tree in front of you. You shield your face with your arms and stagger backwards. Something presses against your back, and you hear a <<personsimple>>'s voice. "I've got you now. Don't resist."
 			<br><br>
 
-			<<link [[Далее|Wraith Mimic Fight]]>><<set $wraith.exit to "forest">><<set $molestationstart to 1>><</link>>
+			<<link [[Next|Wraith Mimic Fight]]>><<set $wraith.exit to "forest">><<set $molestationstart to 1>><</link>>
 			<br>
 		<<elseif $edenCagedEscape>>
 			<<npc Eden>><<person1>>
@@ -920,7 +923,7 @@
 			<<He>> pins you against a tree, rage flashing in <<his>> eyes.
 			<br><br>
 
-			<<link [[Драться|Eden Caged Caught Resist]]>><<set $fightstart to 1>><</link>>
+			<<link [[Fight|Eden Caged Caught Resist]]>><<set $fightstart to 1>><</link>>
 			<br>
 			<<link [[Try to pull away|Eden Caged Caught Pull]]>><<def 1>><<npcincr Eden dom -1>><</link>><<physiquedifficulty 2000 18000>><<ldom>>
 			<br>
@@ -934,7 +937,7 @@
 			Before you can speak, Eden begins to drag you away. "I don't want to hear your excuses, either." <<He>> glances scornfully in the direction of the town. "I could figure what you've been up to, anyway. Things aren't going to be pretty when we get home."
 			<br><br>
 
-			<<link [[Драться|Eden Caged Caught Resist]]>><<set $fightstart to 1>><</link>>
+			<<link [[Fight|Eden Caged Caught Resist]]>><<set $fightstart to 1>><</link>>
 			<br>
 			<<link [[Try to pull away|Eden Caged Caught Pull]]>><<def 1>><<npcincr Eden dom -1>><</link>><<physiquedifficulty 2000 18000>><<ldom>>
 			<br>
@@ -980,7 +983,21 @@
 						You reach up to untie yourself, and spot someone watching. It's Eden.
 						<br><br>
 
-						"Those traps are meant for animals," <<he>> says. "You should watch where you're going." <<He>> takes your weight in <<his>> arms while <<he>> unties you, then eases you to the ground.
+						"Those traps are meant for animals," <<he>> says. "You should watch where you're going." <<He>> takes your weight in <<his>> arms while <<he>>
+
+						<<if C.npc.Eden.lust gte 60>>
+							begins to untie you. <<He>> pauses before <<he>> does.
+							<br><br>
+							“We should have some fun first, though, don’t you agree?” <<He>> smiles down at you as <<he>> unzips <<his>> pants.
+							<br><br>
+
+							<<link [[Help Eden pull <<his>> pants down|Forest Eden Snare Oral]]>><<set $phase to 0>><<npcincr Eden love 1>><<npcincr Eden dom 1>><<sub 1>><</link>><<glove>><<gdom>>
+							<br>
+							<<link [[Push Eden away|Forest Eden Snare Oral]]>><<set $phase to 1>><<npcincr Eden love -1>><<npcincr Eden dom -1>><<def 1>><</link>><<llove>><<ldom>>
+							<<exit>>
+						<<else>>
+							unties you, then eases you to the ground.
+						<</if>>
 					<</if>>
 				<<else>>
 					<<npc Eden>><<person1>>
@@ -1004,7 +1021,7 @@
 			<<npc Eden>><<person1>>A bullet whizzes past and hits a tree in front of you. You shield your face with your arms and stagger backwards. A cold hard object presses against your back, and you hear a <<personsimple>>'s voice. "I've got you now. Don't resist."
 			<br><br>
 
-			<<link [[Далее|Forest Hunter Molestation]]>><<set $molestationstart to 1>><</link>>
+			<<link [[Next|Forest Hunter Molestation]]>><<set $molestationstart to 1>><</link>>
 		<</if>>
 	<</if>>
 <</widget>>
@@ -1020,7 +1037,7 @@
 
 	<<link [[Take it in hand|Wolf Cave Hand]]>><<set $sexstart to 1>><</link>><<deviant1>>
 	<br>
-	<<link [[Отказаться|Wolf Cave Hand Refuse]]>><</link>>
+	<<link [[Refuse|Wolf Cave Hand Refuse]]>><</link>>
 	<br>
 	<<else>>
 		<<if $rng gte 81>>
@@ -1035,7 +1052,7 @@
 			<<beastNEWinit 1 wolf>>
 			One of the <<beastsplural>> approaches you.
 			<br><br>
-			<<link [[Далее|Forest Wolf Cave Molestation]]>><<set $molestationstart to 1>><</link>>
+			<<link [[Next|Forest Wolf Cave Molestation]]>><<set $molestationstart to 1>><</link>>
 			<br>
 		<</if>>
 	<</if>>
@@ -1063,7 +1080,7 @@
 <</widget>>
 
 <<widget "passoutforest">>
-	<<if isPlayerNonparasitePregnancyEnding()>>
+	<<if isPregnancyEnding()>>
 		<<pregnancyPassout "forest">>
 	<<else>>
 		You've pushed yourself too much.
@@ -1248,7 +1265,7 @@
 		<<elseif !_snakeKnown>>
 			<<ind>><<link [[Search the nest|Forest Nest Snake]]>><</link>>
 			<br>
-		<<elseif _snakeKnown and $deviancy gte 55 and $voredisable is "f">>
+		<<elseif _snakeKnown and hasSexStat("deviancy", 4) and $voredisable is "f">>
 			<<ind>><<link [[Present yourself as food|Forest Nest Snake Vore 1]]>><</link>><<deviant4>>
 			<br>
 		<</if>>
@@ -1257,7 +1274,7 @@
 			<br>
 		<</if>>
 	<</if>>
-	<<getouticon>><<link [[Покинуть|Forest]]>><<endevent>><<unset $forest_nest>><<set $eventskip to 1>><</link>>
+	<<getouticon>><<link [[Leave|Forest]]>><<endevent>><<unset $forest_nest>><<set $eventskip to 1>><</link>>
 	<br>
 <</widget>>
 
@@ -1274,7 +1291,7 @@
 	<br><br>
 
 	<<if $monster is 1 or $bestialitydisable is "f">>
-		<<link [[Далее|Forest Fox Revenge]]>><<set $molestationstart to 1>><</link>>
+		<<link [[Next|Forest Fox Revenge]]>><<set $molestationstart to 1>><</link>>
 		<br>
 	<<else>>
 		They chase you through the woods. You run until you can no longer hear them behind you. You're not sure if you outran it or it grew bored.
@@ -1569,7 +1586,7 @@
 		<br><br>
 	<</if>>
 
-	<<link [[Далее|Forest]]>><<set $eventskip to 1>><</link>>
+	<<link [[Next|Forest]]>><<set $eventskip to 1>><</link>>
 <</widget>>
 
 <<widget "forestCabinReturnLinks">>
@@ -1596,6 +1613,7 @@
 				<<set $_max to (_args[0] + 4)>>
 			<</if>>
 		<</if>>
+		<<wearProp "bird egg">>
 		<span class="green"><<tending_pick bird_egg $_min $_max>></span>
 	<<else>>
 		<span class="red">There's no intact eggs left.</span>

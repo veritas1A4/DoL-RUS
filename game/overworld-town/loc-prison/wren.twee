@@ -7,34 +7,18 @@
 <<He>> puts the tooth away. "If you find some, <span class="gold">find me in the yard on Fridays, after lunch.</span>" <<He>> smiles. "I'll make it worth your while."
 <br><br>
 
-<span class="gold">"The name's Wren,"</span> <<he>> says as <<he>> brushes past you. "Until we meet again."
-<br><br>
-
-<<if isPubfameTaskAccepted("wren") and !$pubfame.seen.includes("prisonWren")>>
-	<<set $pubfame.seen.pushUnique("prisonWren")>>
-	This is the person that 'Mickey' wanted you to deliver the letter to. However, <span class="red">the guards confiscated the letter alongside your personal belongings.</span>
+<<if $phase is "intro">>
+	<span class="gold">"The name's Wren,"</span> <<he>> says as <<he>> brushes past you. "Until we meet again."
 	<br><br>
 <</if>>
 
-<<link [[Далее|Prison Yard]]>><<endevent>><</link>>
-<br>
-
-:: Prison Wren Intro Met
-<<effects>>
-
-<<He>> reaches into <<his>> pocket, and produces a white, translucent gem between thumb and forefinger. "We call these shark's teeth," <<he>> says. "The birds here fish them from the water. Sometimes they end up down here."
-<br><br>
-
-<<He>> puts the tooth away. "If you find some, <span class="gold">find me in the yard on Fridays, after lunch.</span>" <<He>> smiles. "I'll make it worth your while."
-<br><br>
-
 <<if isPubfameTaskAccepted("wren") and !$pubfame.seen.includes("prisonWren")>>
 	<<set $pubfame.seen.pushUnique("prisonWren")>>
-	'Mickey' wanted you to deliver the letter to Wren. However, <span class="red">the guards confiscated the letter alongside your personal belongings.</span>
+	<<= $phase is "intro" ? "This is the person that 'Mickey' wanted you to deliver the letter to." : "'Mickey' wanted you to deliver the letter to Wren.">> However, <span class="red">the guards confiscated the letter alongside your personal belongings.</span>
 	<br><br>
 <</if>>
 
-<<link [[Далее|Prison Yard]]>><<endevent>><</link>>
+<<link [[Next|Prison Yard]]>><<endevent>><</link>>
 <br>
 
 :: Prison Wren
@@ -130,7 +114,7 @@ Wren smiles at you. "If you've got teeth," <<he>> says. "I have some goodies fro
 <<askicon>><<link [[Ask about escape|Prison Wren Ask]]>><</link>>
 <br><br>
 
-<<getouticon>><<link [[Покинуть|Prison Yard]]>><<endevent>><</link>>
+<<getouticon>><<link [[Leave|Prison Yard]]>><<endevent>><</link>>
 <br>
 
 
@@ -195,7 +179,7 @@ Jumpsuit: 15 teeth
 <</if>>
 <br><br>
 
-<<getouticon>><<link [[Покинуть|Prison Wren]]>><<endevent>><</link>>
+<<getouticon>><<link [[Leave|Prison Wren]]>><<endevent>><</link>>
 <br>
 
 :: Prison Wren Panties
@@ -204,7 +188,7 @@ Jumpsuit: 15 teeth
 "They'll be sent to your cell," Wren says. "I don't think the staff even bother to order their own. Everyone comes to me."
 <br><br>
 
-<<link [[Далее|Prison Yard]]>><<endevent>><</link>>
+<<link [[Next|Prison Yard]]>><<endevent>><</link>>
 <br>
 
 
@@ -214,7 +198,7 @@ Jumpsuit: 15 teeth
 "They'll be sent to your cell," Wren says. "I don't think the staff even bother to order their own. Everyone comes to me."
 <br><br>
 
-<<link [[Далее|Prison Yard]]>><<endevent>><</link>>
+<<link [[Next|Prison Yard]]>><<endevent>><</link>>
 <br>
 
 
@@ -224,7 +208,7 @@ Jumpsuit: 15 teeth
 "It'll be sent to your cell," Wren says. "I'm basically an underwear <<if $pronoun is "m">>salesman<<else>>saleswoman<</if>>."
 <br><br>
 
-<<link [[Далее|Prison Yard]]>><<endevent>><</link>>
+<<link [[Next|Prison Yard]]>><<endevent>><</link>>
 <br>
 
 
@@ -234,7 +218,7 @@ Jumpsuit: 15 teeth
 "It'll be sent to your cell," Wren says. "I'm basically an underwear <<if $pronoun is "m">>salesman<<else>>saleswoman<</if>>."
 <br><br>
 
-<<link [[Далее|Prison Yard]]>><<endevent>><</link>>
+<<link [[Next|Prison Yard]]>><<endevent>><</link>>
 <br>
 
 
@@ -244,7 +228,7 @@ Jumpsuit: 15 teeth
 "It'll be sent to your cell," Wren says. "I like the old fashioned style. Might be why I enjoy the estate so much."
 <br><br>
 
-<<link [[Далее|Prison Yard]]>><<endevent>><</link>>
+<<link [[Next|Prison Yard]]>><<endevent>><</link>>
 <br>
 
 
@@ -254,7 +238,7 @@ Jumpsuit: 15 teeth
 "They'll be sent to your cell," Wren says. "Don't worry if they get a little muddy."
 <br><br>
 
-<<link [[Далее|Prison Yard]]>><<endevent>><</link>>
+<<link [[Next|Prison Yard]]>><<endevent>><</link>>
 <br>
 
 
@@ -264,7 +248,7 @@ Jumpsuit: 15 teeth
 "It'll be sent to your cell," Wren says. "I hear the prison has a ton of these, but they only give the one to newcomers."
 <br><br>
 
-<<link [[Далее|Prison Yard]]>><<endevent>><</link>>
+<<link [[Next|Prison Yard]]>><<endevent>><</link>>
 <br>
 
 
@@ -274,7 +258,7 @@ Jumpsuit: 15 teeth
 Wren passes you a note with a four-digit number written down. "Dunno what they keep in there," <<he>> says. "Must be important though. Careful not to get caught. If you are caught, we've never met."
 <br><br>
 
-<<link [[Далее|Prison Yard]]>><<endevent>><</link>>
+<<link [[Next|Prison Yard]]>><<endevent>><</link>>
 <br>
 
 
@@ -284,7 +268,7 @@ Wren passes you a note with a four-digit number written down. "Dunno what they k
 "Strong and long," Wren says. It looks like <<he>> wants to say something else, but <<he>> contents <<himself>> with a smirk.
 <br><br>
 
-<<link [[Далее|Prison Yard]]>><<endevent>><</link>>
+<<link [[Next|Prison Yard]]>><<endevent>><</link>>
 <br>
 
 :: Prison Wren Yard Key
@@ -293,7 +277,7 @@ Wren passes you a note with a four-digit number written down. "Dunno what they k
 Wren hands you the teeth. "Good to have a spare," <<he>> smiles.
 <br><br>
 
-<<link [[Далее|Prison Yard]]>><<endevent>><</link>>
+<<link [[Next|Prison Yard]]>><<endevent>><</link>>
 <br>
 
 :: Prison Wren Mirror
@@ -305,7 +289,7 @@ Wren hands you a shard of reflective glass. "Watch the edges," <<he>> says. "I d
 <span class="gold">You now have a mirror. You can use it in your cell.</span>
 <br><br>
 
-<<link [[Далее|Prison Yard]]>><<endevent>><</link>>
+<<link [[Next|Prison Yard]]>><<endevent>><</link>>
 <br>
 
 :: Prison Wren Hammer
@@ -317,7 +301,7 @@ Wren hands you a small hammer, barely the size of your thumb. "Hope you weren't 
 <span class="gold">You now have a small hammer.</span>
 <br><br>
 
-<<link [[Далее|Prison Yard]]>><<endevent>><</link>>
+<<link [[Next|Prison Yard]]>><<endevent>><</link>>
 <br>
 
 
@@ -346,7 +330,7 @@ Wren hands you a small hammer, barely the size of your thumb. "Hope you weren't 
 	<</if>>
 	<br><br>
 
-	<<link [[Далее|Prison Yard]]>><<prison_teeth -50>><<set $prison.poster to $poster_choice>><<unset $poster_choice>><<endevent>><</link>>
+	<<link [[Next|Prison Yard]]>><<prison_teeth -50>><<set $prison.poster to $poster_choice>><<unset $poster_choice>><<endevent>><</link>>
 	<br>
 <</if>>
 
@@ -361,7 +345,7 @@ Wren hands you a small hammer, barely the size of your thumb. "Hope you weren't 
 
 <<link [["Ask " + $NPCList[0].pronouns.him + " how " + $NPCList[0].pronouns.he + " gets in and out"|Prison Wren Ask 2]]>><</link>>
 <br>
-<<link [[Покинуть|Prison Yard]]>><<endevent>><</link>>
+<<link [[Leave|Prison Yard]]>><<endevent>><</link>>
 <br>
 
 :: Prison Wren Ask 2
@@ -370,5 +354,5 @@ Wren hands you a small hammer, barely the size of your thumb. "Hope you weren't 
 Wren smiles. "That's my secret."
 <br><br>
 
-<<link [[Далее|Prison Yard]]>><<endevent>><</link>>
+<<link [[Next|Prison Yard]]>><<endevent>><</link>>
 <br>

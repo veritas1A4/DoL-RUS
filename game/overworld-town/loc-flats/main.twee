@@ -90,7 +90,7 @@ You are on the ground floor of a block of flats on Barb Street. The walls and fl
                             <br>
                             <<link [[Scream|Flats Events Scream]]>><<pain 4>><</link>><<gpain>>
                             <br>
-                            <<link [[Драться|Flats Events Fight]]>><<def 1>><<set $fightstart to 1>><</link>>
+                            <<link [[Fight|Flats Events Fight]]>><<def 1>><<set $fightstart to 1>><</link>>
                             <br>
                         <<else>>
                             <<He>> pauses, considering, <span class="teal">then steps aside.</span>
@@ -99,7 +99,7 @@ You are on the ground floor of a block of flats on Barb Street. The walls and fl
                             They watch you walk away.
                             <br><br>
 
-                            <<link [[Далее|Flats]]>><<set $eventskip to 1>><<endevent>><</link>>
+                            <<link [[Next|Flats]]>><<set $eventskip to 1>><<endevent>><</link>>
                             <br>
                         <</if>>
                     <<else>>
@@ -110,14 +110,14 @@ You are on the ground floor of a block of flats on Barb Street. The walls and fl
                         <br>
                         <<link [[Scream|Flats Events Scream]]>><<pain 4>><</link>><<gpain>>
                         <br>
-                        <<link [[Драться|Flats Events Fight]]>><<def 1>><<set $fightstart to 1>><</link>>
+                        <<link [[Fight|Flats Events Fight]]>><<def 1>><<set $fightstart to 1>><</link>>
                         <br>
                     <</if>>
                 <<else>>
                     The <<person1>><<person>> pulls a funny face, but they otherwise don't bother you.
                     <br><br>
 
-                    <<link [[Далее|Flats]]>><<set $eventskip to 1>><<endevent>><</link>>
+                    <<link [[Next|Flats]]>><<set $eventskip to 1>><<endevent>><</link>>
                     <br>
                 <</if>>
             <</addinlineevent>>
@@ -128,7 +128,7 @@ You are on the ground floor of a block of flats on Barb Street. The walls and fl
                 A <<beasttype 0>> walks by, followed by a <<person2>><<person>> holding a lead. <<bHe 0>> stops to sniff you, but the <<person>> jerks <<bhim 0>> away.
                 <br><br>
 
-                <<link [[Далее|Flats]]>><<endevent>><<set $eventskip to 1>><</link>>
+                <<link [[Next|Flats]]>><<endevent>><<set $eventskip to 1>><</link>>
                 <br>
             <</addinlineevent>>
 
@@ -141,7 +141,7 @@ You are on the ground floor of a block of flats on Barb Street. The walls and fl
                 <br>
                 <<link [[Stomp on foot|Flats Events Stomp]]>><<def 1>><</link>><<physiquedifficulty 5000 13000>>
                 <br>
-                <<link [[Терпеть|Flats Events Endure]]>><<trauma 6>><<stress 6>><<sub 1>><</link>><<difficulty 50>><<kissvirginitywarning>><<gtrauma>><<gstress>>
+                <<link [[Endure|Flats Events Endure]]>><<trauma 6>><<stress 6>><<sub 1>><</link>><<difficulty 50>><<kissvirginitywarning>><<gtrauma>><<gstress>>
                 <br>
             <</addinlineevent>>
 
@@ -149,7 +149,7 @@ You are on the ground floor of a block of flats on Barb Street. The walls and fl
                 <<generate1>><<person1>>
                 You pass a <<person>> working as a janitor. <<He>>'s wearing headphones, and doesn't seem to notice you.
                 <br><br>
-                <<link [[Далее|Flats]]>><<endevent>><<set $eventskip to 1>><</link>>
+                <<link [[Next|Flats]]>><<endevent>><<set $eventskip to 1>><</link>>
                 <br>
             <</addinlineevent>>
 
@@ -159,7 +159,7 @@ You are on the ground floor of a block of flats on Barb Street. The walls and fl
                     <br><br>
                     <<link [[Investigate|Flats Hookah]]>><<set $hallucinogen += 10>><</link>>
                     <br>
-                    <<link [[Игнорировать|Flats]]>><</link>>
+                    <<link [[Ignore|Flats]]>><</link>>
                     <br>
                 <</addinlineevent>>
             <</if>>
@@ -169,7 +169,7 @@ You are on the ground floor of a block of flats on Barb Street. The walls and fl
                 A <<person>> leers openly as <<he>> walks by, turning <<his>> head to look behind <<him>>.
                 <br><br>
 
-                <<if $promiscuity gte 35>>
+                <<if hasSexStat("promiscuity", 3)>>
                     <i>Charging less will make <<him>> easier to convince.</i>
                     <br><br>
                     <<link [[Solicit for £50|Flats Events Solicit]]>><<set $phase to 1>><</link>><<promiscuous3>>
@@ -182,7 +182,7 @@ You are on the ground floor of a block of flats on Barb Street. The walls and fl
                     <span class="blue">You're not promiscuous enough to take advantage.</span>
                     <br><br>
                 <</if>>
-                <<link [[Игнорировать|Flats]]>><<endevent>><<set $eventskip to 1>><</link>>
+                <<link [[Ignore|Flats]]>><<endevent>><<set $eventskip to 1>><</link>>
                 <br>
             <</addinlineevent>>
 
@@ -191,7 +191,7 @@ You are on the ground floor of a block of flats on Barb Street. The walls and fl
                 A <<person>> and <<person2>><<person>> chat under a stairwell. They lower their voices as you walk by.
                 <br><br>
 
-                <<link [[Далее|Flats]]>><<endevent>><<set $eventskip to 1>><</link>>
+                <<link [[Next|Flats]]>><<endevent>><<set $eventskip to 1>><</link>>
                 <br>
             <</addinlineevent>>
 
@@ -199,7 +199,7 @@ You are on the ground floor of a block of flats on Barb Street. The walls and fl
                 You hear shouting from one of the flats, but it doesn't sound like anyone's in danger.
                 <br><br>
 
-                <<link [[Далее|Flats]]>><<endevent>><<set $eventskip to 1>><</link>>
+                <<link [[Next|Flats]]>><<endevent>><<set $eventskip to 1>><</link>>
                 <br>
             <</addinlineevent>>
 
@@ -209,13 +209,13 @@ You are on the ground floor of a block of flats on Barb Street. The walls and fl
                     You skid on a wet floor, spin, <span class="green">but manage to keep your footing.</span>
                     <br><br>
 
-                    <<link [[Далее|Flats]]>><<endevent>><<set $eventskip to 1>><</link>>
+                    <<link [[Next|Flats]]>><<endevent>><<set $eventskip to 1>><</link>>
                     <br>
                 <<else>>
                     You skid on a wet floor, <span class="red">and lose your footing.</span> You land on your <<bottom>>.<<gpain>><<pain 4>><<gstress>><<stress 6>>
                     <br><br>
 
-                    <<link [[Далее|Flats]]>><<endevent>><<set $eventskip to 1>><</link>>
+                    <<link [[Next|Flats]]>><<endevent>><<set $eventskip to 1>><</link>>
                     <br>
                 <</if>>
             <</addinlineevent>>
@@ -224,9 +224,9 @@ You are on the ground floor of a block of flats on Barb Street. The walls and fl
                 A <<generate1>><<person1>><<person>> seems to be following you.
                 <br><br>
 
-                <<link [[Игнорировать|Flats Events Ignore]]>><</link>><<difficulty 90>>
+                <<link [[Ignore|Flats Events Ignore]]>><</link>><<difficulty 90>>
                 <br>
-                <<link [[Бежать|Flats Events Run]]>><<stress 6>><</link>><<gstress>>
+                <<link [[Run|Flats Events Run]]>><<stress 6>><</link>><<gstress>>
                 <br>
             <</addinlineevent>>
         <</if>>
@@ -272,8 +272,8 @@ You are on the ground floor of a block of flats on Barb Street. The walls and fl
                 <br>
             <</if>>
         <</if>>
-        <br><br>
-        <<barbicon>><<link [[Покинуть|Barb Street]]>><</link>>
+        <br>
+        <<barbicon>><<link [[Leave|Barb Street]]>><</link>>
         <br>
     <</if>>
 <</if>>
@@ -304,7 +304,7 @@ You enter the superintendent's office,
     <</if>>
 <</if>>
 
-<<getouticon>><<link [[Покинуть|Flats]]>><<endevent>><</link>>
+<<getouticon>><<link [[Leave|Flats]]>><<endevent>><</link>>
 <br>
 
 :: Flats Superintendent Intro
@@ -333,7 +333,7 @@ You enter the superintendent's office,
     <<link [[Say nothing|Flats Superintendent Nod]]>><</link>>
     <br>
 <<else>>
-    <<link [[Далее|Flats]]>><<endevent>><</link>>
+    <<link [[Next|Flats]]>><<endevent>><</link>>
     <br>
 <</if>>
 
@@ -352,7 +352,7 @@ You lead <<him>> straight to the hookah parlour. "Ah," <<he>> says. "I can smell
 "I'll be paying the owner a visit," <<he>> says, walking away. "Once I've sorted the paperwork."
 <br><br>
 
-<<link [[Далее|Flats]]>><<endevent>><</link>>
+<<link [[Next|Flats]]>><<endevent>><</link>>
 <br>
 
 :: Flats Superintendent Found
@@ -370,7 +370,7 @@ It takes you a while to find it, but <<he>> follows patiently, until you track i
 "I'll be paying the owner a visit," <<he>> says, walking away. "Once I've sorted the paperwork."
 <br><br>
 
-<<link [[Далее|Flats]]>><<endevent>><</link>>
+<<link [[Next|Flats]]>><<endevent>><</link>>
 <br>
 
 
@@ -380,7 +380,7 @@ It takes you a while to find it, but <<he>> follows patiently, until you track i
 "You can find my office near the entrance," the <<person1>><<person>> says. "Cheerio."
 <br><br>
 
-<<link [[Далее|Flats]]>><<endevent>><</link>>
+<<link [[Next|Flats]]>><<endevent>><</link>>
 <br>
 
 :: Flats Knock Intro
@@ -393,9 +393,9 @@ You knock on a door. Footsteps thud on the other side, then the door swings open
 <<His>> gaze flicks over your body once. "What do you want?"
 <br><br>
 
-<<askicon>><<link [[Ask for work (1:00)|Flats Knock Intro 2]]>><<pass 60>><</link>>
+<<askicon>><<link [[Ask for work (1:00)|Flats Knock Intro 2]]>><<wearProp "rag" "grey">><<pass 60>><</link>>
 <br>
-<<getouticon>><<link [[Сказать что вы ошиблись адресом и уйти|Flats]]>><<endevent>><</link>>
+<<getouticon>><<link [[Say you've got the wrong address and leave|Flats]]>><<endevent>><</link>>
 <br>
 
 
@@ -404,10 +404,11 @@ You knock on a door. Footsteps thud on the other side, then the door swings open
 
 "Bathroom needs cleaning," <<he>> says, opening the door all the way. "First door on the right. You'll find cleaning materials on the shelf."
 <br><br>
+You enter the bathroom. It's quite clean already, but the bath is stained. There are several bottles on the shelf, along with a rag. The rag is almost clean as well. You turn the bottles, but find they're completely unmarked.
 
 <<if $housekeeping gte 100>>
     <<set $flats_progress to 1>>
-    You enter the bathroom. It's quite clean already, but the bath is stained. There are several bottles on the shelf, along with a rag. The rag is almost clean as well. You turn the bottles, but find they're completely unmarked. You try to open the closest. The lid is stuck, but you use the rag for extra purchase, and manage to twist it off.
+    You try to open the closest. The lid is stuck, but you use the rag for extra purchase, and manage to twist it off.
     <br><br>
     You pour the cleaning solution over the bath's surface, and dust the shelves and windowsill while you wait for the chemicals to work. You run the tap, and hose the enamel down with a shower attachment. The chemicals run clear, leaving a pearly white.
     <br><br>
@@ -418,18 +419,18 @@ You knock on a door. Footsteps thud on the other side, then the door swings open
     <i>You can now work as a cleaner in the flats on Barb Street.</i>
     <br><br>
 <<else>>
-    You enter the bathroom. It's quite clean already, but the bath is stained. There are several bottles on the shelf, along with a rag. The rag is almost clean as well. You turn the bottles, but find they're completely unmarked. You try to open one, but the lid is stuck. You have more luck with the next, but you've no idea if it's what you need.
+	You try to open one, but the lid is stuck. You have more luck with the next, but you've no idea if it's what you need.
     <br><br>
     You pour it into the bath, wait for a few minutes, then run the tap. The water clears, but the stain remains. You try each bottle in turn, but nothing will remove it. You try rubbing the bath with the rag, but to no effect. There's only one bottle left.
     <br><br>
     You twist the lid with all your might. It comes loose, <span class="red">but with too much force.</span> The bottle jerks from your hand, and spills its contents into the bath. It's half empty by the time you get it upright.
     <br><br>
-    The <<person>> walks in on this scene. "Shit," <<he>> says. "I gave you a simple fucking-," <<he>> pauses, and inhales. "It's fine. I'm not paying you though. Get out."
+    The <<person>> walks in on this scene. "Shit," <<he>> says. "I gave you a simple fucking-" <<He>> pauses, and inhales. "It's fine. I'm not paying you though. Get out."
     <br><br>
     <span class="blue">You'll need at least an <span class="pink">F+</span> housekeeping skill to work as a cleaner at the flats.</span>
     <br><br>
 <</if>>
 
-<<link [[Далее|Flats]]>><<endevent>><</link>>
+<<link [[Next|Flats]]>><<endevent>><</link>>
 <br>
 

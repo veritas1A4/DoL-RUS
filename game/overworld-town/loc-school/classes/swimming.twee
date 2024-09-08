@@ -36,7 +36,7 @@
 			<<else>>
 				<br><br>
 
-				<<link [[Далее|Swimming Lesson]]>><<endevent>><</link>>
+				<<link [[Next|Swimming Lesson]]>><<endevent>><</link>>
 			<</if>>
 			<br>
 		<<elseif Time.minute lte 5>>
@@ -48,7 +48,7 @@
 			<<else>>
 				<br><br>
 
-				<<link [[Далее|Swimming Lesson]]>><<endevent>><</link>>
+				<<link [[Next|Swimming Lesson]]>><<endevent>><</link>>
 			<</if>>
 			<br>
 
@@ -71,15 +71,15 @@
 				You climb into the water as Mason continues the lesson.
 				<br><br>
 
-				<<link [[Далее|Swimming Lesson]]>><<endevent>><</link>>
+				<<link [[Next|Swimming Lesson]]>><<endevent>><</link>>
 			<</if>>
 			<br>
 		<</if>>
 	<<elseif $exposed gte 2 and $swimall isnot 1>>
 		<<npc Mason>><<person1>>
 		<<schoolpoolexposed>>
-		<<if $exhibitionism gte 75 and $swimall isnot 1>>
-			<<link [[Ask to swim naked|School Pool Ask Naked]]>><<fameexhibitionism 15>><<endevent>><<set $swimnudecounter += 1>><</link>><<exhibitionist5>>
+		<<if hasSexStat("exhibitionism", 5) and $swimall isnot 1>>
+			<<askicon>><<link [[Ask to swim naked|School Pool Ask Naked]]>><<fameexhibitionism 15>><<endevent>><<set $swimnudecounter += 1>><</link>><<exhibitionist5>>
 			<br>
 		<</if>>
 	<<elseif $swimall is 1>>
@@ -99,7 +99,7 @@
 				<<include "Mason Chastity Prompt">>
 			<<else>>
 				<br><br>
-				<<link [[Далее|Swimming Lesson]]>><<endevent>><</link>>
+				<<link [[Next|Swimming Lesson]]>><<endevent>><</link>>
 			<</if>>
 		<<else>>
 			<br><br>
@@ -119,7 +119,7 @@
 			<<else>>
 				<br><br>
 
-				<<link [[Далее|Swimming Lesson]]>><<endevent>><</link>>
+				<<link [[Next|Swimming Lesson]]>><<endevent>><</link>>
 			<</if>>
 			<br>
 		<<elseif Time.minute lte 5>>
@@ -131,7 +131,7 @@
 			<<else>>
 				<br><br>
 
-				<<link [[Далее|Swimming Lesson]]>><<endevent>><</link>>
+				<<link [[Next|Swimming Lesson]]>><<endevent>><</link>>
 			<</if>>
 			<br>
 		<<else>>
@@ -153,7 +153,7 @@
 				You climb into the water as Mason continues the lesson.
 				<br><br>
 
-				<<link [[Далее|Swimming Lesson]]>><<endevent>><</link>>
+				<<link [[Next|Swimming Lesson]]>><<endevent>><</link>>
 			<</if>>
 			<br>
 		<</if>>
@@ -171,19 +171,20 @@
 			Go get changed."
 			<br><br>
 
-			<<if $exhibitionism gte 75 and $swimall isnot 1>>
-				<<link [[Ask to swim naked|School Pool Ask Naked]]>><<fameexhibitionism 15>><<endevent>><<set $swimnudecounter += 1>><</link>><<exhibitionist5>>
+			<<if hasSexStat("exhibitionism", 5) and $swimall isnot 1>>
+				<<askicon>><<link [[Ask to swim naked|School Pool Ask Naked]]>><<fameexhibitionism 15>><<endevent>><<set $swimnudecounter += 1>><</link>><<exhibitionist5>>
 				<br>
 			<</if>>
 			<<if $player.gender is "f" or ($player.gender is "h" and $player.gender_appearance is "f")>>
 				<<if !$daily.swimCrossdressPermission>>
-					<<link [[Say you only have a boy's swimming costume|School Pool Wrong]]>><</link>>
+					<<socialiseicon>><<link [[Say you only have a boy's swimming costume|School Pool Wrong]]>><</link>>
 					<br>
 				<</if>>
-				<<link [[Say you don't have anything to change into|School Pool Spare]]>><</link>>
+				<<socialiseicon>><<link [[Say you don't have anything to change into|School Pool Spare]]>><</link>>
 				<br>
 			<<else>>
 				<<if !$daily.swimCrossdressPermission>>
+					<<socialiseicon>>
 					<<if ($worn.upper.type.includes("naked") and $worn.under_upper.type.includes("naked")) and
 					($worn.lower.type.includes("swim") or ($worn.lower.type.includes("naked") and $worn.under_lower.type.includes("swim")))>>
 						<<link [[Say you only have a boy's swimming costume|School Pool Wrong]]>><<set $phase to 1>><</link>>
@@ -192,7 +193,7 @@
 					<</if>>
 					<br>
 				<</if>>
-				<<link [[Say you don't have anything to change into|School Pool Spare]]>><</link>>
+				<<socialiseicon>><<link [[Say you don't have anything to change into|School Pool Spare]]>><</link>>
 				<br>
 			<</if>>
 			<br>
@@ -337,10 +338,10 @@
 		<<flaunting>> you feel their eyes on you as you slip into the water.
 	<<else>>
 		<<flaunting>> you feel their eyes on you as you <<nervously>> strip down to your <<lewdness>>, before slipping into the water. <<covered>>
-	<</if>><<exhibitionism5>>
-	<br><br>
+	<</if>>
+	<<exhibitionism5>>
 
-	<<link [[Далее|Swimming Lesson]]>><<endevent>><</link>>
+	<<link [[Next|Swimming Lesson]]>><<endevent>><</link>>
 <</if>>
 
 
@@ -361,7 +362,7 @@ Once done, Leighton takes the swimwear and puts it in a hamper.
 <br>
 "Blame your classmates. They wanted to skinny dip during class, now they can."
 <br><br>
-<<link [[Далее|Swimming Lesson]]>><<endevent>><</link>>
+<<link [[Next|Swimming Lesson]]>><<endevent>><</link>>
 
 :: Swimming Lesson
 <<set $outside to 0>><<set $location to "pool">><<schooleffects>><<effects>><<set $phase to 0>>
@@ -382,7 +383,9 @@ Once done, Leighton takes the swimwear and puts it in a hamper.
 	"Of course," <<he>> snarls. "Everyone out of the pool."
 	<br><br>
 
-	<<link [[Далее|Pool Leighton Nude Punishment]]>><<pass 5>><</link>>
+	<<link [[Next|Pool Leighton Nude Punishment]]>><<pass 5>><</link>>
+<<elseif $stress gte $stressmax and isPregnancyEnding()>>
+	<<pregnancyPassout "schoolPool">>
 <<else>>
 	<<if Time.minute lte 5>>
 		<<if $swimall is 1 and $exposed gte 2>>
@@ -396,7 +399,7 @@ Once done, Leighton takes the swimwear and puts it in a hamper.
 		<<if $arousal gte $arousalmax>>
 			<<orgasmLocation "swimClassroom">>
 		<</if>>
-		The swimming lesson begins, how do you want to conduct yourself?
+		The swimming lesson begins. How do you want to conduct yourself?
 		<br><br>
 	<<else>>
 		<<if $swimall is 1 and $exposed gte 2>>
@@ -412,19 +415,19 @@ Once done, Leighton takes the swimwear and puts it in a hamper.
 		The swimming lesson continues. How do you want to conduct yourself?
 		<br><br>
 	<</if>>
-
+	<<water>>
 	<<swimmingicon>><<link [[Focus on the lesson|Swimming Lesson Focus]]>><</link>><<gstress>><<gswimming>><<gtiredness>>
 	<br>
 	<<socialiseicon>><<link [[Socialise with classmates|Swimming Lesson Socialise]]>><</link>><<gcool>><<ltrauma>><<lstress>><<gharass>>
 	<br>
-	<<if $exposed gte 2 and $exhibitionism gte 75>>
+	<<if $exposed gte 2 and hasSexStat("exhibitionism", 5)>>
 		<<swimicon "back">><<link [[Practise your backstroke|Swimming Lesson Naked Backstroke]]>><</link>><<gswimming>><<gtiredness>><<exhibitionist5>>
 		<br>
 	<</if>>
 	<<daydreamicon>><<link [[Daydream|Swimming Lesson Daydream]]>><</link>><<lstress>> <<lharass>>
 	<br>
-	<<if $exhibitionism gte 55>>
-		<<ind>><<link [[Masturbate|Swimming Lesson Masturbate]]>><<set $masturbationstart to 1>><</link>><<exhibitionist4>>
+	<<if hasSexStat("exhibitionism", 4)>>
+		<<skinicon "masturbate">><<link [[Masturbate|Swimming Lesson Masturbate]]>><<set $masturbationstart to 1>><</link>><<exhibitionist4>>
 		<br>
 	<</if>>
 <</if>>
@@ -478,7 +481,7 @@ You speak in a low voice, so only the teacher will hear you.
 <</if>>
 
 <<if _alreadyWearing>>
-	<<link [[Далее|Swimming Lesson]]>><<endevent>><</link>>
+	<<link [[Next|Swimming Lesson]]>><<endevent>><</link>>
 <<else>>
 	<<maleicon>><<link [[Boys' changing room|School Boy Changing Room]]>><<endevent>><</link>>
 	<br>
@@ -503,7 +506,7 @@ You speak in a low voice, so only the teacher will hear you.
 	No one will be able to see anything once you're in."
 	<br><br>
 
-	<<link [[Согласиться|School Pool Nude]]>><<schoolpoolundress>><<endevent>><<exposure>><</link>>
+	<<link [[Accept|School Pool Nude]]>><<schoolpoolundress>><<endevent>><<exposure>><</link>>
 	<br>
 	<<link [[Refuse (0:05)|School Pool Refuse]]>><<pass 5>><<detention 6>><<endevent>><</link>><<ggdelinquency>>
 <<elseif $rng gte 41 or $forcedcrossdressingdisable is "t">>
@@ -602,7 +605,7 @@ Thirty or so students, plus the teacher. You'll get in trouble if you don't join
 There's no way you're doing this. You leave the pool, clothes on and dignity intact, but refusing a teacher will have consequences.
 <br><br>
 
-<<link [[Далее|School Pool Entrance]]>><</link>>
+<<link [[Next|School Pool Entrance]]>><</link>>
 
 :: School Pool Crossdress
 <<set $outside to 0>><<set $location to "pool">><<schooleffects>><<effects>>
@@ -617,7 +620,7 @@ There's no way you're doing this. You leave the pool, clothes on and dignity int
 		<<garousal>><<arousal 600>>
 		<br><br>
 
-		<<link [[Далее|Swimming Lesson]]>><</link>>
+		<<link [[Next|Swimming Lesson]]>><</link>>
 		<br>
 	<<elseif $exposed gte 1>>
 		You <<nervously>> undress and tuck your clothes away inside the cupboard, before slipping on the tattered <<if $phase is 1>>swimsuit<<else>>swim shorts<</if>>.
@@ -635,14 +638,14 @@ There's no way you're doing this. You leave the pool, clothes on and dignity int
 		You enter the pool room proper. A couple of heads turn, but no one gives you a second glance as you climb into the water.
 		<br><br>
 
-		<<link [[Далее|Swimming Lesson]]>><</link>>
+		<<link [[Next|Swimming Lesson]]>><</link>>
 		<br>
 	<</if>>
 <<else>>
 	You slip the tattered <<if $phase is 9>>swimsuit<<else>>swim shorts<</if>> on and store your clothes in the cupboard, before heading out for the lesson.
 	<br><br>
 
-	<<link [[Далее|Swimming Lesson]]>><</link>>
+	<<link [[Next|Swimming Lesson]]>><</link>>
 <</if>>
 
 
@@ -654,7 +657,7 @@ You manage to get beneath the flimsy protection of the water, but not before the
 <<garousal>><<arousal 600>>
 <br><br>
 
-<<link [[Далее|Swimming Lesson]]>><</link>>
+<<link [[Next|Swimming Lesson]]>><</link>>
 <br>
 
 :: Swimming Lesson Focus

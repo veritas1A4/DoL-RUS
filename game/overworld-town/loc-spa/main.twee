@@ -1,20 +1,20 @@
 :: Spa
 <<set $outside to 0>><<set $location to "spa">><<effects>>
-
 <<if !$daily.spaEvent>>
 	<<spa_event_select>>
 <</if>>
 
+<<switch Time.season>>
+	<<case "summer">>
+		<<set _price to 1000>>
+	<<case "winter">>
+		<<set _price to 6000>>
+	<<default>>
+		<<set _price to 2500>>
+<</switch>>
+
 You are in the spa on Danube Street. Large windows open onto a natural spring, and a corridor to the side leads to other facilities.
-A sign reads: "Tanning beds available.
-<<if Time.season is "summer">>
-	<<printmoney 1000>>
-<<elseif Time.season is "winter">>
-	<<printmoney 6000>>
-<<else>>
-	<<printmoney 2500>>
-<</if>>
-per session. Price may change with the season."
+A sign reads: "Tanning beds available. <<printmoney _price>> per session. Price may change with the season."
 <br><br>
 <<if $openinghours is 1>>
 	<<if $daily.spaEvent is "party">>
@@ -56,38 +56,23 @@ per session. Price may change with the season."
 		<<else>>
 			The receptionist, a <<person>>, looks up from <<his>> desk, and curls <<his>> nose. "Make it quick," <<he>> says. "Our clientele don't mix with riff-raff off the street."
 			<br><br>
-			<<askicon>><<link [[Попроситься на работу|Spa Work Ask]]>><</link>>
+			<<askicon>><<link [[Ask for work|Spa Work Ask]]>><</link>>
 			<br>
 		<</if>>
-		<<if Time.season is "spring" or Time.season is "autumn">>
-			<<if $money gte 2500>>
-				<<ind>><<link [[Tanning salon (£25 1:00)|Spa Tan]]>><<set $money -= 2500>><</link>><<lstress>><<gggtanned>>
-			<<else>>
-				<<ind>><span class="purple">You cannot afford the <<printmoney 2500>> for tanning.</span>
-			<</if>>
-			<br>
-		<<elseif Time.season is "winter">>
-			<<if $money gte 6000>>
-				<<ind>><<link [[Tanning salon (£60 1:00)|Spa Tan]]>><<set $money -= 6000>><</link>><<lstress>><<gggtanned>>
-			<<else>>
-				<<ind>><span class="purple">You cannot afford the <<printmoney 6000>> for tanning.</span>
-			<</if>>
-			<br>
+		<<if $money gte _price>>
+			<<set _tanning to Skin.getTanningFactor(true)>>
+			<<ind>><<link [[Tanning salon (<<printmoney _price>> 1:00)|Spa Tan]]>><<set $money -= _price>><</link>><<lstress>><<tanningGainOutput _tanning.result 60>>
 		<<else>>
-			<<if $money gte 1000>>
-				<<ind>><<link [[Tanning salon (£10 1:00)|Spa Tan]]>><<set $money -= 1000>><</link>><<lstress>><<gggtanned>>
-			<<else>>
-				<<ind>><span class="purple">You cannot afford the <<printmoney 1000>> for tanning.</span>
-			<</if>>
-			<br>
+			<<ind>><span class="purple">You cannot afford the <<printmoney _price>> for tanning.</span>
 		<</if>>
+		<br>
 	<</if>>
 	<<if $openinghours is 0 and Time.hour isnot $closinghour and !$weekly.theft.spa>>
 		<<shopicon "register">><<link [[Examine the cash register|Spa Register]]>><</link>>
 		<br>
 	<</if>>
 	<br>
-	<<danubeicon>><<link [[Покинуть|Danube Street]]>><<endevent>><</link>>
+	<<danubeicon>><<link [[Leave|Danube Street]]>><<endevent>><</link>>
 	<br>
 <</if>>
 
@@ -106,57 +91,53 @@ You enter a small room dominated by a tanning bed. There's a large window, but i
 <</if>>
 <<link [[Strip naked (1:00)|Spa Tan Naked]]>><<stress -6>><</link>><<exhibitionist1>>
 <br>
-<<if $exhibitionism gte 75>>
+<<if hasSexStat("exhibitionism", 5)>>
 	<<link [[Strip naked, and open the curtains (1:00)|Spa Tan Curtains]]>><<stress -6>><</link>><<exhibitionist5>>
 	<br>
 <</if>>
-
 
 :: Spa Tan Underwear
 <<effects>>
 
 <<upperstrip>>
 <<lowerstrip>>
-<<pass 60>>
-<<set _tanningModifiers to Weather.getTanningFactor(false, 1.2)>>
-<<tanningPenaltiesOutput _tanningModifiers>>
-<<run tanned(T.tanningModifiers.result * 60, "tanLines")>>
+<<legsstrip>>
+<<feetstrip>>
+<<handsstrip>>
+<<handheldstrip>>
+<<neckstrip>>
+<<headstrip>>
+<<set Skin.tanningBonus = 1>>
+<<set Skin.tanningBed to true>>
 
 You leave your clothes in a neat pile, and climb onto the tanning bed, closing it after you.
 <br><br>
 
 Surrounded by a blue glow, you close your eyes and relax as the warmth seeps into your skin.
-<br><br>
-
+<br>
+<<set _tanningModifiers to Skin.getTanningFactor(true)>>
+<<tanningPenaltiesOutput _tanningModifiers>>
+<br>
+<<pass 60>>
 <<if $rng gte 91>>
 	<<spa_tan_events>>
 <<elseif $rng gte 81>>
 	Your session ends before you know it, and the lights fade. You dozed off.<<ltiredness>><<tiredness -6>>
 	<br><br>
-
-
-
-	<<link [[Далее|Spa]]>><<clotheson>><</link>>
+	<<link [[Next|Spa]]>><<clotheson>><</link>>
 	<br>
 <<else>>
 	You relax until the session ends, and the lights fade.
 	<br><br>
-
-
-
-	<<link [[Далее|Spa]]>><<clotheson>><</link>>
-	<br>
+	<<link [[Next|Spa]]>><<clotheson>><</link>>
 <</if>>
-
 
 :: Spa Tan Naked
 <<effects>>
 
-<<clothesstrip>>
-<<pass 60>>
-<<set _tanningModifiers to Weather.getTanningFactor(false, 1.2)>>
-<<tanningPenaltiesOutput _tanningModifiers>>
-<<run tanned(T.tanningModifiers.result * 60)>>
+<<strip>>
+<<set Skin.tanningBonus = 1>>
+<<set Skin.tanningBed to true>>
 You strip naked, and leave your clothes in a neat pile.
 <<exhibitionism1>>
 
@@ -164,39 +145,32 @@ Suitably unburdened, you climb onto the tanning bed, and close it after you.
 <br><br>
 
 Surrounded by a blue glow, you close your eyes and relax as the warmth seeps into your skin.
-<br><br>
-
+<br>
+<<set _tanningModifiers to Skin.getTanningFactor(true)>>
+<<tanningPenaltiesOutput _tanningModifiers>>
+<br>
+<<pass 60>>
 <<if $rng gte 91>>
 	<<spa_tan_events>>
 <<elseif $rng gte 81>>
 	Your session ends before you know it, and the lights fade. You dozed off.<<ltiredness>><<tiredness -6>>
 	<br><br>
-
-
-
-	<<link [[Далее|Spa]]>><<clotheson>><</link>>
+	<<link [[Next|Spa]]>><<clotheson>><</link>>
 	<br>
 <<else>>
 	You relax until the session ends, and the lights fade.
 	<br><br>
-
-
-
-	<<link [[Далее|Spa]]>><<clotheson>><</link>>
-	<br>
+	<<link [[Next|Spa]]>><<clotheson>><</link>>
 <</if>>
-
-
 
 :: Spa Tan Curtains
 <<effects>>
 
 <<generate1>><<person1>>
-<<clothesstrip>>
-<<pass 60>>
-<<set _tanningModifiers to Weather.getTanningFactor(false, 1.2)>>
-<<tanningPenaltiesOutput _tanningModifiers>>
-<<run tanned(T.tanningModifiers.result * 60)>>
+<<strip>>
+<<set Skin.tanningBonus = 1>>
+<<set Skin.tanningBed to true>>
+
 <<if $daily.spaEvent is "party">>
 	You pull open the curtains, revealing the party outside. The partiers are too busy dancing and drinking to pay you any attention. For now.
 	<br><br>
@@ -211,20 +185,23 @@ Surrounded by a blue glow, you close your eyes and relax as the warmth seeps int
 <<exhibitionism5>>
 
 Surrounded by a blue glow, you feel your heart pump as the warmth seeps into your skin.
-<br><br>
+<br>
+<<set _tanningModifiers to Skin.getTanningFactor(true)>>
+<<tanningPenaltiesOutput _tanningModifiers>>
+<br>
+<<pass 60>>
 <<endevent>>
 <<if $rng gte 81>>
 	<<spa_tan_events>>
 <<elseif $rng gte 71>>
 	Your session ends before you know it, and the lights fade. You dozed off.<<ltiredness>><<tiredness -6>>
 	<br><br>
-	<<link [[Далее|Spa]]>><<clotheson>><</link>>
+	<<link [[Next|Spa]]>><<clotheson>><</link>>
 	<br>
 <<else>>
 	You relax until the session ends, and the lights fade.
 	<br><br>
-	<<link [[Далее|Spa]]>><<clotheson>><</link>>
-	<br>
+	<<link [[Next|Spa]]>><<clotheson>><</link>>
 <</if>>
 
 :: Spa Lock
@@ -240,7 +217,7 @@ Surrounded by a blue glow, you feel your heart pump as the warmth seeps into you
 	<span class="red">The lock looks beyond your ability to pick.</span><<skulduggeryrequired>>
 	<br><br>
 <</if>>
-<<getouticon>><<link [[Покинуть|Danube Street]]>><</link>>
+<<getouticon>><<link [[Leave|Danube Street]]>><</link>>
 
 :: Spa Work Ask
 <<effects>>
@@ -270,7 +247,7 @@ The <<person>> scoffs. "Let me make this clear," <<he>> says, pushing <<his>> sp
 
 	<<link [[Say you have skilled hands|Spa Work Hands]]>><</link>>
 	<br>
-	<<link [[Покинуть|Danube Street]]>><<endevent>><</link>>
+	<<link [[Leave|Danube Street]]>><<endevent>><</link>>
 <</if>>
 
 :: Spa Work Advice
@@ -287,7 +264,7 @@ The <<person>> scoffs. "Let me make this clear," <<he>> says, pushing <<his>> sp
 The <<person>> laughs. "No. As I said, just do as the client asks. You can start when you like." <<He>> turns back to <<his>> desk.
 <br><br>
 
-<<link [[Далее|Spa]]>><<endevent>><</link>>
+<<link [[Next|Spa]]>><<endevent>><</link>>
 
 :: Spa Work No
 <<effects>>
@@ -295,7 +272,7 @@ The <<person>> laughs. "No. As I said, just do as the client asks. You can start
 You shake your head. "Good," the <<person>> says. "You can start when you like." <<He>> turns back to <<his>> desk.
 <br><br>
 
-<<link [[Далее|Spa]]>><<endevent>><</link>>
+<<link [[Next|Spa]]>><<endevent>><</link>>
 <br>
 
 
@@ -323,7 +300,7 @@ You shake your head. "Good," the <<person>> says. "You can start when you like."
 	<i><span class="blue">C</span> Hand Skill or higher required.</i>
 	<br><br>
 
-	<<link [[Далее|Spa]]>><<endevent>><</link>>
+	<<link [[Next|Spa]]>><<endevent>><</link>>
 	<br>
 <</if>>
 
@@ -360,7 +337,6 @@ You tear around the corner, and see the culprit, a <<person>>, up ahead. You rus
 	<br>
 	<<set $skulduggerydifficulty to 500>>
 	<<link [[Search for towels instead|Spa Tan Sneak]]>><<endevent>><</link>><<skulduggerydifficulty>>
-	<br>
 <</if>>
 
 :: Spa Tan Follow
@@ -412,7 +388,7 @@ You hear the snap of twigs straight ahead, and you follow. The trees grow dense.
 
 	<<endevent>>
 
-	<<link [[Далее|Danube Street]]>><<set $eventskip to 1>><</link>>
+	<<link [[Next|Danube Street]]>><<set $eventskip to 1>><</link>>
 	<br>
 
 <<else>>
@@ -422,7 +398,7 @@ You hear the snap of twigs straight ahead, and you follow. The trees grow dense.
 	The monster carries you and the <<person>> closer. A maw tears through its side. It means to eat you.<<gtrauma>><<gstress>><<trauma 6>><<stress 6>>
 	<br><br>
 
-	<<link [[Далее|Spa Tan Monks]]>><</link>>
+	<<link [[Next|Spa Tan Monks]]>><</link>>
 	<br>
 <</if>>
 
@@ -431,6 +407,7 @@ You hear the snap of twigs straight ahead, and you follow. The trees grow dense.
 
 <<set $stealtextskip to 1>>
 <<stealclothes>>
+<<steal>>
 
 You turn and run. You keep running, until you arrive at the spa.
 <br><br>
@@ -439,7 +416,7 @@ The wall is too high to climb from this side. You walk around the perimeter. The
 
 <<endevent>>
 
-<<link [[Далее|Danube Street]]>><<set $eventskip to 1>><</link>>
+<<link [[Next|Danube Street]]>><<set $eventskip to 1>><</link>>
 <br>
 
 :: Spa Tan Rescue
@@ -453,7 +430,7 @@ The wall is too high to climb from this side. You walk around the perimeter. The
 	You use your legs and one arm for purchase as you try to prise the <<person>> free. The tentacle's grip is firm, but not unyielding. You hear a rip. A maw tears open below. The monster means to eat you.
 	<br><br>
 
-	<<link [[Далее|Spa Tan Monks Success]]>><</link>>
+	<<link [[Next|Spa Tan Monks Success]]>><</link>>
 	<br>
 <<else>>
 	You run toward the <<person>>, and jump. <span class="red">The monster pulls the limp body out of reach.</span> Your fingers brush <<his>> hand, and then you fall.<<gtrauma>><<gstress>><<gpain>><<trauma 6>><<stress 6>><<pain 4>>
@@ -464,7 +441,7 @@ The wall is too high to climb from this side. You walk around the perimeter. The
 	The monster carries you and the <<person>> closer. A maw tears through its side. It means to eat you.<<gtrauma>><<gstress>><<trauma 6>><<stress 6>>
 	<br><br>
 
-	<<link [[Далее|Spa Tan Monks]]>><</link>>
+	<<link [[Next|Spa Tan Monks]]>><</link>>
 	<br>
 <</if>>
 
@@ -499,7 +476,7 @@ You return to the spa. The wall is too high to climb from this side. You walk ar
 
 <<endevent>>
 
-<<link [[Далее|Danube Street]]>><<set $eventskip to 1>><</link>>
+<<link [[Next|Danube Street]]>><<set $eventskip to 1>><</link>>
 <br>
 
 :: Spa Tan Monks Success
@@ -533,7 +510,7 @@ You return to the spa. The wall is too high to climb from this side. You walk ar
 
 <<endevent>>
 
-<<link [[Далее|Danube Street]]>><<set $eventskip to 1>><</link>>
+<<link [[Next|Danube Street]]>><<set $eventskip to 1>><</link>>
 <br>
 
 :: Spa Tan Rob
@@ -562,8 +539,7 @@ You return to the spa. The wall is too high to climb from this side. You walk ar
 
 <<endevent>>
 
-<<link [[Далее|Danube Street]]>><<set $eventskip to 1>><</link>>
-<br>
+<<link [[Next|Danube Street]]>><<set $eventskip to 1>><</link>>
 
 :: Spa Tan Clothes
 <<effects>>
@@ -574,8 +550,7 @@ You get dressed, and return to the spa. The wall is too high to climb from this 
 
 <<endevent>>
 
-<<link [[Далее|Danube Street]]>><<set $eventskip to 1>><</link>>
-<br>
+<<link [[Next|Danube Street]]>><<set $eventskip to 1>><</link>>
 
 :: Spa Tan Slap
 <<effects>>
@@ -586,8 +561,7 @@ You wipe away the <<persons>> smirk with a firm slap, then return to your room, 
 <<clotheson>>
 <<endevent>>
 
-<<link [[Далее|Spa]]>><</link>>
-<br>
+<<link [[Next|Spa]]>><</link>>
 
 :: Spa Tan Turn
 <<effects>>
@@ -598,8 +572,7 @@ You leave the <<person>> to <<his>> mirth, and return to your room, covering you
 <<clotheson>>
 <<endevent>>
 
-<<link [[Далее|Spa]]>><</link>>
-<br>
+<<link [[Next|Spa]]>><</link>>
 
 
 :: Spa Tan Help
@@ -607,6 +580,7 @@ You leave the <<person>> to <<his>> mirth, and return to your room, covering you
 
 <<set $stealtextskip to 1>>
 <<stealclothes>>
+<<steal>>
 
 <<covered>> You crouch and peek around the corner. There's no one around. <<tearful>> you creep down the hall. You hear voices up ahead.
 <<generate1>><<generate2>>
@@ -631,12 +605,12 @@ Two members of staff, a <<fullGroup>>, chat in a staff room.
 
 	<<towelup>>
 
-	<<link [[Далее|Spa]]>><<endevent>><</link>>
+	<<link [[Next|Spa]]>><<endevent>><</link>>
 	<br>
 <<else>>
 	The pair pause for a moment, then share a look. "Sure thing," the <<person>> says. "I'll just get you something." <<He>> looks away as <<he>> approaches, but as <<he>> passes, <span class="red"> wraps a hand around your mouth.</span>
 	<br><br>
-	<<link [[Далее|Spa Tan Rape]]>><<set $molestationstart to 1>><</link>>
+	<<link [[Next|Spa Tan Rape]]>><<set $molestationstart to 1>><</link>>
 	<br>
 <</if>>
 
@@ -661,9 +635,9 @@ Two members of staff, a <<fullGroup>>, chat in a staff room.
 <<actionsman>>
 
 <<if _combatend>>
-	<span id="next"><<link [[Далее|Spa Tan Rape Finish]]>><</link>></span><<nexttext>>
+	<span id="next"><<link [[Next|Spa Tan Rape Finish]]>><</link>></span><<nexttext>>
 <<else>>
-	<span id="next"><<link [[Далее|Spa Tan Rape]]>><</link>></span><<nexttext>>
+	<span id="next"><<link [[Next|Spa Tan Rape]]>><</link>></span><<nexttext>>
 <</if>>
 
 :: Spa Tan Rape Finish
@@ -676,7 +650,7 @@ Two members of staff, a <<fullGroup>>, chat in a staff room.
 	<br><br>
 	<<clothesontowel>>
 	<<endcombat>>
-	<<link [[Далее|Spa]]>><</link>>
+	<<link [[Next|Spa]]>><</link>>
 
 <<elseif $enemyhealth lte 0>>
 	The <<person1>><<person>> staggers backwards, loses <<his>> footing, and smashes through a glass table. The noise attracts attention. <<generate3>>A <<person3>><<person>> arrives on the scene, <<his>> eyes flicking over the <<person1>><<personsimple>> lying on the floor, then over your <<nudity>>.
@@ -749,7 +723,7 @@ You walk away with a new set of clothes, a refund, and a fearful request that yo
 
 <<endcombat>>
 
-<<link [[Далее|Spa]]>><</link>>
+<<link [[Next|Spa]]>><</link>>
 <br>
 
 :: Spa Tan Rape Tripped
@@ -789,15 +763,15 @@ The <<person3>><<person>> seems relieved, though not entirely convinced. <<He>> 
 
 <<endcombat>>
 
-<<link [[Далее|Spa]]>><</link>>
+<<link [[Next|Spa]]>><</link>>
 <br>
 
 :: Spa Tan Sneak
 <<effects>>
 
-
 <<set $stealtextskip to 1>>
 <<stealclothes>>
+<<steal>>
 
 You crouch and peek around the door. There's no one around. You sneak through the building. The other rooms are occupied, but one of the doors is ajar. You enter. You see a shape lying in the tanning bed. There's a towel on a rack beside it.
 <br><br>
@@ -810,7 +784,7 @@ You crouch and peek around the door. There's no one around. You sneak through th
 
 	<<skulduggeryuse>>
 
-	<<link [[Далее|Spa]]>><<towelup>><</link>>
+	<<link [[Next|Spa]]>><<towelup>><</link>>
 	<br>
 
 <<else>>
@@ -822,9 +796,7 @@ You crouch and peek around the door. There's no one around. You sneak through th
 
 	<<skulduggeryuse>>
 
-	<<link [[Далее|Spa Tan Spank]]>><<set $molestationstart to 1>><</link>>
-	<br>
-
+	<<link [[Next|Spa Tan Spank]]>><<set $molestationstart to 1>><</link>>
 <</if>>
 
 :: Spa Tan Spank
@@ -850,9 +822,9 @@ You crouch and peek around the door. There's no one around. You sneak through th
 <<actionsman>>
 
 <<if _combatend or ($pain gte 100 and $willpowerpain is 0)>>
-	<span id="next"><<link [[Далее|Spa Tan Spank Finish]]>><</link>></span><<nexttext>>
+	<span id="next"><<link [[Next|Spa Tan Spank Finish]]>><</link>></span><<nexttext>>
 <<else>>
-	<span id="next"><<link [[Далее|Spa Tan Spank]]>><</link>></span><<nexttext>>
+	<span id="next"><<link [[Next|Spa Tan Spank]]>><</link>></span><<nexttext>>
 <</if>>
 
 :: Spa Tan Spank Finish
@@ -863,14 +835,14 @@ You crouch and peek around the door. There's no one around. You sneak through th
 	<br><br>
 	<<clothesontowel>>
 	<<endcombat>>
-	<<link [[Далее|Spa]]>><</link>>
+	<<link [[Next|Spa]]>><</link>>
 
 <<elseif $enemyhealth lte 0>>
 	You shove the <<person>> back on <<his>> bed. You snatch the towel. <<tearful>> you run.
 	<br><br>
 	<<clothesontowel>>
 	<<endcombat>>
-	<<link [[Далее|Spa]]>><</link>>
+	<<link [[Next|Spa]]>><</link>>
 
 <<elseif $pain gte 100 and $willpowerpain is 0>>
 	"Let that be a lesson to you," the <<person>> says, giving your <<bottom>> a final smack before grasping your arm and pushing you to the door.
@@ -887,7 +859,7 @@ You crouch and peek around the door. There's no one around. You sneak through th
 	<<clotheson>>
 	<<endcombat>>
 
-	<<link [[Далее|Forest]]>><<set $forest to 0>><<set $eventskip to 1>><</link>>
+	<<link [[Next|Forest]]>><<set $forest to 0>><<set $eventskip to 1>><</link>>
 <<else>>
 	<<set $rescued += 1>>
 	Your cry attracts attention. <<generate2>>A <<person2>><<person>> arrives on the scene, <<his>> eyes taking in the <<person1>><<person>>, and your pained expression.
@@ -898,5 +870,5 @@ You crouch and peek around the door. There's no one around. You sneak through th
 	<<clothesontowel>>
 	<<endcombat>>
 
-	<<link [[Далее|Spa]]>><</link>>
+	<<link [[Next|Spa]]>><</link>>
 <</if>>

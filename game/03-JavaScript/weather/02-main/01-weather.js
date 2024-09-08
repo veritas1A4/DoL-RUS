@@ -2,11 +2,11 @@ const Weather = (() => {
 	/* Helper functions */
 
 	function generateKeyPoints({ date, minKeys, maxKeys, timeApart, rangeValue, totalSteps }) {
-		const numberOfKeyPoints = random(minKeys - 1, maxKeys - 1);
+		const numberOfKeyPoints = Weather.activeRenderer.rng.randomInt(minKeys - 1, maxKeys - 1);
 		const keyPoints = new Map();
 
 		while (keyPoints.size < numberOfKeyPoints) {
-			const randomUnit = random(timeApart + 1, totalSteps - timeApart);
+			const randomUnit = Weather.activeRenderer.rng.randomInt(timeApart + 1, totalSteps - timeApart);
 
 			const isFarEnough = Array.from(keyPoints.keys()).every(kp => Math.abs(kp - randomUnit) >= timeApart);
 			if (isFarEnough) {
@@ -18,38 +18,9 @@ const Weather = (() => {
 		return new Map([...keyPoints.entries()].sort((a, b) => a[0] - b[0]));
 	}
 
-	/**
-	 * Returns tanning factor based on:
-	 * sunIntensity (intensity from month of the year)
-	 * weatherModifier (based on weather)
-	 * locationModifier (based on location)
-	 * clothingModifier (based on clothing)
-	 * sunBlockModifier (based on used sun block)
-	 * dayFactor (based on sun position in the sky) - always 0 at night
-	 *
-	 * @param {boolean} outside Forces outside check
-	 * @param {number} customSunIntensity If this is set - the calculations replaces the sun intensity with a specified one.
-	 */
-	function getTanningFactor(outside, customSunIntensity = 0) {
-		outside = outside ?? V.outside;
-		const sunIntensity = customSunIntensity || getSunIntensity();
-		const clothingModifier = Object.values(V.worn).filter(item => item.type.includes("shade")).length ? 0.1 : 1;
-		const sunBlockModifier = V.skinColor.sunBlock === true ? 0.1 : 1;
-		const result = round(sunIntensity * clothingModifier * sunBlockModifier, 2);
-		return {
-			sun: sunIntensity,
-			month: Weather.genSettings.months[Time.date.month - 1].sunIntensity,
-			weather: outside ? Weather.current.tanningModifier : 1,
-			location: V.location === "forest" ? 0.2 : 1,
-			dayFactor: outside ? Time.date.simplifiedDayFactor : 1,
-			clothing: clothingModifier,
-			sunBlock: sunBlockModifier,
-			result,
-		};
-	}
-
-	function getSunIntensity() {
-		const sunIntensity = Weather.genSettings.months[Time.date.month - 1].sunIntensity * Weather.activeRenderer.dayFactor;
+	function getSunIntensity(time) {
+		time ??= Time.date;
+		const sunIntensity = Weather.genSettings.months[time.month - 1].sunIntensity * Weather.activeRenderer?.orbitals.sun.getFactor(time);
 		const weatherModifier = V.outside ? Weather.current.tanningModifier : 0;
 		const locationModifier = V.location === "forest" ? 0.2 : 1;
 		return V.outside ? Math.max(sunIntensity * weatherModifier * locationModifier, 0) : 0;
@@ -57,7 +28,8 @@ const Weather = (() => {
 
 	function setAccumulatedSnow(minutes) {
 		const precipitationIntensity = Weather.type.precipitationIntensity;
-		const temperature = Weather.temperature; // Temperature in Celsius
+		// Don't affect snow if override is set
+		const temperature = Weather.temperature - (T.weatherOverride?.outside ?? 0);
 		const snowfallRate = Weather.tempSettings.snow.snowfallRate;
 		const meltingRate = Weather.tempSettings.snow.meltingRate;
 		const maxSnow = Weather.tempSettings.snow.maxAccumulation;
@@ -78,7 +50,8 @@ const Weather = (() => {
 	}
 
 	function setIceThickness(minutes) {
-		const temperature = Weather.temperature; // Temperature in Celsius
+		// Don't affect ice if override is set
+		const temperature = Weather.temperature - (T.weatherOverride?.outside ?? 0);
 		const freezingRate = Weather.tempSettings.ice.freezingRate;
 		const meltingRate = Weather.tempSettings.ice.meltingRate;
 		const maxThickness = Weather.tempSettings.ice.maxThickness;
@@ -97,7 +70,6 @@ const Weather = (() => {
 
 	return {
 		generateKeyPoints,
-		getTanningFactor,
 		setAccumulatedSnow,
 		setIceThickness,
 		getSunIntensity,
@@ -173,19 +145,22 @@ const Weather = (() => {
 			return Weather.Temperature.getWaterTemperature();
 		},
 		get bodyTemperature() {
-			return Weather.BodyTemperature.current;
+			return Weather.BodyTemperature.get();
+		},
+		set bodyTemperature(value) {
+			Weather.BodyTemperature.set(value);
 		},
 		get wetness() {
 			return Weather.BodyTemperature.wetness;
 		},
 		get bloodMoon() {
-			const sunRise = Weather.activeRenderer.orbitals.bloodMoon?.settings.riseTime - 1;
-			const sunSet = Weather.activeRenderer.orbitals.bloodMoon?.settings.setTime + 1;
+			const sunRise = Weather.activeRenderer?.orbitals.bloodMoon?.settings.riseTime - 1;
+			const sunSet = Weather.activeRenderer?.orbitals.bloodMoon?.settings.setTime + 1;
 			return (Time.date.day === Time.date.lastDayOfMonth && Time.date.hour >= sunRise) || (Time.date.day === 1 && Time.date.hour < sunSet);
 		},
 		get dayState() {
-			const sunRise = Weather.activeRenderer.orbitals.sun.settings.riseTime;
-			const sunSet = Weather.activeRenderer.orbitals.sun.settings.setTime;
+			const sunRise = Weather.activeRenderer?.orbitals.sun.settings.riseTime;
+			const sunSet = Weather.activeRenderer?.orbitals.sun.settings.setTime;
 			const hour = Time.hour;
 			return hour < sunRise - 0.75 || hour >= sunSet + 0.75 ? "night" : hour >= sunSet - 0.5 ? "dusk" : hour >= sunRise + 1 ? "day" : "dawn";
 		},
@@ -202,6 +177,15 @@ const Weather = (() => {
 		},
 		get lightsOn() {
 			return !Weather.bloodMoon && (Time.hour >= setup.SkySettings.lightsTime.on || Time.hour < setup.SkySettings.lightsTime.off);
+		},
+		get starSeed() {
+			if (!V.weatherObj.starSeed) {
+				V.weatherObj.starSeed = btoa(Math.round(Math.random() * 10000) + 1000);
+			}
+			return V.weatherObj.starSeed;
+		},
+		set starSeed(value) {
+			V.weatherObj.starSeed = value;
 		},
 		get activeRenderer() {
 			return this._activeRenderer;

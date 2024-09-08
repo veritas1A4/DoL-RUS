@@ -2,64 +2,64 @@
 <<widget "destinationexposed">>
 	<<switch $bus>>
 	<<case "nightingale">>
-		<<link [[Далее|Nightingale Exposed]]>><<set $eventskip to 1>><</link>>
+		<<link [[Next|Nightingale Exposed]]>><<set $eventskip to 1>><</link>>
 		<br>
 	<<case "domus">>
-		<<link [[Далее|Domus Exposed]]>><<set $eventskip to 1>><</link>>
+		<<link [[Next|Domus Exposed]]>><<set $eventskip to 1>><</link>>
 		<br>
 	<<case "elk">>
-		<<link [[Далее|Elk Exposed]]>><<set $eventskip to 1>><</link>>
+		<<link [[Next|Elk Exposed]]>><<set $eventskip to 1>><</link>>
 		<br>
 	<<case "high">>
-		<<link [[Далее|High Exposed]]>><<set $eventskip to 1>><</link>>
+		<<link [[Next|High Exposed]]>><<set $eventskip to 1>><</link>>
 		<br>
 	<<case "starfish">>
-		<<link [[Далее|Starfish Exposed]]>><<set $eventskip to 1>><</link>>
+		<<link [[Next|Starfish Exposed]]>><<set $eventskip to 1>><</link>>
 		<br>
 	<<case "barb">>
-		<<link [[Далее|Barb Exposed]]>><<set $eventskip to 1>><</link>>
+		<<link [[Next|Barb Exposed]]>><<set $eventskip to 1>><</link>>
 		<br>
 	<<case "connudatus">>
-		<<link [[Далее|Connudatus Exposed]]>><<set $eventskip to 1>><</link>>
+		<<link [[Next|Connudatus Exposed]]>><<set $eventskip to 1>><</link>>
 		<br>
 	<<case "wolf">>
-		<<link [[Далее|Wolf Exposed]]>><<set $eventskip to 1>><</link>>
+		<<link [[Next|Wolf Exposed]]>><<set $eventskip to 1>><</link>>
 		<br>
 	<<case "harvest">>
-		<<link [[Далее|Harvest Exposed]]>><<set $eventskip to 1>><</link>>
+		<<link [[Next|Harvest Exposed]]>><<set $eventskip to 1>><</link>>
 		<br>
 	<<case "oxford">>
-		<<link [[Далее|Oxford Exposed]]>><<set $eventskip to 1>><</link>>
+		<<link [[Next|Oxford Exposed]]>><<set $eventskip to 1>><</link>>
 		<br>
 	<<case "danube">>
-		<<link [[Далее|Danube Exposed]]>><<set $eventskip to 1>><</link>>
+		<<link [[Next|Danube Exposed]]>><<set $eventskip to 1>><</link>>
 		<br>
 	<<case "mer">>
-		<<link [[Далее|Mer Exposed]]>><<set $eventskip to 1>><</link>>
+		<<link [[Next|Mer Exposed]]>><<set $eventskip to 1>><</link>>
 		<br>
 	<<case "cliff">>
-		<<link [[Далее|Cliff Exposed]]>><<set $eventskip to 1>><</link>>
+		<<link [[Next|Cliff Exposed]]>><<set $eventskip to 1>><</link>>
 		<br>
 	<<case "industrial">>
-		<<link [[Далее|Industrial Exposed]]>><<set $eventskip to 1>><</link>>
+		<<link [[Next|Industrial Exposed]]>><<set $eventskip to 1>><</link>>
 		<br>
 	<<case "residential">>
-		<<link [[Далее|Residential Exposed]]>><<set $eventskip to 1>><</link>>
+		<<link [[Next|Residential Exposed]]>><<set $eventskip to 1>><</link>>
 		<br>
 	<<case "commercial">>
-		<<link [[Далее|Commercial Exposed]]>><<set $eventskip to 1>><</link>>
+		<<link [[Next|Commercial Exposed]]>><<set $eventskip to 1>><</link>>
 		<br>
 	<<case "park">>
-		<<link [[Далее|Park Exposed]]>><<set $eventskip to 1>><</link>>
+		<<link [[Next|Park Exposed]]>><<set $eventskip to 1>><</link>>
 		<br>
 	<<case "industrialdrain">>
-		<<link [[Далее|Industrial Exposed]]>><<set $eventskip to 1>><</link>>
+		<<link [[Next|Industrial Exposed]]>><<set $eventskip to 1>><</link>>
 		<br>
 	<<case "residentialdrain">>
-		<<link [[Далее|Residential Exposed]]>><<set $eventskip to 1>><</link>>
+		<<link [[Next|Residential Exposed]]>><<set $eventskip to 1>><</link>>
 		<br>
 	<<case "commercialdrain">>
-		<<link [[Далее|Commercial Exposed]]>><<set $eventskip to 1>><</link>>
+		<<link [[Next|Commercial Exposed]]>><<set $eventskip to 1>><</link>>
 		<br>
 	<</switch>>
 	<br><br>
@@ -131,7 +131,7 @@
 <</widget>>
 
 <<widget "residentialexposed">>
-	<<link [[Жилые переулки (0:05)|Residential Exposed]]>><<pass 5>><</link>>
+	<<link [[Residential alleyways (0:05)|Residential Exposed]]>><<pass 5>><</link>>
 	<br>
 <</widget>>
 
@@ -148,28 +148,4 @@
 <<widget "industrialexposed">>
 	<<link [[Industrial Street (0:05)|Industrial Exposed]]>><<pass 5>><</link>>
 	<br>
-<</widget>>
-
-<<widget "ex_init">>
-	<<set $ex to 1>>
-	<<set $shame to 0>>
-	<<if $ex_intro isnot 1>>
-		<<set $ex_intro to 1>>
-		<i>You're undressed in public! It's exciting, but scary. Becoming too ashamed will force you to hide and run for safety.</i>
-		<br><br>
-	<</if>>
-<</widget>>
-
-<<widget "ex_end">>
-	<<set $ex to 0>>
-<</widget>>
-
-<<widget "ex_effects">>
-	<<if $ex is 1>>
-		Shame:
-		<div class="meter">
-			<<set _percent=Math.floor(($shame/ 100)*100)>>
-			<<print '<div class="redbar" style="width:' + _percent + '%"></div>'>>
-		</div>
-	<</if>>
 <</widget>>

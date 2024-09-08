@@ -76,7 +76,7 @@
 <</if>>
 <<stealclothes>>
 <br><br>
-<<tearful>> you rise to your feet.
+<<tearful>> вы поднимаетесь на ноги.
 <br><br>
 <<clotheson>>
 <<endcombat>>
@@ -401,10 +401,10 @@
 :: Cement Mixer
 
 <<set $outside to 1>><<effects>>
-Вы свернулись колачиком и врезаетесь в бетономешалку. К счастью, цемент смягчил удар. К сожалению, это все же цемент. Вам удалось освободиться,
+Вы выгибаетесь и врезаетесь в бетономешалку. К счастью, цемент смягчает удар. К сожалению, это цемент. Вам удается освободиться и,
 <<outfitChecks>>
 <<if _bottomless>>
-	спотыкаясь, не привлекая внимания.
+	спотыкаясь, уйти, не привлекая внимания.
 	<br><br>
 <<else>>
 	при этом теряя одежду в процессе.
@@ -458,7 +458,7 @@
 :: Commercial rooftops
 
 <<set $outside to 1>><<effects>>
-Вы на крыше коммерческого здания. Отсюда можно попасть в торговый центр. Здания стоят очень близко друг к другу, переход между ними не должен составить проблемы.
+Вы находитесь на крыше коммерческого здания. Отсюда можно попасть в торговый центр. Здания расположены близко друг к другу, поэтому переход между ними не составит труда.
 <br><br>
 <<if $stress gte $stressmax>>
 	<<passoutalley>>
@@ -477,7 +477,7 @@
 		<<laddericon>><<link [[Спуститься по лестнице (0:02)->Commercial alleyways]]>><<pass 2>><</link>>
 		<br>
 		<<if $harpy gte 6 or $angel gte 6 or $demon gte 6 or $fallenangel gte 2>>
-			<<glideicon>><<link [[Glide down|Commercial alleyways]]>><<set $eventskip to 1>><</link>><<flight_text>><<lharass>>
+			<<glideicon>><<link [[Скользить вниз|Commercial alleyways]]>><<set $eventskip to 1>><</link>><<flight_text>><<lharass>>
 			<br>
 		<</if>>
 		<<shopicon>><<link [[Торговый центр (0:02)->Shopping Centre Top]]>><<pass 2>><</link>>
@@ -582,8 +582,8 @@
 			<br><br>
 			Когда вы приходите в себя, вы замечаете, что <<beasttype>>  готовится сесть на вас сзади.
 			<br><br>
-			<<if $deviancy gte 35>>
-				<<link [["Подтолкнуть " + $NPCList[0].type|Residential Dog]]>><<set $sexstart to 1>><<deviancy3>><</link>><<deviant3>>
+			<<if hasSexStat("deviancy", 3)>>
+				<<link [["Спровоцировать " + $NPCList[0].type|Residential Dog]]>><<set $sexstart to 1>><<deviancy3>><</link>><<deviant3>>
 				<br>
 			<</if>>
 			<<link [[Терпеть|Residential Dog]]>><<set $molestationstart to 1>><<set $noHand to 1>><</link>>
@@ -819,24 +819,24 @@ The <<person1>><<person>> отшатывается от боли, давая в�
 	They burst into excitement as you turn and run.
 	<<gstress>><<stress 6>>
 	<br><br>
-	"I told you there was a naked <<girl>>."
+	"Я же говорил, что тут есть голая <<girl>>."
 	<br>
 	<<if random(1, 2) is 2>>
-		"Hot."
+		"А <<pshe>> горяча."
 	<<else>>
-		"I can see everything."
+		"Я все вижу".
 	<</if>>
 	<br>
 	<<if random(1, 2) is 2>>
-		"Is <<pshe>> a pervert?"
+		"<<pshe>> изврашенка?"
 	<<else>>
-		"What is <<pshe>> thinking?"
+		"О чем  <<pshe>> думает?"
 	<</if>>
 	<br>
 	<<if random(1, 2) is 2>>
 		"I'm gonna tell everyone."
 	<<else>>
-		"Wait until the others hear."
+		"Wait, until the others hear."
 	<</if>>
 	<br>
 	<<if $worn.face.type.includes("mask")>>
@@ -846,7 +846,7 @@ The <<person1>><<person>> отшатывается от боли, давая в�
 	<</if>>
 	<br><br>
 
-	Their voices fade behind you.
+	Их голоса стихают позади вас.
 	<br><br> 
 <</if>>
 
@@ -904,7 +904,7 @@ The <<person1>><<person>> отшатывается от боли, давая в�
 <br><br>
 
 <<if random(1, 2) is 2>>
-	"I got a towel for ya," <<he>> says as <<his>> camera clicks. "Just want some souvenirs. Not every day a cute <<girl>> drops into my lap."
+	"У меня есть полотенце для вас," <<he>> говорит, как <<his>> камера щелкает. "Просто хочу получить сувениры. Не каждый день мне на колени падает симпатичная <<girl>>"
 	<<fameexhibitionism 7>>
 	<br><br>
 
@@ -916,7 +916,7 @@ The <<person1>><<person>> отшатывается от боли, давая в�
 	<<lstress>><<stress -6>>
 	<br><br>
 
-	<<He>> даёт вам полотенце, прежде чем проводить вас до ворот.
+	<<He>> вручает вам полотенце, прежде чем проводить вас до ворот.
 	<br><br>
 <</if>>
 <<towelup>>
@@ -978,7 +978,7 @@ The <<person1>><<person>> отшатывается от боли, давая в�
 		<span class="blue">Вы думаете, что у вас не достаточно денег, чтобы удовлетворить их.</span>
 	<</if>>
 	<br>
-	<<if $promiscuity gte 35>>
+	<<if hasSexStat("promiscuity", 3)>>
 		<<link [[Соблазнить|Industrial Ladder Seduce]]>><</link>><<promiscuous2>>
 	<<else>>
 		<span class="blue">Вы недостаточно раскрепощены, чтобы соблазнить их.</span>

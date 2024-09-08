@@ -66,7 +66,11 @@ function playerBellySize(pregnancyOnly = false) {
 		// The '+ 5' inflates the pregnancy belly size, meaning that the early stages of pregnancy will have no belly size increase due to it being reduced by the '- 5'
 		bellySize += Math.clamp(pregnancyProgress * Math.clamp(maxSize + 5, 0, 24 + 5) - 5, 0, 24);
 	}
-	if (!V.statFreeze && V.daily.bloated && !pregnancyOnly) bellySize += Math.clamp(V.daily.bloated, 1, 2);
+	if (!V.statFreeze && !pregnancyOnly) {
+		if (V.daily.bloated) bellySize += Math.clamp(V.daily.bloated, 1, 2);
+		if (V.parasite.tummy.name === "urchin") bellySize += 2;
+		if (V.parasite.tummy.name === "slime") bellySize -= 2;
+	}
 
 	return Math.floor(Math.clamp(bellySize, 0, 24));
 }
@@ -76,7 +80,8 @@ function playerBellyVisible(pregnancyOnly = false) {
 	const size = playerBellySize(pregnancyOnly);
 	if (size <= 7) return false;
 	if (size <= 12 && ((V.worn.upper.name !== "naked" && !V.worn.upper.type.includes("bellyShow")) || !V.worn.over_upper.type.includes("naked"))) return false;
-	if (size <= 17 && (V.worn.upper.type.includes("bellyHide") || V.worn.lower.type.includes("bellyHide") || !V.worn.over_upper.type.includes("naked"))) return false;
+	if (size <= 17 && (V.worn.upper.type.includes("bellyHide") || V.worn.lower.type.includes("bellyHide") || !V.worn.over_upper.type.includes("naked")))
+		return false;
 
 	return true;
 }
@@ -129,9 +134,14 @@ window.npcPregnancyEnding = npcPregnancyEnding;
 function birdEggsReady(npc) {
 	if (V.playerPregnancyEggLayingDisable === "t" || !C.npc[npc] || C.npc[npc].vagina === "none") return undefined;
 	const pregnancy = C.npc[npc].pregnancy;
-	if (npcPregnancyEnding(npc) || pregnancy.timer > pregnancy.timerEnd) return 'fertilised';
-	if (npc === 'Great Hawk' && V.daily.hawkUnfertilisedEggs) return undefined;
-	if (!npcIsPregnant(npc) && ((V.cycledisable === "f" && pregnancy.cycleDay === pregnancy.cycleDangerousDay + 2) || (V.cycledisable !== "f" && pregnancy.nonCycleRng[0] >= 1 && pregnancy.nonCycleRngHasEggs))) return 'unfertilised';
+	if (npcPregnancyEnding(npc) || pregnancy.timer > pregnancy.timerEnd) return "fertilised";
+	if (npc === "Great Hawk" && V.daily.hawkUnfertilisedEggs) return undefined;
+	if (
+		!npcIsPregnant(npc) &&
+		((V.cycledisable === "f" && pregnancy.cycleDay === pregnancy.cycleDangerousDay + 2) ||
+			(V.cycledisable !== "f" && pregnancy.nonCycleRng[0] >= 1 && pregnancy.nonCycleRngHasEggs))
+	)
+		return "unfertilised";
 }
 window.birdEggsReady = birdEggsReady;
 
@@ -158,7 +168,7 @@ function playerPregnancyProgress(percent = true) {
 }
 window.playerPregnancyProgress = playerPregnancyProgress;
 
-function isPlayerNonparasitePregnancyEnding() {
+function isPregnancyEnding() {
 	if (V.statFreeze) return null;
 	return (
 		(V.sexStats.vagina.pregnancy.waterBreaking && !V.sexStats.vagina.pregnancy.gaveBirth) ||
@@ -166,7 +176,7 @@ function isPlayerNonparasitePregnancyEnding() {
 		false
 	);
 }
-window.isPlayerNonparasitePregnancyEnding = isPlayerNonparasitePregnancyEnding;
+window.isPregnancyEnding = isPregnancyEnding;
 
 function playerNormalPregnancyType() {
 	if (V.player.vaginaExist && V.sexStats.vagina.pregnancy.type !== "parasite") {

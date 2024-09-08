@@ -6,7 +6,7 @@ setup.WeatherDescriptions = {
 			day: "The sky is bright and sunny.",
 			dusk: "Deep orange colors the sky.",
 			night: "The stars shine brightly across the dark horizon.",
-			bloodMoon: "The night sky glows ominously red under the glowing moon.",
+			bloodMoon: "The night sky glows ominously red under the blood moon.",
 			transition: () => Weather.isOvercast ? "The remnants of clouds are clearing, revealing a vivid sky." : null,
 		},
 		lightClouds: {
@@ -28,7 +28,7 @@ setup.WeatherDescriptions = {
 		lightPrecipitation: {
 			dawn: () => Weather.precipitation === "rain" ? "Gentle rain falls in the early light of dawn." : "Light snowflakes drift down in the early light.",
 			day: () => Weather.precipitation === "rain" ? "Light raindrops patter down." : "A gentle snowfall fills the sky.",
-			dusk: () => Weather.precipitation === "rain" ? "A soft drizzle accompanies the orange dusk." : "Fine snow mix with the orange twilight.",
+			dusk: () => Weather.precipitation === "rain" ? "A soft drizzle accompanies the orange dusk." : "Fine snow mixes with the orange twilight.",
 			night: () => Weather.precipitation === "rain" ? "A light rain falls through the night." : "Light snow fills the dark landscape.",
 			bloodMoon: () => Weather.precipitation === "rain" ? "The red moon casts a surreal glow on the light rain." : "The red glow of the moon illuminates falling snowflakes.",
 			transition: () => !Weather.isOvercast && !Weather.isFreezing ? "You notice rain clouds forming above." : !Weather.isOvercast ? "The clouds are getting heavy. It will snow soon." : null,
@@ -39,7 +39,7 @@ setup.WeatherDescriptions = {
 			dusk: () => Weather.precipitation === "rain" ? "The heavy rain intensifies." : "Snow piles up as evening falls.",
 			night: () => Weather.precipitation === "rain" ? "Heavy rain defines the darkness." : "A heavy snowstorm envelops the night.",
 			bloodMoon: () => Weather.precipitation === "rain" ? "The downpour reflects the red sky." : "Snow reflects the moon's eerie red, blanketing the world in surreal silence.",
-			transition: () => !Weather.isOvercast && !Weather.isFreezing ? "Dark clouds begin to gather. It's going to be rain." : !Weather.isOvercast ? "Clouds are gathering above. It's going to snow soon." : null,
+			transition: () => !Weather.isOvercast && !Weather.isFreezing ? "Dark clouds begin to gather. It's going to rain soon." : !Weather.isOvercast ? "Clouds are gathering above. It's going to snow soon." : null,
 		},
 		thunderStorm: {
 			dawn: "A thunderstorm rages at dawn.",
@@ -61,7 +61,7 @@ setup.WeatherDescriptions = {
 		} else if (Weather.temperature <= -5) {
 			return Weather.isSnow ? "The air is cold and the ground is snow-packed." : "The air is freezing, feeling sharp and dry.";
 		} else if (Weather.temperature <= 0) {
-			return Weather.isSnow ? "The air is cold, the snow covers the ground." : "Frost begin forming on the ground.";
+			return Weather.isSnow ? "The air is cold, the snow covers the ground." : "Frost begins forming on the ground.";
 		} else if (Weather.temperature <= 5) {
 			return Weather.isSnow ? "Melting snow creates a slush on the ground." : "Chilly, with a cool wind.";
 		} else if (Weather.temperature <= 10) {
@@ -77,6 +77,37 @@ setup.WeatherDescriptions = {
 		} else {
 			return `<span class="red">It's extremely hot outside.</span>`;
 		}
+	},
+	extremeTemperature: () => {
+		if (!Weather.Temperature.isExtreme()) return "";
+		const average = Weather.genSettings.months[Time.month - 1].temperatureRange.average;
+		const extreme = Weather.genSettings.months[Time.month - 1].temperatureRange.extreme;
+
+		if (Weather.temperature <= -18) {
+			return `<span class="blue">It's frigid, likely one of the coldest days of the year.</span>`;
+		} else if (Weather.temperature > 30) {
+			return `<span class="red">It's sweltering. There might be a heatwave passing by.</span>`;
+		}
+
+		const warm = Weather.temperature > 20 ? "hot" : "warm";
+		const cool = Weather.temperature < 7 ? "cold" : "cool";
+		const frigid = Weather.temperature < -15 ? "frigid" : "cold";
+
+		// 50% lower than average low
+		if (average[0] + ((extreme[0] - average[0]) * 0.5) > Weather.temperature) {
+			return `<span class="teal">It's unseasonably ${frigid}.</span>`;
+		} else if (average[0] > Weather.temperature) {
+			return `<span class="teal">It's ${cool} for this time of year.</span>`
+		}
+
+		// 50% higher than average high
+		if (average[1] + ((extreme[1] - average[1]) * 0.5) < Weather.temperature) {
+			return `<span class="orange">It's unseasonably ${warm}.</span>`
+		} else if (average[1] < Weather.temperature) {
+			return `<span class="orange">It's ${warm} for this time of year.</span>`
+		}
+
+		return "";
 	},
 	bodyTemperature: () => {
 		if (Weather.bodyTemperature <= 34) {
@@ -106,6 +137,8 @@ setup.WeatherDescriptions = {
 		}
 	},
 	bodyTemperatureChanges: () => {
+		if (Math.abs(Weather.BodyTemperature.target - Weather.bodyTemperature) <= 0.5)
+			return "";
 		if (Weather.bodyTemperature < 35) {
 			if (Weather.BodyTemperature.target - Weather.bodyTemperature > 1) {
 				return "You let the warmth take the chill from your bones.";

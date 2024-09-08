@@ -308,7 +308,7 @@
 
 	<<addinlineevent "uneventful2" 0.5>>
 		<<set $_tip to _wage>>
-		<<if $awareness gte 300 and $promiscuity gte 74>>
+		<<if $awareness gte 300 and hasSexStat("promiscuity", 5)>>
 			You provide good advice to customers and converse with ease.<<control 1>><<stress -1>><<gcontrol>><<lstress>><<glove "Sirris">><<npcincr Sirris love 1>>
 			<<set $_tip to _wage+random(1,5)*(random(1,10)+($mathstrait / 4)+($allure/4000))>>
 		<<else>>
@@ -448,7 +448,7 @@
 			"I recognise you from class. You're working in a sex shop!" <<He>> laughs in your face. "Wait 'til the others hear about this! Unless..."
 			<<He>> trails off as <<he>> eyes you up and down.
 			<br><br>
-			<<if $promiscuity gte 55>>
+			<<if hasSexStat("promiscuity", 4)>>
 				<<link [[Offer your body|Adult Shop School Bully Offer Your Body]]>><<stress 12>><<trauma 12>><</link>><<promiscuous4>><<ggstress>><<ggtrauma>>
 				<br>
 			<</if>>
@@ -456,7 +456,7 @@
 				<<link [[Demand they leave|Adult Shop School Bully Assertive]]>><<status -15>><<stress 5>><<control 5>><</link>><<llcool>><<gstress>><<gcontrol>>
 				<br>
 			<</if>>
-			<<link [[Терпеть|Adult Shop School Bully Endure]]>><<status -5>><<stress 5>><<trauma 5>><</link>><<lcool>><<gstress>><<gtrauma>>
+			<<link [[Endure|Adult Shop School Bully Endure]]>><<status -5>><<stress 5>><<trauma 5>><</link>><<lcool>><<gstress>><<gtrauma>>
 
 		<</addinlineevent>>
 	<</if>>
@@ -482,7 +482,7 @@
 			<br>
 			<<link [[Go with Whitney|Adult Shop Whitney Spank Agree]]>><<npcincr Whitney dom 3>><<npcincr Whitney love 3>><<npcincr Sirris love -3>><</link>><<ggdom "Whitney">><<gglove "Whitney">><<llove "Sirris">>
 			<br>
-			<<link [[Отказаться|Adult Shop Whitney Spank Refuse]]>><<npcincr Whitney dom -3>><<npcincr Whitney love -3>><</link>><<lldom "Whitney">><<lllove "Whitney">>
+			<<link [[Refuse|Adult Shop Whitney Spank Refuse]]>><<npcincr Whitney dom -3>><<npcincr Whitney love -3>><</link>><<lldom "Whitney">><<lllove "Whitney">>
 		<</addinlineevent>>
 	<</if>>
 
@@ -518,7 +518,7 @@
 			<</if>>
 
 			<br><br>
-			<<link [[Далее|Adult Shop Clerk Sydney Customer Dildo Flirt]]>><</link>>
+			<<link [[Next|Adult Shop Clerk Sydney Customer Dildo Flirt]]>><</link>>
 
 		<</addinlineevent>>
 	<</if>>
@@ -539,7 +539,7 @@
 		<<generateAdultShopCustomer 1>><<person1>>
 		A <<person>> approaches the counter with a handful of dildos. "Hey <<girl>>. I haven't used one of these things before. I need a demonstration."
 		<br><br>
-		<<if $promiscuity gte 35 and $awareness gte 200>>
+		<<if hasSexStat("promiscuity", 3) and $awareness gte 200>>
 			<<link [[Offer to show them privately|Adult Shop Dildo Lesson Seduction]]>><<set $seductiondifficulty to 8000>><</link>><<seductiondifficulty>>
 			<br>
 		<</if>>
@@ -631,7 +631,7 @@
 			<br><br>
 			Before you know it, <span class="red"><<he>> reaches out and pulls you over the counter.</span>
 			<br><br>
-			<<link [[Далее|Adult Shop Clerk Angel Molestation]]>><<set $molestationstart to 1>><</link>>
+			<<link [[Next|Adult Shop Clerk Angel Molestation]]>><<set $molestationstart to 1>><</link>>
 		<</addinlineevent>>
 	<</if>>
 
@@ -645,7 +645,7 @@
 			<br><br>
 			Pale hands grasp you as the light dims, pulling you into a dark abyss. You find yourself in a black room lit by an ethereal glow emanating from the shelf you were working on. The dildos writhe, each one elongating and sprouting eyes. <span class="purple">They glare at you lustily.</span>
 			<br><br>
-			<<link [[Далее|Adult Shop Dildo Swarm]]>><<set $molestationstart to 1>><</link>>
+			<<link [[Next|Adult Shop Dildo Swarm]]>><<set $molestationstart to 1>><</link>>
 		<</addinlineevent>>
 	<</if>>
 
@@ -658,9 +658,10 @@
 <</widget>>
 
 <<widget "passoutadultshop">>
-	<<if isPlayerNonparasitePregnancyEnding()>>
+	<<if isPregnancyEnding()>>
 		<<pregnancyPassout "adultShop">>
 	<<else>>
+		<<passout>>
 		<<link [[Everything fades to black...|Adult Shop Passout Bondage]]>><</link>>
 	<</if>>
 <</widget>>

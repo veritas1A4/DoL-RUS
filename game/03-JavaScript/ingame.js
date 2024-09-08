@@ -1,3 +1,5 @@
+/* global ClothesItem, ClothedSlots */
+
 function mapMove(moveTo) {
 	const currentPassage = V.passage;
 	const destinationTable = [];
@@ -403,7 +405,7 @@ function featsPointsMenuReset() {
 DefineMacroS("featsPointsMenuReset", featsPointsMenuReset);
 
 function startingPlayerImageReset() {
-	jQuery(document).on("change", "#settingsDiv .macro-radiobutton,#settingsDiv .macro-numberslider,#settingsDiv .macro-checkbox", () => {
+	jQuery(document).on("change", "#settingsDiv .macro-radiobutton,#settingsDiv ,#settingsDiv .macro-checkbox", () => {
 		Wikifier.wikifyEval("<<startingPlayerImageUpdate>>");
 	});
 	return "";
@@ -641,7 +643,7 @@ function isInPark(name) {
 			return ["active", "rescued"].includes(C.npc.Whitney.state)
 				&& C.npc.Whitney.init === 1 && Weather.precipitation !== "none"
 				&& Time.dayState === "day" && !Time.schoolTime
-				&& V.daily.whitney.park === undefined && V.pillory_tenant.special.name !== "Whitney";
+				&& V.daily.whitney.park === undefined && V.pillory.tenant.special.name !== "Whitney";
 		default:
 			return false;
 	}
@@ -836,7 +838,7 @@ window.DefaultActions = {
 
 function selectWardrobe(targetLocation = V.wardrobe_location, type) {
 	let wardrobe = V.wardrobes[targetLocation];
-	if (type !== "return" && wardrobe.locationRequirement && !wardrobe.locationRequirement.includes(V.location)) {
+	if (type !== "return" && wardrobe?.locationRequirement && !wardrobe.locationRequirement.includes(V.location)) {
 		V.wardrobe_location = "wardrobe";
 		wardrobe = V.wardrobe;
 	}
@@ -869,6 +871,16 @@ function clothingData(slot, item, data) {
 	return setup.clothes[slot][clothesIndex(slot, item)][data];
 }
 window.clothingData = clothingData;
+
+/**
+ * @param {ClothedSlots} slot
+ * @param {ClothesItem} item
+ * @returns {ClothesItem}
+ */
+function getSetupClothing(slot, item) {
+	return setup.clothes[slot][clothesIndex(slot, item)];
+}
+window.getSetupClothing = getSetupClothing;
 
 function clothesDataTrimmerLoop() {
 	if (!V.passage || V.passage === "Start") return;
@@ -1305,6 +1317,80 @@ function currentSkillValue(skill, disableModifiers = 0) {
 }
 window.currentSkillValue = currentSkillValue;
 
+/**
+ * @param {string} input
+ */
+function hasSexStatMapper(input) {
+	switch (input) {
+		case "p":
+		case "promiscuity":
+		case "promiscuous":
+			return "promiscuity";
+		case "e":
+		case "exhibitionism":
+		case "exhibition":
+		case "exhibitionist":
+			return "exhibitionism";
+		case "d":
+		case "deviancy":
+		case "deviant":
+			return "deviancy";
+	}
+	return null;
+}
+window.hasSexStatMapper = hasSexStatMapper;
+
+/**
+ * @param {string} input
+ * @param {number} required
+ */
+function hasSexStat(input, required) {
+	const stat = hasSexStatMapper(input);
+	if (stat == null) {
+		Errors.report(`[hasSexStat]: input '${stat}' null.`, {
+			Stacktrace: Utils.GetStack(),
+			stat,
+		});
+		return false;
+	}
+	const statValue = V[stat];
+	if (!Number.isFinite(statValue)) {
+		Errors.report(`[hasSexStat]: sex stat '${stat}' unknown.`, {
+			Stacktrace: Utils.GetStack(),
+			stat,
+		});
+		return false;
+	}
+	switch (required) {
+		case 6:
+			/* self-destructive, extreme actions, like leglocking a rapist unprotected or provoking a group for no sane benefit. */
+			return statValue >= 95;
+		case 5:
+			/* Extremely lewd actions, like full nude exposure and inciting gangbangs. */
+			return statValue >= 75;
+		case 4:
+			/* Very lewd actions, like giving oral, using your body to get your way, and accepting lecherous propositions. */
+			return statValue >= 55;
+		case 3:
+			/* Moderately lewd actions, like giving handjobs, more lewd exposure/flaunting, and most prostitution. */
+			return statValue >= 35;
+		case 2:
+			/* Modestly lewd actions, like flashing underwear or light coercion. Many seduction checks fall under this level. */
+			return statValue >= 15;
+		case 1:
+			/* Do not use for events or checks, only for checking if value is above level 0. Level 1 actions should always be available. */
+			return statValue >= 1;
+		default:
+			Errors.report(`[hasSexStat]: sex stat requirement outside of possible value range: '${required}' (must be between 1 and 6!).`, {
+				Stacktrace: Utils.GetStack(),
+				stat,
+				required,
+			});
+			return false;
+	}
+}
+window.hasSexStat = hasSexStat;
+
 function playerIsPenetrated() {
 	return [V.mouthstate, V.vaginastate, V.anusstate].some(s => ["penetrated", "doublepenetrated", "tentacle", "tentacledeep"].includes(s));
 }
@@ -1463,16 +1549,42 @@ window.getSexesFromRandomGroup = getSexesFromRandomGroup;
  * Example: $drugged goes higher than 500, but we want the bar to become red at 500, so we call this function as getColourClassFromPercentage($drugged / 5).
  *
  * @param {number} percentage The percentage of the desired bar colour.
+ * @param {string} stat Stat name, to determine whether or not the bar should use inverted colours (green for min, red for max).
  * @returns {string} Colour name to use.
  */
-function getColourClassFromPercentage(percentage) {
-	if (percentage <= 0) return "green";
-	if (percentage < 20) return "teal";
-	if (percentage < 40) return "lblue";
+function getColourClassFromPercentage(percentage, stat) {
+	const inverted = ![
+		"pain",
+		"arousal",
+		"tiredness",
+		"stress",
+		"trauma",
+		"drugged",
+		"hallucinogen",
+		"drunk",
+		"awareness",
+		"sex",
+		"prostitution",
+		"rape",
+		"bestiality",
+		"pregnancy",
+		"impreg",
+		"promiscuity",
+		"exhibitionism",
+		"delinquency",
+		"deviancy",
+		"corruption",
+		"crime",
+		"aggro",
+		"rage",
+	].includes(stat);
+	if (percentage <= 0) return inverted ? "red" : "green";
+	if (percentage < 20) return inverted ? "pink" : "teal";
+	if (percentage < 40) return inverted ? "purple" : "lblue";
 	if (percentage < 60) return "blue";
-	if (percentage < 80) return "purple";
-	if (percentage < 100) return "pink";
-	return "red";
+	if (percentage < 80) return inverted ? "lblue" : "purple";
+	if (percentage < 100) return inverted ? "teal" : "pink";
+	return inverted ? "green" : "red";
 }
 window.getColourClassFromPercentage = getColourClassFromPercentage;
 
@@ -2002,3 +2114,60 @@ function earSlimeMakingMundaneRequests() {
 	return true;
 }
 window.earSlimeMakingMundaneRequests = earSlimeMakingMundaneRequests;
+
+function fixIntegrityUpdater() {
+	Object.entries(V.worn).forEach(([slot, item]) => fixIntegrityMax(slot, item));
+	Object.entries(V.store).forEach(([slot, items]) => items.forEach(item => fixIntegrityMax(slot, item)));
+	setup.clothes_all_slots.forEach(slot => {
+		const category = V.wardrobe[slot];
+		if (!Array.isArray(category)) {
+			console.warn("Category:", slot, "doesn't exist in wardrobe.");
+			return;
+		}
+		category.forEach(item => fixIntegrityMax(slot, item));
+	});
+	const wardrobes = Object.entries(V.wardrobes).filter(([name, wardrobe]) => !["shopReturn", "wardrobe"].includes(name));
+	if (Array.isArray(wardrobes)) {
+		wardrobes.forEach(([name, wardrobe]) => {
+			setup.clothes_all_slots.forEach(slot => {
+				const category = wardrobe[slot];
+				if (!Array.isArray(category)) {
+					console.warn("Category:", slot, "doesn't exist in wardrobe:", name);
+					return;
+				}
+				category.forEach(item => fixIntegrityMax(slot, item));
+			});
+		});
+	}
+	Object.entries(V.carried).forEach(([slot, item]) => fixIntegrityMax(slot, item));
+}
+window.fixIntegrityUpdater = fixIntegrityUpdater;
+
+/**
+ * @param {string} slot
+ * @param {ClothesItem} value
+ * @returns {void}
+ */
+function fixIntegrityMax(slot, value) {
+	if (value.integrity_max !== 0) {
+		return; // Integrity is fine
+	}
+	const setupClothing = getSetupClothing(slot, value);
+	value.integrity_max = setupClothing.integrity_max;
+}
+window.fixIntegrityMax = fixIntegrityMax;
+
+function formatMoney(amount) {
+	const integerPart = Math.floor(amount / 100);
+	let formattedAmount = Math.abs(integerPart).toLocaleString("en-GB");
+	if (Math.abs(integerPart) <= 9999) {
+		const decimalPart = amount % 100;
+		if (decimalPart) {
+			formattedAmount += "." + ("0" + Math.floor(Math.abs(decimalPart))).slice(-2);
+		}
+	}
+	T.printmoney = (amount >= 0 ? "" : "-") + "£" + formattedAmount;
+	return T.printmoney;
+}
+window.formatMoney = formatMoney;
+DefineMacro("formatmoney", money => formatMoney(money));

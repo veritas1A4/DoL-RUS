@@ -313,16 +313,15 @@
 		<<set _args[0].pronouns to {}>>
 		<<switch _args[0].pronoun>>
 			<<case "m">>
-				<<set _args[0].pronouns.he = "he">>
-				<<set _args[0].pronouns.his = "his">>
+				<<set _args[0].pronouns.he = "он">>
+				<<set _args[0].pronouns.his = "его">>
 				<<set _args[0].pronouns.hers = "his">>
-				<<set _args[0].pronouns.him = "him">>
+				<<set _args[0].pronouns.him = "него">>
 				<<set _args[0].pronouns.himself = "himself">>
+				<<set _args[0].pronouns.end = "">>
 				<<set _args[0].pronouns.man = "man">>
 				<<set _args[0].pronouns.boy = "boy">>
 				<<set _args[0].pronouns.men = "men">>
-				<<set _args[0].pronouns.itwsays = "сказал">>
-				<<set _args[0].pronouns.itwcute = "милый">>
 				<<set _args[0].pronouns.itwmadesound = "издал">>
 				<<set _args[0].pronouns.itwcan = "мог">>
 				<<set _args[0].pronouns.itwfather = "дедушка">>
@@ -334,11 +333,10 @@
 				<<set _args[0].pronouns.hers = "hers">>
 				<<set _args[0].pronouns.him = "неё">>
 				<<set _args[0].pronouns.himself = "herself">>
+				<<set _args[0].pronouns.end = "а">>
 				<<set _args[0].pronouns.man = "woman">>
 				<<set _args[0].pronouns.boy = "girl">>
 				<<set _args[0].pronouns.men = "women">>
-				<<set _args[0].pronouns.itwsays = "сказала">>
-				<<set _args[0].pronouns.itwcute = "милая">>
 				<<set _args[0].pronouns.itwmadesound = "издала">>
 				<<set _args[0].pronouns.itwcan = "могла">>
 				<<set _args[0].pronouns.itwfather = "бабушка">>
@@ -350,11 +348,10 @@
 				<<set _args[0].pronouns.hers = "its">>
 				<<set _args[0].pronouns.him = "it">>
 				<<set _args[0].pronouns.himself = "itself">>
+				<<set _args[0].pronouns.end = "о">>
 				<<set _args[0].pronouns.man = "man">>
 				<<set _args[0].pronouns.boy = "boy">>
 				<<set _args[0].pronouns.men = "men">>
-				<<set _args[0].pronouns.itwsays = "сказало">>
-				<<set _args[0].pronouns.itwcute = "милое">>
 				<<set _args[0].pronouns.itwmadesound = "издало">>
 				<<set _args[0].pronouns.itwcan = "могло">>
 				<<set _args[0].pronouns.itwhow = "которое">>
@@ -374,11 +371,10 @@
 				<<set _args[0].pronouns.hers = "they">>
 				<<set _args[0].pronouns.him = "them">>
 				<<set _args[0].pronouns.himself = "themselves">>
+				<<set _args[0].pronouns.end = "и">>
 				<<set _args[0].pronouns.man = "man">>
 				<<set _args[0].pronouns.boy = "boy">>
 				<<set _args[0].pronouns.men = "men">>
-				<<set _args[0].pronouns.itwsays = "сказали">>
-				<<set _args[0].pronouns.itwcute = "милые">>
 				<<set _args[0].pronouns.itwmadesound = "издали">>
 				<<set _args[0].pronouns.itwcan = "могли">>
 				<<set _args[0].pronouns.itwhow = "которые">>
@@ -397,8 +393,7 @@
 		<<set _args[0].pronouns.man = 0>>
 		<<set _args[0].pronouns.boy = 0>>
 		<<set _args[0].pronouns.men = 0>>
-		<<set _args[0].pronouns.itwsays = 0>>
-		<<set _args[0].pronouns.itwcute = 0>>
+		<<set _args[0].pronouns.end = 0>>
 		<<set _args[0].pronouns.itwmadesound = 0>>
 		<<set _args[0].pronouns.itwcan = 0>>
 		<<set _args[0].pronouns.itwfather = 0>>
@@ -843,6 +838,42 @@
 	<</if>>
 <</widget>>
 
+<<widget "end">><<silently>>
+    <!-- Add the option to call for named NPCs individually -->
+    <<if _args[0]>>
+        <<set $pronoun to C.npc[_args[0]].pronoun>>
+    <</if>>
+    <<if $pronoun is "m">>
+        <<set _text_output to "">>
+    <<elseif $pronoun is "f">>
+        <<set _text_output to "а">>
+    <<elseif $pronoun is "i">>
+        <<set _text_output to "о">>
+    <<elseif $pronoun is "n">>
+        <<set _text_output to "">>
+    <<elseif $pronoun is "t">>
+        <<set _text_output to "и">>
+    <</if>>
+<</silently>>_text_output<</widget>>
+
+<<widget "itwfather">><<silently>>
+	<!-- Add the option to call for named NPCs individually -->
+	<<if _args[0]>>
+		<<set $pronoun to C.npc[_args[0]].pronoun>>
+	<</if>>
+	<<if $pronoun is "m">>
+		<<set _text_output to "дедушка">>
+	<<elseif $pronoun is "f">>
+		<<set _text_output to "бабушка">>
+	<<elseif $pronoun is "i">>
+		<<set _text_output to "ничего">>
+	<<elseif $pronoun is "n">>
+		<<set _text_output to "ничего">>
+	<<elseif $pronoun is "t">>
+		<<set _text_output to "ничего">>
+	<</if>>
+<</silently>>_text_output<</widget>>
+
 <!-- Keeping his1-6 for legacy support as of v2.3 -->
 <<widget "his1">>
 	<<person1>><<his>>
@@ -896,6 +927,16 @@
 	<<if maleChance() is 100>>
 		<<set _text_output to "boys">>
 	<<elseif maleChance() is 0>>
+		<<set _text_output to "girls">>
+	<<else>>
+		<<set _text_output to "boys and girls">>
+	<</if>>
+<</silently>><<print _text_output>><</widget>>
+
+<<widget "peopleyv">><<silently>>
+	<<if $malevictimchance is 100>>
+		<<set _text_output to "boys">>
+	<<elseif $malevictimchance is 0>>
 		<<set _text_output to "girls">>
 	<<else>>
 		<<set _text_output to "boys and girls">>
@@ -1094,6 +1135,7 @@
 	<<else>>
 		<<set _text_output2 to "">>
 	<</if>>
+	<<set _mouthSensitivityDescribed to true>>
 <</silently>><<print _text_output2>><</widget>>
 
 <<widget "breastsensitivity">><<silently>>
@@ -1106,6 +1148,7 @@
 	<<else>>
 		<<set _text_output2 to "">>
 	<</if>>
+	<<set _breastSensitivityDescribed to true>>
 <</silently>><<print _text_output2>><</widget>>
 
 <<widget "bottomsensitivity">><<silently>>
@@ -1118,10 +1161,11 @@
 	<<else>>
 		<<set _text_output2 to "">>
 	<</if>>
+	<<set _bottomSensitivityDescribed to true>>
 <</silently>><<print _text_output2>><</widget>>
 
 <<widget "nipple">>
-	<<breastsensitivity>><<print "nipple">>
+	<<if !_breastSensitivityDescribed>><<breastsensitivity>><</if>><<print "nipple">>
 <</widget>>
 
 <<widget "nipples">>
@@ -1147,7 +1191,7 @@
 	<<elseif $options.debugdisable is "f">>
 		<<set _text_output to "ERROR - $$player.breastsize is not a number: $player.breastsize">>
 	<</if>>
-<</silently>><<breastsensitivity>><<print _text_output>><</widget>>
+<</silently>><<if !_breastSensitivityDescribed>><<breastsensitivity>><</if>><<print _text_output>><</widget>>
 
 <<widget "breastssimple">><<silently>>
 	<<if Number.isInteger($player.breastsize)>>
@@ -1187,7 +1231,7 @@
 
 <<widget "mouth">><<silently>>
 	<<set _text_output to "lips">>
-<</silently>><<mouthsensitivity>><<print _text_output>><</widget>>
+<</silently>><<if !_mouthSensitivityDescribed>><<mouthsensitivity>><</if>><<print _text_output>><</widget>>
 
 <<widget "undertop">><<silently>>
 	<<if $worn.under_upper.exposed lte 0>>
@@ -1246,13 +1290,18 @@
 			/* ^^^ placeholders for later if people want to fill them out */
 		<</if>>
 	<</if>>
+	<<if _args[0] is "penis">>
+		<<set _penisStateDescribed to true>>
+	<<elseif _args[0] is "pussy">>
+		<<set _pussyStateDescribed to true>>
+	<</if>>
 <</silently>><<print _text_output>><</widget>>
 
 <<widget "bottom">><<silently>>
-	<<set _text_output to ["стройн", "худ", "скром", "роскош", "мягк", "кругл", "пухл", "больш", "здор"][Math.clamp(0, 8, $player.bottomsize)]>>
+	<<set _text_output to ["стройная", "худая", "скромная", "роскошная", "мягкая", "круглая", "пухлая", "большая", "здоровая"][Math.clamp(0, 8, $player.bottomsize)]>>
 	/* _args[0] is a flag to prevent .pluck() from altering state random when calling from overlays */
-	<<set _text_output to _text_output + [" задниц", " попк", " жоп"].pluck(_args[0])>>
-<</silently>><<bottomsensitivity>><<print _text_output>><</widget>>
+	<<set _text_output to _text_output + [" задница", " попка", " жопа"].pluck(_args[0])>>
+<</silently>><<if !_bottomSensitivityDescribed>><<bottomsensitivity>><</if>><<print _text_output>><</widget>>
 
 <!-- Too small and too big outputs are intended as error messages
 	so that it's more obvious what's wrong when people report bugs -->
@@ -1268,13 +1317,16 @@
 		<<case 4>><<set _text_output to "enormous">>
 		<<default>><<set _text_output to "[Widget 'penissize' - Invalid Penis Value of - " + $_size + ($playerHasStraponOverride ? " - $playerHasStraponOverride is set" : "") + "]">>
 	<</switch>>
+	<<set _penisSizeDescribed to true>>
 <</silently>><<print _text_output>><</widget>>
 
 <!-- [0] - if truthy, genital sensitivity is omitted -->
 <<widget "pussy">><<silently>>
-	<<genitalstate "pussy">><<set _genital_state_text to _text_output>>
+	<<if !_pussyStateDescribed>>
+		<<genitalstate "pussy">><<set _genital_state_text to _text_output>>
+	<</if>>
 	<<set _text_output to "">>
-	<<if !_args[0]>>
+	<<if !_args[0] and !_genitalSensitivityDescribed>>
 		<<genitalsensitivity>>
 	<</if>>
 	/* _args[1] is a flag to prevent .pluck() from altering state random when calling from overlays */
@@ -1287,7 +1339,7 @@
 		<<penis>>
 	<<else>>
 		<<set _text_output to "">>
-		<<if !_args[0]>>
+		<<if !_args[0] and !_genitalSensitivityDescribed>>
 			<<genitalsensitivity>>
 		<</if>>
 		<<set _text_output += "clit">>
@@ -1296,13 +1348,24 @@
 
 <!-- [0] - if truthy, genital sensitivity is omitted -->
 <<widget "penis">><<silently>>
-	<<penissize>><<set _penissize_text to _text_output>>
-	<<if _penissize_text isnot "">>
-		<<set _penissize_text to _penissize_text + " ">>
+	<!-- Size, skip if mentioned this passage already -->
+	<<if _penisSizeDescribed>>
+		<<set _penissize_text to "">>
+	<<else>>
+		<<penissize>><<set _penissize_text to _text_output>>
+		<<if _penissize_text isnot "">>
+			<<set _penissize_text to _penissize_text + " ">>
+		<</if>>
 	<</if>>
-	<<genitalstate "penis">><<set _genital_state_text to _text_output>>
+	<!-- State, skip if mentioned this passage already -->
+	<<if _penisStateDescribed>>
+		<<set _genital_state_text to "">>
+	<<else>>
+		<<genitalstate "penis">><<set _genital_state_text to _text_output>>
+	<</if>>
 	<<set _text_output to "">>
-	<<if !_args[0]>>
+	<!-- Sensitivity, skip if mentioned this passage already -->
+	<<if !_args[0] and !_genitalSensitivityDescribed>>
 		<<genitalsensitivity>>
 	<</if>>
 	/* _args[1] is a flag to prevent .pluck() from altering state random when calling from overlays */
@@ -1715,6 +1778,7 @@
 	<<else>>
 		<<set _text_output to "">>
 	<</if>>
+	<<set _genitalSensitivityDescribed to true>>
 <</silently>><<print _text_output>><</widget>>
 
 <!--
@@ -2062,56 +2126,6 @@
 	<</if>>
 <</widget>>
 
-<<widget "combatdeviant">>
-	<<if $consensual is 1 and $statdisable is "f">>
-		<<set _color to ["","teal","lblue","blue","purple","pink","red"][_args[0]]>>
-		<span @class="_color">Deviancy _args[0]</span>
-	<</if>>
-<</widget>>
-
-<<widget "combatdeviant1">>
-	<<if $consensual is 1 and $statdisable is "f">>
-		<span class="teal">Deviancy 1</span>
-	<</if>>
-<</widget>>
-
-<<widget "combatdeviant2">>
-	<<if $consensual is 1 and $statdisable is "f">>
-		<span class="lblue">Deviancy 2</span>
-	<</if>>
-<</widget>>
-
-<<widget "combatdeviant3">>
-	<<if $consensual is 1 and $statdisable is "f">>
-		<span class="blue">Deviancy 3</span>
-	<</if>>
-<</widget>>
-
-<<widget "combatdeviant4">>
-	<<if $consensual is 1 and $statdisable is "f">>
-		<span class="purple">Deviancy 4</span>
-	<</if>>
-<</widget>>
-
-<<widget "combatdeviant5">>
-	<<if $consensual is 1 and $statdisable is "f">>
-		<span class="pink">Deviancy 5</span>
-	<</if>>
-<</widget>>
-
-<<widget "combatdeviant6">>
-	<<if $consensual is 1 and $statdisable is "f">>
-		<span class="red">!Deviancy 6!</span>
-	<</if>>
-<</widget>>
-
-<!-- Commented out for deprecation. Use: ?admires
-			See 03-JavaScript/Templates/..
-<<widget "admires">>
-	<<print either("leers at", "admires", "ogles", "eyes up")>>
-<</widget>>
--->
-
 <<widget "crime">>
 	<<if $statdisable is "f">> |
 		<span class="red">Crime</span>
@@ -2322,7 +2336,7 @@
  -->
 <<widget "undies">><<silently>>
 	<<outfitChecks>>
-	<<if !$worn.under_lower.type.includes("naked") and _bottom isnot $worn.under_lower>>
+	<<if !$worn.under_lower.type.includes("naked")>>
 		<<if _args[0] and _args[0] gte 1>>
 			<<set _text_output to $worn.under_lower.name_simple>>
 		<<else>>
@@ -2380,6 +2394,7 @@
 <</widget>>
 
 <<widget "allTopsUnderwear">><<silently>>
+	<<outfitChecks>>
 	<<set _tops to []>>
 	<<if $worn.over_upper.name isnot "naked">>
 		<<set _tops.push($worn.over_upper.name)>>
@@ -2390,12 +2405,14 @@
 	<<if $worn.under_upper.name isnot "naked">>
 		<<set _tops.push($worn.under_upper.name)>>
 	<</if>>
+	<<if _tops.length is 0 and _top>><<set _tops.push(_top.name)>><</if>>
 	<<if _tops.length is 1>><<set _text_output to _tops[0]>><</if>>
 	<<if _tops.length is 2>><<set _text_output to _tops[0] + " and " + _tops[1]>><</if>>
 	<<if _tops.length is 3>><<set _text_output to _tops[0] + ", " + _tops[1] + " and " + _tops[2]>><</if>>
 <</silently>>_text_output<</widget>>
 
 <<widget "allBottomsUnderwear">><<silently>>
+	<<outfitChecks>>
 	<<set _bottoms to []>>
 	<<if $worn.over_lower.name isnot "naked">>
 		<<set _bottoms.push($worn.over_lower.name)>>
@@ -2406,6 +2423,7 @@
 	<<if $worn.under_lower.name isnot "naked">>
 		<<set _bottoms.push($worn.under_lower.name)>>
 	<</if>>
+	<<if _bottoms.length is 0 and _bottom>><<set _bottoms.push(_bottom.name)>><</if>>
 	<<if _bottoms.length is 1>><<set _text_output to _bottoms[0]>><</if>>
 	<<if _bottoms.length is 2>><<set _text_output to _bottoms[0] + " and " + _bottoms[1]>><</if>>
 	<<if _bottoms.length is 3>><<set _text_output to _bottoms[0] + ", " + _bottoms[1] + " and " + _bottoms[2]>><</if>>
@@ -3028,9 +3046,9 @@
 
 		<<if $leftarm is "bound" and $rightarm is "bound" and $exposed gte 1>>
 			With your arms bound, there's little you can do to shield your <<lewdness>> from prying eyes.
-			<<if !$uncomfortable.nude and $exposed gte 2 and $exhibitionism gte 95>>
+			<<if !$uncomfortable.nude and $exposed gte 2 and hasSexStat("exhibitionism", 6)>>
 				You quiver with excitement.
-			<<elseif !$uncomfortable.nude and $exposed is 1 and $exhibitionism gte 55>>
+			<<elseif !$uncomfortable.nude and $exposed is 1 and hasSexStat("exhibitionism", 4)>>
 				You quiver with excitement.
 			<</if>>
 		<<elseif ($exposed gte 2 and ($exhibitionism lt 95 or $uncomfortable.nude))
@@ -3083,7 +3101,7 @@
 				<<if _clothing_strip_sequence is 0>>
 					<<flaunting>> you shuffle out of your $worn.under_upper.name, revealing your <<breasts>> and <<genitals>>.
 				<<elseif _clothing_strip_sequence is 1>>
-					Your $worn.under_upper.name <<= $worn.under_.plural is 1 ? "come" : "comes">> next, revealing your <<breasts>> and <<genitals>>.
+					Your $worn.under_upper.name <<= $worn.under_upper.plural is 1 ? "come" : "comes">> next, revealing your <<breasts>> and <<genitals>>.
 				<<else>>
 					Finally, you peel off your $worn.under_upper.name, revealing your <<breasts>> and <<genitals>>.
 				<</if>>
@@ -4275,7 +4293,7 @@
 <</silently>><<print _text_output>><</widget>>
 
 <<widget "skincolourtext">>
-	<<switch $skinColor.natural>>
+	<<switch Skin.color.natural>>
 		<<case "light" "ylight">>
 			light
 		<<case "medium" "ymedium">>
@@ -4286,18 +4304,18 @@
 			<<set _textOverride to true>>
 	<</switch>>
 	<<if _textOverride is true>>
-		<<if $skinColor.tanValues[0] gte 66>>
+		<<if Skin.color.tan gte 66>>
 			dark
-		<<elseif $skinColor.tanValues[0] gte 33>>
+		<<elseif Skin.color.tan gte 33>>
 			medium
 		<<else>>
 			light
 		<</if>>
 		skin colour.
-	<<elseif $skinColor.tanValues[0] gte 80>> skin colour with a dark tan.
-	<<elseif $skinColor.tanValues[0] gte 60>> skin colour with a medium tan.
-	<<elseif $skinColor.tanValues[0] gte 30>> skin colour with a tan.
-	<<elseif $skinColor.tanValues[0] gte 10>> skin colour with a light tan.
+	<<elseif Skin.color.tan gte 80>> skin colour with a dark tan.
+	<<elseif Skin.color.tan gte 60>> skin colour with a medium tan.
+	<<elseif Skin.color.tan gte 30>> skin colour with a tan.
+	<<elseif Skin.color.tan gte 10>> skin colour with a light tan.
 	<<else>> skin colour.
 	<</if>>
 <</widget>>
@@ -4851,7 +4869,7 @@
 		<<if $farm_work[_args[0]].gender is "m">>
 			<<set _text_output to "he">>
 		<<else>>
-			<<set _text_output to "she">>
+			<<set _text_output to "она">>
 		<</if>>
 	<<else>>
 		<<set _text_output to "it">>
@@ -5898,3 +5916,34 @@ Argument 2, where appropriate, determines whether it's the player undressing the
 		<</if>>
 	<</if>>
 <</silently>><<print _text_output>><</widget>>
+
+<<widget "fadeText">>
+	<span class="originalText fade-out">_args[0]</span>
+	<span class="changedText" hidden="">_args[1]</span>
+	<<set _delay to (_delay ? _delay : []).concat(_args[2] ? _args[2] : 1)>>
+
+	<<script>>
+		T.currentPassage = State.passage;
+
+		$(document).one(':passageend', function(ev) {
+			const originalTargets = [...document.getElementsByClassName('originalText')];
+			const changedTargets = [...document.getElementsByClassName('changedText')];
+
+			originalTargets.forEach((ele, index) => {
+				if (ele instanceof HTMLElement) {
+					setTimeout(() => {
+						if (State.passage === T.currentPassage) {
+							ele.remove();
+							changedTargets[index].hidden = false;
+							changedTargets[index].classList.add('fade-in')
+						}
+					}, T.delay[index] * 1000);
+
+					ele.addEventListener('animationend', function() {
+						ele.style.opacity = '0';
+					});
+				}
+			});
+		});
+	<</script>>
+<</widget>>
